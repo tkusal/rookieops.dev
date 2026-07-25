@@ -1,0 +1,41 @@
+# Dependências, builds e caches
+node_modules/
+dist/
+.astro/
+.wrangler/
+.pnpm-store/
+coverage/
+*.tsbuildinfo
+.eslintcache
+
+# Segredos e ambiente local
+.env
+.env.*
+!.env.example
+.dev.vars*
+*.local
+
+# Logs
+*.log
+pnpm-debug.log*
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Editores e ferramentas locais
+.idea/
+.vscode/
+.codex/
+.agents/
+.claude/
+
+# Sistema operacional
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# Arquivos locais do projeto
+bkp/
+tmp/
+temp/
+*.tgz

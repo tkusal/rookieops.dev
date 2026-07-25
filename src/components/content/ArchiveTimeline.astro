@@ -1,0 +1,49 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import type { Locale } from '../../config/i18n';
+import { formatDate, localizedEntryPath } from '../../lib/content/entries';
+
+interface Props {
+  posts: Array<CollectionEntry<'posts'>>;
+  locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const groups = posts.reduce<Record<string, Array<CollectionEntry<'posts'>>>>((acc, entry) => {
+  const year = String(entry.data.pubDate.getFullYear());
+  acc[year] ||= [];
+  acc[year].push(entry);
+  return acc;
+}, {});
+---
+
+<div id="archive-results" class="relative mt-10">
+  <div class="absolute top-2 bottom-0 left-4 w-px bg-border"></div>
+  <div class="space-y-10">
+    {Object.entries(groups).map(([year, entries]) => (
+      <section data-archive-year={year} class="relative pl-12">
+        <div class="absolute top-1 left-0 grid h-8 w-8 place-items-center rounded-[var(--radius-panel)] bg-primary text-xs font-semibold text-primary-foreground shadow-sm">
+          {year.slice(2)}
+        </div>
+        <h2 class="text-2xl font-semibold">{year}</h2>
+        <div class="surface-panel mt-4 divide-y divide-border overflow-hidden">
+          {entries.map((entry) => (
+            <a
+              href={localizedEntryPath('posts', entry as any)}
+              data-archive-entry
+              data-categories={JSON.stringify(entry.data.categories || [])}
+              data-tags={JSON.stringify(entry.data.tags || [])}
+              class="grid gap-1 p-4 transition-colors duration-200 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/35 motion-reduce:transition-none sm:grid-cols-[9rem_1fr] sm:items-center"
+            >
+              <time class="text-sm text-muted-foreground">{formatDate(entry.data.pubDate, locale)}</time>
+              <div>
+                <h3 class="font-medium">{entry.data.title}</h3>
+                {entry.data.description && <p class="mt-1 text-sm text-muted-foreground">{entry.data.description}</p>}
+              </div>
+            </a>
+          ))}
+        </div>
+      </section>
+    ))}
+  </div>
+</div>

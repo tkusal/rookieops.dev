@@ -1,0 +1,6 @@
+onlyBuiltDependencies:
+  - esbuild
+  - sharp
+  - workerd
+minimumReleaseAgeExclude:
+  - smart-gallery@2.0.1

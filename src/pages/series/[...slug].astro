@@ -1,0 +1,36 @@
+---
+import { render } from 'astro:content';
+import BaseLayout from '../../components/layout/BaseLayout.astro';
+import Breadcrumbs from '../../components/content/Breadcrumbs.astro';
+import PageHeader from '../../components/content/PageHeader.astro';
+import SeriesChapterList from '../../components/content/SeriesChapterList.astro';
+import { getLocalePath } from '../../config/i18n';
+import { siteConfig } from '../../config/site';
+import { getLocalizedSeries, type ResolvedSeries } from '../../lib/content/series';
+import { useTranslations } from '../../i18n/utils';
+
+export async function getStaticPaths() {
+  const series = await getLocalizedSeries('pt-br');
+  return series.map((item) => ({ params: { slug: item.slug }, props: { item } }));
+}
+
+const { item } = Astro.props as { item: ResolvedSeries };
+const { Content } = await render(item.entry);
+const t = useTranslations('pt-br');
+---
+
+<BaseLayout title={item.entry.data.title} description={item.entry.data.description} locale="pt-br">
+  <Breadcrumbs
+    locale="pt-br"
+    items={[
+      { label: siteConfig.shortName, href: getLocalePath('pt-br', '/'), icon: 'lucide:home' },
+      { label: t('series.title'), href: getLocalePath('pt-br', '/series/'), icon: 'lucide:list-ordered' },
+      { label: item.entry.data.title, icon: 'lucide:book-open' }
+    ]}
+  />
+  <PageHeader title={item.entry.data.title} description={item.entry.data.description} locale="pt-br" />
+  <article class="prose max-w-none">
+    <Content />
+  </article>
+  <SeriesChapterList chapters={item.chapters} locale="pt-br" />
+</BaseLayout>

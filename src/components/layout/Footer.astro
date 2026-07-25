@@ -1,0 +1,58 @@
+---
+import { Icon } from 'astro-icon/components';
+import type { Locale } from '../../config/i18n';
+import { getFooterNavigation } from '../../config/navigation';
+import { siteConfig } from '../../config/site';
+
+interface Props {
+  locale: Locale;
+}
+
+const year = new Date().getFullYear();
+const { locale } = Astro.props;
+const navigation = getFooterNavigation(locale);
+
+function isExternal(href: string) {
+  return /^(https?:)?\/\//.test(href);
+}
+---
+
+<footer class="mt-16 py-8 text-sm text-muted-foreground">
+  {navigation.length > 0 && (
+    <nav class="mb-6" aria-label="Navegação do rodapé">
+      <div class="flex flex-wrap items-center justify-center gap-1">
+        {navigation.map((item) => (
+          <a
+            href={item.href}
+            class="footer-nav-link"
+            target={isExternal(item.href) ? '_blank' : undefined}
+            rel={isExternal(item.href) ? 'noopener noreferrer' : undefined}
+          >
+            <Icon name={item.icon} class="h-4 w-4" />
+            <span>{item.label}</span>
+          </a>
+        ))}
+      </div>
+    </nav>
+  )}
+
+  <div class="mb-6 border-t border-border"></div>
+
+  <div class="flex flex-col gap-4 sm:flex-row sm:items-center sm:justify-between">
+    <p>© {year} {siteConfig.author.name}</p>
+    <div class="flex items-center gap-2">
+      {siteConfig.author.social.map((item) => (
+        <a
+          class="grid h-9 w-9 place-items-center rounded-[var(--radius-control)] transition-colors duration-200 hover:bg-accent hover:text-accent-foreground"
+          href={item.url}
+          aria-label={item.name}
+          title={item.name}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name={item.icon} class="h-4 w-4" />
+        </a>
+      ))}
+    </div>
+  </div>
+</footer>

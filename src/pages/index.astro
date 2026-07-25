@@ -1,0 +1,30 @@
+---
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import HomePage from '../components/home/HomePage.astro';
+import { contentTypes } from '../config/content';
+import { getLocalePath } from '../config/i18n';
+import { siteConfig } from '../config/site';
+import { getLocalizedEntries } from '../lib/content/entries';
+
+const locale = 'pt-br';
+const sections = await Promise.all(Object.entries(contentTypes)
+  .filter(([, config]) => config.home?.enabled)
+  .map(async ([id, config]) => {
+    const home = config.home!;
+    const entries = await getLocalizedEntries(config.collection, locale);
+    const visibleEntries = 'featuredOnly' in home && home.featuredOnly
+      ? entries.filter((entry) => 'featured' in entry.data && entry.data.featured)
+      : entries;
+
+    return {
+      id: id as keyof typeof contentTypes,
+      title: home.title[locale],
+      href: getLocalePath(locale, config.path),
+      entries: visibleEntries.slice(0, home.limit)
+    };
+  }));
+---
+
+<BaseLayout title={siteConfig.name} description={siteConfig.description} locale={locale}>
+  <HomePage locale={locale} sections={sections} />
+</BaseLayout>

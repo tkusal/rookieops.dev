@@ -1,0 +1,30 @@
+---
+import { Icon } from 'astro-icon/components';
+import { siteConfig } from '../../config/site';
+import { getLocalePath } from '../../config/i18n';
+import type { Locale } from '../../config/i18n';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const license = siteConfig.post.license;
+const t = useTranslations(locale);
+const licenseUrl = getLocalePath(locale, license.url);
+---
+
+{license.enabled && (
+  <section class="mt-10 rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
+    <div class="mb-2 flex items-center gap-2 font-medium text-foreground">
+      <Icon name="lucide:badge-check" class="h-4 w-4" />
+      <span>{t('license.label')}</span>
+    </div>
+    <p>
+      <a href={licenseUrl} class="text-primary hover:underline">{license.name}</a>
+      {' '}
+      {license.description}
+    </p>
+  </section>
+)}

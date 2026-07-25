@@ -1,0 +1,23 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import EntryCard from './EntryCard.astro';
+import type { Locale } from '../../config/i18n';
+import { useTranslations } from '../../i18n/utils';
+
+interface Props {
+  posts: Array<CollectionEntry<'posts'>>;
+  locale: Locale;
+}
+
+const { posts, locale } = Astro.props;
+const t = useTranslations(locale);
+---
+
+{posts.length > 0 && (
+  <section class="mt-12 border-t border-border pt-8">
+    <h2 class="text-xl font-semibold">{t('related.title')}</h2>
+    <div class="mt-4 space-y-1">
+      {posts.map((entry) => <EntryCard entry={entry} collection="posts" locale={locale} style="compact" />)}
+    </div>
+  </section>
+)}

@@ -1,0 +1,67 @@
+import type { Locale } from '../config/i18n';
+
+export const languages: Record<Locale, string> = {
+  'pt-br': 'Português'
+};
+
+export const defaultLang: Locale = 'pt-br';
+
+export const ui = {
+  'pt-br': {
+    'archive.description': 'Todos os artigos organizados pela data de publicação.',
+    'archive.filter.all': 'Todos',
+    'archive.filter.categories': 'Categorias',
+    'archive.filter.empty': 'Nenhum artigo corresponde a estes filtros.',
+    'archive.filter.label': 'Filtrar arquivo',
+    'archive.filter.tags': 'Tags',
+    'archive.results.prefix': 'Exibindo',
+    'archive.results.suffix': 'artigos',
+    'archive.title': 'Arquivo',
+    'dock.back': 'Voltar',
+    'dock.display': 'Preferências de exibição',
+    'dock.display.close': 'Fechar preferências',
+    'dock.display.reset': 'Restaurar largura padrão',
+    'dock.display.width': 'Largura da página',
+    'dock.home': 'Início',
+    'dock.top': 'Voltar ao topo',
+    'home.featuredProjects': 'Projetos em destaque',
+    'home.recentPosts': 'Artigos recentes',
+    'home.viewAll': 'Ver todos',
+    'license.label': 'Licença',
+    'nav.colorMode': 'Alternar modo de cor',
+    'nav.language': 'Idioma',
+    'nav.menu': 'Menu',
+    'nav.search': 'Buscar',
+    'nav.theme': 'Tema',
+    'notFound.action': 'Voltar ao início',
+    'notFound.description': 'A página que você procura não existe.',
+    'notFound.title': 'Página não encontrada',
+    'posts.description': 'Guias, notas e experiências sobre operações de TI.',
+    'posts.title': 'Artigos',
+    'postNav.next': 'Próximo',
+    'postNav.navigation': 'Navegação entre artigos',
+    'postNav.previous': 'Anterior',
+    'post.updated': 'Atualizado em',
+    'projects.description': 'Projetos, laboratórios e notas de implementação.',
+    'projects.title': 'Projetos',
+    'related.title': 'Artigos relacionados',
+    'series.chapterCount': 'capítulos',
+    'series.chapters': 'Capítulos',
+    'series.description': 'Trilhas de leitura organizadas por assunto.',
+    'series.empty': 'Nenhuma série publicada.',
+    'series.label': 'Série',
+    'series.latestChapter': 'Capítulo mais recente',
+    'series.navigation': 'Navegação entre capítulos',
+    'series.nextChapter': 'Próximo capítulo',
+    'series.previousChapter': 'Capítulo anterior',
+    'series.title': 'Séries',
+    'search.close': 'Fechar busca',
+    'search.empty': 'Digite para começar a buscar',
+    'search.label': 'Busca',
+    'search.loading': 'Carregando índice',
+    'search.noResults': 'Nenhum resultado encontrado',
+    'search.placeholder': 'Buscar no RookieOps'
+  }
+} as const satisfies Record<Locale, Record<string, string>>;
+
+export type UiKey = keyof (typeof ui)[typeof defaultLang];
