@@ -29,7 +29,7 @@ Este código se aplica a issues, pull requests, revisões, discussões, commits,
 
 ## Relatos
 
-Relate violações de forma privada ao mantenedor Thiago Kusal pelo e-mail [thiago.kusal@outlook.com](mailto:thiago.kusal@outlook.com). Não exponha o caso ou dados pessoais em uma issue pública.
+Relate violações de forma privada ao mantenedor [Thiago Kusal pelo Linkedin](https://www.linkedin.com/in/tkusal/). Não exponha o caso ou dados pessoais em uma issue pública.
 
 Inclua, quando for seguro, uma descrição do ocorrido, links ou registros relevantes e a forma de contato desejada. Os relatos serão analisados com imparcialidade e discrição. A identidade de quem relata e das pessoas envolvidas será compartilhada apenas quando necessário para investigar e responder ao caso.
 
