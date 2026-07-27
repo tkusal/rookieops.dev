@@ -1,0 +1,5 @@
+# Security vulnerability reports for RookieOps
+Contact: mailto:security@rookieops.dev
+Expires: 2027-07-26T23:59:59.000Z
+Preferred-Languages: pt-BR, en
+Canonical: https://rookieops.dev/.well-known/security.txt
