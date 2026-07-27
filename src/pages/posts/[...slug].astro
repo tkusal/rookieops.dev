@@ -18,7 +18,8 @@ export async function getStaticPaths() {
 }
 
 const { entry } = Astro.props;
-const { Content, headings } = await render(entry);
+const { Content, headings, remarkPluginFrontmatter } = await render(entry);
+const hasMath = Boolean(entry.data.math || remarkPluginFrontmatter.math);
 const posts = await getLocalizedEntries('posts', 'pt-br');
 const seriesContext = await getSeriesContext(entry);
 const adjacent: {
@@ -56,6 +57,7 @@ const related = relatedPosts(posts, entry, siteConfig.post.relatedCount);
   headings={headings}
   toc={entry.data.toc ?? 'center'}
   comments={entry.data.comments}
+  math={hasMath}
 >
   <Breadcrumbs
     locale="pt-br"

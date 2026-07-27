@@ -1,6 +1,5 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
-@import "katex/dist/katex.min.css";
 @import "./themes.css";
 
 /* Utility classes emitted by the rehype image plugin live in .mjs files. */
@@ -87,6 +86,35 @@ a {
   color: inherit;
 }
 
+.skip-link {
+  position: fixed;
+  top: 0.75rem;
+  left: 0.75rem;
+  z-index: 100;
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  border: 2px solid var(--color-primary);
+  border-radius: var(--radius-control);
+  background: var(--color-background);
+  padding: 0.65rem 1rem;
+  color: var(--color-foreground);
+  font-weight: 700;
+  box-shadow: var(--surface-shadow-strong);
+  transform: translateY(calc(-100% - 1rem));
+  transition: transform 150ms ease;
+}
+
+.skip-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+  transform: translateY(0);
+}
+
+#main-content:focus {
+  outline: none;
+}
+
 .surface-card {
   border: 1px solid var(--color-border);
   border-radius: var(--radius-card);
@@ -141,7 +169,7 @@ a {
 
 .footer-nav-link {
   display: inline-flex;
-  min-height: 2.25rem;
+  min-height: 2.75rem;
   align-items: center;
   gap: 0.4rem;
   border-radius: var(--radius-control);
@@ -155,6 +183,81 @@ a {
 .footer-nav-link:hover {
   background: color-mix(in oklch, var(--color-primary), transparent 92%);
   color: var(--color-primary);
+}
+
+.consent-banner {
+  position: fixed;
+  right: 1rem;
+  bottom: max(1rem, env(safe-area-inset-bottom));
+  left: 1rem;
+  z-index: 80;
+  display: grid;
+  max-width: 56rem;
+  gap: 1rem;
+  margin-inline: auto;
+  padding: 1rem;
+  box-shadow: var(--surface-shadow-strong);
+}
+
+.consent-banner[hidden] {
+  display: none;
+}
+
+.consent-banner__copy {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.consent-banner__icon {
+  display: grid;
+  width: 2.75rem;
+  height: 2.75rem;
+  flex: 0 0 2.75rem;
+  place-items: center;
+  border-radius: var(--radius-control);
+  background: color-mix(in oklch, var(--color-primary), transparent 88%);
+  color: var(--color-primary);
+}
+
+.consent-banner__actions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.5rem;
+}
+
+.consent-button {
+  display: inline-flex;
+  min-height: 2.75rem;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--radius-control);
+  padding: 0.65rem 1rem;
+  font-weight: 700;
+  transition: color 180ms ease, background-color 180ms ease, filter 180ms ease;
+}
+
+.consent-button:focus-visible,
+.footer-nav-link:focus-visible {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+body[data-consent-visible] .dock-shell {
+  visibility: hidden;
+}
+
+@media (min-width: 48rem) {
+  .consent-banner {
+    grid-template-columns: minmax(0, 1fr) auto;
+    align-items: center;
+    padding: 1.25rem;
+  }
+
+  .consent-banner__actions {
+    min-width: 15rem;
+  }
 }
 
 .markdown-tabs {

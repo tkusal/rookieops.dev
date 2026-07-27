@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon/components';
 import type { Locale } from '../../config/i18n';
 import { getFooterNavigation } from '../../config/navigation';
 import { siteConfig } from '../../config/site';
+import { useTranslations } from '../../i18n/utils';
 
 interface Props {
   locale: Locale;
@@ -11,6 +12,10 @@ interface Props {
 const year = new Date().getFullYear();
 const { locale } = Astro.props;
 const navigation = getFooterNavigation(locale);
+const t = useTranslations(locale);
+const hasAnalyticsConsent = siteConfig.analytics.enabled
+  && siteConfig.analytics.provider === 'google-analytics'
+  && Boolean(siteConfig.analytics.googleAnalytics?.measurementId);
 
 function isExternal(href: string) {
   return /^(https?:)?\/\//.test(href);
@@ -18,7 +23,7 @@ function isExternal(href: string) {
 ---
 
 <footer class="mt-16 py-8 text-sm text-muted-foreground">
-  {navigation.length > 0 && (
+  {(navigation.length > 0 || hasAnalyticsConsent) && (
     <nav class="mb-6" aria-label="Navegação do rodapé">
       <div class="flex flex-wrap items-center justify-center gap-1">
         {navigation.map((item) => (
@@ -32,6 +37,17 @@ function isExternal(href: string) {
             <span>{item.label}</span>
           </a>
         ))}
+        {hasAnalyticsConsent && (
+          <button
+            type="button"
+            class="footer-nav-link cursor-pointer border-0 bg-transparent"
+            data-consent-open
+            aria-controls="analytics-consent"
+          >
+            <Icon name="lucide:cookie" class="h-4 w-4" />
+            <span>{t('consent.preferences')}</span>
+          </button>
+        )}
       </div>
     </nav>
   )}

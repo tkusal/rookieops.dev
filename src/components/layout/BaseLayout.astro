@@ -1,8 +1,10 @@
 ---
 import '../../styles/global.css';
+import katexStylesheet from 'katex/dist/katex.min.css?url';
 import { localeMeta, type Locale } from '../../config/i18n';
 import { siteConfig } from '../../config/site';
 import { defaultTheme } from '../../config/theme';
+import { useTranslations } from '../../i18n/utils';
 import Header from './Header.astro';
 import Footer from './Footer.astro';
 import Dock from '../ui/Dock.astro';
@@ -38,6 +40,7 @@ interface Props {
   headings?: Heading[];
   toc?: boolean | 'center' | 'side';
   comments?: boolean;
+  math?: boolean;
 }
 
 const {
@@ -56,11 +59,13 @@ const {
   noindex = false,
   headings = [],
   toc = false,
-  comments = false
+  comments = false,
+  math = false
 } = Astro.props;
 
 const pageTitle = title === siteConfig.name ? siteConfig.seoTitle : `${title} | ${siteConfig.name}`;
 const htmlLang = localeMeta[locale].htmlLang;
+const t = useTranslations(locale);
 const assetBase = import.meta.env.BASE_URL || '/';
 const normalizedAssetBase = assetBase.replace(/\/?$/, '/');
 const faviconSvg = `${normalizedAssetBase}favicon.svg`;
@@ -198,6 +203,7 @@ const themeInit = `
     {pageAuthorUrl && <link rel="author" href={pageAuthorUrl} />}
     <link rel="alternate" type="application/rss+xml" title={`${siteConfig.name} RSS`} href={rssUrl} />
     <link rel="icon" type="image/svg+xml" href={faviconSvg} />
+    {math && <link rel="stylesheet" href={katexStylesheet} />}
     <meta property="og:type" content={type} />
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:site_name" content={siteConfig.name} />
@@ -224,9 +230,10 @@ const themeInit = `
     <script is:inline set:html={themeInit}></script>
   </head>
   <body class="bg-background text-foreground min-h-screen antialiased">
+    <a class="skip-link" href="#main-content">{t('a11y.skipToContent')}</a>
     <div data-page-shell class="relative isolate mx-auto min-h-screen w-full max-w-[var(--layout-content-width)] px-4">
       <Header locale={locale} />
-      <main>
+      <main id="main-content" tabindex="-1">
         {toc && headings.length > 0 && <Toc headings={headings} position={toc === true ? 'center' : toc} />}
         <slot />
         {comments && <Comments />}
@@ -236,7 +243,7 @@ const themeInit = `
     {siteConfig.ui.dock.enabled && <Dock locale={locale} />}
     <SearchModal locale={locale} />
     <GalleryLightbox locale={locale} />
-    <Analytics />
+    <Analytics locale={locale} />
     <script>
       import '../../scripts/theme-controls.ts';
       import '../../scripts/reading-progress.ts';

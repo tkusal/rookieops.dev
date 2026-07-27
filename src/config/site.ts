@@ -4,7 +4,7 @@ export const siteConfig = {
   name: 'RookieOps',
   shortName: 'RookieOps',
   seoTitle: 'RookieOps - Infraestrutura, Cloud e DevOps',
-  description: 'Infraestrutura, cloud, identidade, segurança e automação na prática.',
+  description: 'Guias práticos sobre servidores Windows e Linux, Azure, AWS, DevOps e automação com Terraform, Ansible, containers e scripting.',
   url: 'https://rookieops.dev',
   organization: {
     name: 'RookieOps',
@@ -29,6 +29,9 @@ export const siteConfig = {
     },
     description: {
       'pt-br': 'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!'
+    },
+    mobileDescription: {
+      'pt-br': 'Guias práticos sobre Windows, Linux, Azure, AWS, DevOps e automação.'
     },
     avatar: '/favicon.svg',
     social: [
@@ -79,12 +82,10 @@ export const siteConfig = {
     }
   },
   analytics: {
-    enabled: false,
-    provider: 'umami',
-    umami: {
-      src: '',
-      websiteId: '',
-      domains: ''
+    enabled: true,
+    provider: 'google-analytics',
+    googleAnalytics: {
+      measurementId: 'G-1KVZDWFPF3'
     }
   },
   gallery: {
@@ -129,6 +130,7 @@ export const siteConfig = {
     title: Record<Locale, string>;
     tagline: Record<Locale, string>;
     description: Record<Locale, string>;
+    mobileDescription: Record<Locale, string>;
     avatar: string;
     social: Array<{ name: string; url: string; icon: string }>;
   };

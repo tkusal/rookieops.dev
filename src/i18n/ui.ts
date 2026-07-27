@@ -8,6 +8,7 @@ export const defaultLang: Locale = 'pt-br';
 
 export const ui = {
   'pt-br': {
+    'a11y.skipToContent': 'Pular para o conteúdo',
     'archive.description': 'Filtre os artigos por tag ou categoria e navegue por ano e mês de publicação.',
     'archive.filter.all': 'Todos',
     'archive.filter.categories': 'Categorias',
@@ -17,6 +18,12 @@ export const ui = {
     'archive.results.prefix': 'Exibindo',
     'archive.results.suffix': 'artigos',
     'archive.title': 'Arquivo',
+    'consent.accept': 'Aceitar',
+    'consent.description': 'Usamos cookies opcionais do Google Analytics para entender como o blog é utilizado e melhorar o conteúdo. Nenhum dado é enviado ao Google antes da sua autorização.',
+    'consent.preferences': 'Preferências de privacidade',
+    'consent.reject': 'Recusar',
+    'consent.revisit': 'Você poderá mudar esta escolha a qualquer momento no rodapé.',
+    'consent.title': 'Privacidade no RookieOps',
     'dock.back': 'Voltar',
     'dock.display': 'Preferências de exibição',
     'dock.display.close': 'Fechar preferências',

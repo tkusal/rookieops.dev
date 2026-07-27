@@ -10,6 +10,7 @@ import { unified } from '@astrojs/markdown-remark';
 import remarkDirective from 'remark-directive';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import { rehypeDetectMath } from './src/lib/markdown/rehype-detect-math.mjs';
 import { remarkTabs } from './src/lib/markdown/remark-tabs.mjs';
 import { rehypeHeadingAnchors } from './src/lib/markdown/rehype-heading-anchors.mjs';
 import { rehypeAlerts } from './src/lib/markdown/rehype-alerts.mjs';
@@ -35,7 +36,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath, remarkDirective, remarkTabs],
-      rehypePlugins: [rehypeKatex, rehypeHeadingAnchors, rehypeAlerts, rehypeImageGroups, rehypeMermaid]
+      rehypePlugins: [rehypeKatex, rehypeDetectMath, rehypeHeadingAnchors, rehypeAlerts, rehypeImageGroups, rehypeMermaid]
     })
   },
   vite: {

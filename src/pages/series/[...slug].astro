@@ -15,11 +15,12 @@ export async function getStaticPaths() {
 }
 
 const { item } = Astro.props as { item: ResolvedSeries };
-const { Content } = await render(item.entry);
+const { Content, remarkPluginFrontmatter } = await render(item.entry);
+const hasMath = Boolean(remarkPluginFrontmatter.math);
 const t = useTranslations('pt-br');
 ---
 
-<BaseLayout title={item.entry.data.title} description={item.entry.data.description} locale="pt-br">
+<BaseLayout title={item.entry.data.title} description={item.entry.data.description} locale="pt-br" math={hasMath}>
   <Breadcrumbs
     locale="pt-br"
     items={[
