@@ -3,7 +3,19 @@ document.addEventListener('click', (event) => {
 
   if (target.closest('[data-history-back]')) {
     const button = target.closest<HTMLElement>('[data-history-back]');
-    if (window.history.length > 1) {
+    let hasSameSiteReferrer = false;
+    try {
+      const referrer = document.referrer ? new URL(document.referrer) : null;
+      hasSameSiteReferrer = Boolean(
+        referrer &&
+        referrer.origin === window.location.origin &&
+        referrer.href !== window.location.href
+      );
+    } catch {
+      hasSameSiteReferrer = false;
+    }
+
+    if (window.history.length > 1 && hasSameSiteReferrer) {
       window.history.back();
     } else {
       window.location.href = button?.dataset.fallback || '/';

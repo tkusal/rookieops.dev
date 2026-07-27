@@ -9,6 +9,8 @@ interface Props {
   description?: string;
   date?: Date;
   updatedDate?: Date;
+  author?: string;
+  authorUrl?: string;
   locale: Locale;
   categories?: string[];
   tags?: string[];
@@ -25,6 +27,8 @@ const {
   description,
   date,
   updatedDate,
+  author,
+  authorUrl,
   locale,
   categories = [],
   tags = [],
@@ -69,6 +73,15 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
           <Icon name="lucide:refresh-cw" class="h-4 w-4" />
           <span>{t('post.updated')}</span>
           <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate, locale)}</time>
+        </span>
+      )}
+      {author && (
+        <span class="inline-flex items-center gap-1.5">
+          <Icon name="lucide:user-round" class="h-4 w-4" />
+          <span>{t('post.author')}</span>
+          {authorUrl
+            ? <a href={authorUrl} rel="author" class="text-foreground hover:text-primary hover:underline">{author}</a>
+            : <span class="text-foreground">{author}</span>}
         </span>
       )}
     </div>

@@ -50,6 +50,14 @@
   color-scheme: dark;
 }
 
+.profile-slogan {
+  color: #363636;
+}
+
+.dark .profile-slogan {
+  color: #ebebeb;
+}
+
 html {
   scroll-behavior: smooth;
 }
@@ -57,6 +65,7 @@ html {
 body {
   margin: 0;
   min-height: 100vh;
+  padding-bottom: calc(5rem + env(safe-area-inset-bottom));
   background: var(--color-background);
   color: var(--color-foreground);
   font-family: var(--font-sans);
@@ -103,6 +112,7 @@ a {
 .dock-shell {
   --reading-progress: 0%;
   border-radius: var(--radius-card);
+  background: var(--color-background);
   overflow: visible;
 }
 
@@ -497,27 +507,23 @@ a {
 }
 
 /* Table of contents */
-#toc-container[data-position="center"] {
-  top: 6.75rem;
-}
-
 .toc-dropdown {
-  transform: translate(-50%, -0.25rem) scale(0.97);
-  transform-origin: top center;
+  transform: translateY(-0.25rem) scale(0.97);
+  transform-origin: top right;
   opacity: 0;
   pointer-events: none;
   transition: opacity 0.18s ease, transform 0.18s ease;
 }
 
 .toc-dropdown.is-open {
-  transform: translate(-50%, 0) scale(1);
+  transform: translateY(0) scale(1);
   opacity: 1;
   pointer-events: auto;
 }
 
 @media (hover: hover) and (pointer: fine) {
   #toc-container[data-position="center"]:hover .toc-dropdown {
-    transform: translate(-50%, 0) scale(1);
+    transform: translateY(0) scale(1);
     opacity: 1;
     pointer-events: auto;
   }

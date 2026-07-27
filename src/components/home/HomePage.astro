@@ -1,11 +1,13 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { CollectionEntry } from 'astro:content';
-import type { Locale } from '../../config/i18n';
+import { getLocalePath, type Locale } from '../../config/i18n';
 import type { ContentTypeId } from '../../config/content';
 import { siteConfig } from '../../config/site';
+import { useTranslations } from '../../i18n/utils';
 import EntryList from '../content/EntryList.astro';
 import ViewAll from '../ui/ViewAll.astro';
+import ParticleBackground from '../features/ParticleBackground.astro';
 
 interface HomeSection {
   id: ContentTypeId;
@@ -21,6 +23,7 @@ interface Props {
 
 const { locale, sections } = Astro.props;
 const { author } = siteConfig;
+const t = useTranslations(locale);
 
 function assetPath(path: string) {
   if (/^(https?:)?\/\//.test(path) || path.startsWith('data:')) return path;
@@ -31,28 +34,39 @@ function assetPath(path: string) {
 const avatarSrc = assetPath(author.avatar);
 ---
 
-<section class="py-8 sm:py-10">
-  <div class="profile-card surface-card px-7 py-5 sm:px-8 sm:py-6">
-    <div class="flex flex-col items-center gap-6 text-center md:flex-row md:items-start md:text-left">
+<ParticleBackground />
+
+<section class="py-4 sm:py-10">
+  <div class="profile-card rounded-[var(--radius-card)] border border-border bg-background px-5 py-5 shadow-[var(--surface-shadow)] sm:px-8 sm:py-6">
+    <div class="flex flex-col items-center gap-3 text-center sm:gap-6 md:flex-row md:items-start md:text-left">
       <img
         src={avatarSrc}
         alt={author.name}
-        class="h-24 w-24 shrink-0 rounded-full border-4 border-primary/20 object-cover shadow-sm"
+        class="h-16 w-16 shrink-0 rounded-full border-4 border-primary/20 object-cover shadow-sm sm:h-24 sm:w-24"
       />
 
       <div class="min-w-0 flex-1">
-        <h1 class="text-3xl font-bold tracking-tight">{author.name}</h1>
-        <p class="mt-1.5 text-lg text-muted-foreground">{author.title[locale]}</p>
-        <p class="mt-3 leading-relaxed text-foreground">{author.description[locale]}</p>
+        <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">{author.name}</h1>
+        <p class="profile-slogan mt-1 text-base font-medium sm:mt-1.5 sm:text-lg">{author.title[locale]}</p>
+        <p class="profile-slogan mt-1 hidden text-sm font-semibold sm:block">{author.tagline[locale]}</p>
+        <p class="mt-2 line-clamp-2 text-sm leading-relaxed text-foreground sm:mt-3 sm:line-clamp-none sm:text-base">{author.description[locale]}</p>
+
+        <a
+          href={getLocalePath(locale, '/posts/')}
+          class="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:hidden"
+        >
+          {t('home.readPosts')}
+          <Icon name="lucide:arrow-right" class="h-4 w-4" />
+        </a>
 
         {author.social.length > 0 && (
-          <div class="mt-5 flex flex-wrap items-center justify-center gap-2.5 md:justify-start">
+          <div class="mt-5 hidden flex-wrap items-center justify-center gap-2.5 sm:flex md:justify-start">
             {author.social.map((item) => (
               <a
                 href={item.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex items-center gap-2 rounded-[var(--radius-control)] bg-muted px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
+                class="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius-control)] bg-muted px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
                 title={item.name}
               >
                 <Icon name={item.icon} class="h-4 w-4" />

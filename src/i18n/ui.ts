@@ -8,7 +8,7 @@ export const defaultLang: Locale = 'pt-br';
 
 export const ui = {
   'pt-br': {
-    'archive.description': 'Todos os artigos organizados pela data de publicação.',
+    'archive.description': 'Filtre os artigos por tag ou categoria e navegue por ano e mês de publicação.',
     'archive.filter.all': 'Todos',
     'archive.filter.categories': 'Categorias',
     'archive.filter.empty': 'Nenhum artigo corresponde a estes filtros.',
@@ -25,6 +25,7 @@ export const ui = {
     'dock.home': 'Início',
     'dock.top': 'Voltar ao topo',
     'home.featuredProjects': 'Projetos em destaque',
+    'home.readPosts': 'Ver artigos',
     'home.recentPosts': 'Artigos recentes',
     'home.viewAll': 'Ver todos',
     'license.label': 'Licença',
@@ -41,6 +42,7 @@ export const ui = {
     'postNav.next': 'Próximo',
     'postNav.navigation': 'Navegação entre artigos',
     'postNav.previous': 'Anterior',
+    'post.author': 'Por',
     'post.updated': 'Atualizado em',
     'projects.description': 'Projetos, laboratórios e notas de implementação.',
     'projects.title': 'Projetos',

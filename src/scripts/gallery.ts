@@ -1,5 +1,6 @@
 import SmartGallery, { type GalleryItemId, type GalleryItemInput, type GalleryLayout } from 'smart-gallery';
 import { siteConfig } from '../config/site';
+import { createDialogController } from './dialog-focus';
 
 type LightboxItem = { id: GalleryItemId; src: string; alt: string; caption: string };
 type LayoutItem = GalleryItemInput & { id: GalleryItemId; src: string; aspectRatio: number };
@@ -23,13 +24,19 @@ const galleries = new Map<string, LightboxItem[]>();
 let currentGallery = '';
 let currentIndex = 0;
 let root: HTMLElement | null = null;
-let restoreOverflow = '';
+let dialogController: ReturnType<typeof createDialogController> | null = null;
 
 function createLightbox() {
   if (root) return root;
   root = document.querySelector<HTMLElement>('[data-lightbox-root]');
   if (!root) throw new Error('Gallery lightbox root is missing.');
-  root.querySelector('[data-lb-close]')?.addEventListener('click', closeLightbox);
+  const closeButton = root.querySelector<HTMLElement>('[data-lb-close]');
+  dialogController = createDialogController({
+    dialog: root,
+    initialFocus: () => closeButton,
+    onEscape: closeLightbox
+  });
+  closeButton?.addEventListener('click', closeLightbox);
   root.querySelector('[data-lb-prev]')?.addEventListener('click', () => showLightbox(currentIndex - 1));
   root.querySelector('[data-lb-next]')?.addEventListener('click', () => showLightbox(currentIndex + 1));
   root.addEventListener('click', (event) => {
@@ -73,20 +80,18 @@ function openLightbox(galleryId: string, itemId: GalleryItemId) {
   currentGallery = galleryId;
   const lightbox = createLightbox();
   showLightbox(index);
+  dialogController?.activate();
   requestAnimationFrame(() => lightbox.classList.add('is-open'));
-  restoreOverflow = document.documentElement.style.overflow;
-  document.documentElement.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
-  if (!root) return;
+  if (!root || !dialogController?.isActive()) return;
   root.classList.remove('is-open');
-  document.documentElement.style.overflow = restoreOverflow;
+  dialogController.deactivate();
 }
 
 document.addEventListener('keydown', (event) => {
   if (!root || !root.classList.contains('is-open')) return;
-  if (event.key === 'Escape') closeLightbox();
   if (event.key === 'ArrowLeft') showLightbox(currentIndex - 1);
   if (event.key === 'ArrowRight') showLightbox(currentIndex + 1);
 });
@@ -117,7 +122,10 @@ function createInstance(host: HTMLElement, layout: Layout, items: LayoutItem[], 
     virtualize: false,
     placeholderColor: 'var(--color-muted)',
     itemClassName: 'sg-item',
-    onItemClick: ({ id }) => openLightbox(galleryId, id)
+    onItemClick: ({ id, element }) => {
+      element.focus();
+      openLightbox(galleryId, id);
+    }
   });
   instance.setItems(items);
   return instance;
@@ -170,7 +178,7 @@ async function setupGallery(gallery: HTMLElement, groupIndex: number) {
     button.setAttribute('aria-label', `${value} layout`);
     button.setAttribute('aria-pressed', String(value === layout));
     button.className =
-      'grid h-8 w-8 place-items-center rounded-[var(--radius-control)] border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground aria-pressed:border-primary/40 aria-pressed:bg-accent aria-pressed:text-primary';
+      'grid h-11 w-11 place-items-center rounded-[var(--radius-control)] border border-border text-muted-foreground transition-colors hover:bg-accent hover:text-foreground aria-pressed:border-primary/40 aria-pressed:bg-accent aria-pressed:text-primary';
     button.innerHTML = LAYOUT_ICONS[value];
     button.addEventListener('click', () => {
       if (value === layout || !instance) return;
@@ -208,5 +216,17 @@ document.querySelectorAll<HTMLElement>('.prose > .image-figure').forEach((figure
     }
   ]);
   const trigger = figure.querySelector<HTMLElement>('.image-container') || figure;
-  trigger.addEventListener('click', () => openLightbox(galleryId, itemId));
+  trigger.tabIndex = 0;
+  trigger.setAttribute('role', 'button');
+  trigger.setAttribute('aria-haspopup', 'dialog');
+  trigger.setAttribute('aria-label', img.alt ? `Abrir imagem: ${img.alt}` : 'Abrir imagem');
+  trigger.addEventListener('click', () => {
+    trigger.focus();
+    openLightbox(galleryId, itemId);
+  });
+  trigger.addEventListener('keydown', (event) => {
+    if (event.key !== 'Enter' && event.key !== ' ') return;
+    event.preventDefault();
+    openLightbox(galleryId, itemId);
+  });
 });

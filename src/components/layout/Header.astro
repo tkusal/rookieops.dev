@@ -28,9 +28,14 @@ function isExternal(href: string) {
 <header class:list={[headerClass, 'z-30 mt-5 mb-6']}>
   <div class="nav-shell flex min-h-16 items-center justify-between gap-3 border px-4 shadow-[var(--surface-shadow)]">
     <a href={getLocalePath(locale, '/')} class="flex min-w-0 items-center gap-2 font-semibold">
-      <span class="grid h-8 w-8 shrink-0 place-items-center rounded-md bg-primary text-primary-foreground">
-        {siteConfig.name.slice(0, 1)}
-      </span>
+      <img
+        src="/favicon.svg"
+        alt=""
+        width="32"
+        height="32"
+        class="h-8 w-8 shrink-0 object-contain"
+        aria-hidden="true"
+      />
       <span class="truncate">{siteConfig.name}</span>
     </a>
 
@@ -54,10 +59,10 @@ function isExternal(href: string) {
     </nav>
 
     <div class="flex shrink-0 items-center gap-1">
-      <button type="button" data-search-open class="grid h-9 w-9 place-items-center rounded-[var(--radius-control)] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" aria-label={t('nav.search')} title={t('nav.search')}>
+      <button type="button" data-search-open class="grid h-11 w-11 place-items-center rounded-[var(--radius-control)] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground" aria-label={t('nav.search')} title={t('nav.search')}>
         <Icon name="lucide:search" class="h-4 w-4" />
       </button>
-      <button type="button" data-mobile-menu aria-expanded="false" class="grid h-9 w-9 place-items-center rounded-[var(--radius-control)] transition-colors hover:bg-accent md:hidden" aria-label={t('nav.menu')}>
+      <button type="button" data-mobile-menu aria-expanded="false" class="grid h-11 w-11 place-items-center rounded-[var(--radius-control)] transition-colors hover:bg-accent md:hidden" aria-label={t('nav.menu')}>
         <Icon name="lucide:menu" class="h-4 w-4" />
       </button>
     </div>
@@ -65,7 +70,7 @@ function isExternal(href: string) {
   <nav data-mobile-panel class="mt-2 hidden rounded-[var(--radius-card)] border border-border bg-popover p-2 shadow-[var(--surface-shadow-strong)] md:hidden" aria-label="Navegação principal no celular">
     {navigation.map((item) => (
       <a
-        class:list={['flex items-center gap-2 rounded-[var(--radius-control)] px-3 py-2 text-sm', isActive(item.href) ? 'bg-accent text-accent-foreground ring-1 ring-primary/35' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground']}
+        class:list={['flex min-h-11 items-center gap-2 rounded-[var(--radius-control)] px-3 py-2 text-sm', isActive(item.href) ? 'bg-accent text-accent-foreground ring-1 ring-primary/35' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground']}
         href={item.href}
         target={isExternal(item.href) ? '_blank' : undefined}
         rel={isExternal(item.href) ? 'noopener noreferrer' : undefined}

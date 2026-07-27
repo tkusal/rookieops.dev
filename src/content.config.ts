@@ -26,6 +26,8 @@ const posts = defineCollection({
   schema: baseSchema.extend({
     description: z.string().trim().min(50).max(160),
     pubDate: z.coerce.date(),
+    author: z.string().trim().min(2),
+    authorUrl: z.url().optional(),
     tags: z.array(taxonomyTerm).default([]),
     categories: z.array(taxonomyTerm).default([])
   })

@@ -29,6 +29,7 @@ export function renderRss(posts: Array<CollectionEntry<'posts'>>, origin: string
         `<link>${escapeXml(url)}</link>`,
         `<guid>${escapeXml(url)}</guid>`,
         `<pubDate>${escapeXml(date)}</pubDate>`,
+        `<dc:creator>${escapeXml(entry.data.author || siteConfig.person.name)}</dc:creator>`,
         `<description>${escapeXml(entry.data.description || '')}</description>`,
         '</item>'
       ].join('');
@@ -37,7 +38,7 @@ export function renderRss(posts: Array<CollectionEntry<'posts'>>, origin: string
 
   return [
     '<?xml version="1.0" encoding="UTF-8"?>',
-    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">',
+    '<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:dc="http://purl.org/dc/elements/1.1/">',
     '<channel>',
     `<title>${escapeXml(siteConfig.name)}</title>`,
     `<link>${escapeXml(channelUrl)}</link>`,

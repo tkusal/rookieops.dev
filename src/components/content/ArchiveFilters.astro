@@ -13,8 +13,8 @@ interface Props {
 const { categories, tags, total, locale } = Astro.props;
 const t = useTranslations(locale);
 const groups = [
-  { kind: 'category', label: t('archive.filter.categories'), terms: categories },
-  { kind: 'tag', label: t('archive.filter.tags'), terms: tags }
+  { kind: 'tag', label: t('archive.filter.tags'), terms: tags },
+  { kind: 'category', label: t('archive.filter.categories'), terms: categories }
 ] as const;
 ---
 
@@ -28,7 +28,7 @@ const groups = [
     <fieldset>
       <legend class="sr-only">{group.label}</legend>
       <div class="sm:grid sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start sm:gap-4">
-        <span aria-hidden="true" class="text-sm font-semibold text-foreground sm:pt-1">{group.label}</span>
+        <span aria-hidden="true" class="text-sm font-semibold text-foreground sm:pt-3">{group.label}</span>
         <div class="mt-2 flex min-w-0 flex-wrap gap-1.5 sm:mt-0">
           <button
             type="button"
@@ -36,7 +36,7 @@ const groups = [
             data-archive-filter-value=""
             aria-pressed="true"
             aria-controls="archive-results"
-            class="inline-flex min-h-7 items-center gap-1 rounded-full border border-border bg-card px-2.5 py-0.5 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none"
+            class="inline-flex min-h-11 items-center gap-1 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none"
           >
             {t('archive.filter.all')}
             <span class="tabular-nums opacity-70">{total}</span>
@@ -48,7 +48,7 @@ const groups = [
               data-archive-filter-value={term.value}
               aria-pressed="false"
               aria-controls="archive-results"
-              class="inline-flex min-h-7 items-center gap-1 rounded-full border border-border bg-card px-2.5 py-0.5 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none"
+              class="inline-flex min-h-11 items-center gap-1 rounded-full border border-border bg-card px-3 py-1 text-xs font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/30 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none"
             >
               {term.value}
               <span class="tabular-nums opacity-60">{term.count}</span>

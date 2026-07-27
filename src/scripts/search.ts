@@ -1,4 +1,5 @@
 import Fuse from 'fuse.js';
+import { createDialogController } from './dialog-focus';
 
 type SearchItem = {
   title: string;
@@ -23,6 +24,14 @@ const locale = modal?.dataset.locale || 'pt-br';
 const base = import.meta.env.BASE_URL || '/';
 let fuse: Fuse<SearchItem> | null = null;
 let indexPromise: Promise<SearchItem[]> | null = null;
+const dialogController = modal
+  ? createDialogController({
+      dialog: modal,
+      preserve: overlay ? [overlay] : [],
+      initialFocus: () => input,
+      onEscape: closeSearch
+    })
+  : null;
 
 function show(element: HTMLElement | null) {
   element?.classList.remove('hidden');
@@ -32,31 +41,33 @@ function hide(element: HTMLElement | null) {
   element?.classList.add('hidden');
 }
 
-function openSearch() {
-  modal?.classList.remove('pointer-events-none', 'opacity-0', 'scale-95');
-  modal?.classList.add('opacity-100', 'scale-100');
-  modal?.setAttribute('aria-hidden', 'false');
+export function openSearch() {
+  if (!modal || dialogController?.isActive()) return;
+  dialogController?.activate();
+  modal.classList.remove('pointer-events-none', 'opacity-0', 'scale-95');
+  modal.classList.add('opacity-100', 'scale-100');
   overlay?.classList.remove('pointer-events-none', 'opacity-0');
   overlay?.classList.add('opacity-100');
-  document.body.style.overflow = 'hidden';
-  window.setTimeout(() => input?.focus(), 30);
-  ensureIndex();
+  void ensureIndex();
 }
 
 function closeSearch() {
-  modal?.classList.add('pointer-events-none', 'opacity-0', 'scale-95');
-  modal?.classList.remove('opacity-100', 'scale-100');
-  modal?.setAttribute('aria-hidden', 'true');
+  if (!modal || !dialogController?.isActive()) return;
+  modal.classList.add('pointer-events-none', 'opacity-0', 'scale-95');
+  modal.classList.remove('opacity-100', 'scale-100');
   overlay?.classList.add('pointer-events-none', 'opacity-0');
   overlay?.classList.remove('opacity-100');
-  document.body.style.overflow = '';
+  dialogController.deactivate();
 }
 
 async function ensureIndex() {
   if (!indexPromise) {
     hide(empty);
     show(loading);
-    indexPromise = fetch(`${base}api/search.json`).then((response) => response.json());
+    indexPromise = fetch(`${base}api/search.json`).then((response) => {
+      if (!response.ok) throw new Error(`Search index request failed with status ${response.status}.`);
+      return response.json();
+    });
   }
   const data = await indexPromise;
   if (!fuse) {
@@ -91,23 +102,16 @@ function renderSearch(query: string) {
     const link = document.createElement('a');
     link.href = item.url;
     link.className = 'block rounded-md px-3 py-2 hover:bg-accent';
-    link.innerHTML = `<div class="font-medium">${item.title}</div><div class="mt-1 line-clamp-2 text-sm text-muted-foreground">${item.description || ''}</div>`;
+    const title = document.createElement('div');
+    title.className = 'font-medium';
+    title.textContent = item.title;
+    const description = document.createElement('div');
+    description.className = 'mt-1 line-clamp-2 text-sm text-muted-foreground';
+    description.textContent = item.description || '';
+    link.append(title, description);
     results.appendChild(link);
   }
 }
-
-document.addEventListener('click', (event) => {
-  const target = event.target as HTMLElement;
-  if (target.closest('[data-search-open]')) openSearch();
-});
-
-document.addEventListener('keydown', (event) => {
-  if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === 'k') {
-    event.preventDefault();
-    openSearch();
-  }
-  if (event.key === 'Escape') closeSearch();
-});
 
 closeButton?.addEventListener('click', closeSearch);
 overlay?.addEventListener('click', closeSearch);

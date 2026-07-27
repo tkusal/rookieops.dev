@@ -39,7 +39,8 @@ export function formatDate(date: Date | undefined, locale: Locale) {
   return new Intl.DateTimeFormat(localeMeta[locale].dateLocale, {
     year: 'numeric',
     month: 'long',
-    day: 'numeric'
+    day: 'numeric',
+    timeZone: 'UTC'
   }).format(date);
 }
 

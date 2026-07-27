@@ -2,6 +2,8 @@
 title: "Bem-vindo ao RookieOps"
 description: "Um espaço para compartilhar operações de TI com contexto, decisões claras e soluções que funcionam fora do laboratório."
 pubDate: 2026-07-25
+author: "Thiago Kusal"
+authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["RookieOps"]
 tags: ["Infraestrutura", "Cloud", "Automação"]

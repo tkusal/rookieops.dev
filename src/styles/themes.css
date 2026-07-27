@@ -51,34 +51,34 @@
   --color-primary-foreground: #ffffff;
   --color-secondary: #1a8cff;
   --color-secondary-foreground: #ffffff;
-  --color-accent: #dff8f1;
-  --color-accent-foreground: #075f51;
-  --color-background: #f7f9f9;
-  --color-foreground: #181818;
-  --color-muted: #e8eeee;
-  --color-muted-foreground: #586565;
-  --color-border: #d3dddd;
+  --color-accent: #e6f3ff;
+  --color-accent-foreground: #075ea8;
+  --color-background: #f6f9fc;
+  --color-foreground: #111820;
+  --color-muted: #eaf1f6;
+  --color-muted-foreground: #526575;
+  --color-border: #c9dbea;
   --color-card: #ffffff;
-  --color-card-foreground: #181818;
+  --color-card-foreground: #111820;
   --color-popover: #ffffff;
-  --color-popover-foreground: #181818;
+  --color-popover-foreground: #111820;
 }
 
 [data-theme="rookieops"].dark {
   --color-primary: #34ffc9;
-  --color-primary-foreground: #101010;
+  --color-primary-foreground: #07110f;
   --color-secondary: #1a8cff;
   --color-secondary-foreground: #f7f7f7;
-  --color-accent: #243b3a;
+  --color-accent: #102d47;
   --color-accent-foreground: #f7f7f7;
-  --color-background: #181818;
+  --color-background: #090b0e;
   --color-foreground: #f7f7f7;
-  --color-muted: #282e2e;
-  --color-muted-foreground: #b8b8b8;
-  --color-border: #343c3c;
-  --color-card: #202020;
+  --color-muted: #17212b;
+  --color-muted-foreground: #aebdca;
+  --color-border: #164f7d;
+  --color-card: #101419;
   --color-card-foreground: #f7f7f7;
-  --color-popover: #202020;
+  --color-popover: #111820;
   --color-popover-foreground: #f7f7f7;
 }
 

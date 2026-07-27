@@ -3,16 +3,32 @@ import type { Locale } from './i18n';
 export const siteConfig = {
   name: 'RookieOps',
   shortName: 'RookieOps',
+  seoTitle: 'RookieOps - Infraestrutura, Cloud e DevOps',
   description: 'Infraestrutura, cloud, identidade, segurança e automação na prática.',
   url: 'https://rookieops.dev',
+  organization: {
+    name: 'RookieOps',
+    url: 'https://rookieops.dev'
+  },
+  person: {
+    name: 'Thiago Kusal',
+    url: 'https://tkusal.com.br',
+    social: [
+      { name: 'GitHub', url: 'https://github.com/tkusal' },
+      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tkusal/' }
+    ]
+  },
   author: {
     name: 'RookieOps',
     url: 'https://tkusal.com.br',
     title: {
-      'pt-br': 'Operações de TI sem atalhos mágicos'
+      'pt-br': 'Deployando conhecimento. Debugando o caos.'
+    },
+    tagline: {
+      'pt-br': 'De rookie a ops, um café por vez.'
     },
     description: {
-      'pt-br': 'Notas e guias sobre infraestrutura, identidade, Microsoft 365, Azure, segurança e automação.'
+      'pt-br': 'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!'
     },
     avatar: '/favicon.svg',
     social: [
@@ -87,20 +103,31 @@ export const siteConfig = {
     relatedCount: 3,
     license: {
       enabled: true,
-      name: 'Conteúdo autoral do RookieOps',
+      name: 'Conteúdo dos respectivos autores',
       url: '/licenca/',
-      description: 'A republicação é permitida somente com crédito visível ao RookieOps e link para o artigo original.'
+      description: 'A republicação exige crédito à pessoa autora e ao RookieOps, além de um link para o artigo original.'
     }
   }
 } satisfies {
   name: string;
   shortName: string;
+  seoTitle: string;
   description: string;
   url: string;
+  organization: {
+    name: string;
+    url: string;
+  };
+  person: {
+    name: string;
+    url: string;
+    social: Array<{ name: string; url: string }>;
+  };
   author: {
     name: string;
     url: string;
     title: Record<Locale, string>;
+    tagline: Record<Locale, string>;
     description: Record<Locale, string>;
     avatar: string;
     social: Array<{ name: string; url: string; icon: string }>;

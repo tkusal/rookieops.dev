@@ -1,0 +1,126 @@
+<div id="rookieops-particles" aria-hidden="true"></div>
+
+<script>
+  import { tsParticles } from '@tsparticles/engine';
+  import { loadSlim } from '@tsparticles/slim';
+
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+  let particlesContainer: Awaited<ReturnType<typeof tsParticles.load>>;
+
+  async function initializeParticles() {
+    if (reducedMotion.matches) return;
+
+    const particleCount = window.innerWidth < 768 ? 22 : 46;
+    const isDark = document.documentElement.classList.contains('dark');
+    const particleColors = isDark
+      ? ['#34ffc9', '#34ffc9', '#1a8cff', '#1a8cff', '#7c3aed']
+      : ['#087f69', '#075ea8', '#075ea8', '#5b21b6'];
+
+    await loadSlim(tsParticles);
+    particlesContainer?.destroy();
+    particlesContainer = await tsParticles.load({
+      id: 'rookieops-particles',
+      options: {
+        background: {
+          color: {
+            value: 'transparent'
+          }
+        },
+        detectRetina: true,
+        fpsLimit: 45,
+        fullScreen: {
+          enable: false
+        },
+        interactivity: {
+          detectsOn: 'window',
+          events: {
+            onHover: {
+              enable: true,
+              mode: 'repulse'
+            }
+          },
+          modes: {
+            repulse: {
+              distance: 90,
+              duration: 0.4
+            }
+          }
+        },
+        particles: {
+          color: {
+            value: particleColors
+          },
+          links: {
+            color: isDark ? '#34ffc9' : '#075ea8',
+            distance: 150,
+            enable: true,
+            opacity: isDark ? 0.22 : 0.42,
+            width: 1
+          },
+          move: {
+            enable: true,
+            outModes: {
+              default: 'bounce'
+            },
+            speed: 0.65
+          },
+          number: {
+            density: {
+              enable: false
+            },
+            value: particleCount
+          },
+          opacity: {
+            value: isDark
+              ? { min: 0.32, max: 0.64 }
+              : { min: 0.65, max: 0.95 }
+          },
+          shape: {
+            type: 'circle'
+          },
+          size: {
+            value: {
+              min: 1,
+              max: 2.6
+            }
+          }
+        },
+        pauseOnBlur: true,
+        pauseOnOutsideViewport: true
+      }
+    });
+  }
+
+  initializeParticles().catch((error) => {
+    console.warn('O fundo de partículas não pôde ser iniciado.', error);
+  });
+
+  document.addEventListener('astro-narrow:color-mode-change', () => {
+    initializeParticles().catch((error) => {
+      console.warn('As partículas não puderam acompanhar a mudança de tema.', error);
+    });
+  });
+</script>
+
+<style>
+  #rookieops-particles {
+    position: fixed;
+    inset: 0;
+    z-index: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+  }
+
+  @media (max-width: 767px) {
+    #rookieops-particles {
+      opacity: 0.3;
+    }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    #rookieops-particles {
+      display: none;
+    }
+  }
+</style>

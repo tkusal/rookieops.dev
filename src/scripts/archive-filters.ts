@@ -9,6 +9,7 @@ const parameterByKind: Record<FilterKind, string> = {
 function setupArchiveFilters(root: HTMLElement) {
   const buttons = [...root.querySelectorAll<HTMLButtonElement>('[data-archive-filter-kind]')];
   const entries = [...document.querySelectorAll<HTMLElement>('[data-archive-entry]')];
+  const months = [...document.querySelectorAll<HTMLElement>('[data-archive-month]')];
   const years = [...document.querySelectorAll<HTMLElement>('[data-archive-year]')];
   const resultCount = root.querySelector<HTMLElement>('[data-archive-result-count]');
   const emptyState = root.querySelector<HTMLElement>('[data-archive-empty]');
@@ -55,6 +56,10 @@ function setupArchiveFilters(root: HTMLElement) {
       const matchesTag = !state.tag || entryTerms(entry, 'tags').includes(state.tag);
       entry.hidden = !(matchesCategory && matchesTag);
       if (!entry.hidden) visibleCount += 1;
+    }
+
+    for (const month of months) {
+      month.hidden = !month.querySelector<HTMLElement>('[data-archive-entry]:not([hidden])');
     }
 
     for (const year of years) {
