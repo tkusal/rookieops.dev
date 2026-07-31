@@ -42,7 +42,39 @@ function setupArchiveFilters(root: HTMLElement) {
     return JSON.parse(entry.dataset[key] || '[]') as string[];
   }
 
+  function updateTagOptions(state: FilterState) {
+    const categoryEntries = state.category
+      ? entries.filter((entry) => entryTerms(entry, 'categories').includes(state.category))
+      : entries;
+    const tagCounts = new Map<string, number>();
+
+    for (const entry of categoryEntries) {
+      for (const tag of entryTerms(entry, 'tags')) {
+        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+      }
+    }
+
+    for (const button of buttons) {
+      if (button.dataset.archiveFilterKind !== 'tag') continue;
+
+      const value = button.dataset.archiveFilterValue || '';
+      const count = value ? tagCounts.get(value) || 0 : categoryEntries.length;
+      const countElement = button.querySelector<HTMLElement>('[data-archive-filter-count]');
+      if (countElement) countElement.textContent = String(count);
+      button.hidden = Boolean(value) && count === 0;
+    }
+
+    if (state.tag && !tagCounts.has(state.tag)) {
+      state.tag = '';
+      const url = new URL(window.location.href);
+      url.searchParams.delete(parameterByKind.tag);
+      window.history.replaceState({}, '', url);
+    }
+  }
+
   function applyState(state: FilterState) {
+    updateTagOptions(state);
+
     for (const button of buttons) {
       const kind = button.dataset.archiveFilterKind as FilterKind;
       const value = button.dataset.archiveFilterValue || '';

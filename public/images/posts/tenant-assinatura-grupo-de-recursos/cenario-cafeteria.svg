@@ -1,0 +1,111 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1400" height="880" viewBox="0 0 1400 880" role="img" aria-labelledby="title desc">
+  <title id="title">Organização do ambiente da Rookie Café no Azure</title>
+  <desc id="desc">Um tenant do Microsoft Entra conectado a duas assinaturas do Azure. A assinatura de produção contém grupos de recursos para aplicação e dados; a assinatura de não produção contém um grupo de recursos para desenvolvimento.</desc>
+  <defs>
+    <linearGradient id="background" x1="90" y1="40" x2="1320" y2="850" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07172B"/>
+      <stop offset="1" stop-color="#0D2947"/>
+    </linearGradient>
+    <linearGradient id="prod" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#075E79"/>
+      <stop offset="1" stop-color="#0C8BA2"/>
+    </linearGradient>
+    <linearGradient id="nonprod" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#334E9B"/>
+      <stop offset="1" stop-color="#536FC2"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="150%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#00101F" flood-opacity=".46"/>
+    </filter>
+    <style>
+      .ui { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+      .headline { font-size: 38px; font-weight: 750; letter-spacing: -.5px; }
+      .kicker { font-size: 15px; font-weight: 750; letter-spacing: 2px; }
+      .title { font-size: 24px; font-weight: 700; }
+      .copy { font-size: 17px; font-weight: 450; }
+      .resource { font-size: 19px; font-weight: 680; }
+    </style>
+  </defs>
+
+  <rect width="1400" height="880" rx="32" fill="url(#background)"/>
+  <circle cx="1240" cy="80" r="230" fill="#36C6ED" opacity=".08"/>
+  <circle cx="110" cy="820" r="250" fill="#6E74FF" opacity=".08"/>
+
+  <g class="ui">
+    <text x="70" y="74" class="kicker" fill="#72D8FF">CENÁRIO ROOKIE CAFÉ</text>
+    <text x="70" y="122" class="headline" fill="#F5FBFF">Um tenant, ambientes isolados</text>
+    <text x="70" y="157" class="copy" fill="#BFDDF0">A assinatura separa a governança; o grupo de recursos acompanha o ciclo de vida.</text>
+  </g>
+
+  <g fill="none" stroke="#7AD9F7" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" opacity=".74">
+    <path d="M700 300V342"/>
+    <path d="M370 342H1030"/>
+    <path d="M370 342V390"/>
+    <path d="M1030 342V390"/>
+    <path d="M370 560V606"/>
+    <path d="M220 606H520"/>
+    <path d="M220 606V650"/>
+    <path d="M520 606V650"/>
+    <path d="M1030 560V650"/>
+  </g>
+
+  <g filter="url(#shadow)" class="ui">
+    <g transform="translate(400 195)">
+      <rect width="600" height="106" rx="24" fill="#174F91" stroke="#A6DEFF" stroke-opacity=".42"/>
+      <circle cx="62" cy="53" r="29" fill="#D8F1FF" fill-opacity=".15"/>
+      <circle cx="62" cy="45" r="10" fill="none" stroke="#FFFFFF" stroke-width="4"/>
+      <path d="M44 70C48 57 76 57 80 70" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linecap="round"/>
+      <text x="112" y="42" class="kicker" fill="#BDE8FF">TENANT DO MICROSOFT ENTRA</text>
+      <text x="112" y="76" class="title" fill="#FFFFFF">rookiecafe.onmicrosoft.com</text>
+    </g>
+
+    <g transform="translate(90 390)">
+      <rect width="560" height="170" rx="26" fill="url(#prod)" stroke="#B8F4FF" stroke-opacity=".38"/>
+      <circle cx="62" cy="60" r="28" fill="#E0FCFF" fill-opacity=".15"/>
+      <path d="M49 46H75V75H49Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M55 54H69M55 63H69" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="110" y="45" class="kicker" fill="#C8F8FF">ASSINATURA DE PRODUÇÃO</text>
+      <text x="110" y="82" class="title" fill="#FFFFFF">sub-cafeteria-prod</text>
+      <text x="110" y="116" class="copy" fill="#DDFBFF">Políticas, custos e acesso de produção</text>
+    </g>
+
+    <g transform="translate(750 390)">
+      <rect width="560" height="170" rx="26" fill="url(#nonprod)" stroke="#D9DEFF" stroke-opacity=".38"/>
+      <circle cx="62" cy="60" r="28" fill="#E5E8FF" fill-opacity=".15"/>
+      <path d="M49 46H75V75H49Z" fill="none" stroke="#FFFFFF" stroke-width="4" stroke-linejoin="round"/>
+      <path d="M55 54H69M55 63H69" stroke="#FFFFFF" stroke-width="3" stroke-linecap="round"/>
+      <text x="110" y="45" class="kicker" fill="#D8DDFF">ASSINATURA DE NÃO PRODUÇÃO</text>
+      <text x="110" y="82" class="title" fill="#FFFFFF">sub-cafeteria-nao-prod</text>
+      <text x="110" y="116" class="copy" fill="#ECEEFF">Experimentação isolada de produção</text>
+    </g>
+
+    <g transform="translate(75 650)">
+      <rect width="290" height="114" rx="22" fill="#102E4E" stroke="#48CAE8" stroke-width="2"/>
+      <circle cx="39" cy="40" r="14" fill="#48CAE8"/>
+      <text x="66" y="35" class="kicker" fill="#8EE7FA">GRUPO DE RECURSOS</text>
+      <text x="28" y="78" class="resource" fill="#FFFFFF">rg-cafeteria-prod-app</text>
+    </g>
+
+    <g transform="translate(375 650)">
+      <rect width="290" height="114" rx="22" fill="#102E4E" stroke="#48CAE8" stroke-width="2"/>
+      <circle cx="39" cy="40" r="14" fill="#48CAE8"/>
+      <text x="66" y="35" class="kicker" fill="#8EE7FA">GRUPO DE RECURSOS</text>
+      <text x="28" y="78" class="resource" fill="#FFFFFF">rg-cafeteria-prod-data</text>
+    </g>
+
+    <g transform="translate(880 650)">
+      <rect width="300" height="114" rx="22" fill="#15284D" stroke="#8597FF" stroke-width="2"/>
+      <circle cx="39" cy="40" r="14" fill="#8597FF"/>
+      <text x="66" y="35" class="kicker" fill="#B8C2FF">GRUPO DE RECURSOS</text>
+      <text x="28" y="78" class="resource" fill="#FFFFFF">rg-cafeteria-dev-app</text>
+    </g>
+  </g>
+
+  <g class="ui" transform="translate(70 820)">
+    <circle cx="8" cy="0" r="7" fill="#48CAE8"/>
+    <text x="26" y="6" font-size="16" font-weight="600" fill="#C8EAF5">Produção</text>
+    <circle cx="150" cy="0" r="7" fill="#8597FF"/>
+    <text x="168" y="6" font-size="16" font-weight="600" fill="#D9DEFF">Não produção</text>
+    <text x="1010" y="6" font-size="16" font-weight="600" fill="#9FC6D8">Diagrama original • RookieOps</text>
+  </g>
+</svg>
