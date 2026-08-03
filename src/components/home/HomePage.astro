@@ -60,22 +60,6 @@ const avatarSrc = assetPath(author.avatar);
           <Icon name="lucide:arrow-right" class="h-4 w-4" />
         </a>
 
-        {author.social.length > 0 && (
-          <div class="mt-5 hidden flex-wrap items-center justify-center gap-2.5 sm:flex md:justify-start">
-            {author.social.map((item) => (
-              <a
-                href={item.url}
-                target="_blank"
-                rel="noopener noreferrer"
-                class="inline-flex min-h-11 items-center gap-2 rounded-[var(--radius-control)] bg-muted px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-300 ease-out hover:-translate-y-0.5 hover:bg-primary/10 hover:text-primary"
-                title={item.name}
-              >
-                <Icon name={item.icon} class="h-4 w-4" />
-                <span>{item.name}</span>
-              </a>
-            ))}
-          </div>
-        )}
       </div>
     </div>
   </div>
