@@ -55,6 +55,11 @@ export const siteConfig = {
       label: { 'pt-br': 'Sobre o autor' },
       href: 'https://tkusal.com.br',
       icon: 'lucide:user-round'
+    },
+    {
+      label: { 'pt-br': 'Enviar sugestão' },
+      href: 'https://github.com/tkusal/rookieops.dev/issues/new?template=sugestao.yml',
+      icon: 'lucide:lightbulb'
     }
   ],
   footerNav: [

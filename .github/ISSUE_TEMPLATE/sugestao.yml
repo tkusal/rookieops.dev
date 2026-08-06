@@ -1,0 +1,44 @@
+name: Sugestão
+description: Sugira uma melhoria, correção ou novo conteúdo para o RookieOps.
+title: "[Sugestão]: "
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por ajudar a melhorar o RookieOps. Descreva sua sugestão nos campos abaixo.
+
+  - type: dropdown
+    id: tipo
+    attributes:
+      label: Tipo de sugestão
+      description: Selecione a opção que melhor representa sua ideia.
+      options:
+        - Novo conteúdo
+        - Melhoria em um conteúdo existente
+        - Correção de informação
+        - Melhoria no site
+        - Outro
+    validations:
+      required: true
+
+  - type: input
+    id: pagina
+    attributes:
+      label: Página relacionada
+      description: Informe o endereço da página, caso a sugestão esteja relacionada a um conteúdo existente.
+      placeholder: https://rookieops.dev/posts/exemplo/
+
+  - type: textarea
+    id: sugestao
+    attributes:
+      label: Qual é a sua sugestão?
+      description: Explique o que você gostaria de ver alterado ou adicionado.
+      placeholder: Descreva sua ideia e, se possível, por que ela seria útil para os leitores.
+    validations:
+      required: true
+
+  - type: textarea
+    id: contexto
+    attributes:
+      label: Contexto adicional
+      description: Adicione referências, exemplos ou qualquer outra informação relevante.
