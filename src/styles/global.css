@@ -362,6 +362,28 @@ body[data-consent-visible] .dock-shell {
   line-height: 1.75;
 }
 
+/* GFM task lists keep their checkbox without the regular list marker. */
+.prose ul.contains-task-list,
+.prose li.task-list-item {
+  list-style: none;
+}
+
+.prose ul.contains-task-list {
+  padding-inline-start: 0;
+}
+
+.prose li.task-list-item {
+  padding-inline-start: 0;
+}
+
+.prose li.task-list-item::marker {
+  content: "";
+}
+
+.prose li.task-list-item > input[type="checkbox"] {
+  margin-right: 0.5rem;
+}
+
 /* Headings clear the sticky header when reached via anchor links. */
 .prose :is(h1, h2, h3, h4, h5, h6) {
   scroll-margin-top: 6rem;
