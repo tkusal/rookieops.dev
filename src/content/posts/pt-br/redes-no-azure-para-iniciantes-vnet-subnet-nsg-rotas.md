@@ -6,7 +6,7 @@ author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Cloud"]
-tags: ["Azure", "Redes"]
+tags: ["Azure", "Redes", "Iniciante"]
 cover: "/images/posts/redes-no-azure-para-iniciantes-vnet-subnet-nsg-rotas/capa.webp"
 coverAlt: "Ilustração de uma rede virtual dividida em duas subnets, com um escudo filtrando pacotes e uma placa indicando rotas"
 toc: true
