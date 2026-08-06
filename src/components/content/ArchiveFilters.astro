@@ -12,9 +12,16 @@ interface Props {
 
 const { categories, tags, total, locale } = Astro.props;
 const t = useTranslations(locale);
+const difficultyLevels = ['Iniciante', 'Intermediário', 'Avançado'];
+const difficultyValues = new Set(difficultyLevels);
+const difficulties = difficultyLevels.flatMap((level) => {
+  const term = tags.find(({ value }) => value === level);
+  return term ? [term] : [];
+});
 const groups = [
   { kind: 'category', label: t('archive.filter.categories'), terms: categories },
-  { kind: 'tag', label: t('archive.filter.tags'), terms: tags }
+  { kind: 'tag', label: t('archive.filter.tags'), terms: tags.filter(({ value }) => !difficultyValues.has(value)) },
+  { kind: 'difficulty', label: t('archive.filter.difficulty'), terms: difficulties }
 ] as const;
 ---
 

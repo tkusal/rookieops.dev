@@ -1,9 +1,10 @@
-type FilterKind = 'category' | 'tag';
+type FilterKind = 'category' | 'tag' | 'difficulty';
 type FilterState = Record<FilterKind, string>;
 
 const parameterByKind: Record<FilterKind, string> = {
   category: 'category',
-  tag: 'tag'
+  tag: 'tag',
+  difficulty: 'difficulty'
 };
 
 function setupArchiveFilters(root: HTMLElement) {
@@ -15,12 +16,13 @@ function setupArchiveFilters(root: HTMLElement) {
   const emptyState = root.querySelector<HTMLElement>('[data-archive-empty]');
   const available = {
     category: new Set(buttons.filter((button) => button.dataset.archiveFilterKind === 'category').map((button) => button.dataset.archiveFilterValue || '')),
-    tag: new Set(buttons.filter((button) => button.dataset.archiveFilterKind === 'tag').map((button) => button.dataset.archiveFilterValue || ''))
+    tag: new Set(buttons.filter((button) => button.dataset.archiveFilterKind === 'tag').map((button) => button.dataset.archiveFilterValue || '')),
+    difficulty: new Set(buttons.filter((button) => button.dataset.archiveFilterKind === 'difficulty').map((button) => button.dataset.archiveFilterValue || ''))
   };
 
   function readState() {
     const url = new URL(window.location.href);
-    const state: FilterState = { category: '', tag: '' };
+    const state: FilterState = { category: '', tag: '', difficulty: '' };
     let changed = false;
 
     for (const kind of Object.keys(parameterByKind) as FilterKind[]) {
@@ -28,6 +30,11 @@ function setupArchiveFilters(root: HTMLElement) {
       const requested = url.searchParams.get(parameter);
       if (requested && available[kind].has(requested)) {
         state[kind] = requested;
+      } else if (kind === 'tag' && requested && available.difficulty.has(requested)) {
+        state.difficulty = requested;
+        url.searchParams.delete(parameter);
+        url.searchParams.set(parameterByKind.difficulty, requested);
+        changed = true;
       } else if (requested !== null) {
         url.searchParams.delete(parameter);
         changed = true;
@@ -42,38 +49,48 @@ function setupArchiveFilters(root: HTMLElement) {
     return JSON.parse(entry.dataset[key] || '[]') as string[];
   }
 
-  function updateTagOptions(state: FilterState) {
+  function updateDependentOptions(state: FilterState) {
     const categoryEntries = state.category
       ? entries.filter((entry) => entryTerms(entry, 'categories').includes(state.category))
       : entries;
-    const tagCounts = new Map<string, number>();
+    const counts: Record<'tag' | 'difficulty', Map<string, number>> = {
+      tag: new Map<string, number>(),
+      difficulty: new Map<string, number>()
+    };
 
     for (const entry of categoryEntries) {
       for (const tag of entryTerms(entry, 'tags')) {
-        tagCounts.set(tag, (tagCounts.get(tag) || 0) + 1);
+        for (const kind of ['tag', 'difficulty'] as const) {
+          if (available[kind].has(tag)) counts[kind].set(tag, (counts[kind].get(tag) || 0) + 1);
+        }
       }
     }
 
     for (const button of buttons) {
-      if (button.dataset.archiveFilterKind !== 'tag') continue;
+      const kind = button.dataset.archiveFilterKind as FilterKind;
+      if (kind !== 'tag' && kind !== 'difficulty') continue;
 
       const value = button.dataset.archiveFilterValue || '';
-      const count = value ? tagCounts.get(value) || 0 : categoryEntries.length;
+      const count = value ? counts[kind].get(value) || 0 : categoryEntries.length;
       const countElement = button.querySelector<HTMLElement>('[data-archive-filter-count]');
       if (countElement) countElement.textContent = String(count);
       button.hidden = Boolean(value) && count === 0;
     }
 
-    if (state.tag && !tagCounts.has(state.tag)) {
-      state.tag = '';
-      const url = new URL(window.location.href);
-      url.searchParams.delete(parameterByKind.tag);
-      window.history.replaceState({}, '', url);
+    const url = new URL(window.location.href);
+    let changed = false;
+    for (const kind of ['tag', 'difficulty'] as const) {
+      if (state[kind] && !counts[kind].has(state[kind])) {
+        state[kind] = '';
+        url.searchParams.delete(parameterByKind[kind]);
+        changed = true;
+      }
     }
+    if (changed) window.history.replaceState({}, '', url);
   }
 
   function applyState(state: FilterState) {
-    updateTagOptions(state);
+    updateDependentOptions(state);
 
     for (const button of buttons) {
       const kind = button.dataset.archiveFilterKind as FilterKind;
@@ -86,7 +103,8 @@ function setupArchiveFilters(root: HTMLElement) {
     for (const entry of entries) {
       const matchesCategory = !state.category || entryTerms(entry, 'categories').includes(state.category);
       const matchesTag = !state.tag || entryTerms(entry, 'tags').includes(state.tag);
-      entry.hidden = !(matchesCategory && matchesTag);
+      const matchesDifficulty = !state.difficulty || entryTerms(entry, 'tags').includes(state.difficulty);
+      entry.hidden = !(matchesCategory && matchesTag && matchesDifficulty);
       if (!entry.hidden) visibleCount += 1;
     }
 

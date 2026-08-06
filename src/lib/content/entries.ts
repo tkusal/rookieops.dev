@@ -71,9 +71,7 @@ export function collectArchiveTerms(
   const collator = new Intl.Collator(localeMeta[locale].dateLocale);
   return [...counts.entries()]
     .map(([value, count]) => ({ value, count }))
-    .sort((a, b) => field === 'tags'
-      ? b.count - a.count || collator.compare(a.value, b.value)
-      : collator.compare(a.value, b.value));
+    .sort((a, b) => collator.compare(a.value, b.value));
 }
 
 export function adjacentEntries<T extends ContentType>(entries: Array<CollectionEntry<T>>, current: CollectionEntry<T>) {

@@ -9,9 +9,10 @@ export const defaultLang: Locale = 'pt-br';
 export const ui = {
   'pt-br': {
     'a11y.skipToContent': 'Pular para o conteúdo',
-    'archive.description': 'Filtre os artigos por tag ou categoria e navegue por ano e mês de publicação.',
+    'archive.description': 'Filtre os artigos por categoria, tag ou dificuldade e navegue por ano e mês de publicação.',
     'archive.filter.all': 'Todos',
     'archive.filter.categories': 'Categorias',
+    'archive.filter.difficulty': 'Dificuldade',
     'archive.filter.empty': 'Nenhum artigo corresponde a estes filtros.',
     'archive.filter.label': 'Filtrar arquivo',
     'archive.filter.tags': 'Tags',
