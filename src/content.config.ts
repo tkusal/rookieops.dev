@@ -10,8 +10,8 @@ const baseSchema = z.object({
   pubDate: z.coerce.date().optional(),
   updatedDate: z.coerce.date().optional(),
   draft: z.boolean().default(false),
-  cover: z.string().optional(),
-  coverAlt: z.string().optional(),
+  cover: z.string().trim().min(1).optional(),
+  coverAlt: z.string().trim().min(1).optional(),
   lang: z.enum(['pt-br']).optional(),
   toc: z.union([z.boolean(), z.enum(['center', 'side'])]).optional(),
   comments: z.boolean().optional(),
@@ -19,11 +19,27 @@ const baseSchema = z.object({
   mermaid: z.boolean().optional(),
   gallery: z.boolean().optional(),
   lightbox: z.boolean().optional()
+}).superRefine((data, ctx) => {
+  if (data.cover !== undefined && data.coverAlt === undefined) {
+    ctx.addIssue({
+      code: 'custom',
+      message: '`coverAlt` deve ser informado quando `cover` estiver presente.',
+      path: ['coverAlt']
+    });
+  }
+
+  if (data.cover === undefined && data.coverAlt !== undefined) {
+    ctx.addIssue({
+      code: 'custom',
+      message: '`cover` deve ser informado quando `coverAlt` estiver presente.',
+      path: ['cover']
+    });
+  }
 });
 
 const posts = defineCollection({
   loader: glob({ base: './src/content/posts', pattern: '**/*.{md,mdx}' }),
-  schema: baseSchema.extend({
+  schema: baseSchema.safeExtend({
     description: z.string().trim().min(50).max(160),
     pubDate: z.coerce.date(),
     author: z.string().trim().min(2),
@@ -35,7 +51,7 @@ const posts = defineCollection({
 
 const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
-  schema: baseSchema.extend({
+  schema: baseSchema.safeExtend({
     tags: z.array(taxonomyTerm).default([]),
     links: z.array(z.object({
       label: z.string(),
@@ -49,7 +65,7 @@ const projects = defineCollection({
 
 const pages = defineCollection({
   loader: glob({ base: './src/content/pages', pattern: '**/*.{md,mdx}' }),
-  schema: baseSchema.extend({
+  schema: baseSchema.safeExtend({
     layout: z.enum(['page', 'timeline']).default('page')
   })
 });
