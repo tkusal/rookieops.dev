@@ -163,7 +163,7 @@ a {
 
 .nav-shell {
   border-radius: var(--radius-card);
-  background: color-mix(in oklch, var(--color-background), transparent 8%);
+  background: var(--color-background);
   backdrop-filter: blur(16px);
 }
 
