@@ -261,11 +261,11 @@ A parte 3 adicionará inspeção central de tráfego com Azure Firewall e polít
 
 ## Referências
 
-- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview)
-- [Como os NSGs filtram o tráfego de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-group-how-it-works)
-- [NSGs e ASGs no guia de design de rede](https://learn.microsoft.com/pt-br/azure/networking/design-guide/network-application-security-groups)
-- [Visão geral das marcas de serviço](https://learn.microsoft.com/pt-br/azure/virtual-network/service-tags-overview)
-- [Visão geral do endereço IP 168.63.129.16 do Azure](https://learn.microsoft.com/pt-br/azure/virtual-network/what-is-ip-address-168-63-129-16)
+- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
+- [Como os NSGs filtram o tráfego de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-group-how-it-works?wt.mc_id=studentamb_365381)
+- [NSGs e ASGs no guia de design de rede](https://learn.microsoft.com/pt-br/azure/networking/design-guide/network-application-security-groups?wt.mc_id=studentamb_365381)
+- [Visão geral das marcas de serviço](https://learn.microsoft.com/pt-br/azure/virtual-network/service-tags-overview?wt.mc_id=studentamb_365381)
+- [Visão geral do endereço IP 168.63.129.16 do Azure](https://learn.microsoft.com/pt-br/azure/virtual-network/what-is-ip-address-168-63-129-16?wt.mc_id=studentamb_365381)
 - [Associação entre subnet e NSG no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/subnet_network_security_group_association)
 - [Meta-argumento for_each do Terraform](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
 

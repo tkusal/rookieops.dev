@@ -50,6 +50,7 @@ export const siteConfig = {
   },
   nav: [
     'posts',
+    'series',
     'archives',
     {
       label: { 'pt-br': 'Sobre o autor' },
