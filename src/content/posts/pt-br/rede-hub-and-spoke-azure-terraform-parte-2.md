@@ -1,7 +1,7 @@
 ---
 title: "Rede hub and spoke no Azure com Terraform, parte 2: NSGs e regras de segurança"
 description: "Proteja subnets de uma rede hub and spoke no Azure com NSGs modulares, regras explícitas e associações gerenciadas pelo Terraform."
-pubDate: 2026-08-09
+pubDate: 2026-08-13
 author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
