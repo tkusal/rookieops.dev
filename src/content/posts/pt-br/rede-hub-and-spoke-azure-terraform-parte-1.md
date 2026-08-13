@@ -2,6 +2,7 @@
 title: "Rede hub and spoke no Azure com Terraform, parte 1: base, IPAM e peerings"
 description: "Monte uma rede hub and spoke no Azure com Terraform, IPAM sem sobreposição, módulos reutilizáveis e peerings prontos para validar."
 pubDate: 2026-08-09
+updatedDate: 2026-08-11
 author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
@@ -349,7 +350,7 @@ Como nenhum recurso é criado pelos comandos deste artigo, a reversão local con
 
 ## O que vem na parte 2
 
-A próxima parte pode evoluir essa fundação com NSGs nas subnets, inspeção central por Azure Firewall, conectividade híbrida por VPN ou ExpressRoute e políticas de rota para controlar o caminho entre spokes. Cada tema será tratado com seus próprios requisitos e validações. Por enquanto, a base permanece pequena o bastante para ser entendida sem um mapa do tesouro.
+A parte 2 evolui essa fundação com NSGs nas quatro subnets de workload, regras explícitas e associações gerenciadas pelo Terraform. A parte 3 tratará da inspeção central com Azure Firewall e das políticas de rota que direcionam o tráfego por ele. A conectividade híbrida por VPN ou ExpressRoute fica para um capítulo futuro, com seus próprios requisitos e validações.
 
 ## Referências
 
