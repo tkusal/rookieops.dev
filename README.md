@@ -2,7 +2,7 @@
 
 Blog técnico sobre infraestrutura, cloud, identidade, segurança e automação, publicado em [rookieops.dev](https://rookieops.dev).
 
-O projeto usa [Astro Narrow](https://github.com/tom2almighty/astro-narrow), Astro 7, Tailwind CSS 4, tsParticles e geração estática para Cloudflare Workers.
+O projeto usa [Astro Narrow](https://github.com/tom2almighty/astro-narrow), Astro 7.2.4, Tailwind CSS 4, tsParticles e geração estática para Cloudflare Workers.
 
 ## Requisitos
 
@@ -23,12 +23,22 @@ O Astro informa o endereço local no terminal, normalmente `http://localhost:432
 Para validar a versão de produção:
 
 ```powershell
-pnpm check
-pnpm build
+pnpm validate
 pnpm preview
 ```
 
 O build estático é criado em `dist/`.
+
+O Astro 7.2 permite executar o preview em segundo plano. Esse modo é útil para automações e agentes de desenvolvimento:
+
+```powershell
+pnpm preview:background
+pnpm preview:status
+pnpm preview:logs
+pnpm preview:stop
+```
+
+O estado e os logs desse processo ficam sob `.astro/`, que não deve ser versionado.
 
 ## Contribuições
 

@@ -15,8 +15,7 @@ Marque uma opção:
 
 <!-- Descreva como o conteúdo ou o código foi testado. Inclua comandos, ambiente e evidências relevantes. -->
 
-- [ ] Executei `pnpm check`.
-- [ ] Executei `pnpm build`.
+- [ ] Executei `pnpm validate`.
 - [ ] Revisei o resultado localmente com `pnpm preview`, quando aplicável.
 
 ## Autoria, fontes e materiais de terceiros

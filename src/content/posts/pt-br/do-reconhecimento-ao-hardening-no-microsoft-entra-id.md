@@ -6,7 +6,7 @@ author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Microsoft 365"]
-tags: ["Microsoft Entra ID", "IAM", "Segurança", "Intermediário"]
+tags: ["Entra ID", "IAM", "Segurança", "Intermediário"]
 cover: "/images/posts/do-reconhecimento-ao-hardening-no-microsoft-entra-id/camadas-de-seguranca-e-menor-privilegio.webp"
 coverAlt: "Ilustração de identidades de pessoa, carga de trabalho e dispositivo atravessando camadas de políticas de acesso."
 toc: true

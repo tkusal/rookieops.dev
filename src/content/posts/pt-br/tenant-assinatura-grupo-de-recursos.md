@@ -6,7 +6,7 @@ author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Cloud"]
-tags: ["Azure", "Microsoft Entra ID", "Iniciante"]
+tags: ["Azure", "Entra ID", "Iniciante"]
 cover: "/images/posts/tenant-assinatura-grupo-de-recursos/capa.svg"
 coverAlt: "Ilustração das relações entre tenant do Microsoft Entra, assinatura do Azure e grupo de recursos"
 toc: true

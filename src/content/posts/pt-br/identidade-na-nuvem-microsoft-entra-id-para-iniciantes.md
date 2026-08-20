@@ -6,7 +6,7 @@ author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Microsoft 365"]
-tags: ["Microsoft Entra ID", "Segurança", "IAM", "Iniciante"]
+tags: ["Entra ID", "Segurança", "IAM", "Iniciante"]
 cover: "/images/posts/identidade-na-nuvem-microsoft-entra-id-para-iniciantes/identidade-como-porta-de-acesso.webp"
 coverAlt: "Ilustração de uma profissional diante de um portal de identidade conectado a aplicativos e dados na nuvem."
 toc: true

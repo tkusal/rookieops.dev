@@ -9,7 +9,7 @@ Ao participar, você concorda em seguir o [Código de Conduta](CODE_OF_CONDUCT.m
 1. **Proponha:** consulte as [issues abertas](https://github.com/tkusal/rookieops.dev/issues) e, para séries, artigos extensos ou novos formatos, abra uma [issue de sugestão](https://github.com/tkusal/rookieops.dev/issues/new?template=sugestao.yml).
 2. **Crie uma branch:** atualize a `main` a partir de `upstream` e crie uma branch `artigo/nome-do-artigo`.
 3. **Copie o modelo:** crie o arquivo em `src/content/posts/pt-br/`, substitua todos os valores entre `<...>` e mantenha `draft: true`.
-4. **Valide:** execute `pnpm check` e `pnpm build`, depois revise o artigo com `pnpm preview`.
+4. **Valide:** execute `pnpm validate`, depois revise o artigo com `pnpm preview`.
 5. **Abra o pull request:** envie a branch ao seu fork e abra o PR para a `main` de `tkusal/rookieops.dev`, preenchendo o template apresentado pelo GitHub.
 
 As seções seguintes explicam cada etapa e também se aplicam a correções de código e documentação.
@@ -237,8 +237,7 @@ Toda imagem informativa deve ter texto alternativo útil. Imagens meramente deco
 Execute:
 
 ```powershell
-pnpm check
-pnpm build
+pnpm validate
 pnpm preview
 ```
 
@@ -285,7 +284,7 @@ O GitHub carregará automaticamente o arquivo `.github/PULL_REQUEST_TEMPLATE.md`
 - explique como o conteúdo foi testado;
 - indique issue relacionada, quando houver;
 - liste limitações, riscos ou pontos que precisam de revisão;
-- confirme que `pnpm check` e `pnpm build` foram executados;
+- confirme que `pnpm validate` foi executado;
 - declare a origem e a licença de qualquer material de terceiros.
 
 Mantenha um assunto principal por pull request. Responda aos comentários de revisão com novos commits na mesma branch; não é necessário abrir outro pull request. Depois de enviar os ajustes, responda às conversas relevantes e solicite uma nova revisão no mesmo PR.
