@@ -274,7 +274,14 @@ I selected a few images that make this journey more tangible. The photos move in
           <img src="/images/posts/microsoft-student-ambassador-2026/swag-gold.webp" alt="Jacket and bottle from a former Gold Student Ambassador swag kit" loading="lazy" decoding="async">
           <span id="swag-gold-note-en" class="image-carousel-note">The Gold identity was replaced by Senior Ambassador branding.</span>
         </button>
-        <figcaption class="image-carousel-caption">Swag from the former Gold milestone.</figcaption>
+        <figcaption class="image-carousel-caption">Swag from the former Gold milestone, in 2026.</figcaption>
+      </figure>
+      <figure class="image-carousel-item" data-carousel-item>
+        <button type="button" class="image-carousel-trigger" data-carousel-open aria-label="Enlarge the Gold swag image from the second half of 2025" aria-describedby="swag-gold-2025-note-en">
+          <img src="/images/posts/microsoft-student-ambassador-2026/swag-gold-2025.webp" alt="Gold Student Ambassador swag received in the second half of 2025" loading="lazy" decoding="async">
+          <span id="swag-gold-2025-note-en" class="image-carousel-note">The Gold identity was replaced by Senior Ambassador branding.</span>
+        </button>
+        <figcaption class="image-carousel-caption">Gold swag from the second half of 2025</figcaption>
       </figure>
       </div>
     </div>

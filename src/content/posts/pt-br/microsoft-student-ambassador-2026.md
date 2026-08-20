@@ -6,7 +6,7 @@ author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Carreira"]
-tags: ["Azure", "Estudantes", "Microsoft Learn", "Microsoft Student Ambassadors", "Iniciante"]
+tags: ["Azure", "Estudantes", "Microsoft", "Microsoft Student Ambassadors", "Iniciante"]
 cover: "/images/posts/microsoft-student-ambassador-2026/capa.webp"
 coverAlt: "Selos dos marcos Student Ambassador, Associate e Senior sobre uma fotografia de estudante usando um notebook"
 toc: true
@@ -274,7 +274,14 @@ Separei alguns registros que ajudam a tornar essa trajetória mais concreta. As 
           <img src="/images/posts/microsoft-student-ambassador-2026/swag-gold.webp" alt="Jaqueta e garrafa de um kit de brindes do antigo marco Gold Student Ambassador" loading="lazy" decoding="async">
           <span id="swag-gold-note" class="image-carousel-note">A identidade visual Gold foi substituída pela de Senior Ambassador.</span>
         </button>
-        <figcaption class="image-carousel-caption">Swag do antigo marco Gold.</figcaption>
+        <figcaption class="image-carousel-caption">Swag do antigo marco Gold, ainda em 2026.</figcaption>
+      </figure>
+      <figure class="image-carousel-item" data-carousel-item>
+        <button type="button" class="image-carousel-trigger" data-carousel-open aria-label="Ampliar imagem do swag Gold do segundo semestre de 2025" aria-describedby="swag-gold-2025-note">
+          <img src="/images/posts/microsoft-student-ambassador-2026/swag-gold-2025.webp" alt="Swag de Gold Student Ambassador recebido no segundo semestre de 2025" loading="lazy" decoding="async">
+          <span id="swag-gold-2025-note" class="image-carousel-note">A identidade visual Gold foi substituída pela de Senior Ambassador.</span>
+        </button>
+        <figcaption class="image-carousel-caption">Swag de Gold do segundo semestre de 2025</figcaption>
       </figure>
       </div>
     </div>
