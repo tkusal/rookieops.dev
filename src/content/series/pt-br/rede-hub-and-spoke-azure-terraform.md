@@ -5,6 +5,7 @@ lang: pt-br
 chapters:
   - "pt-br/rede-hub-and-spoke-azure-terraform-parte-1"
   - "pt-br/rede-hub-and-spoke-azure-terraform-parte-2"
+  - "pt-br/rede-hub-and-spoke-azure-terraform-parte-3"
 draft: false
 ---
 

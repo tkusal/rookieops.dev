@@ -1,18 +1,18 @@
 ---
 title: "Rede hub and spoke no Azure com Terraform, parte 3: Azure Firewall e rotas customizadas"
 description: "Centralize a inspeção de uma rede hub and spoke no Azure com Firewall Basic, Firewall Policy e UDRs gerenciadas pelo Terraform."
-pubDate: 2026-08-12
+pubDate: 2026-08-20
 author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
 categories: ["Cloud"]
-tags: ["Azure", "Terraform", "IaC", "Firewall", "Redes", "Segurança", "Intermediário"]
+tags: ["Azure", "Terraform", "Azure Firewall", "UDR", "Roteamento", "Intermediário"]
 cover: "/images/posts/rede-hub-and-spoke-azure-terraform-parte-3/capa.webp"
 coverAlt: "Ilustração isométrica de uma rede hub and spoke no Azure com um firewall em forma de muro no hub e setas de tráfego passando por ele"
 toc: true
 comments: false
 mermaid: true
-draft: true
+draft: false
 ---
 
 ## 0. Introdução
@@ -58,14 +58,16 @@ flowchart LR
     INT["snet-integration<br/>NSG + UDR"]
   end
 
-  WEB -->|"0.0.0.0/0"| AFW
-  API -->|"0.0.0.0/0"| AFW
-  DB -->|"0.0.0.0/0"| AFW
-  INT -->|"0.0.0.0/0"| AFW
+  WEB -.->|"UDR 0.0.0.0/0"| AFW
+  API -.->|"UDR 0.0.0.0/0"| AFW
+  DB -.->|"UDR 0.0.0.0/0"| AFW
+  INT -.->|"UDR 0.0.0.0/0"| AFW
   AFW -->|"saída permitida"| I
-  API -->|"TCP 1433"| AFW
-  AFW -->|"TCP 1433"| DB
+  API -->|"fluxo permitido TCP 1433"| AFW
+  AFW -->|"fluxo permitido TCP 1433"| DB
 ```
+
+As linhas tracejadas representam a decisão de roteamento das UDRs. As linhas sólidas mostram fluxos permitidos pela policy. A aplicação continua enviando o pacote ao IP privado do banco de dados, não ao firewall como um proxy explícito. A infraestrutura do Azure consulta a tabela de rotas da subnet e entrega o pacote ao firewall como próximo salto antes de encaminhá-lo ao destino original.
 
 ### Subnets reservadas para a SKU Basic
 
@@ -90,8 +92,8 @@ O hub já usa `10.64.0.0/16`, enquanto `snet-shared` ocupa `10.64.10.0/24`. Rese
 | Rede ou subnet | CIDR | Função nesta parte |
 | --- | --- | --- |
 | VNet hub | `10.64.0.0/16` | Serviços centrais de rede |
-| `AzureFirewallSubnet` | `10.64.0.0/26` | Plano de dados do Azure Firewall |
-| `AzureFirewallManagementSubnet` | `10.64.1.0/26` | Gerenciamento exigido pela SKU Basic |
+| **`AzureFirewallSubnet`** | `10.64.0.0/26` | Plano de dados do Azure Firewall |
+| **`AzureFirewallManagementSubnet`** | `10.64.1.0/26` | Gerenciamento exigido pela SKU Basic |
 | `snet-shared` | `10.64.10.0/24` | Serviços compartilhados futuros |
 | Spoke de aplicação | `10.65.0.0/16` | Domínio da aplicação |
 | `snet-web` | `10.65.10.0/24` | Camada web |
@@ -118,7 +120,9 @@ Os quatro peerings também mudam `allow_forwarded_traffic` de `false` para `true
 
 ### Política mínima e negação padrão
 
-A Firewall Policy processa coleções por prioridade. O laboratório usa uma coleção de rede na prioridade 100 e uma coleção de aplicação na prioridade 200. Se nenhuma regra permitir o fluxo, o Azure Firewall nega por padrão. Não precisamos criar uma regra decorativa de `deny any any` para obter esse comportamento.
+A Firewall Policy combina uma precedência fixa por tipo com prioridades numéricas. O Azure Firewall sempre avalia DNAT, depois regras de rede e, por último, regras de aplicação, independentemente das prioridades atribuídas às coleções. Dentro de cada tipo, grupos e coleções com números menores são processados primeiro. O laboratório não possui DNAT e usa uma coleção de rede na prioridade 100 e uma coleção de aplicação na prioridade 200. Mesmo que esses dois números fossem invertidos, a coleção de rede continuaria sendo avaliada antes da coleção de aplicação.
+
+Se nenhuma regra permitir o fluxo, o Azure Firewall nega por padrão. Não precisamos criar uma regra decorativa de `deny any any` para obter esse comportamento.
 
 | Prioridade | Coleção e regra | Protocolo | Origem | Destino | Ação |
 | ---: | --- | --- | --- | --- | --- |
@@ -126,7 +130,20 @@ A Firewall Policy processa coleções por prioridade. O laboratório usa uma col
 | 200 | `allow-system-updates` / `allow-windows-update` | HTTPS 443 | `10.65.0.0/16`, `10.66.0.0/16` | Tag FQDN `WindowsUpdate` | Permitir |
 | Padrão | Sem correspondência | Qualquer | Qualquer | Qualquer | Negar |
 
-O fluxo entre spokes demonstra a inspeção leste-oeste: `snet-app` alcança `snet-data` somente em TCP 1433. Os NSGs herdados da parte 2 recebem liberações correspondentes na saída da aplicação e na entrada dos dados. O firewall é stateful e reconhece o retorno da conexão, mas as UDRs nos dois spokes ainda são importantes para manter o caminho simétrico.
+### Regras de NSG adicionadas nesta parte
+
+A policy central não substitui os controles distribuídos da parte 2. Estas são as liberações acrescentadas aos NSGs para que o pacote alcance o firewall e seja aceito também na subnet de destino:
+
+| NSG | Prioridade | Regra | Direção | Protocolo e porta | Origem | Destino |
+| --- | ---: | --- | --- | --- | --- | --- |
+| `nsg-web` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.65.10.0/24` | `Internet` |
+| `nsg-app` | 100 | `allow-data-outbound` | Saída | TCP 1433 | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-app` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.65.20.0/24` | `Internet` |
+| `nsg-data` | 110 | `allow-app-inbound` | Entrada | TCP 1433 | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-data` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.66.10.0/24` | `Internet` |
+| `nsg-integration` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.66.20.0/24` | `Internet` |
+
+O fluxo entre spokes demonstra a inspeção leste-oeste: `snet-app` alcança `snet-data` somente em TCP 1433. Tanto o Azure Firewall quanto os NSGs são stateful e reconhecem o retorno de uma conexão permitida. Portanto, não precisamos liberar portas efêmeras de resposta nos NSGs. As UDRs nos dois spokes continuam essenciais para que ida e volta atravessem o firewall, que precisa observar as duas direções do fluxo para preservar o estado da sessão.
 
 A regra de atualização usa a tag FQDN `WindowsUpdate`, mantida pela Microsoft. Ela evita gravar uma lista de domínios que envelheceria antes do próximo café. A própria documentação alerta que uma tag FQDN pode autorizar endpoints HTTP necessários mesmo quando a regra declara HTTPS. Por isso, os NSGs liberam TCP 80 e 443 para a marca de serviço `Internet`; a Firewall Policy continua restringindo o destino aos endpoints da tag.
 
@@ -138,15 +155,15 @@ Não criamos coleções de NAT ou DNAT. O IP público do firewall atende o servi
 
 ### Módulo de firewall
 
-O diretório `modules/firewall/` contém `main.tf`, `variables.tf` e `outputs.tf`. Ele cria dois `azurerm_public_ip` com `for_each`, a policy, o rule collection group e o firewall. As coleções chegam como mapas, então novas regras podem ser declaradas pelo ambiente sem duplicar o módulo.
+O diretório `modules/firewall/` contém `main.tf`, `variables.tf` e `outputs.tf`. Ele cria dois `azurerm_public_ip` com `for_each`, a policy, o rule collection group e o firewall. As coleções chegam como mapas, enquanto nome e tier da SKU chegam por variáveis. Assim, o ambiente declara suas escolhas sem escondê-las dentro do recurso.
 
 ```hcl title="Trecho de modules/firewall/main.tf"
 resource "azurerm_firewall" "this" {
   name                = var.name
   resource_group_name = var.resource_group_name
   location            = var.location
-  sku_name            = "AZFW_VNet"
-  sku_tier            = "Basic"
+  sku_name            = var.sku_name
+  sku_tier            = var.sku_tier
   firewall_policy_id  = azurerm_firewall_policy.this.id
   tags                = var.tags
 
@@ -164,6 +181,8 @@ resource "azurerm_firewall" "this" {
 }
 ```
 
+No ambiente do laboratório, o módulo recebe `sku_name = "AZFW_VNet"` e `sku_tier = "Basic"`. A Firewall Policy usa a mesma variável `sku_tier`, evitando uma combinação incompatível entre uma policy Basic e um firewall de outro tier. As validações de `variables.tf` limitam os valores ao conjunto aceito pelo provider.
+
 O output `private_ip_address` lê o endereço da primeira configuração de dados. Esse valor alimenta o módulo de rotas, criando uma dependência implícita. Terraform sabe que não pode concluir o próximo salto antes de conhecer o IP do firewall.
 
 ### Módulo de route table
@@ -172,11 +191,10 @@ O diretório `modules/route-table/` também segue a divisão em `main.tf`, `vari
 
 ```hcl title="modules/route-table/main.tf"
 resource "azurerm_route_table" "this" {
-  name                          = var.name
-  resource_group_name           = var.resource_group_name
-  location                      = var.location
-  bgp_route_propagation_enabled = true
-  tags                          = var.tags
+  name                = var.name
+  resource_group_name = var.resource_group_name
+  location            = var.location
+  tags                = var.tags
 
   route {
     name                   = "default-via-azure-firewall"
@@ -258,12 +276,13 @@ A parte 4 adicionará conectividade híbrida ao hub por VPN ou ExpressRoute. O p
 
 ## Referências
 
-- [Topologia hub and spoke no Azure](https://learn.microsoft.com/pt-br/azure/networking/design-guide/hub-spoke)
-- [Azure Firewall Basic](https://learn.microsoft.com/pt-br/azure/firewall/overview#azure-firewall-basic)
-- [Requisitos de subnets em uma arquitetura hub and spoke segura](https://learn.microsoft.com/pt-br/azure/networking/cross-service-scenarios/design-secure-hub-spoke-network)
-- [Rotas de tráfego de rede virtual](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-udr-overview)
-- [Processamento de regras da Firewall Policy](https://learn.microsoft.com/pt-br/azure/firewall/policy-rule-sets)
-- [Tags FQDN do Azure Firewall](https://learn.microsoft.com/pt-br/azure/firewall/fqdn-tags)
+- [Topologia hub and spoke no Azure](https://learn.microsoft.com/pt-br/azure/networking/design-guide/hub-spoke?wt.mc_id=studentamb_365381)
+- [Azure Firewall Basic](https://learn.microsoft.com/pt-br/azure/firewall/overview#azure-firewall-basic?wt.mc_id=studentamb_365381)
+- [Requisitos de subnets em uma arquitetura hub and spoke segura](https://learn.microsoft.com/pt-br/azure/networking/cross-service-scenarios/design-secure-hub-spoke-network?wt.mc_id=studentamb_365381)
+- [Rotas de tráfego de rede virtual](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-udr-overview?wt.mc_id=studentamb_365381)
+- [Processamento de regras da Firewall Policy](https://learn.microsoft.com/pt-br/azure/firewall/policy-rule-sets?wt.mc_id=studentamb_365381)
+- [Tags FQDN do Azure Firewall](https://learn.microsoft.com/pt-br/azure/firewall/fqdn-tags?wt.mc_id=studentamb_365381)
+- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
 - [Azure Firewall no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/firewall)
 - [Rule collection group no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/firewall_policy_rule_collection_group)
 - [Route table no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/route_table)
