@@ -192,20 +192,20 @@ Se alguma resposta depender de “provavelmente”, transforme a suposição em 
 
 ## Referências primárias
 
-- [Conectar aplicativos a recursos sem administrar credenciais](https://learn.microsoft.com/en-us/entra/identity/managed-identities-azure-resources/overview-for-developers?wt.mc_id=studentamb_365381)
-- [Práticas de segurança para propriedades de aplicativos](https://learn.microsoft.com/en-us/entra/identity-platform/security-best-practices-for-app-registration?wt.mc_id=studentamb_365381)
-- [Criar confiança entre um aplicativo e um provedor de identidade externo](https://learn.microsoft.com/en-us/entra/workload-id/workload-identity-federation-create-trust?wt.mc_id=studentamb_365381)
-- [Visão geral de tokens e declarações](https://learn.microsoft.com/en-us/entra/identity-platform/security-tokens?wt.mc_id=studentamb_365381)
-- [OpenID Connect na plataforma de identidade da Microsoft](https://learn.microsoft.com/en-us/entra/identity-platform/v2-protocols-oidc?wt.mc_id=studentamb_365381)
-- [Fluxo de código de autorização do OAuth 2.0](https://learn.microsoft.com/en-us/entra/identity-platform/v2-oauth2-auth-code-flow?wt.mc_id=studentamb_365381)
-- [Visão geral do Acesso Condicional](https://learn.microsoft.com/pt-br/entra/identity/conditional-access/overview?wt.mc_id=studentamb_365381)
-- [Licenciamento de autenticação multifator e Acesso Condicional](https://learn.microsoft.com/en-us/entra/identity/authentication/concept-mfa-licensing?wt.mc_id=studentamb_365381)
-- [Padrões de segurança no Microsoft Entra ID](https://learn.microsoft.com/pt-br/entra/fundamentals/security-defaults?wt.mc_id=studentamb_365381)
-- [Planejar uma implantação do Privileged Identity Management](https://learn.microsoft.com/en-us/entra/id-governance/privileged-identity-management/pim-deployment-plan?wt.mc_id=studentamb_365381)
-- [Fundamentos de licenciamento do Microsoft Entra ID Governance](https://learn.microsoft.com/en-us/entra/id-governance/licensing-fundamentals?wt.mc_id=studentamb_365381)
-- [Microsoft 365 E7](https://www.microsoft.com/en-us/microsoft-365/enterprise/e7?wt.mc_id=studentamb_365381)
-- [Gerenciar contas administrativas de acesso de emergência](https://learn.microsoft.com/en-us/entra/identity/role-based-access-control/security-emergency-access?wt.mc_id=studentamb_365381)
-- [Visão geral de monitoramento e integridade](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/overview-monitoring-health?wt.mc_id=studentamb_365381)
+- [Conectar aplicativos a recursos sem administrar credenciais](https://learn.microsoft.com/entra/identity/managed-identities-azure-resources/overview-for-developers?wt.mc_id=studentamb_365381)
+- [Práticas de segurança para propriedades de aplicativos](https://learn.microsoft.com/entra/identity-platform/security-best-practices-for-app-registration?wt.mc_id=studentamb_365381)
+- [Criar confiança entre um aplicativo e um provedor de identidade externo](https://learn.microsoft.com/entra/workload-id/workload-identity-federation-create-trust?wt.mc_id=studentamb_365381)
+- [Visão geral de tokens e declarações](https://learn.microsoft.com/entra/identity-platform/security-tokens?wt.mc_id=studentamb_365381)
+- [OpenID Connect na plataforma de identidade da Microsoft](https://learn.microsoft.com/entra/identity-platform/v2-protocols-oidc?wt.mc_id=studentamb_365381)
+- [Fluxo de código de autorização do OAuth 2.0](https://learn.microsoft.com/entra/identity-platform/v2-oauth2-auth-code-flow?wt.mc_id=studentamb_365381)
+- [Visão geral do Acesso Condicional](https://learn.microsoft.com/entra/identity/conditional-access/overview?wt.mc_id=studentamb_365381)
+- [Licenciamento de autenticação multifator e Acesso Condicional](https://learn.microsoft.com/entra/identity/authentication/concept-mfa-licensing?wt.mc_id=studentamb_365381)
+- [Padrões de segurança no Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/security-defaults?wt.mc_id=studentamb_365381)
+- [Planejar uma implantação do Privileged Identity Management](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-deployment-plan?wt.mc_id=studentamb_365381)
+- [Fundamentos de licenciamento do Microsoft Entra ID Governance](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals?wt.mc_id=studentamb_365381)
+- [Microsoft 365 E7](https://www.microsoft.com/microsoft-365/enterprise/e7?wt.mc_id=studentamb_365381)
+- [Gerenciar contas administrativas de acesso de emergência](https://learn.microsoft.com/entra/identity/role-based-access-control/security-emergency-access?wt.mc_id=studentamb_365381)
+- [Visão geral de monitoramento e integridade](https://learn.microsoft.com/entra/identity/monitoring-health/overview-monitoring-health?wt.mc_id=studentamb_365381)
 
 ## Conclusão
 

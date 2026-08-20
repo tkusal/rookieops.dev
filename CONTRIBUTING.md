@@ -53,6 +53,8 @@ src/content/posts/pt-br/nome-do-artigo.md
 
 Use letras minúsculas, números e hífens no nome do arquivo. Esse nome será usado na URL, por exemplo: `/posts/nome-do-artigo/`.
 
+Para uma versão em inglês, use `src/content/posts/en/nome-do-artigo.md`, defina `lang: en` e mantenha o mesmo nome de arquivo da versão em português. A URL será `/en/posts/nome-do-artigo/`, e o nome compartilhado permite que o seletor de idioma conecte as duas versões.
+
 ### Quando usar Markdown ou MDX
 
 Use Markdown, com a extensão `.md`, por padrão. Ele atende artigos com texto, tabelas, links, imagens, alertas, fórmulas, diagramas Mermaid e blocos de código, além de manter o conteúdo simples de revisar.
@@ -121,7 +123,7 @@ Se necessário, apresente as pessoas autoras e seus links públicos adicionais. 
 
 Regras dos campos:
 
-- `title`, `description`, `pubDate` e `author` são obrigatórios. Mantenha também `lang: pt-br` explícito para facilitar a revisão.
+- `title`, `description`, `pubDate` e `author` são obrigatórios. Mantenha `lang: pt-br` ou `lang: en` explícito e coerente com a pasta do artigo.
 - `description` deve ter entre 50 e 160 caracteres.
 - `pubDate` usa o formato `AAAA-MM-DD`. Ao preparar o artigo, informe a data de envio do pull request. Antes da publicação, a manutenção ajusta o campo para a data planejada, se necessário.
 - `authorUrl` é opcional e aceita um único endereço. Use o site, portfólio ou perfil profissional que você queira associar publicamente ao texto. Remova o campo se não quiser publicar um link.
@@ -138,6 +140,7 @@ Use a categoria para representar a área principal do artigo, tags temáticas pa
 
 Categorias disponíveis atualmente:
 
+- `Carreira`;
 - `Cloud`;
 - `DevOps`;
 - `Microsoft 365`.
@@ -146,6 +149,7 @@ Tags temáticas disponíveis atualmente:
 
 - `Azure`;
 - `CI/CD`;
+- `Estudantes`;
 - `Git`;
 - `GitHub Actions`;
 - `IAM`;
@@ -159,6 +163,8 @@ Dificuldades disponíveis:
 - `Iniciante`: apresenta fundamentos, explica termos e exige pouco ou nenhum conhecimento prévio;
 - `Intermediário`: pressupõe familiaridade com os fundamentos e aborda integrações, configurações ou diagnósticos com mais detalhes;
 - `Avançado`: pressupõe experiência prática e trata arquitetura, automação complexa, produção, riscos elevados ou diagnóstico aprofundado.
+
+Nas versões em inglês, traduza a taxonomia editorial quando houver equivalente natural. Use `Career` para `Carreira`, `Students` para `Estudantes` e exatamente uma dificuldade entre `Beginner`, `Intermediate` e `Advanced`. Nomes de produtos e tecnologias, como `Azure`, `Microsoft Learn` e `Microsoft Student Ambassadors`, permanecem inalterados.
 
 Todo artigo deve usar exatamente uma dessas três dificuldades dentro de `tags`. Não crie variações como `Básico`, `Fácil`, `Médio` ou `Especialista`.
 

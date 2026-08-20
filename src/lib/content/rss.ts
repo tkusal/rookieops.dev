@@ -1,5 +1,5 @@
 import type { CollectionEntry } from 'astro:content';
-import { defaultLocale, localeMeta } from '../../config/i18n';
+import { defaultLocale, localeMeta, type Locale } from '../../config/i18n';
 import { siteConfig } from '../../config/site';
 import { localizedEntryPath } from './entries';
 
@@ -12,11 +12,20 @@ function escapeXml(value: string) {
     .replace(/'/g, '&apos;');
 }
 
-export function renderRss(posts: Array<CollectionEntry<'posts'>>, origin: string, basePath = '/') {
+export function renderRss(
+  posts: Array<CollectionEntry<'posts'>>,
+  origin: string,
+  basePath = '/',
+  locale: Locale = defaultLocale,
+  feedPath?: string
+) {
   const siteUrl = origin.replace(/\/$/, '');
   const normalizedBasePath = `/${basePath}`.replace(/\/+/g, '/').replace(/\/?$/, '/');
   const channelUrl = `${siteUrl}${normalizedBasePath}`;
-  const feedUrl = `${siteUrl}${normalizedBasePath}rss.xml`;
+  const normalizedFeedPath = feedPath
+    ? `/${feedPath}`.replace(/\/+/g, '/')
+    : `${normalizedBasePath}rss.xml`;
+  const feedUrl = `${siteUrl}${normalizedFeedPath}`;
   const lastBuildDate = posts[0]?.data.pubDate?.toUTCString();
 
   const items = posts
@@ -42,8 +51,8 @@ export function renderRss(posts: Array<CollectionEntry<'posts'>>, origin: string
     '<channel>',
     `<title>${escapeXml(siteConfig.name)}</title>`,
     `<link>${escapeXml(channelUrl)}</link>`,
-    `<description>${escapeXml(siteConfig.description)}</description>`,
-    `<language>${escapeXml(localeMeta[defaultLocale].htmlLang)}</language>`,
+    `<description>${escapeXml(siteConfig.description[locale])}</description>`,
+    `<language>${escapeXml(localeMeta[locale].htmlLang)}</language>`,
     `<atom:link href="${escapeXml(feedUrl)}" rel="self" type="application/rss+xml"/>`,
     lastBuildDate ? `<lastBuildDate>${escapeXml(lastBuildDate)}</lastBuildDate>` : '',
     items,

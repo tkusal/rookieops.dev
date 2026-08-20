@@ -362,7 +362,7 @@ Observe principalmente:
 - ingestão, retenção e consulta de logs no Azure Monitor e em workspaces do Log Analytics;
 - região, moeda, contrato e benefícios aplicáveis à assinatura.
 
-Não memorize um valor visto em uma captura de tela antiga, principalmente se ela veio acompanhada de “na minha época era assim”. Para números atuais, configure região, SKU e volume na [Calculadora de Preços oficial do Azure](https://azure.microsoft.com/pt-br/pricing/calculator/) e confira também a [página de preços da Virtual Network](https://azure.microsoft.com/pt-br/pricing/details/virtual-network/).
+Não memorize um valor visto em uma captura de tela antiga, principalmente se ela veio acompanhada de “na minha época era assim”. Para números atuais, configure região, SKU e volume na [Calculadora de Preços oficial do Azure](https://azure.microsoft.com/pricing/calculator/?wt.mc_id=studentamb_365381) e confira também a [página de preços da Virtual Network](https://azure.microsoft.com/pricing/details/virtual-network/?wt.mc_id=studentamb_365381).
 
 ## Segurança, impacto e reversão
 
@@ -391,20 +391,20 @@ Excluir o grupo remove todos os recursos contidos nele. Não execute o último c
 
 **Conceitos e planejamento**
 
-- [Visão geral da Azure Virtual Network](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-overview?wt.mc_id=studentamb_365381)
-- [Virtual networks e subnets](https://learn.microsoft.com/pt-br/azure/networking/design-guide/vnets-subnets?wt.mc_id=studentamb_365381)
-- [Visão geral dos Network Security Groups](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
-- [Roteamento de tráfego em redes virtuais](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-udr-overview?wt.mc_id=studentamb_365381)
-- [Visão geral do peering de redes virtuais](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-network-peering-overview?wt.mc_id=studentamb_365381)
-- [Acesso de saída padrão no Azure](https://learn.microsoft.com/pt-br/azure/virtual-network/ip-services/default-outbound-access?wt.mc_id=studentamb_365381)
-- [O que é o Azure Firewall?](https://learn.microsoft.com/pt-br/azure/firewall/overview?wt.mc_id=studentamb_365381)
+- [Visão geral da Azure Virtual Network](https://learn.microsoft.com/azure/virtual-network/virtual-networks-overview?wt.mc_id=studentamb_365381)
+- [Virtual networks e subnets](https://learn.microsoft.com/azure/networking/design-guide/vnets-subnets?wt.mc_id=studentamb_365381)
+- [Visão geral dos Network Security Groups](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
+- [Roteamento de tráfego em redes virtuais](https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview?wt.mc_id=studentamb_365381)
+- [Visão geral do peering de redes virtuais](https://learn.microsoft.com/azure/virtual-network/virtual-network-peering-overview?wt.mc_id=studentamb_365381)
+- [Acesso de saída padrão no Azure](https://learn.microsoft.com/azure/virtual-network/ip-services/default-outbound-access?wt.mc_id=studentamb_365381)
+- [O que é o Azure Firewall?](https://learn.microsoft.com/azure/firewall/overview?wt.mc_id=studentamb_365381)
 
 **Operação e diagnóstico**
 
-- [Criar e gerenciar tabelas de rotas](https://learn.microsoft.com/pt-br/azure/virtual-network/manage-route-table?wt.mc_id=studentamb_365381)
-- [Diagnosticar um problema de roteamento de VM](https://learn.microsoft.com/pt-br/azure/virtual-network/diagnose-network-routing-problem?wt.mc_id=studentamb_365381)
-- [Referência da Azure CLI para VNet](https://learn.microsoft.com/pt-br/cli/azure/network/vnet?view=azure-cli-latest&wt.mc_id=studentamb_365381)
-- [Referência da Azure CLI para subnets](https://learn.microsoft.com/pt-br/cli/azure/network/vnet/subnet?view=azure-cli-latest&wt.mc_id=studentamb_365381)
+- [Criar e gerenciar tabelas de rotas](https://learn.microsoft.com/azure/virtual-network/manage-route-table?wt.mc_id=studentamb_365381)
+- [Diagnosticar um problema de roteamento de VM](https://learn.microsoft.com/azure/virtual-network/diagnose-network-routing-problem?wt.mc_id=studentamb_365381)
+- [Referência da Azure CLI para VNet](https://learn.microsoft.com/cli/azure/network/vnet?view=azure-cli-latest&wt.mc_id=studentamb_365381)
+- [Referência da Azure CLI para subnets](https://learn.microsoft.com/cli/azure/network/vnet/subnet?view=azure-cli-latest&wt.mc_id=studentamb_365381)
 
 ## Conclusão
 

@@ -43,7 +43,7 @@ Este conteúdo pressupõe que você já entende o papel de uma VNet e já execut
 
 - uma assinatura do Azure destinada a estudos;
 - permissão para criar grupos de recursos, VNets, subnets e peerings;
-- [Azure CLI](https://learn.microsoft.com/pt-br/cli/azure/install-azure-cli) instalada e autenticada;
+- [Azure CLI](https://learn.microsoft.com/cli/azure/install-azure-cli?wt.mc_id=studentamb_365381) instalada e autenticada;
 - [Terraform](https://developer.hashicorp.com/terraform/install) `1.15.8`;
 - provider AzureRM `4.79.0`;
 - Git para trabalhar com seu fork.
@@ -342,7 +342,7 @@ O plano esperado contém três resource groups, três VNets, cinco subnets e qua
 
 ## Riscos, segurança e reversão
 
-VNet peering pode gerar cobrança por transferência de dados quando cargas reais começarem a trocar tráfego. Não use valores antigos de uma tabela ou captura de tela. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pt-br/pricing/calculator/) para a região e o volume do seu cenário.
+VNet peering pode gerar cobrança por transferência de dados quando cargas reais começarem a trocar tráfego. Não use valores antigos de uma tabela ou captura de tela. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pricing/calculator/?wt.mc_id=studentamb_365381) para a região e o volume do seu cenário.
 
 States e planos podem conter dados sensíveis. Mantenha `terraform.tfstate`, `*.tfvars` e `*.tfplan` fora do Git. Em produção, restrinja também o acesso ao backend remoto e registre quem pode alterar a rede.
 
@@ -354,12 +354,12 @@ A parte 2 evolui essa fundação com NSGs nas quatro subnets de workload, regras
 
 ## Referências
 
-- [Topologia hub and spoke no Azure](https://learn.microsoft.com/pt-br/azure/networking/design-guide/hub-spoke)
-- [Visão geral do VNet peering](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-network-peering-overview)
-- [VNets e subnets no guia de design](https://learn.microsoft.com/pt-br/azure/networking/design-guide/vnets-subnets)
-- [Endereços reservados em subnets do Azure](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-faq)
-- [Abreviações de recursos do Cloud Adoption Framework](https://learn.microsoft.com/pt-br/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations)
-- [Limites e recomendações para tags do Azure](https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/tag-resources)
+- [Topologia hub and spoke no Azure](https://learn.microsoft.com/azure/networking/design-guide/hub-spoke?wt.mc_id=studentamb_365381)
+- [Visão geral do VNet peering](https://learn.microsoft.com/azure/virtual-network/virtual-network-peering-overview?wt.mc_id=studentamb_365381)
+- [VNets e subnets no guia de design](https://learn.microsoft.com/azure/networking/design-guide/vnets-subnets?wt.mc_id=studentamb_365381)
+- [Endereços reservados em subnets do Azure](https://learn.microsoft.com/azure/virtual-network/virtual-networks-faq?wt.mc_id=studentamb_365381)
+- [Abreviações de recursos do Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/azure-best-practices/resource-abbreviations?wt.mc_id=studentamb_365381)
+- [Limites e recomendações para tags do Azure](https://learn.microsoft.com/azure/azure-resource-manager/management/tag-resources?wt.mc_id=studentamb_365381)
 - [Backend local do Terraform](https://developer.hashicorp.com/terraform/language/backend/local)
 - [Restrições de versão do Terraform](https://developer.hashicorp.com/terraform/language/expressions/version-constraints)
 - [Provider AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs)

@@ -3,6 +3,7 @@ import BaseLayout from '../../components/layout/BaseLayout.astro';
 import PageHeader from '../../components/content/PageHeader.astro';
 import ArchiveTimeline from '../../components/content/ArchiveTimeline.astro';
 import ArchiveFilters from '../../components/content/ArchiveFilters.astro';
+import { locales } from '../../config/i18n';
 import { collectArchiveTerms, getLocalizedEntries } from '../../lib/content/entries';
 import { useTranslations } from '../../i18n/utils';
 
@@ -13,7 +14,7 @@ const tags = collectArchiveTerms(posts, 'tags', locale);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={t('archive.title')} description={t('archive.description')} locale={locale}>
+<BaseLayout title={t('archive.title')} description={t('archive.description')} locale={locale} availableLocales={locales}>
   <PageHeader title={t('archive.title')} description={t('archive.description')} locale={locale} />
   <ArchiveFilters categories={categories} tags={tags} total={posts.length} locale={locale} />
   <ArchiveTimeline posts={posts} locale={locale} />

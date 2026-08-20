@@ -198,8 +198,153 @@ async function setupGallery(gallery: HTMLElement, groupIndex: number) {
   instance = createInstance(host, layout, items, galleryId);
 }
 
+function setupCarousel(carousel: HTMLElement, carouselIndex: number) {
+  const track = carousel.querySelector<HTMLElement>('[data-carousel-track]');
+  const items = [...carousel.querySelectorAll<HTMLElement>('[data-carousel-item]')];
+  if (!track || items.length === 0) return;
+
+  const galleryId = `carousel-${carouselIndex}`;
+  const galleryItems: LightboxItem[] = [];
+  items.forEach((item, itemIndex) => {
+    const image = item.querySelector<HTMLImageElement>('img');
+    const trigger = item.querySelector<HTMLButtonElement>('[data-carousel-open]');
+    if (!image || !trigger) return;
+
+    const galleryItem: LightboxItem = {
+      id: `${galleryId}-${itemIndex}`,
+      src: image.currentSrc || image.src,
+      alt: image.alt || '',
+      caption: item.querySelector<HTMLElement>('figcaption')?.textContent?.trim() || ''
+    };
+    galleryItems.push(galleryItem);
+    trigger.addEventListener('click', () => openLightbox(galleryId, galleryItem.id));
+  });
+
+  if (galleryItems.length === 0) return;
+  galleries.set(galleryId, galleryItems);
+
+  const clones = items.map((item, itemIndex) => {
+    const clone = item.cloneNode(true) as HTMLElement;
+    const cloneTrigger = clone.querySelector<HTMLButtonElement>('[data-carousel-open]');
+    const cloneNote = clone.querySelector<HTMLElement>('.image-carousel-note');
+    const galleryItem = galleryItems[itemIndex];
+
+    clone.dataset.carouselClone = 'true';
+    clone.setAttribute('aria-hidden', 'true');
+    if (cloneTrigger) {
+      cloneTrigger.tabIndex = -1;
+      if (cloneNote?.id) {
+        cloneNote.id = `${cloneNote.id}-clone-${carouselIndex}`;
+        cloneTrigger.setAttribute('aria-describedby', cloneNote.id);
+      }
+      if (galleryItem) {
+        cloneTrigger.addEventListener('click', () => openLightbox(galleryId, galleryItem.id));
+      }
+    }
+    track.appendChild(clone);
+    return clone;
+  });
+
+  const viewport = carousel.querySelector<HTMLElement>('[data-carousel-viewport]');
+  const previous = carousel.querySelector<HTMLButtonElement>('[data-carousel-prev]');
+  const next = carousel.querySelector<HTMLButtonElement>('[data-carousel-next]');
+  let loopDuration = 0;
+
+  const updateLoop = () => {
+    const firstItem = items[0];
+    const firstClone = clones[0];
+    if (!firstItem || !firstClone) return;
+
+    const activeAnimation = track.getAnimations()[0];
+    const currentTime = Number(activeAnimation?.currentTime ?? 0);
+    const progress = loopDuration > 0 ? (currentTime % loopDuration) / loopDuration : 0;
+    const distance = firstClone.offsetLeft - firstItem.offsetLeft;
+    loopDuration = Math.max(18000, (distance / 28) * 1000);
+
+    track.style.setProperty('--carousel-loop-translate', `${-distance}px`);
+    track.style.setProperty('--carousel-loop-duration', `${loopDuration}ms`);
+    track.classList.toggle('is-looping', distance > 0);
+
+    if (previous) previous.disabled = distance <= 0;
+    if (next) next.disabled = distance <= 0;
+
+    if (progress > 0) {
+      requestAnimationFrame(() => {
+        const animation = track.getAnimations()[0];
+        if (animation) animation.currentTime = progress * loopDuration;
+      });
+    }
+  };
+
+  const move = (direction: -1 | 1) => {
+    const animation = track.getAnimations()[0];
+    if (animation && loopDuration > 0) {
+      const currentTime = Number(animation.currentTime ?? 0);
+      const step = loopDuration / items.length;
+      animation.currentTime = (currentTime + direction * step + loopDuration) % loopDuration;
+      return;
+    }
+
+    const itemWidth = items[0]?.getBoundingClientRect().width || viewport?.clientWidth || 280;
+    const gap = Number.parseFloat(getComputedStyle(track).columnGap) || 0;
+    viewport?.scrollBy({ left: direction * (itemWidth + gap), behavior: 'smooth' });
+  };
+
+  if (viewport) {
+    let pointerStartX: number | null = null;
+    let suppressClick = false;
+
+    viewport.addEventListener('pointerdown', (event) => {
+      if (event.pointerType !== 'touch') return;
+      pointerStartX = event.clientX;
+      viewport.setPointerCapture(event.pointerId);
+      carousel.classList.add('is-interacting');
+    });
+
+    viewport.addEventListener('pointerup', (event) => {
+      if (event.pointerType !== 'touch' || pointerStartX === null) return;
+      const distance = event.clientX - pointerStartX;
+      pointerStartX = null;
+      if (viewport.hasPointerCapture(event.pointerId)) viewport.releasePointerCapture(event.pointerId);
+      carousel.classList.remove('is-interacting');
+
+      if (Math.abs(distance) < 40) return;
+      suppressClick = true;
+      move(distance < 0 ? 1 : -1);
+      window.setTimeout(() => {
+        suppressClick = false;
+      }, 350);
+    });
+
+    viewport.addEventListener('pointercancel', () => {
+      pointerStartX = null;
+      carousel.classList.remove('is-interacting');
+    });
+
+    viewport.addEventListener(
+      'click',
+      (event) => {
+        if (!suppressClick) return;
+        event.preventDefault();
+        event.stopImmediatePropagation();
+        suppressClick = false;
+      },
+      true
+    );
+  }
+
+  previous?.addEventListener('click', () => move(-1));
+  next?.addEventListener('click', () => move(1));
+  window.addEventListener('resize', updateLoop, { passive: true });
+  requestAnimationFrame(updateLoop);
+}
+
 document.querySelectorAll<HTMLElement>('.markdown-gallery').forEach((gallery, index) => {
   void setupGallery(gallery, index);
+});
+
+document.querySelectorAll<HTMLElement>('.image-carousel').forEach((carousel, index) => {
+  setupCarousel(carousel, index);
 });
 
 document.querySelectorAll<HTMLElement>('.prose > .image-figure').forEach((figure, index) => {

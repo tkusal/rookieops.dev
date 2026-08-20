@@ -12,7 +12,7 @@ const baseSchema = z.object({
   draft: z.boolean().default(false),
   cover: z.string().trim().min(1).optional(),
   coverAlt: z.string().trim().min(1).optional(),
-  lang: z.enum(['pt-br']).optional(),
+  lang: z.enum(['pt-br', 'en']).optional(),
   toc: z.union([z.boolean(), z.enum(['center', 'side'])]).optional(),
   comments: z.boolean().optional(),
   math: z.boolean().optional(),

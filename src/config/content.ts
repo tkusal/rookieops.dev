@@ -17,7 +17,8 @@ export const contentTypes = {
     path: '/posts/',
     icon: 'lucide:file-text',
     label: {
-      'pt-br': 'Artigos'
+      'pt-br': 'Artigos',
+      en: 'Posts'
     },
     showMeta: true,
     cardStyle: 'article',
@@ -27,7 +28,8 @@ export const contentTypes = {
       enabled: true,
       limit: 5,
       title: {
-        'pt-br': 'Artigos recentes'
+        'pt-br': 'Artigos recentes',
+        en: 'Recent posts'
       }
     }
   },
@@ -36,7 +38,8 @@ export const contentTypes = {
     path: '/projects/',
     icon: 'lucide:layers',
     label: {
-      'pt-br': 'Projetos'
+      'pt-br': 'Projetos',
+      en: 'Projects'
     },
     showMeta: true,
     cardStyle: 'showcase',
@@ -47,7 +50,8 @@ export const contentTypes = {
       limit: 3,
       featuredOnly: true,
       title: {
-        'pt-br': 'Projetos em destaque'
+        'pt-br': 'Projetos em destaque',
+        en: 'Featured projects'
       }
     }
   }

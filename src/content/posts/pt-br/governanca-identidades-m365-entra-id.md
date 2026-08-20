@@ -1,7 +1,7 @@
 ---
 title: "Governança de Identidades no Microsoft 365: Automatizando o ciclo de vida (JML) e PIM com Entra ID Governance"
 description: "Automatize entrada, movimentação, saída, revisões e privilégios JIT no Microsoft 365 com o Microsoft Entra ID Governance."
-pubDate: 2026-08-22
+pubDate: 2026-08-23
 author: "Thiago Kusal"
 authorUrl: "https://tkusal.com.br"
 lang: pt-br
@@ -11,7 +11,6 @@ cover: "/images/posts/governanca-identidades-m365-entra-id/capa.webp"
 coverAlt: "Ilustração isométrica de crachás, engrenagens e um fluxo de aprovação flutuando sobre a logo do Microsoft Entra ID."
 toc: true
 comments: false
-mermaid: true
 draft: true
 ---
 
@@ -21,9 +20,9 @@ O tenant já exige autenticação multifator. As políticas de Acesso Condiciona
 
 É aqui que segurança e governança se separam. Segurança decide se uma tentativa de acesso pode prosseguir. Governança responde quem deveria ter acesso, por qual motivo, durante quanto tempo e quem precisa revisar essa decisão.
 
-Dra. Anna Bette Bírquin será nossa referência. Ela foi contratada como Pesquisadora Sênior pela empresa fictícia Umbrella do Brasil S.A. e trabalhará no departamento Laboratório NEST. Durante sua jornada, assume novas responsabilidades, precisa administrar o Exchange Online em uma manutenção e, algum tempo depois, deixa a organização. O objetivo é tornar a TI quase invisível para Anna: o acesso certo aparece no momento necessário, pede aprovação quando deve e desaparece quando perde a justificativa.
+Dra. Anna Bette Bírquin, Pesquisadora Sênior da fictícia Umbrella do Brasil S.A., trabalhará no Laboratório NEST. No domínio `umbrella.com.br`, seu nome de usuário e UPN serão `anna.birquin` e `anna.birquin@umbrella.com.br`. Na jornada, assume novas responsabilidades, administra o Exchange Online numa janela de manutenção e depois deixa a organização. O objetivo é tornar a TI quase invisível para Anna: o acesso certo aparece no momento necessário, pede aprovação quando deve e desaparece quando perde a justificativa.
 
-Chamaremos essa jornada de **JML**, sigla para *Joiner, Mover e Leaver*: entrada, movimentação e saída. Usaremos Lifecycle Workflows para tarefas orientadas a datas, Entitlement MAnnagement para autoatendimento governado, Access Reviews para recertificação e Privileged Identity Management, ou PIM, para privilégio temporário.
+Chamaremos essa jornada de **JML**, sigla para *Joiner, Mover e Leaver*: entrada, movimentação e saída. Usaremos Lifecycle Workflows para tarefas orientadas a datas, Entitlement Management para autoatendimento governado, Access Reviews para recertificação e Privileged Identity Management, ou PIM, para privilégio temporário.
 
 ### Resultado esperado
 
@@ -37,23 +36,17 @@ Ao final, você terá um laboratório verificável para:
 
 Os scripts estão no repositório [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). Eles começam em modo de simulação e não incluem credenciais, segredos nem identificadores reais.
 
+### Como os dados entram no laboratório
+
+Sem integração com RH, a admissão começa por chamado. O analista executa `05-new-cloud-user.ps1` com dados aprovados e `RequestId`. Esse valor aparece na saída, sem gravação no Entra ou em log local. Lifecycle Workflows encontra a conta criada e inicia o Joiner; não executa o `.ps1`.
+
 ## A jornada da identidade e a arquitetura JML
 
 O Joiner começa antes do primeiro login. Dados como área, gestor e data de contratação precisam estar corretos para que uma regra encontre Anna. O Mover acontece quando cargo, projeto ou responsabilidade mudam. É a fase em que surge o *privilege creep*, o acúmulo silencioso de permissões antigas. O Leaver encerra acessos e sessões conforme a data e o risco do desligamento.
 
 PIM e Access Reviews atravessam essas três fases. PIM reduz o tempo durante o qual um privilégio fica ativo. A revisão pergunta periodicamente se uma decisão passada ainda é válida.
 
-```mermaid
-flowchart LR
-    RH[RH registra Anna e atributos] --> J[Joiner: Lifecycle Workflows]
-    J --> TAP[TAP enviado ao gestor]
-    TAP --> M[Mover: Entitlement Management]
-    M --> AP[Pacote aprovado pelo líder]
-    AP --> P[PIM: elevação JIT]
-    P --> AR[Access Review trimestral]
-    AR --> L[Leaver: Lifecycle Workflows]
-    L --> F[Conta bloqueada, sessões revogadas e licenças removidas]
-```
+![Diagrama da jornada de identidade de Anna, dividido nas fases Joiner, Mover e Leaver, com PIM, Access Reviews e auditoria como controles transversais.](/images/posts/governanca-identidades-m365-entra-id/jornada-identidade-jml.svg)
 
 | Componente | Decisão automatizada |
 | --- | --- |
@@ -63,18 +56,17 @@ flowchart LR
 | Access Reviews | Quem confirma periodicamente se o acesso continua necessário |
 | Microsoft Graph PowerShell | Como consultar, criar e validar configurações de forma repetível |
 
-Esse desenho pressupõe usuários já existentes no Microsoft Entra ID e atributos padronizados. Não construiremos uma integração de RH com Workday, SAP ou API própria. A fonte autorizada preenche os atributos e a governança reage a eles.
-
 ## Pré-requisitos e preparação do laboratório
 
 Use uma identidade fictícia, um departamento piloto e recursos sem dados de produção. Mantenha duas contas de emergência fora de filtros, grupos e unidades administrativas do laboratório. As políticas de MFA e Acesso Condicional já devem existir, pois configurá-las não faz parte deste artigo.
 
 ### Licenças, funções e escopos
 
-Para reproduzir todo o cenário, considere Microsoft Entra ID Governance ou Microsoft Entra Suite para a população abrangida. Algumas capacidades de Entitlement Management, PIM e Access Reviews também existem no Microsoft Entra ID P2, mas Lifecycle Workflows não está incluído em P2 isoladamente. Valide os direitos do contrato da organização antes do piloto.
+Para reproduzir o cenário, considere Microsoft Entra ID Governance ou Microsoft Entra Suite. Algumas capacidades também existem no Microsoft Entra ID P2, mas Lifecycle Workflows não está incluído em P2 isoladamente. Valide o contrato antes do piloto.
 
 | Etapa | Função administrativa de menor privilégio | Escopo delegado principal |
 | --- | --- | --- |
+| Criar Anna e atribuir gestor | User Administrator | `User.ReadWrite.All` |
 | Lifecycle Workflows | Lifecycle Workflows Administrator | `LifecycleWorkflows.ReadWrite.All` |
 | Catálogo e pacote | Identity Governance Administrator ou Catalog owner | `EntitlementManagement.ReadWrite.All` |
 | Política do pacote | Access Package Manager ou função superior no catálogo | `EntitlementManagement.ReadWrite.All` |
@@ -83,11 +75,11 @@ Para reproduzir todo o cenário, considere Microsoft Entra ID Governance ou Micr
 | Descoberta dos recursos | Leitor adequado para cada objeto | `User.Read.All`, `Group.Read.All` e `Application.Read.All` |
 | Consulta de licenças | Directory Reader ou função equivalente | `Organization.Read.All` |
 
-Escopo OAuth não concede sozinho a função administrativa. A conta precisa das duas autorizações. Catalog owner pode adicionar recursos ao catálogo; Access Package Manager cria pacotes com recursos já disponíveis, mas não adiciona novos recursos ao catálogo.
+Escopo OAuth sozinho não concede a função administrativa; a conta precisa de ambas as autorizações. Catalog owner adiciona recursos; Access Package Manager cria pacotes com recursos disponíveis.
 
 ### Estação administrativa
 
-PowerShell 7 é o ambiente recomendado. O Microsoft Graph PowerShell SDK também funciona no Windows PowerShell 5.1, mas misturar versões e perfis durante o laboratório dificulta o diagnóstico.
+PowerShell 7 é recomendado. O Microsoft Graph PowerShell SDK também funciona no Windows PowerShell 5.1, mas não misture versões e perfis durante o laboratório.
 
 ```powershell
 $PSVersionTable.PSVersion
@@ -101,28 +93,45 @@ Set-Location .\iam-governance-lab
 .\scripts\00-connect-graph.ps1
 ```
 
-O último comando solicita apenas escopos de leitura. Para escrita, escolha o perfil mínimo entre `Lifecycle`, `Entitlement`, `PimEligibility` e `PimActivation`. Por exemplo: `.\scripts\00-connect-graph.ps1 -WriteProfile Lifecycle`. Confirme conta, tenant e consentimentos com `Get-MgContext` antes de continuar.
+O último comando solicita leitura. Para escrita, escolha entre `UserProvisioning`, `Lifecycle`, `Entitlement`, `PimEligibility` e `PimActivation`. Confirme conta, tenant e escopos com `Get-MgContext`.
 
 ### Preparar Anna e os recursos
 
-Lifecycle Workflows não cria Anna. Um processo autorizado de RH, provisionamento ou administração deve criar a conta e preencher os dados. Para o laboratório, confirme:
+Com função User Administrator, o analista transfere para o script os dados do chamado aprovado:
+
+```powershell
+.\scripts\00-connect-graph.ps1 -WriteProfile UserProvisioning
+
+.\scripts\05-new-cloud-user.ps1 `
+  -RequestId '<REQUEST_ID>' `
+  -UserPrincipalName 'anna.birquin@umbrella.com.br' `
+  -DisplayName 'Anna Bette Bírquin' `
+  -GivenName 'Anna' `
+  -Surname 'Bírquin' `
+  -JobTitle 'Pesquisadora Sênior' `
+  -Department 'Laboratório NEST' `
+  -UsageLocation 'BR' `
+  -ManagerUserId '<MANAGER_USER_ID>' `
+  -EmployeeHireDate '2026-09-01T12:00:00Z'
+```
+
+Sem `-Apply`, o script simula. Depois, repita com `-Apply -WhatIf` e, por fim, `-Apply`. Ele valida domínio, duplicidade, gestor e email; gera uma senha não revelada; cria a conta; e atribui o gestor. Anna usará o TAP no bootstrap. Se o AD local for a fonte autoritativa, não use o script: crie a conta lá e deixe a sincronização propagá-la.
 
 | Dado | Valor de exemplo | Por que importa |
 | --- | --- | --- |
 | `department` | `Laboratório NEST` | Limita o escopo dos workflows |
 | `employeeHireDate` | `2026-09-01T12:00:00Z` | Aciona o Joiner |
-| `employeeLeaveDateTime` | `2026-12-18T22:00:00Z` | Aciona o Leaver |
 | `manager` | ID do gestor de Anna | Recebe o TAP, aprova e revisa |
 | `mail` do gestor | Endereço válido | Permite a entrega das notificações |
 | `usageLocation` | `BR` | Evita falhas posteriores na atribuição de licenças |
 
 > [!IMPORTANT]
-> Preencha `usageLocation` antes de atribuir licenças. O valor usa o código de duas letras do país ou região, como `BR`, e é necessário para validar a disponibilidade legal dos serviços. Sem ele, atribuições diretas ou baseadas em grupo podem falhar.
+> Preencha `usageLocation` antes das licenças. Use o código de duas letras do país ou região, como `BR`, para validar a disponibilidade legal dos serviços. Sem isso, atribuições diretas ou por grupo podem falhar.
 
-Use UTC nos atributos de data e escolha um horário coerente com o expediente. Em produção, corrija o dado na fonte autoritativa em vez de criar uma segunda forma manual de manutenção. Em ambientes sincronizados com Active Directory local, valide o mapeamento e o ciclo de sincronização antes de depender desses atributos.
+Use UTC e horário coerente com o expediente. Em produção, a fonte autoritativa mantém os atributos.
 
 ```powershell
-$Anna = Get-MgUser -UserId '<ANNA_USER_PRINCIPAL_NAME>' `
+$Anna = Get-MgUser -UserId 'anna.birquin@umbrella.com.br' `
   -Property Id,DisplayName,Department,EmployeeHireDate,EmployeeLeaveDateTime,Mail,UsageLocation
 
 $Anna | Format-List
@@ -130,13 +139,15 @@ Get-MgUserManager -UserId $Anna.Id | Format-List Id,AdditionalProperties
 Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits
 ```
 
-Prepare também um catálogo `Laboratório NEST`, um grupo do Microsoft 365 associado ao Teams, um site do SharePoint, um aplicativo corporativo integrado ao Entra e usuários diferentes para aprovação, fallback e administração PIM. O aplicativo precisa expor uma função atribuível, como `Default Access`.
+`Get-MgSubscribedSku` acima só consulta disponibilidade; para atribuir de fato, use **Microsoft 365 admin center > Users > Active users > Anna > Licenses and apps**. Nesta etapa, `employeeLeaveDateTime` estará vazio; ele só será preenchido no desligamento.
+
+Prepare um catálogo `Laboratório NEST`, um grupo Microsoft 365 associado ao Teams, um site SharePoint, um aplicativo corporativo no Entra e usuários distintos para aprovação, fallback e PIM. O aplicativo deve expor uma função, como `Default Access`.
 
 ## O primeiro dia: Lifecycle Workflows no Joiner
 
 Um **Temporary Access Pass**, ou TAP, é uma credencial temporária usada no primeiro registro de métodos de autenticação. No nosso fluxo, uma tarefa nativa gera um TAP de uso único por oito horas e o envia ao gestor. A política de TAP precisa permitir 480 minutos e incluir Anna ou o grupo piloto.
 
-Neste laboratório, o TAP funciona como credencial de bootstrap: permite o primeiro acesso e o registro de métodos fortes, como passkey ou chave FIDO2 e Windows Hello for Business. Dependendo da política, ele também pode apoiar recuperação e permitir um ou vários acessos dentro da validade. Não é uma credencial de uso contínuo, não substitui a senha e deve expirar ou ser removido depois de cumprir sua finalidade.
+Os 480 minutos mantêm o valor didático do exemplo. Em produção, a Microsoft recomenda máximo de 1440 minutos para evitar expiração entre fusos e ciclos agendados. O TAP serve para bootstrap, recuperação e registro de passkey, FIDO2 ou Windows Hello for Business. Não é credencial contínua nem substituto da senha.
 
 ### Antes de configurar
 
@@ -170,7 +181,7 @@ O script consulta a definição nativa da tarefa, monta o payload e só cria o w
 Depois da revisão, execute com `-Apply`, ainda sem `-EnableSchedule`. No portal, abra o workflow e escolha **Run on demand > Add users > Anna > Run workflow**. A execução sob demanda ignora o filtro e a data, portanto confira a identidade selecionada. Aguarde o histórico indicar `Completed` e confirme que o gestor recebeu o TAP. Só então habilite a agenda.
 
 > [!NOTE]
-> Um gatilho baseado em data não é um evento de hora exata. Workflows agendados são avaliados a cada três horas por padrão, com intervalo configurável de uma a 24 horas. Portanto, atingir `employeeHireDate` ou `employeeLeaveDateTime` coloca a identidade no próximo ciclo aplicável, não em uma execução instantânea. O Entra também mantém uma janela de recuperação de três dias para condições que poderiam ter sido perdidas. Em laboratório, use a execução sob demanda e acompanhe o histórico.
+> Um gatilho baseado em data não executa em hora exata. A agenda é avaliada a cada três horas por padrão, com intervalo configurável de uma a 24 horas. Ao atingir `employeeHireDate` ou `employeeLeaveDateTime`, a identidade entra no próximo ciclo aplicável. O Entra mantém uma janela de recuperação de três dias para condições perdidas. Em laboratório, execute sob demanda e acompanhe o histórico.
 
 ### Validar e reverter
 
@@ -213,7 +224,7 @@ O ID esperado para a aplicação é o `Id` do **service principal**, não o `App
 7. Exija justificativa do aprovador e defina expiração da atribuição em 180 dias.
 8. Crie a política e mantenha o pacote visível apenas para a população que deve solicitá-lo.
 
-O gestor é localizado pelo atributo `manager`. Se ele não for encontrado, o fallback configurado recebe a solicitação. O portal permite escolher usuários ou grupos alternativos, mas o Entra não decide sozinho qual administrador deve assumir. Por isso, o script exige `FallbackApproverUserId` e obriga a organização a indicar explicitamente um usuário responsável. Teste no portal **My Access** com Anna e confirme que o aprovador recebe a notificação.
+O gestor vem do atributo `manager`. Se não for encontrado, o fallback configurado recebe a solicitação. O Entra não escolhe automaticamente o administrador; por isso, o script exige `FallbackApproverUserId` e um responsável explícito. Teste no portal **My Access** com Anna e confirme a notificação ao aprovador.
 
 ### Automatizar com simulação
 
@@ -243,7 +254,7 @@ Solicite o pacote como Anna, aprove como gestor e confirme a atribuição nos tr
 1. Acesse **ID Governance > Privileged Identity Management > Microsoft Entra roles > Roles**.
 2. Abra **Exchange Administrator > Role settings > Edit**.
 3. Defina duração máxima de ativação em duas horas.
-4. Exija MFA e justificativa. Se a empresa usa chamados, exija também o número do ticket, lembrando que o PIM não valida esse número no sistema de Service Desk.
+4. Exija MFA, justificativa e número do chamado, lembrando que o PIM não o valida no sistema de Service Desk.
 5. Exija aprovação e escolha pelo menos dois aprovadores específicos.
 6. Revise notificações para ativação, atribuição e renovação, depois selecione **Update**.
 7. Em **Assignments > Add assignments**, selecione Anna e marque **Eligible**, com início e expiração em 90 dias. Não use `Active`.
@@ -255,23 +266,24 @@ Evite um bloqueio administrativo: mantenha contas de emergência e aprovadores a
 Faça as operações em sessões separadas. A primeira pertence ao Privileged Role Administrator. A segunda pertence à própria Anna.
 
 ```powershell
+# $Anna foi resolvida pelo UPN anna.birquin@umbrella.com.br na preparação
 # Sessão administrativa, apenas simulação
 .\scripts\30-configure-pim-exchange.ps1 `
-  -UserId '<ANNA_USER_ID>' `
+  -UserId $Anna.Id `
   -RoleDisplayName 'Exchange Administrator' `
   -CreateEligibility `
   -EligibilityJustification '<JUSTIFICATIVA_APROVADA>'
 
 # Sessão de Anna, apenas simulação
 .\scripts\30-configure-pim-exchange.ps1 `
-  -UserId '<ANNA_USER_ID>' `
+  -UserId $Anna.Id `
   -RoleDisplayName 'Exchange Administrator' `
   -Activate `
   -ActivationHours 2 `
   -Justification '<CHAMADO_E_MOTIVO>'
 ```
 
-Acrescente `-Apply -WhatIf` antes da aplicação real. Anna também pode abrir **PIM > My roles > Microsoft Entra roles > Eligible assignments > Activate**, informar duração, justificativa e ticket, concluir MFA e aguardar aprovação.
+Acrescente `-Apply -WhatIf` antes da aplicação real. Anna também pode abrir **PIM > My roles > Microsoft Entra roles > Eligible assignments > Activate**, informar duração, justificativa e chamado, concluir MFA e aguardar aprovação.
 
 ### Validar e reverter
 
@@ -308,7 +320,10 @@ Confirme que a ocorrência foi criada, que o gestor recebeu email e consegue reg
 
 ## O desligamento e a limpeza com Lifecycle Workflows
 
-Na saída de Anna, a ordem importa. Primeiro bloqueamos a conta. Depois invalidamos tokens de atualização e sessões de navegador. Por fim, removemos licenças atribuídas diretamente. O gatilho usa `employeeLeaveDateTime`, preenchido pela fonte autorizada antes da saída.
+Na saída, o RH autoriza a data e a equipe de identidades preenche `employeeLeaveDateTime`. Depois, o Leaver bloqueia a conta, revoga sessões e remove licenças diretas.
+
+> [!NOTE]
+> Em conta cloud-only, preencher `employeeLeaveDateTime` exige `User.Read.All`, `User-LifeCycleInfo.ReadWrite.All` e, no fluxo delegado documentado, a função Global Administrator.
 
 Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas compartilhadas, aplicativos e recursos do Azure. Transfira responsabilidades e aplique retenção antes de remover licenças. Licenças herdadas por grupo permanecem enquanto Anna continuar no grupo. Acesso local de uma identidade sincronizada também depende do processo no Active Directory e do ciclo de sincronização.
 
@@ -333,7 +348,7 @@ Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas com
 
 Para um desligamento emergencial, execute sob demanda após conferir a identidade. Lembre que essa execução ignora data e filtro. Para saída planejada, teste com uma conta descartável, revise o histórico e só depois habilite a agenda com `-Apply -EnableSchedule` ou pelo portal.
 
-A mesma cadência de processamento descrita no Joiner vale para `employeeLeaveDateTime`. Não trate o workflow agendado como um bloqueio de hora exata. Em desligamentos urgentes, use o procedimento emergencial aprovado e a execução sob demanda.
+A cadência do Joiner também vale para `employeeLeaveDateTime`. Em desligamentos urgentes, use o procedimento emergencial aprovado e a execução sob demanda.
 
 ### Validar e reverter
 
@@ -346,6 +361,7 @@ Se o workflow atingir a pessoa errada, desligue a agenda antes de qualquer corre
 Ao fim do piloto, reúna evidências de cada controle, não apenas prints da tela de criação.
 
 ```powershell
+# Reutilize $Anna, obtida pelo UPN anna.birquin@umbrella.com.br
 Get-MgContext | Select-Object Account, TenantId, Scopes
 
 Get-MgIdentityGovernanceLifecycleWorkflow -All |
@@ -355,7 +371,18 @@ Get-MgEntitlementManagementAccessPackage -All |
   Select-Object DisplayName, Id
 
 Get-MgRoleManagementDirectoryRoleEligibilitySchedule `
-  -Filter "principalId eq '<ANNA_USER_ID>'" -All
+  -Filter "principalId eq '$($Anna.Id)'" -All
+```
+
+Para amarrar a evidência à identidade, conecte com `AuditLog.Read.All` usando uma função de leitura compatível, como Reports Reader, e filtre os recursos-alvo pelo ID de Anna:
+
+```powershell
+Connect-MgGraph -Scopes 'AuditLog.Read.All'
+$auditFilter = "targetResources/any(t:t/id eq '$($Anna.Id)')"
+
+Get-MgAuditLogDirectoryAudit -Filter $auditFilter -All |
+  Sort-Object ActivityDateTime -Descending |
+  Select-Object ActivityDateTime, ActivityDisplayName, Result, CorrelationId
 ```
 
 O aceite do laboratório deve provar:
@@ -382,9 +409,13 @@ Comece com um departamento, um pacote, uma função privilegiada e uma revisão.
 
 ## Referências primárias
 
+- [Criar usuário com Microsoft Graph](https://learn.microsoft.com/graph/api/user-post-users?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
+- [Atribuir gestor ao usuário](https://learn.microsoft.com/graph/api/user-post-manager?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
 - [Planejar uma implantação de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment?wt.mc_id=studentamb_365381)
 - [Condições de execução e agendamento de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions?wt.mc_id=studentamb_365381)
 - [Executar um workflow sob demanda](https://learn.microsoft.com/entra/id-governance/on-demand-workflow?wt.mc_id=studentamb_365381)
+- [Configurar argumentos das tarefas de Lifecycle Workflows](https://learn.microsoft.com/graph/identitygovernance-lifecycleworkflows-task-arguments?wt.mc_id=studentamb_365381)
+- [Definir employeeLeaveDateTime com Microsoft Graph](https://learn.microsoft.com/graph/tutorial-lifecycle-workflows-set-employeeleavedatetime?wt.mc_id=studentamb_365381)
 - [Configurar Temporary Access Pass](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass?wt.mc_id=studentamb_365381)
 - [Atribuir licenças do Microsoft 365 a contas de usuário](https://learn.microsoft.com/microsoft-365/enterprise/assign-licenses-to-user-accounts?view=o365-worldwide&wt.mc_id=studentamb_365381)
 - [Criar um pacote de acesso](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?wt.mc_id=studentamb_365381)
@@ -393,6 +424,7 @@ Comece com um departamento, um pacote, uma função privilegiada e uma revisão.
 - [Ativar funções do Microsoft Entra no PIM](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-activate-role?wt.mc_id=studentamb_365381)
 - [Criar revisão de acesso para um pacote](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-reviews-create?wt.mc_id=studentamb_365381)
 - [Histórico de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-history?wt.mc_id=studentamb_365381)
+- [Consultar logs de auditoria do diretório](https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
 - [Fundamentos de licenciamento do Microsoft Entra ID Governance](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals?wt.mc_id=studentamb_365381)
 
 ## Nota de independência e marcas

@@ -72,7 +72,7 @@ Essa diferença explica duas situações comuns:
 
 Se a organização usa Microsoft 365, ela pode usar o mesmo tenant do Microsoft Entra para as identidades. Isso não cria uma assinatura do Azure nem transforma licenças do Microsoft 365 em crédito para recursos de infraestrutura: no Azure, a assinatura é o contêiner em que recursos são provisionados, governados e contabilizados por consumo.
 
-Em cenários de serviços gerenciados entre organizações, o [Azure Lighthouse](https://learn.microsoft.com/pt-br/azure/lighthouse/overview?wt.mc_id=studentamb_365381) permite delegar assinaturas ou grupos de recursos a identidades de um tenant de gerenciamento. Essa delegação não mescla os diretórios nem altera o tenant ao qual a assinatura do cliente está associada.
+Em cenários de serviços gerenciados entre organizações, o [Azure Lighthouse](https://learn.microsoft.com/azure/lighthouse/overview?wt.mc_id=studentamb_365381) permite delegar assinaturas ou grupos de recursos a identidades de um tenant de gerenciamento. Essa delegação não mescla os diretórios nem altera o tenant ao qual a assinatura do cliente está associada.
 
 ## Assinatura do Azure: governança, consumo e isolamento
 
@@ -80,7 +80,7 @@ A assinatura é o limite que reúne os recursos consumidos no Azure. Ela possui 
 
 Na prática, a assinatura é um escopo importante para:
 
-- analisar custos e configurar orçamentos e alertas com o [Microsoft Cost Management](https://learn.microsoft.com/pt-br/azure/cost-management-billing/?wt.mc_id=studentamb_365381);
+- analisar custos e configurar orçamentos e alertas com o [Microsoft Cost Management](https://learn.microsoft.com/azure/cost-management-billing/?wt.mc_id=studentamb_365381);
 - aplicar Azure Policy, com definições como `Allowed locations` e `Require a tag on resources`, além de atribuições do RBAC do Azure;
 - controlar cotas e limites de serviço;
 - separar ambientes, equipes ou requisitos regulatórios;
@@ -191,7 +191,7 @@ O tenant continua único porque a organização quer identidades e políticas de
 
 Essa estrutura não é uma receita obrigatória. É uma decisão justificável para o cenário: identidade comum, isolamento administrativo entre ambientes e proteção do ciclo de vida dos dados.
 
-O desenho também está alinhado aos [princípios de Azure Landing Zones do Cloud Adoption Framework](https://learn.microsoft.com/pt-br/azure/cloud-adoption-framework/ready/landing-zone/design-principles?wt.mc_id=studentamb_365381), que tratam assinaturas como unidades de gerenciamento e recomendam separar ambientes de aplicação, como desenvolvimento, teste e produção. Isso não significa criar uma assinatura para cada recurso: uma zona de destino de aplicação pode usar uma ou mais assinaturas conforme os requisitos de escala, segurança e limites de serviço.
+O desenho também está alinhado aos [princípios de Azure Landing Zones do Cloud Adoption Framework](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles?wt.mc_id=studentamb_365381), que tratam assinaturas como unidades de gerenciamento e recomendam separar ambientes de aplicação, como desenvolvimento, teste e produção. Isso não significa criar uma assinatura para cada recurso: uma zona de destino de aplicação pode usar uma ou mais assinaturas conforme os requisitos de escala, segurança e limites de serviço.
 
 Com o desenho definido, o próximo passo é confirmar se a CLI está apontando para o tenant e a assinatura planejados antes de criar qualquer estrutura.
 
@@ -329,25 +329,25 @@ Se a justificativa for apenas “fica mais bonito no portal”, volte ao problem
 
 **Identidade e acesso**
 
-- [O que é o Microsoft Entra?](https://learn.microsoft.com/pt-br/entra/fundamentals/what-is-entra?wt.mc_id=studentamb_365381)
-- [Assinaturas, licenças, contas e locatários para ofertas de nuvem da Microsoft](https://learn.microsoft.com/pt-br/microsoft-365/enterprise/subscriptions-licenses-accounts-and-tenants-for-microsoft-cloud-offerings?view=o365-worldwide&wt.mc_id=studentamb_365381)
-- [Entender o escopo do RBAC do Azure](https://learn.microsoft.com/pt-br/azure/role-based-access-control/scope-overview?wt.mc_id=studentamb_365381)
-- [Funções internas do Azure](https://learn.microsoft.com/pt-br/azure/role-based-access-control/built-in-roles?wt.mc_id=studentamb_365381)
-- [O que é o Azure Lighthouse?](https://learn.microsoft.com/pt-br/azure/lighthouse/overview?wt.mc_id=studentamb_365381)
+- [O que é o Microsoft Entra?](https://learn.microsoft.com/entra/fundamentals/what-is-entra?wt.mc_id=studentamb_365381)
+- [Assinaturas, licenças, contas e locatários para ofertas de nuvem da Microsoft](https://learn.microsoft.com/microsoft-365/enterprise/subscriptions-licenses-accounts-and-tenants-for-microsoft-cloud-offerings?view=o365-worldwide&wt.mc_id=studentamb_365381)
+- [Entender o escopo do RBAC do Azure](https://learn.microsoft.com/azure/role-based-access-control/scope-overview?wt.mc_id=studentamb_365381)
+- [Funções internas do Azure](https://learn.microsoft.com/azure/role-based-access-control/built-in-roles?wt.mc_id=studentamb_365381)
+- [O que é o Azure Lighthouse?](https://learn.microsoft.com/azure/lighthouse/overview?wt.mc_id=studentamb_365381)
 
 **Governança e arquitetura**
 
-- [Relação de faturamento e cliente](https://learn.microsoft.com/pt-br/azure/cost-management-billing/understand/understand-billing-tenant-relationship?wt.mc_id=studentamb_365381)
-- [O que é o Azure Resource Manager?](https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/overview?wt.mc_id=studentamb_365381)
-- [O que são grupos de gerenciamento do Azure?](https://learn.microsoft.com/pt-br/azure/governance/management-groups/overview?wt.mc_id=studentamb_365381)
-- [Princípios de design de zonas de destino do Azure](https://learn.microsoft.com/pt-br/azure/cloud-adoption-framework/ready/landing-zone/design-principles?wt.mc_id=studentamb_365381)
-- [Gerenciar a governança de marcas com o Azure Policy](https://learn.microsoft.com/pt-br/azure/governance/policy/tutorials/govern-tags?wt.mc_id=studentamb_365381)
+- [Relação de faturamento e cliente](https://learn.microsoft.com/azure/cost-management-billing/understand/understand-billing-tenant-relationship?wt.mc_id=studentamb_365381)
+- [O que é o Azure Resource Manager?](https://learn.microsoft.com/azure/azure-resource-manager/management/overview?wt.mc_id=studentamb_365381)
+- [O que são grupos de gerenciamento do Azure?](https://learn.microsoft.com/azure/governance/management-groups/overview?wt.mc_id=studentamb_365381)
+- [Princípios de design de zonas de destino do Azure](https://learn.microsoft.com/azure/cloud-adoption-framework/ready/landing-zone/design-principles?wt.mc_id=studentamb_365381)
+- [Gerenciar a governança de marcas com o Azure Policy](https://learn.microsoft.com/azure/governance/policy/tutorials/govern-tags?wt.mc_id=studentamb_365381)
 
 **Automação e operação**
 
-- [Implantações de grupo de recursos com arquivos Bicep](https://learn.microsoft.com/pt-br/azure/azure-resource-manager/bicep/deploy-to-resource-group?wt.mc_id=studentamb_365381)
-- [Mover recursos do Azure para um novo grupo de recursos ou assinatura](https://learn.microsoft.com/pt-br/azure/azure-resource-manager/management/move-resource-group-and-subscription?wt.mc_id=studentamb_365381)
-- [Obter IDs de assinatura e locatário no portal do Azure](https://learn.microsoft.com/pt-br/azure/azure-portal/get-subscription-tenant-id?wt.mc_id=studentamb_365381)
+- [Implantações de grupo de recursos com arquivos Bicep](https://learn.microsoft.com/azure/azure-resource-manager/bicep/deploy-to-resource-group?wt.mc_id=studentamb_365381)
+- [Mover recursos do Azure para um novo grupo de recursos ou assinatura](https://learn.microsoft.com/azure/azure-resource-manager/management/move-resource-group-and-subscription?wt.mc_id=studentamb_365381)
+- [Obter IDs de assinatura e locatário no portal do Azure](https://learn.microsoft.com/azure/azure-portal/get-subscription-tenant-id?wt.mc_id=studentamb_365381)
 
 ## Conclusão
 

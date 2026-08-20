@@ -251,7 +251,7 @@ Uma negação explícita de saída pode interromper atualização de pacotes, te
 
 O Azure DNS fornecido pela plataforma possui comportamento especial e, por padrão, não é filtrado por NSGs, a menos que a regra use a marca `AzurePlatformDNS`. Se a arquitetura adotar DNS próprio, documente os endereços e portas antes de bloquear a saída. Sondas de um Azure Load Balancer também exigirão uma liberação apropriada quando esse componente existir.
 
-NSGs não têm cobrança direta separada, mas os recursos que usam a rede e a transferência por peering podem gerar custos. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pt-br/pricing/calculator/) para o cenário real.
+NSGs não têm cobrança direta separada, mas os recursos que usam a rede e a transferência por peering podem gerar custos. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pricing/calculator/?wt.mc_id=studentamb_365381) para o cenário real.
 
 Como esta parte termina no plano, a reversão local consiste em remover o arquivo `plan.tfplan` e descartar o diretório de trabalho quando ele não for mais necessário. Se uma equipe aplicar mudanças por conta própria, deve gerar e revisar um plano de reversão específico. Remover uma associação sem entender o tráfego não é uma estratégia de recuperação, é apenas devolver a rede ao estado permissivo anterior.
 
@@ -261,11 +261,11 @@ A parte 3 adicionará inspeção central de tráfego com Azure Firewall e polít
 
 ## Referências
 
-- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
-- [Como os NSGs filtram o tráfego de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-group-how-it-works?wt.mc_id=studentamb_365381)
-- [NSGs e ASGs no guia de design de rede](https://learn.microsoft.com/pt-br/azure/networking/design-guide/network-application-security-groups?wt.mc_id=studentamb_365381)
-- [Visão geral das marcas de serviço](https://learn.microsoft.com/pt-br/azure/virtual-network/service-tags-overview?wt.mc_id=studentamb_365381)
-- [Visão geral do endereço IP 168.63.129.16 do Azure](https://learn.microsoft.com/pt-br/azure/virtual-network/what-is-ip-address-168-63-129-16?wt.mc_id=studentamb_365381)
+- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
+- [Como os NSGs filtram o tráfego de rede](https://learn.microsoft.com/azure/virtual-network/network-security-group-how-it-works?wt.mc_id=studentamb_365381)
+- [NSGs e ASGs no guia de design de rede](https://learn.microsoft.com/azure/networking/design-guide/network-application-security-groups?wt.mc_id=studentamb_365381)
+- [Visão geral das marcas de serviço](https://learn.microsoft.com/azure/virtual-network/service-tags-overview?wt.mc_id=studentamb_365381)
+- [Visão geral do endereço IP 168.63.129.16 do Azure](https://learn.microsoft.com/azure/virtual-network/what-is-ip-address-168-63-129-16?wt.mc_id=studentamb_365381)
 - [Associação entre subnet e NSG no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/subnet_network_security_group_association)
 - [Meta-argumento for_each do Terraform](https://developer.hashicorp.com/terraform/language/meta-arguments/for_each)
 

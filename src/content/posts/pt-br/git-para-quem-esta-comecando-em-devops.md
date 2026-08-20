@@ -592,9 +592,9 @@ Os nomes entre `<` e `>` são valores que você deve substituir.
 - [GitHub Docs: armazenando credenciais HTTPS no Git](https://docs.github.com/en/get-started/git-basics/caching-your-github-credentials-in-git?wt.mc_id=studentamb_365381)
 - [GitHub Docs: conectando-se com SSH](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/about-ssh?wt.mc_id=studentamb_365381)
 - [GitHub Docs: armazenando segredos com segurança](https://docs.github.com/en/get-started/learning-to-code/storing-your-secrets-safely?wt.mc_id=studentamb_365381)
-- [Microsoft Learn: usando o Git Credential Manager com Azure Repos](https://learn.microsoft.com/en-us/azure/devops/repos/git/set-up-credential-managers?view=azure-devops&wt.mc_id=studentamb_365381)
-- [Microsoft Learn: protegendo segredos no Azure PowerShell](https://learn.microsoft.com/en-us/powershell/azure/protect-secrets?view=azps-15.2.0&wt.mc_id=studentamb_365381)
-- [Microsoft Learn: segredos no Azure Pipelines](https://learn.microsoft.com/en-us/azure/devops/pipelines/security/secrets?view=azure-devops&wt.mc_id=studentamb_365381)
+- [Microsoft Learn: usando o Git Credential Manager com Azure Repos](https://learn.microsoft.com/azure/devops/repos/git/set-up-credential-managers?view=azure-devops&wt.mc_id=studentamb_365381)
+- [Microsoft Learn: protegendo segredos no Azure PowerShell](https://learn.microsoft.com/powershell/azure/protect-secrets?view=azps-15.2.0&wt.mc_id=studentamb_365381)
+- [Microsoft Learn: segredos no Azure Pipelines](https://learn.microsoft.com/azure/devops/pipelines/security/secrets?view=azure-devops&wt.mc_id=studentamb_365381)
 
 ## Conclusão
 

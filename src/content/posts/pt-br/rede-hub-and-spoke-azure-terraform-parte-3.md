@@ -266,7 +266,7 @@ Antes de aceitar o plano como evidência desta etapa, confira:
 
 Não execute `terraform apply` como parte deste artigo. O workflow herdado também continua limitado a `fmt`, `init -backend=false` e `validate`, sem credenciais de deploy e sem criação automática de recursos.
 
-O aviso de custo desta parte é mais sério que nas duas anteriores. O Azure Firewall gera cobrança contínua por hora enquanto permanece provisionado, mesmo quando nenhum pacote atravessa o serviço. Há também cobrança relacionada ao processamento de dados e aos IPs públicos conforme o cenário. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pt-br/pricing/calculator/) para a região e as condições atuais, sem confiar em valores copiados de um artigo antigo.
+O aviso de custo desta parte é mais sério que nas duas anteriores. O Azure Firewall gera cobrança contínua por hora enquanto permanece provisionado, mesmo quando nenhum pacote atravessa o serviço. Há também cobrança relacionada ao processamento de dados e aos IPs públicos conforme o cenário. Consulte a [Calculadora de Preços do Azure](https://azure.microsoft.com/pricing/calculator/?wt.mc_id=studentamb_365381) para a região e as condições atuais, sem confiar em valores copiados de um artigo antigo.
 
 Se você aplicar o laboratório por conta própria depois de uma revisão independente, destrua os recursos assim que terminar os testes. Confirme a assinatura e leia o plano de destruição antes de aprová-lo. Automatizar a criação e esquecer o firewall ligado é uma forma bastante eficiente de transformar aprendizado em linha recorrente na fatura.
 
@@ -276,13 +276,13 @@ A parte 4 adicionará conectividade híbrida ao hub por VPN ou ExpressRoute. O p
 
 ## Referências
 
-- [Topologia hub and spoke no Azure](https://learn.microsoft.com/pt-br/azure/networking/design-guide/hub-spoke?wt.mc_id=studentamb_365381)
-- [Azure Firewall Basic](https://learn.microsoft.com/pt-br/azure/firewall/overview#azure-firewall-basic?wt.mc_id=studentamb_365381)
-- [Requisitos de subnets em uma arquitetura hub and spoke segura](https://learn.microsoft.com/pt-br/azure/networking/cross-service-scenarios/design-secure-hub-spoke-network?wt.mc_id=studentamb_365381)
-- [Rotas de tráfego de rede virtual](https://learn.microsoft.com/pt-br/azure/virtual-network/virtual-networks-udr-overview?wt.mc_id=studentamb_365381)
-- [Processamento de regras da Firewall Policy](https://learn.microsoft.com/pt-br/azure/firewall/policy-rule-sets?wt.mc_id=studentamb_365381)
-- [Tags FQDN do Azure Firewall](https://learn.microsoft.com/pt-br/azure/firewall/fqdn-tags?wt.mc_id=studentamb_365381)
-- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/pt-br/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
+- [Topologia hub and spoke no Azure](https://learn.microsoft.com/azure/networking/design-guide/hub-spoke?wt.mc_id=studentamb_365381)
+- [Azure Firewall Basic](https://learn.microsoft.com/azure/firewall/overview?wt.mc_id=studentamb_365381#azure-firewall-basic)
+- [Requisitos de subnets em uma arquitetura hub and spoke segura](https://learn.microsoft.com/azure/networking/cross-service-scenarios/design-secure-hub-spoke-network?wt.mc_id=studentamb_365381)
+- [Rotas de tráfego de rede virtual](https://learn.microsoft.com/azure/virtual-network/virtual-networks-udr-overview?wt.mc_id=studentamb_365381)
+- [Processamento de regras da Firewall Policy](https://learn.microsoft.com/azure/firewall/policy-rule-sets?wt.mc_id=studentamb_365381)
+- [Tags FQDN do Azure Firewall](https://learn.microsoft.com/azure/firewall/fqdn-tags?wt.mc_id=studentamb_365381)
+- [Visão geral dos grupos de segurança de rede](https://learn.microsoft.com/azure/virtual-network/network-security-groups-overview?wt.mc_id=studentamb_365381)
 - [Azure Firewall no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/firewall)
 - [Rule collection group no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/firewall_policy_rule_collection_group)
 - [Route table no AzureRM 4.79.0](https://registry.terraform.io/providers/hashicorp/azurerm/4.79.0/docs/resources/route_table)

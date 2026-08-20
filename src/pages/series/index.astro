@@ -2,6 +2,7 @@
 import BaseLayout from '../../components/layout/BaseLayout.astro';
 import PageHeader from '../../components/content/PageHeader.astro';
 import SeriesList from '../../components/content/SeriesList.astro';
+import { locales } from '../../config/i18n';
 import { getLocalizedSeries } from '../../lib/content/series';
 import { useTranslations } from '../../i18n/utils';
 
@@ -10,7 +11,7 @@ const series = await getLocalizedSeries(locale);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={t('series.title')} description={t('series.description')} locale={locale} noindex={series.length === 0}>
+<BaseLayout title={t('series.title')} description={t('series.description')} locale={locale} availableLocales={locales} noindex={series.length === 0}>
   <PageHeader title={t('series.title')} description={t('series.description')} locale={locale} />
   <SeriesList series={series} locale={locale} />
 </BaseLayout>

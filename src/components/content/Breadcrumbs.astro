@@ -1,6 +1,7 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { Locale } from '../../config/i18n';
+import { useTranslations } from '../../i18n/utils';
 
 export interface BreadcrumbItem {
   label: string;
@@ -13,8 +14,9 @@ interface Props {
   locale: Locale;
 }
 
-const { items, locale: _locale } = Astro.props;
-const ariaLabel = 'Navegação estrutural';
+const { items, locale } = Astro.props;
+const t = useTranslations(locale);
+const ariaLabel = t('breadcrumbs.label');
 ---
 
 {items.length > 0 && (

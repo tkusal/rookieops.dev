@@ -1,6 +1,6 @@
 ---
 import { Icon } from 'astro-icon/components';
-import type { Locale } from '../../config/i18n';
+import { difficultyLevels, localeMeta, type Locale } from '../../config/i18n';
 import type { ArchiveTerm } from '../../lib/content/entries';
 import { useTranslations } from '../../i18n/utils';
 
@@ -13,15 +13,15 @@ interface Props {
 
 const { categories, tags, total, locale } = Astro.props;
 const t = useTranslations(locale);
-const difficultyLevels = ['Iniciante', 'Intermediário', 'Avançado'];
-const difficultyValues = new Set(difficultyLevels);
-const difficulties = difficultyLevels.flatMap((level) => {
+const localizedDifficultyLevels = difficultyLevels[locale];
+const difficultyValues = new Set(localizedDifficultyLevels);
+const difficulties = localizedDifficultyLevels.flatMap((level) => {
   const term = tags.find(({ value }) => value === level);
   return term ? [term] : [];
 });
 const tagTerms = tags
   .filter(({ value }) => !difficultyValues.has(value))
-  .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value, 'pt-BR'));
+  .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value, localeMeta[locale].dateLocale));
 const filterButtonClass =
   'inline-flex min-h-8 items-center rounded-full border border-border bg-card px-2.5 py-1 text-[0.6875rem] font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none';
 ---

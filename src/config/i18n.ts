@@ -1,14 +1,36 @@
 export const defaultLocale = 'pt-br';
-export const locales = ['pt-br'] as const;
+export const locales = ['pt-br', 'en'] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const localeMeta: Record<Locale, { label: string; htmlLang: string; dateLocale: string }> = {
+export const localeMeta: Record<Locale, { label: string; htmlLang: string; dateLocale: string; ogLocale: string }> = {
   'pt-br': {
     label: 'Português',
     htmlLang: 'pt-BR',
-    dateLocale: 'pt-BR'
+    dateLocale: 'pt-BR',
+    ogLocale: 'pt_BR'
+  },
+  en: {
+    label: 'English',
+    htmlLang: 'en',
+    dateLocale: 'en-US',
+    ogLocale: 'en_US'
   }
+};
+
+export const difficultyLevels: Record<Locale, readonly string[]> = {
+  'pt-br': ['Iniciante', 'Intermediário', 'Avançado'],
+  en: ['Beginner', 'Intermediate', 'Advanced']
+};
+
+export const localeRssPaths: Record<Locale, string> = {
+  'pt-br': '/rss.xml',
+  en: '/rss_en.xml'
+};
+
+const localizedRouteSegments: Record<Locale, Record<string, string>> = {
+  'pt-br': { license: 'licenca' },
+  en: { licenca: 'license' }
 };
 
 export function isLocale(value: string | undefined): value is Locale {
@@ -39,7 +61,10 @@ export function switchLocalePath(targetLocale: Locale, currentPath: string) {
   const segments = normalized.split('/').filter(Boolean);
   const currentLocale = isLocale(segments[0]) ? segments[0] : defaultLocale;
   const rest = currentLocale === defaultLocale ? segments : segments.slice(1);
-  const path = `/${rest.join('/')}${rest.length > 0 ? '/' : ''}`.replace(/\/+/g, '/');
+  const translatedRest = rest.length === 1 && localizedRouteSegments[targetLocale][rest[0]]
+    ? [localizedRouteSegments[targetLocale][rest[0]]]
+    : rest;
+  const path = `/${translatedRest.join('/')}${translatedRest.length > 0 ? '/' : ''}`.replace(/\/+/g, '/');
   return getLocalePath(targetLocale, path);
 }
 

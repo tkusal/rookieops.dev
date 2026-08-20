@@ -1,0 +1,185 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1440" height="970" viewBox="0 0 1440 970" role="img" aria-labelledby="title desc">
+  <title id="title">Jornada de identidade de Anna entre Joiner, Mover e Leaver</title>
+  <desc id="desc">Diagrama em três colunas. No Joiner, o RH autoriza os dados, o suporte cria a conta no Microsoft Entra ID, o Lifecycle Workflows avalia o gatilho e envia o TAP ao gestor. No Mover, o Entitlement Management publica o pacote, o gestor aprova e o PIM permite elevação temporária. No Leaver, o Lifecycle Workflows avalia a saída, bloqueia a conta, revoga sessões e remove licenças. PIM, Access Reviews e auditoria acompanham toda a jornada.</desc>
+
+  <defs>
+    <linearGradient id="background" x1="80" y1="30" x2="1360" y2="940" gradientUnits="userSpaceOnUse">
+      <stop stop-color="#07111F"/>
+      <stop offset="1" stop-color="#10162E"/>
+    </linearGradient>
+    <linearGradient id="joiner" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#0E7490"/>
+      <stop offset="1" stop-color="#0891B2"/>
+    </linearGradient>
+    <linearGradient id="mover" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#5B4FC4"/>
+      <stop offset="1" stop-color="#7C3AED"/>
+    </linearGradient>
+    <linearGradient id="leaver" x1="0" y1="0" x2="1" y2="1">
+      <stop stop-color="#BE4B63"/>
+      <stop offset="1" stop-color="#E35D6A"/>
+    </linearGradient>
+    <linearGradient id="crossControl" x1="0" y1="0" x2="1" y2="0">
+      <stop stop-color="#0D3349"/>
+      <stop offset="0.5" stop-color="#29275D"/>
+      <stop offset="1" stop-color="#3C2037"/>
+    </linearGradient>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="160%">
+      <feDropShadow dx="0" dy="14" stdDeviation="18" flood-color="#020617" flood-opacity="0.48"/>
+    </filter>
+    <marker id="arrowCyan" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#67E8F9"/>
+    </marker>
+    <marker id="arrowViolet" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#C4B5FD"/>
+    </marker>
+    <marker id="arrowRose" viewBox="0 0 10 10" refX="8" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0 0L10 5L0 10Z" fill="#FDA4AF"/>
+    </marker>
+    <style>
+      .ui { font-family: Inter, "Segoe UI", Arial, sans-serif; }
+      .kicker { font-size: 16px; font-weight: 750; letter-spacing: 2.4px; }
+      .headline { font-size: 46px; font-weight: 760; letter-spacing: -0.8px; }
+      .lead { font-size: 22px; font-weight: 450; }
+      .phase { font-size: 29px; font-weight: 760; }
+      .phase-copy { font-size: 17px; font-weight: 550; letter-spacing: 0.3px; }
+      .step-title { font-size: 24px; font-weight: 700; }
+      .step-copy { font-size: 18px; font-weight: 450; }
+      .step-number { font-size: 18px; font-weight: 760; text-anchor: middle; }
+      .control-title { font-size: 20px; font-weight: 750; letter-spacing: 0.6px; }
+      .control-copy { font-size: 17px; font-weight: 450; }
+    </style>
+  </defs>
+
+  <rect width="1440" height="970" rx="34" fill="url(#background)"/>
+  <circle cx="1290" cy="85" r="250" fill="#7C3AED" opacity="0.08"/>
+  <circle cx="120" cy="900" r="260" fill="#06B6D4" opacity="0.06"/>
+
+  <g class="ui">
+    <text x="70" y="68" class="kicker" fill="#67E8F9">JORNADA DE IDENTIDADE</text>
+    <text x="70" y="122" class="headline" fill="#F8FAFC">Do primeiro acesso ao desligamento</text>
+    <text x="70" y="160" class="lead" fill="#AFC4D9">A governança acompanha Anna em cada mudança, com aprovação, prazo e evidência.</text>
+  </g>
+
+  <g fill="none" stroke-linecap="round">
+    <path d="M474 265H510" stroke="#67E8F9" stroke-width="5" marker-end="url(#arrowCyan)"/>
+    <path d="M924 265H960" stroke="#C4B5FD" stroke-width="5" marker-end="url(#arrowViolet)"/>
+  </g>
+
+  <g filter="url(#shadow)" class="ui">
+    <g transform="translate(70 210)">
+      <rect width="404" height="550" rx="28" fill="#0C1C2D" stroke="#164E63" stroke-width="2"/>
+      <path d="M0 28A28 28 0 0 1 28 0H376A28 28 0 0 1 404 28V112H0Z" fill="url(#joiner)"/>
+      <circle cx="50" cy="56" r="28" fill="#083344" opacity="0.75"/>
+      <path d="M39 58H61M50 47V69" stroke="#CFFAFE" stroke-width="5" stroke-linecap="round"/>
+      <text x="94" y="52" class="phase" fill="#FFFFFF">Joiner</text>
+      <text x="94" y="79" class="phase-copy" fill="#CFFAFE">ENTRADA SEGURA E PREVISÍVEL</text>
+
+      <rect x="28" y="140" width="348" height="102" rx="20" fill="#10263A" stroke="#155E75"/>
+      <circle cx="67" cy="191" r="22" fill="#155E75"/>
+      <text x="67" y="197" class="step-number" fill="#ECFEFF">1</text>
+      <text x="103" y="184" class="step-title" fill="#F8FAFC">Suporte cria Anna</text>
+      <text x="103" y="213" class="step-copy" fill="#AFC4D9">com dados autorizados pelo RH</text>
+
+      <path d="M202 249V274" stroke="#67E8F9" stroke-width="4" marker-end="url(#arrowCyan)"/>
+
+      <rect x="28" y="282" width="348" height="102" rx="20" fill="#10263A" stroke="#155E75"/>
+      <circle cx="67" cy="333" r="22" fill="#155E75"/>
+      <text x="67" y="339" class="step-number" fill="#ECFEFF">2</text>
+      <text x="103" y="326" class="step-title" fill="#F8FAFC">Lifecycle Workflows</text>
+      <text x="103" y="355" class="step-copy" fill="#AFC4D9">avalia o gatilho de entrada</text>
+
+      <path d="M202 391V416" stroke="#67E8F9" stroke-width="4" marker-end="url(#arrowCyan)"/>
+
+      <rect x="28" y="424" width="348" height="102" rx="20" fill="#10263A" stroke="#155E75"/>
+      <circle cx="67" cy="475" r="22" fill="#155E75"/>
+      <text x="67" y="481" class="step-number" fill="#ECFEFF">3</text>
+      <text x="103" y="468" class="step-title" fill="#F8FAFC">TAP enviado ao gestor</text>
+      <text x="103" y="497" class="step-copy" fill="#AFC4D9">primeiro acesso protegido</text>
+    </g>
+
+    <g transform="translate(520 210)">
+      <rect width="404" height="550" rx="28" fill="#15162D" stroke="#4C3C96" stroke-width="2"/>
+      <path d="M0 28A28 28 0 0 1 28 0H376A28 28 0 0 1 404 28V112H0Z" fill="url(#mover)"/>
+      <circle cx="50" cy="56" r="28" fill="#312E81" opacity="0.75"/>
+      <path d="M36 50H61L55 44M64 62H39L45 68" fill="none" stroke="#EDE9FE" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+      <text x="94" y="52" class="phase" fill="#FFFFFF">Mover</text>
+      <text x="94" y="79" class="phase-copy" fill="#EDE9FE">ACESSO AJUSTADO À FUNÇÃO</text>
+
+      <rect x="28" y="140" width="348" height="102" rx="20" fill="#20203C" stroke="#5B4FC4"/>
+      <circle cx="67" cy="191" r="22" fill="#5B4FC4"/>
+      <text x="67" y="197" class="step-number" fill="#F5F3FF">4</text>
+      <text x="103" y="184" class="step-title" fill="#F8FAFC">Entitlement Management</text>
+      <text x="103" y="213" class="step-copy" fill="#C6C7DB">publica o pacote de acesso</text>
+
+      <path d="M202 249V274" stroke="#C4B5FD" stroke-width="4" marker-end="url(#arrowViolet)"/>
+
+      <rect x="28" y="282" width="348" height="102" rx="20" fill="#20203C" stroke="#5B4FC4"/>
+      <circle cx="67" cy="333" r="22" fill="#5B4FC4"/>
+      <text x="67" y="339" class="step-number" fill="#F5F3FF">5</text>
+      <text x="103" y="326" class="step-title" fill="#F8FAFC">Aprovação do gestor</text>
+      <text x="103" y="355" class="step-copy" fill="#C6C7DB">justificativa e expiração</text>
+
+      <path d="M202 391V416" stroke="#C4B5FD" stroke-width="4" marker-end="url(#arrowViolet)"/>
+
+      <rect x="28" y="424" width="348" height="102" rx="20" fill="#20203C" stroke="#5B4FC4"/>
+      <circle cx="67" cy="475" r="22" fill="#5B4FC4"/>
+      <text x="67" y="481" class="step-number" fill="#F5F3FF">6</text>
+      <text x="103" y="468" class="step-title" fill="#F8FAFC">Elevação JIT com PIM</text>
+      <text x="103" y="497" class="step-copy" fill="#C6C7DB">privilégio somente na janela</text>
+    </g>
+
+    <g transform="translate(970 210)">
+      <rect width="400" height="550" rx="28" fill="#251524" stroke="#7F3448" stroke-width="2"/>
+      <path d="M0 28A28 28 0 0 1 28 0H372A28 28 0 0 1 400 28V112H0Z" fill="url(#leaver)"/>
+      <circle cx="50" cy="56" r="28" fill="#7F1D3A" opacity="0.75"/>
+      <path d="M38 44L62 68M62 44L38 68" stroke="#FFE4E6" stroke-width="5" stroke-linecap="round"/>
+      <text x="94" y="52" class="phase" fill="#FFFFFF">Leaver</text>
+      <text x="94" y="79" class="phase-copy" fill="#FFE4E6">SAÍDA CONTROLADA E AUDITÁVEL</text>
+
+      <rect x="26" y="140" width="348" height="102" rx="20" fill="#321B2B" stroke="#9F4055"/>
+      <circle cx="65" cy="191" r="22" fill="#9F4055"/>
+      <text x="65" y="197" class="step-number" fill="#FFF1F2">7</text>
+      <text x="101" y="184" class="step-title" fill="#F8FAFC">Lifecycle Workflows</text>
+      <text x="101" y="213" class="step-copy" fill="#D8BBC5">avalia a data de saída</text>
+
+      <path d="M200 249V274" stroke="#FDA4AF" stroke-width="4" marker-end="url(#arrowRose)"/>
+
+      <rect x="26" y="282" width="348" height="102" rx="20" fill="#321B2B" stroke="#9F4055"/>
+      <circle cx="65" cy="333" r="22" fill="#9F4055"/>
+      <text x="65" y="339" class="step-number" fill="#FFF1F2">8</text>
+      <text x="101" y="326" class="step-title" fill="#F8FAFC">Conta bloqueada</text>
+      <text x="101" y="355" class="step-copy" fill="#D8BBC5">novos logins são impedidos</text>
+
+      <path d="M200 391V416" stroke="#FDA4AF" stroke-width="4" marker-end="url(#arrowRose)"/>
+
+      <rect x="26" y="424" width="348" height="102" rx="20" fill="#321B2B" stroke="#9F4055"/>
+      <circle cx="65" cy="475" r="22" fill="#9F4055"/>
+      <text x="65" y="481" class="step-number" fill="#FFF1F2">9</text>
+      <text x="101" y="468" class="step-title" fill="#F8FAFC">Sessões e licenças</text>
+      <text x="101" y="497" class="step-copy" fill="#D8BBC5">revogadas e removidas</text>
+    </g>
+  </g>
+
+  <g class="ui">
+    <text x="70" y="808" class="kicker" fill="#94A3B8">CONTROLES TRANSVERSAIS</text>
+    <rect x="70" y="830" width="1300" height="92" rx="24" fill="url(#crossControl)" stroke="#53647A" stroke-opacity="0.75"/>
+
+    <circle cx="119" cy="876" r="25" fill="#155E75"/>
+    <path d="M110 876L117 883L130 869" fill="none" stroke="#CFFAFE" stroke-width="5" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="157" y="870" class="control-title" fill="#F8FAFC">PIM</text>
+    <text x="157" y="897" class="control-copy" fill="#B9CBDA">privilégio temporário</text>
+
+    <line x1="445" y1="852" x2="445" y2="900" stroke="#64748B" stroke-opacity="0.65"/>
+    <circle cx="494" cy="876" r="25" fill="#4C3C96"/>
+    <path d="M483 876H505M494 865V887" stroke="#EDE9FE" stroke-width="4" stroke-linecap="round"/>
+    <text x="532" y="870" class="control-title" fill="#F8FAFC">ACCESS REVIEWS</text>
+    <text x="532" y="897" class="control-copy" fill="#C6C7DB">recertificação periódica</text>
+
+    <line x1="907" y1="852" x2="907" y2="900" stroke="#64748B" stroke-opacity="0.65"/>
+    <circle cx="956" cy="876" r="25" fill="#7F3448"/>
+    <path d="M947 864H965V888H947ZM951 870H961M951 876H961M951 882H958" fill="none" stroke="#FFE4E6" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+    <text x="994" y="870" class="control-title" fill="#F8FAFC">AUDITORIA</text>
+    <text x="994" y="897" class="control-copy" fill="#D8BBC5">histórico e evidências</text>
+  </g>
+</svg>

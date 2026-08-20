@@ -24,7 +24,7 @@ function isExternal(href: string) {
 
 <footer class="mt-16 py-8 text-sm text-muted-foreground">
   {(navigation.length > 0 || hasAnalyticsConsent) && (
-    <nav class="mb-6" aria-label="Navegação do rodapé">
+    <nav class="mb-6" aria-label={t('nav.footer')}>
       <div class="flex flex-wrap items-center justify-center gap-1">
         {navigation.map((item) => (
           <a

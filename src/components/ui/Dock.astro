@@ -1,15 +1,16 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getLocalePath, locales, localeMeta, switchLocalePath, type Locale } from '../../config/i18n';
+import { getLocalePath, localeMeta, switchLocalePath, type Locale } from '../../config/i18n';
 import { siteConfig } from '../../config/site';
 import { defaultTheme, themes } from '../../config/theme';
 import { useTranslations } from '../../i18n/utils';
 
 interface Props {
   locale: Locale;
+  availableLocales?: readonly Locale[];
 }
 
-const { locale } = Astro.props;
+const { locale, availableLocales = [locale] } = Astro.props;
 const t = useTranslations(locale);
 const labels = {
   back: t('dock.back'),
@@ -116,13 +117,13 @@ const maximumContentWidth = Math.ceil(defaultContentWidth + 24);
     </div>
   </div>
 
-  {locales.length > 1 && (
+  {availableLocales.length > 1 && (
     <div class="relative z-10">
       <button type="button" data-lang-menu aria-expanded="false" class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.language} title={labels.language}>
         <Icon name="lucide:languages" class="h-4 w-4" />
       </button>
       <div data-lang-panel class="absolute bottom-full left-1/2 mb-2 hidden w-36 -translate-x-1/2 rounded-[var(--radius-panel)] border border-border bg-popover p-1 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0">
-        {locales.map((item) => (
+        {availableLocales.map((item) => (
           <a href={switchLocalePath(item, currentPath)} class="flex min-h-11 items-center rounded px-2 py-1.5 hover:bg-accent" aria-current={item === locale ? 'page' : undefined}>
             {localeMeta[item].label}
           </a>

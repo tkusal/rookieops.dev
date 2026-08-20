@@ -1,17 +1,19 @@
 ---
 import { Icon } from 'astro-icon/components';
 import type { Locale } from '../../config/i18n';
+import { useTranslations } from '../../i18n/utils';
 
 interface Props {
   locale: Locale;
 }
 
-const { locale: _locale } = Astro.props;
+const { locale } = Astro.props;
+const t = useTranslations(locale);
 const labels = {
-  dialog: 'Visualizador de imagens',
-  close: 'Fechar',
-  previous: 'Imagem anterior',
-  next: 'Próxima imagem'
+  dialog: t('lightbox.dialog'),
+  close: t('lightbox.close'),
+  previous: t('lightbox.previous'),
+  next: t('lightbox.next')
 };
 ---
 

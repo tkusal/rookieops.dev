@@ -3,8 +3,14 @@ import type { Locale } from './i18n';
 export const siteConfig = {
   name: 'RookieOps',
   shortName: 'RookieOps',
-  seoTitle: 'RookieOps - Infraestrutura, Cloud e DevOps',
-  description: 'Guias práticos sobre servidores Windows e Linux, Azure, AWS, DevOps e automação com Terraform, Ansible, containers e scripting.',
+  seoTitle: {
+    'pt-br': 'RookieOps - Infraestrutura, Cloud e DevOps',
+    en: 'RookieOps - Infrastructure, Cloud, and DevOps'
+  },
+  description: {
+    'pt-br': 'Guias práticos sobre servidores Windows e Linux, Azure, AWS, DevOps e automação com Terraform, Ansible, containers e scripting.',
+    en: 'Practical guides to Windows and Linux servers, Azure, AWS, DevOps, and automation with Terraform, Ansible, containers, and scripting.'
+  },
   url: 'https://rookieops.dev',
   organization: {
     name: 'RookieOps',
@@ -22,16 +28,20 @@ export const siteConfig = {
     name: 'RookieOps',
     url: 'https://tkusal.com.br',
     title: {
-      'pt-br': 'Deployando conhecimento. Debugando o caos.'
+      'pt-br': 'Deployando conhecimento. Debugando o caos.',
+      en: 'Deploying knowledge. Debugging chaos.'
     },
     tagline: {
-      'pt-br': 'De rookie a ops, um café por vez.'
+      'pt-br': 'De rookie a ops, um café por vez.',
+      en: 'From rookie to ops, one coffee at a time.'
     },
     description: {
-      'pt-br': 'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!'
+      'pt-br': 'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!',
+      en: 'Technical content without the runaround. Tutorials, scripts, news, and guides about infrastructure, cloud, and DevOps solutions.'
     },
     mobileDescription: {
-      'pt-br': 'Guias práticos sobre Windows, Linux, Azure, AWS, DevOps e automação.'
+      'pt-br': 'Guias práticos sobre Windows, Linux, Azure, AWS, DevOps e automação.',
+      en: 'Practical guides to Windows, Linux, Azure, AWS, DevOps, and automation.'
     },
     avatar: '/favicon.svg',
     social: [
@@ -53,12 +63,12 @@ export const siteConfig = {
     'series',
     'archives',
     {
-      label: { 'pt-br': 'Sobre o autor' },
+      label: { 'pt-br': 'Sobre o autor', en: 'About the author' },
       href: 'https://tkusal.com.br',
       icon: 'lucide:user-round'
     },
     {
-      label: { 'pt-br': 'Enviar sugestão' },
+      label: { 'pt-br': 'Enviar sugestão', en: 'Suggest a topic' },
       href: 'https://github.com/tkusal/rookieops.dev/issues/new?template=sugestao.yml',
       icon: 'lucide:lightbulb'
     }
@@ -66,7 +76,7 @@ export const siteConfig = {
   footerNav: [
     'archives',
     {
-      label: { 'pt-br': 'Licença do conteúdo' },
+      label: { 'pt-br': 'Licença do conteúdo', en: 'Content license' },
       href: '/licenca/',
       icon: 'lucide:copyright'
     }
@@ -110,16 +120,25 @@ export const siteConfig = {
     relatedCount: 3,
     license: {
       enabled: true,
-      name: 'Conteúdo dos respectivos autores',
-      url: '/licenca/',
-      description: 'A republicação exige crédito à pessoa autora e ao RookieOps, além de um link para o artigo original.'
+      name: {
+        'pt-br': 'Conteúdo dos respectivos autores',
+        en: 'Content belongs to its respective authors'
+      },
+      url: {
+        'pt-br': '/licenca/',
+        en: '/license/'
+      },
+      description: {
+        'pt-br': 'A republicação exige crédito à pessoa autora e ao RookieOps, além de um link para o artigo original.',
+        en: 'Republication requires credit to the author and RookieOps, along with a link to the original post.'
+      }
     }
   }
 } satisfies {
   name: string;
   shortName: string;
-  seoTitle: string;
-  description: string;
+  seoTitle: Record<Locale, string>;
+  description: Record<Locale, string>;
   url: string;
   organization: {
     name: string;

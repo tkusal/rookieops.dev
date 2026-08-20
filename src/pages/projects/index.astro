@@ -2,6 +2,7 @@
 import BaseLayout from '../../components/layout/BaseLayout.astro';
 import EntryList from '../../components/content/EntryList.astro';
 import PageHeader from '../../components/content/PageHeader.astro';
+import { locales } from '../../config/i18n';
 import { getLocalizedEntries } from '../../lib/content/entries';
 import { useTranslations } from '../../i18n/utils';
 
@@ -10,7 +11,7 @@ const projects = await getLocalizedEntries('projects', locale);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={t('projects.title')} description={t('projects.description')} locale={locale} noindex={projects.length === 0}>
+<BaseLayout title={t('projects.title')} description={t('projects.description')} locale={locale} availableLocales={locales} noindex={projects.length === 0}>
   <PageHeader title={t('projects.title')} description={t('projects.description')} locale={locale} />
   <EntryList entries={projects} collection="projects" locale={locale} />
 </BaseLayout>

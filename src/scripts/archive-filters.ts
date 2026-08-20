@@ -112,7 +112,7 @@ function setupArchiveFilters(root: HTMLElement) {
   }
 
   function normalize(value: string) {
-    return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase('pt-BR');
+    return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase(document.documentElement.lang || 'pt-BR');
   }
 
   function filterTagOptions() {
@@ -172,7 +172,7 @@ function setupArchiveFilters(root: HTMLElement) {
 
     tagRows
       .sort((a, b) => Number(b.dataset.archiveTagCount) - Number(a.dataset.archiveTagCount)
-        || (a.dataset.archiveTagLabel || '').localeCompare(b.dataset.archiveTagLabel || '', 'pt-BR'))
+        || (a.dataset.archiveTagLabel || '').localeCompare(b.dataset.archiveTagLabel || '', document.documentElement.lang || 'pt-BR'))
       .forEach((row) => tagOptions?.append(row));
     filterTagOptions();
 

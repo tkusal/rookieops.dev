@@ -565,8 +565,8 @@ Se alguma resposta depender de decorar uma linha, altere o laboratório e observ
 
 **Certificação**
 
-- [Guia de estudos para o exame GH-200: GitHub Actions](https://learn.microsoft.com/pt-br/credentials/certifications/resources/study-guides/gh-200?wt.mc_id=studentamb_365381)
-- [Certificação GitHub Actions](https://learn.microsoft.com/pt-br/credentials/certifications/github-actions/?wt.mc_id=studentamb_365381)
+- [Guia de estudos para o exame GH-200: GitHub Actions](https://learn.microsoft.com/credentials/certifications/resources/study-guides/gh-200?wt.mc_id=studentamb_365381)
+- [Certificação GitHub Actions](https://learn.microsoft.com/credentials/certifications/github-actions/?wt.mc_id=studentamb_365381)
 
 **Workflows e implantação**
 

@@ -29,6 +29,6 @@ const sections = await Promise.all(Object.entries(contentTypes)
   }));
 ---
 
-<BaseLayout title={siteConfig.name} description={siteConfig.description} locale={locale}>
+<BaseLayout title={siteConfig.name} description={siteConfig.description[locale]} locale={locale} availableLocales={locales}>
   <HomePage locale={locale} sections={sections} />
 </BaseLayout>

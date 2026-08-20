@@ -39,7 +39,7 @@ function isExternal(href: string) {
       <span class="truncate">{siteConfig.name}</span>
     </a>
 
-    <nav class="hidden items-center gap-1 md:flex" aria-label="Navegação principal">
+    <nav class="hidden items-center gap-1 md:flex" aria-label={t('nav.primary')}>
       {navigation.map((item) => (
         <a
           class:list={[
@@ -67,7 +67,7 @@ function isExternal(href: string) {
       </button>
     </div>
   </div>
-  <nav data-mobile-panel class="mt-2 hidden rounded-[var(--radius-card)] border border-border bg-popover p-2 shadow-[var(--surface-shadow-strong)] md:hidden" aria-label="Navegação principal no celular">
+  <nav data-mobile-panel class="mt-2 hidden rounded-[var(--radius-card)] border border-border bg-popover p-2 shadow-[var(--surface-shadow-strong)] md:hidden" aria-label={t('nav.primaryMobile')}>
     {navigation.map((item) => (
       <a
         class:list={['flex min-h-11 items-center gap-2 rounded-[var(--radius-control)] px-3 py-2 text-sm', isActive(item.href) ? 'bg-accent text-accent-foreground ring-1 ring-primary/35' : 'text-muted-foreground hover:bg-accent hover:text-accent-foreground']}

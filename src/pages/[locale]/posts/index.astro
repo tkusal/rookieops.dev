@@ -15,7 +15,7 @@ const posts = await getLocalizedEntries('posts', locale);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={t('posts.title')} description={t('posts.description')} locale={locale}>
+<BaseLayout title={t('posts.title')} description={t('posts.description')} locale={locale} availableLocales={locales}>
   <PageHeader title={t('posts.title')} description={t('posts.description')} locale={locale} />
   <EntryList entries={posts} collection="posts" locale={locale} />
 </BaseLayout>

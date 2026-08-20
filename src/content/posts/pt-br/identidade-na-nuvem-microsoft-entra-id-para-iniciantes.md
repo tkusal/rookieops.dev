@@ -299,15 +299,15 @@ Você já sabe reconhecer as peças e explicar como elas participam de uma entra
 
 ## Referências primárias
 
-- [O que é Microsoft Entra?](https://learn.microsoft.com/pt-br/entra/fundamentals/what-is-entra?wt.mc_id=studentamb_365381)
-- [Conceitos fundamentais de gerenciamento de identidade e acesso](https://learn.microsoft.com/en-us/entra/fundamentals/identity-fundamental-concepts?wt.mc_id=studentamb_365381)
-- [Novo nome para o Azure Active Directory](https://learn.microsoft.com/pt-br/entra/fundamentals/new-name?wt.mc_id=studentamb_365381)
-- [Comparar o Active Directory com o Microsoft Entra ID](https://learn.microsoft.com/en-us/entra/fundamentals/compare?wt.mc_id=studentamb_365381)
-- [Entender e gerenciar as propriedades de usuários convidados B2B](https://learn.microsoft.com/en-us/entra/external-id/user-properties?wt.mc_id=studentamb_365381)
-- [Visão geral de tokens e declarações](https://learn.microsoft.com/en-us/entra/identity-platform/security-tokens?wt.mc_id=studentamb_365381)
-- [Autenticação versus autorização](https://learn.microsoft.com/en-us/entra/identity-platform/authentication-vs-authorization?wt.mc_id=studentamb_365381)
-- [Visão geral do Acesso Condicional](https://learn.microsoft.com/pt-br/entra/identity/conditional-access/overview?wt.mc_id=studentamb_365381)
-- [Visão geral de monitoramento e integridade](https://learn.microsoft.com/en-us/entra/identity/monitoring-health/overview-monitoring-health?wt.mc_id=studentamb_365381)
+- [O que é Microsoft Entra?](https://learn.microsoft.com/entra/fundamentals/what-is-entra?wt.mc_id=studentamb_365381)
+- [Conceitos fundamentais de gerenciamento de identidade e acesso](https://learn.microsoft.com/entra/fundamentals/identity-fundamental-concepts?wt.mc_id=studentamb_365381)
+- [Novo nome para o Azure Active Directory](https://learn.microsoft.com/entra/fundamentals/new-name?wt.mc_id=studentamb_365381)
+- [Comparar o Active Directory com o Microsoft Entra ID](https://learn.microsoft.com/entra/fundamentals/compare?wt.mc_id=studentamb_365381)
+- [Entender e gerenciar as propriedades de usuários convidados B2B](https://learn.microsoft.com/entra/external-id/user-properties?wt.mc_id=studentamb_365381)
+- [Visão geral de tokens e declarações](https://learn.microsoft.com/entra/identity-platform/security-tokens?wt.mc_id=studentamb_365381)
+- [Autenticação versus autorização](https://learn.microsoft.com/entra/identity-platform/authentication-vs-authorization?wt.mc_id=studentamb_365381)
+- [Visão geral do Acesso Condicional](https://learn.microsoft.com/entra/identity/conditional-access/overview?wt.mc_id=studentamb_365381)
+- [Visão geral de monitoramento e integridade](https://learn.microsoft.com/entra/identity/monitoring-health/overview-monitoring-health?wt.mc_id=studentamb_365381)
 
 ## Conclusão
 

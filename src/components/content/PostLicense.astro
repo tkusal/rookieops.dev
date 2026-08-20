@@ -12,7 +12,7 @@ interface Props {
 const { locale } = Astro.props;
 const license = siteConfig.post.license;
 const t = useTranslations(locale);
-const licenseUrl = getLocalePath(locale, license.url);
+const licenseUrl = getLocalePath(locale, license.url[locale]);
 ---
 
 {license.enabled && (
@@ -22,9 +22,9 @@ const licenseUrl = getLocalePath(locale, license.url);
       <span>{t('license.label')}</span>
     </div>
     <p>
-      <a href={licenseUrl} class="text-primary hover:underline">{license.name}</a>
+      <a href={licenseUrl} class="text-primary hover:underline">{license.name[locale]}</a>
       {' '}
-      {license.description}
+      {license.description[locale]}
     </p>
   </section>
 )}
