@@ -15,7 +15,7 @@ mermaid: true
 draft: false
 ---
 
-## 0. Introdução
+## Introdução
 
 Na [parte 1 desta série](/posts/rede-hub-and-spoke-azure-terraform-parte-1/), criamos três VNets, cinco subnets e quatro links direcionais de peering. Na [parte 2](/posts/rede-hub-and-spoke-azure-terraform-parte-2/), associamos NSGs às quatro subnets de workload e trocamos permissões amplas por fluxos explícitos.
 
@@ -25,7 +25,7 @@ Nesta parte, adicionaremos um Azure Firewall Basic ao hub e duas tabelas de rota
 
 O laboratório continua sem máquinas virtuais, VPN Gateway, ExpressRoute, Bastion, DNAT de entrada ou inspeção TLS. O objetivo é descrever e revisar a camada de inspeção com `terraform plan`, sem executar `terraform apply` durante a preparação deste conteúdo.
 
-## 1. Arquitetura com inspeção central
+## Arquitetura com inspeção central
 
 ### Azure Firewall e NSG não fazem o mesmo trabalho
 
@@ -85,7 +85,7 @@ Os novos recursos são:
 - duas route tables, uma por spoke;
 - quatro associações entre route table e subnet.
 
-## 2. Ajuste no plano de IPs
+## Ajuste no plano de IPs
 
 O hub já usa `10.64.0.0/16`, enquanto `snet-shared` ocupa `10.64.10.0/24`. Reservaremos `10.64.0.0/26` para dados do firewall e `10.64.1.0/26` para gerenciamento. Os blocos não se sobrepõem e deixam intervalos livres para outros componentes especializados.
 
@@ -106,7 +106,7 @@ Um `/26` contém 64 endereços. Como o Azure reserva cinco endereços em cada su
 
 Em produção, reserve também espaço para `GatewaySubnet`, `AzureBastionSubnet` e DNS Resolver antes de preencher o hub. Eles não serão criados aqui, mas cada serviço tem requisitos próprios de nome e tamanho. Planejar o intervalo não obriga a contratar o serviço, só evita uma renumeração quando ele se tornar necessário.
 
-## 3. Rotas e regras de firewall
+## Rotas e regras de firewall
 
 ### Como a UDR força o caminho
 
@@ -151,7 +151,7 @@ O laboratório usa o DNS fornecido pelo Azure. O endereço virtual `168.63.129.1
 
 Não criamos coleções de NAT ou DNAT. O IP público do firewall atende o serviço e a saída controlada, mas não publica uma carga privada. Entrada da Internet, tradução de destino e inspeção TLS permanecem fora do escopo.
 
-## 4. Módulos Terraform
+## Módulos Terraform
 
 ### Módulo de firewall
 
@@ -233,7 +233,7 @@ module "route_table" {
 
 A configuração completa passa de 23 para 36 recursos. Em um diretório sem state, o plano esperado é `36 to add`. Ao continuar com o state local da parte 2, espere `13 to add` e `8 to change`: os quatro NSGs recebem novas liberações e os quatro peerings passam a aceitar tráfego encaminhado. Recriações ou exclusões dos 23 recursos anteriores merecem investigação antes de qualquer decisão.
 
-## 5. Validação e custo
+## Validação e custo
 
 Partindo do repositório da parte 3, crie somente o arquivo local de variáveis:
 
@@ -270,7 +270,7 @@ O aviso de custo desta parte é mais sério que nas duas anteriores. O Azure Fir
 
 Se você aplicar o laboratório por conta própria depois de uma revisão independente, destrua os recursos assim que terminar os testes. Confirme a assinatura e leia o plano de destruição antes de aprová-lo. Automatizar a criação e esquecer o firewall ligado é uma forma bastante eficiente de transformar aprendizado em linha recorrente na fatura.
 
-## 6. O que vem na parte 4
+## O que vem na parte 4
 
 A parte 4 adicionará conectividade híbrida ao hub por VPN ou ExpressRoute. O próximo capítulo tratará essa decisão com os requisitos de gateway, rotas e disponibilidade que ela exige.
 

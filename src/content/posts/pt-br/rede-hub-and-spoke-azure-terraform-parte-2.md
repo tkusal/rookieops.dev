@@ -15,7 +15,7 @@ mermaid: true
 draft: false
 ---
 
-## 0. Introdução
+## Introdução
 
 Na [parte 1 desta série](/posts/rede-hub-and-spoke-azure-terraform-parte-1/), criamos a base da topologia: três VNets, cinco subnets e quatro links direcionais de peering. O plano de endereçamento está organizado e cada spoke conversa com o hub, mas as subnets de workload ainda aceitam as regras padrão do Azure.
 
@@ -23,7 +23,7 @@ Esse é o ponto que corrigiremos agora. Vamos adicionar um Network Security Grou
 
 O [repositório desta parte](https://github.com/tkusal/Lab-Azure-com-Terraform-NSGs-e-regras-de-seguran-a-Parte-2) parte do código publicado no primeiro laboratório. Terraform e AzureRM continuam fixados em `1.15.8` e `4.79.0`, respectivamente. O backend permanece local e as cinco tags comuns também não mudam.
 
-## 1. Arquitetura desta parte
+## Arquitetura desta parte
 
 Um NSG é uma lista de regras que permite ou nega tráfego de entrada e saída. Cada regra compara protocolo, endereços, portas e direção. O Azure processa as prioridades do menor número para o maior e encerra a avaliação na primeira correspondência.
 
@@ -75,7 +75,7 @@ A `snet-shared` fica sem NSG nesta etapa. Ela continua vazia e ainda não possui
 
 Por isso, a saída de `snet-shared` ainda segue as regras padrão do Azure. No fluxo HTTPS mostrado no diagrama, o controle depende exclusivamente da regra de entrada de `nsg-integration-lab-brs-001`. Quando a subnet compartilhada receber um serviço e um NSG, o mesmo fluxo deverá ser permitido também na saída dela.
 
-## 2. Regras de segurança
+## Regras de segurança
 
 Todo NSG do laboratório recebe uma regra final de negação de entrada e outra de saída com prioridade `4096`. Elas são necessárias porque o Azure inclui regras padrão que permitem tráfego dentro da marca `VirtualNetwork` e saída para a Internet. As regras personalizadas são avaliadas antes das padrões, que usam prioridades a partir de `65000`.
 
@@ -115,7 +115,7 @@ A camada de aplicação não recebe uma liberação para o spoke de dados. Os pe
 > [!NOTE]
 > Application Security Groups (ASGs) podem agrupar interfaces de rede por função, como `web` ou `api`, e servir como origem ou destino de regras sem manter listas de IPs. Eles complementam NSGs quando as cargas existem e mudam de endereço com frequência. Neste laboratório ainda não há interfaces para agrupar, então os ASGs ficam apenas como opção de evolução.
 
-## 3. Módulo Terraform de NSG
+## Módulo Terraform de NSG
 
 O novo módulo fica em `modules/network-security-group/`, ao lado do módulo de VNet. Ele recebe nome, grupo de recursos, região, tags e um mapa de regras. O bloco `dynamic` transforma cada item do mapa em uma regra interna do NSG:
 
@@ -212,7 +212,7 @@ As referências aos IDs criam dependências implícitas. Terraform sabe que prec
 
 A configuração completa passa de 15 para 23 recursos gerenciados: os 15 da fundação, quatro NSGs e quatro associações. Em um diretório sem state, o plano mostra `23 to add`. Ao continuar com o state local da parte 1, a expectativa é `8 to add`, sem recriar os 15 recursos já registrados. Não copie state para o Git e não tente resolver a diferença importando recursos às cegas.
 
-## 4. Validação
+## Validação
 
 Partindo do repositório da parte 2, crie apenas o arquivo local de variáveis:
 
@@ -245,7 +245,7 @@ Antes de considerar qualquer aplicação fora deste artigo, confira:
 
 Não execute `terraform apply`. O plano é o artefato de revisão desta parte. Ele mostra a intenção calculada pelo Terraform, mas não substitui uma análise de impacto feita no contexto da assinatura.
 
-## 5. Riscos, segurança e reversão
+## Riscos, segurança e reversão
 
 Uma negação explícita de saída pode interromper atualização de pacotes, telemetria, acesso a APIs e resolução de nomes personalizada quando cargas forem implantadas. Libere somente destinos comprovadamente necessários, de preferência com marcas de serviço mantidas pela Microsoft quando o destino for um serviço do Azure. Não abra `Internet` na saída apenas para fazer um teste passar.
 
@@ -255,7 +255,7 @@ NSGs não têm cobrança direta separada, mas os recursos que usam a rede e a tr
 
 Como esta parte termina no plano, a reversão local consiste em remover o arquivo `plan.tfplan` e descartar o diretório de trabalho quando ele não for mais necessário. Se uma equipe aplicar mudanças por conta própria, deve gerar e revisar um plano de reversão específico. Remover uma associação sem entender o tráfego não é uma estratégia de recuperação, é apenas devolver a rede ao estado permissivo anterior.
 
-## 6. O que vem na parte 3
+## O que vem na parte 3
 
 A parte 3 adicionará inspeção central de tráfego com Azure Firewall e políticas de rota para direcionar os fluxos por ele. A conectividade híbrida por VPN ou ExpressRoute fica para uma parte futura, pois precisa de decisões próprias de endereçamento, disponibilidade e operação.
 

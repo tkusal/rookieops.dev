@@ -16,7 +16,7 @@ mermaid: true
 draft: false
 ---
 
-## 0. Introdução
+## Introdução
 
 Uma aplicação começou pequena, ganhou uma VNet, depois outra equipe criou a segunda e, quando alguém percebeu, cada ambiente tinha sua própria cópia de tudo. Conectividade, DNS, segurança e acesso híbrido passaram a ser resolvidos de formas diferentes. A rede ainda funcionava, mas qualquer mudança exigia uma expedição arqueológica pelo portal.
 
@@ -55,7 +55,7 @@ Os comandos de terminal deste artigo usam PowerShell, mas o código Terraform fu
 > [!IMPORTANT]
 > Confirme a assinatura e o tenant antes de gerar o plano. Nomes de laboratório não impedem que recursos sejam criados na assinatura errada. O Azure não reconhece a intenção carinhosa por trás do sufixo `lab`.
 
-## 1. Arquitetura
+## Arquitetura
 
 ### Como o padrão funciona
 
@@ -123,7 +123,7 @@ location      = "brazilsouth"
 location_code = "brs"
 ```
 
-## 2. Plano de IPs (IPAM)
+## Plano de IPs (IPAM)
 
 **IP Address Management (IPAM)** é a disciplina de planejar, registrar e controlar os endereços usados pela organização. Aqui reservamos o superbloco `10.64.0.0/12` como referência de planejamento. Ele não é criado como recurso no Azure.
 
@@ -148,7 +148,7 @@ Esse plano não deve ser copiado cegamente para produção. Antes de adotar `10.
 
 As VNets conectadas por peering não podem ter espaços de endereço sobrepostos. Se o hub usar `10.64.0.0/16` e um spoke usar `10.64.20.0/24`, o bloco do spoke estará contido no hub e o peering não será válido. Prefixos diferentes no texto não significam redes diferentes na prática. CIDR é preciso, às vezes de um jeito pouco diplomático.
 
-## 3. Início do repositório
+## Início do repositório
 
 ### Estrutura de pastas
 

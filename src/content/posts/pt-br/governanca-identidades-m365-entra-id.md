@@ -15,7 +15,7 @@ mermaid: true
 draft: true
 ---
 
-## 0. Introdução: Quando o acesso funciona, mas a operação não
+## Introdução: Quando o acesso funciona, mas a operação não
 
 O tenant já exige autenticação multifator. As políticas de Acesso Condicional estão em produção. Mesmo assim, a equipe de TI começa toda segunda-feira copiando dados de chamados, adicionando pessoas a grupos e perguntando quem aprovou determinado acesso. Na sexta-feira, alguém descobre uma conta administrativa ativa desde o projeto do ano passado. A segurança melhorou, mas a operação continua dependente de memória, planilha e sorte.
 
@@ -37,7 +37,7 @@ Ao final, você terá um laboratório verificável para:
 
 Os scripts estão no repositório [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). Eles começam em modo de simulação e não incluem credenciais, segredos nem identificadores reais.
 
-## 1. A jornada da identidade e a arquitetura JML
+## A jornada da identidade e a arquitetura JML
 
 O Joiner começa antes do primeiro login. Dados como área, gestor e data de contratação precisam estar corretos para que uma regra encontre Anna. O Mover acontece quando cargo, projeto ou responsabilidade mudam. É a fase em que surge o *privilege creep*, o acúmulo silencioso de permissões antigas. O Leaver encerra acessos e sessões conforme a data e o risco do desligamento.
 
@@ -65,7 +65,7 @@ flowchart LR
 
 Esse desenho pressupõe usuários já existentes no Microsoft Entra ID e atributos padronizados. Não construiremos uma integração de RH com Workday, SAP ou API própria. A fonte autorizada preenche os atributos e a governança reage a eles.
 
-## 2. Pré-requisitos e preparação do laboratório
+## Pré-requisitos e preparação do laboratório
 
 Use uma identidade fictícia, um departamento piloto e recursos sem dados de produção. Mantenha duas contas de emergência fora de filtros, grupos e unidades administrativas do laboratório. As políticas de MFA e Acesso Condicional já devem existir, pois configurá-las não faz parte deste artigo.
 
@@ -105,7 +105,7 @@ O último comando solicita apenas escopos de leitura. Para escrita, escolha o pe
 
 ### Preparar Anna e os recursos
 
-Lifecycle Workflows não cria Ana. Um processo autorizado de RH, provisionamento ou administração deve criar a conta e preencher os dados. Para o laboratório, confirme:
+Lifecycle Workflows não cria Anna. Um processo autorizado de RH, provisionamento ou administração deve criar a conta e preencher os dados. Para o laboratório, confirme:
 
 | Dado | Valor de exemplo | Por que importa |
 | --- | --- | --- |
@@ -116,22 +116,27 @@ Lifecycle Workflows não cria Ana. Um processo autorizado de RH, provisionamento
 | `mail` do gestor | Endereço válido | Permite a entrega das notificações |
 | `usageLocation` | `BR` | Evita falhas posteriores na atribuição de licenças |
 
+> [!IMPORTANT]
+> Preencha `usageLocation` antes de atribuir licenças. O valor usa o código de duas letras do país ou região, como `BR`, e é necessário para validar a disponibilidade legal dos serviços. Sem ele, atribuições diretas ou baseadas em grupo podem falhar.
+
 Use UTC nos atributos de data e escolha um horário coerente com o expediente. Em produção, corrija o dado na fonte autoritativa em vez de criar uma segunda forma manual de manutenção. Em ambientes sincronizados com Active Directory local, valide o mapeamento e o ciclo de sincronização antes de depender desses atributos.
 
 ```powershell
-$Anna = Get-MgUser -UserId '<ANA_USER_PRINCIPAL_NAME>' `
+$Anna = Get-MgUser -UserId '<ANNA_USER_PRINCIPAL_NAME>' `
   -Property Id,DisplayName,Department,EmployeeHireDate,EmployeeLeaveDateTime,Mail,UsageLocation
 
 $Anna | Format-List
-Get-MgUserManager -UserId $ana.Id | Format-List Id,AdditionalProperties
+Get-MgUserManager -UserId $Anna.Id | Format-List Id,AdditionalProperties
 Get-MgSubscribedSku | Select-Object SkuPartNumber, ConsumedUnits
 ```
 
 Prepare também um catálogo `Laboratório NEST`, um grupo do Microsoft 365 associado ao Teams, um site do SharePoint, um aplicativo corporativo integrado ao Entra e usuários diferentes para aprovação, fallback e administração PIM. O aplicativo precisa expor uma função atribuível, como `Default Access`.
 
-## 3. O primeiro dia: Lifecycle Workflows no Joiner
+## O primeiro dia: Lifecycle Workflows no Joiner
 
 Um **Temporary Access Pass**, ou TAP, é uma credencial temporária usada no primeiro registro de métodos de autenticação. No nosso fluxo, uma tarefa nativa gera um TAP de uso único por oito horas e o envia ao gestor. A política de TAP precisa permitir 480 minutos e incluir Anna ou o grupo piloto.
+
+Neste laboratório, o TAP funciona como credencial de bootstrap: permite o primeiro acesso e o registro de métodos fortes, como passkey ou chave FIDO2 e Windows Hello for Business. Dependendo da política, ele também pode apoiar recuperação e permitir um ou vários acessos dentro da validade. Não é uma credencial de uso contínuo, não substitui a senha e deve expirar ou ser removido depois de cumprir sua finalidade.
 
 ### Antes de configurar
 
@@ -164,11 +169,14 @@ O script consulta a definição nativa da tarefa, monta o payload e só cria o w
 
 Depois da revisão, execute com `-Apply`, ainda sem `-EnableSchedule`. No portal, abra o workflow e escolha **Run on demand > Add users > Anna > Run workflow**. A execução sob demanda ignora o filtro e a data, portanto confira a identidade selecionada. Aguarde o histórico indicar `Completed` e confirme que o gestor recebeu o TAP. Só então habilite a agenda.
 
+> [!NOTE]
+> Um gatilho baseado em data não é um evento de hora exata. Workflows agendados são avaliados a cada três horas por padrão, com intervalo configurável de uma a 24 horas. Portanto, atingir `employeeHireDate` ou `employeeLeaveDateTime` coloca a identidade no próximo ciclo aplicável, não em uma execução instantânea. O Entra também mantém uma janela de recuperação de três dias para condições que poderiam ter sido perdidas. Em laboratório, use a execução sob demanda e acompanhe o histórico.
+
 ### Validar e reverter
 
 Em **Workflow history**, confira os resumos por usuário, execução e tarefa. Um workflow criado não prova que encontrou a pessoa correta. Se houver erro, mantenha a agenda desligada, corrija atributo, gestor ou política de TAP e repita com uma identidade nova. Para reverter o piloto, desabilite o agendamento, exclua o workflow de teste e remova o TAP da usuária em **Authentication methods**. Um TAP já usado ou expirado não deve ser reutilizado.
 
-## 4. A mudança de responsabilidade e o autoatendimento no Mover
+## A mudança de responsabilidade e o autoatendimento no Mover
 
 Meses depois, Anna assume uma nova linha de pesquisa dentro do Laboratório NEST. O cargo continua Pesquisadora Sênior, mas o conjunto de recursos muda. O modelo manual adicionaria novos grupos e deixaria os antigos para uma limpeza futura. O Entitlement Management muda a unidade da decisão. Em vez de conceder recursos isolados, publicamos o pacote `Laboratório NEST | Pesquisadora Sênior` com associação ao Teams, acesso ao SharePoint e uma função no aplicativo corporativo.
 
@@ -205,7 +213,7 @@ O ID esperado para a aplicação é o `Id` do **service principal**, não o `App
 7. Exija justificativa do aprovador e defina expiração da atribuição em 180 dias.
 8. Crie a política e mantenha o pacote visível apenas para a população que deve solicitá-lo.
 
-O gestor é localizado pelo atributo `manager`. Sem gestor ou fallback, o pedido fica sem o responsável esperado. Teste no portal **My Access** com Anna e confirme que o aprovador recebe a notificação.
+O gestor é localizado pelo atributo `manager`. Se ele não for encontrado, o fallback configurado recebe a solicitação. O portal permite escolher usuários ou grupos alternativos, mas o Entra não decide sozinho qual administrador deve assumir. Por isso, o script exige `FallbackApproverUserId` e obriga a organização a indicar explicitamente um usuário responsável. Teste no portal **My Access** com Anna e confirme que o aprovador recebe a notificação.
 
 ### Automatizar com simulação
 
@@ -224,9 +232,9 @@ No DryRun, recursos ausentes são mostrados como solicitações propostas. Use `
 
 ### Validar e reverter
 
-Solicite o pacote como Ana, aprove como gestor e confirme a atribuição nos três recursos. Verifique também a data de expiração e o histórico da solicitação. Para desfazer, remova primeiro a atribuição de Ana. Depois oculte ou desabilite a política. Exclua pacote e recursos do catálogo somente após confirmar que não existem outras políticas ou atribuições dependentes. Apagar o catálogo cedo demais transforma uma correção simples em caça ao acesso órfão.
+Solicite o pacote como Anna, aprove como gestor e confirme a atribuição nos três recursos. Verifique também a data de expiração e o histórico da solicitação. Para desfazer, remova primeiro a atribuição de Anna. Depois oculte ou desabilite a política. Exclua pacote e recursos do catálogo somente após confirmar que não existem outras políticas ou atribuições dependentes. Apagar o catálogo cedo demais transforma uma correção simples em caça ao acesso órfão.
 
-## 5. Zero Standing Privileges com PIM
+## Zero Standing Privileges com PIM
 
 **Zero Standing Privileges** significa não manter privilégios administrativos ativos sem necessidade. Um Privileged Role Administrator torna Anna elegível para Exchange Administrator por 90 dias. Anna ativa a função por até duas horas antes da manutenção. A política da função decide se a plataforma exige MFA, justificativa, chamado e aprovação.
 
@@ -244,19 +252,19 @@ Evite um bloqueio administrativo: mantenha contas de emergência e aprovadores a
 
 ### Automatizar e ativar
 
-Faça as operações em sessões separadas. A primeira pertence ao Privileged Role Administrator. A segunda pertence à própria Ana.
+Faça as operações em sessões separadas. A primeira pertence ao Privileged Role Administrator. A segunda pertence à própria Anna.
 
 ```powershell
 # Sessão administrativa, apenas simulação
 .\scripts\30-configure-pim-exchange.ps1 `
-  -UserId '<ANA_USER_ID>' `
+  -UserId '<ANNA_USER_ID>' `
   -RoleDisplayName 'Exchange Administrator' `
   -CreateEligibility `
   -EligibilityJustification '<JUSTIFICATIVA_APROVADA>'
 
-# Sessão de Ana, apenas simulação
+# Sessão de Anna, apenas simulação
 .\scripts\30-configure-pim-exchange.ps1 `
-  -UserId '<ANA_USER_ID>' `
+  -UserId '<ANNA_USER_ID>' `
   -RoleDisplayName 'Exchange Administrator' `
   -Activate `
   -ActivationHours 2 `
@@ -269,7 +277,7 @@ Acrescente `-Apply -WhatIf` antes da aplicação real. Anna também pode abrir *
 
 Confirme que a atribuição aparece como elegível antes da ativação, como ativa durante a janela e como expirada ao final. Valide os logs de auditoria e a aprovação. Anna pode desativar a função antecipadamente em **My roles**. Para revogar o desenho, remova a elegibilidade em **PIM > Microsoft Entra roles > Assignments**. Não exclua nem altere a definição interna da função.
 
-## 6. Auditoria contínua com Access Reviews
+## Auditoria contínua com Access Reviews
 
 Uma aprovação responde ao contexto de hoje. A revisão de acesso pergunta se a resposta continua válida três meses depois. Para o pacote do Laboratório NEST, o gestor será o revisor primário e um usuário específico será o fallback.
 
@@ -298,9 +306,9 @@ Depois de validar o payload, use `-Apply -WhatIf` e então `-Apply`. Para adotar
 
 Confirme que a ocorrência foi criada, que o gestor recebeu email e consegue registrar decisão e justificativa em My Access. Compare a decisão com a atribuição do pacote ao término. Para reverter, desabilite `reviewSettings` ou restaure a configuração anterior da política. Se uma revisão já removeu acesso, a reversão exige nova solicitação ou atribuição aprovada. Não existe um botão que desfaça todas as decisões expiradas.
 
-## 7. O desligamento e a limpeza com Lifecycle Workflows
+## O desligamento e a limpeza com Lifecycle Workflows
 
-Na saída de Ana, a ordem importa. Primeiro bloqueamos a conta. Depois invalidamos tokens de atualização e sessões de navegador. Por fim, removemos licenças atribuídas diretamente. O gatilho usa `employeeLeaveDateTime`, preenchido pela fonte autorizada antes da saída.
+Na saída de Anna, a ordem importa. Primeiro bloqueamos a conta. Depois invalidamos tokens de atualização e sessões de navegador. Por fim, removemos licenças atribuídas diretamente. O gatilho usa `employeeLeaveDateTime`, preenchido pela fonte autorizada antes da saída.
 
 Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas compartilhadas, aplicativos e recursos do Azure. Transfira responsabilidades e aplique retenção antes de remover licenças. Licenças herdadas por grupo permanecem enquanto Anna continuar no grupo. Acesso local de uma identidade sincronizada também depende do processo no Active Directory e do ciclo de sincronização.
 
@@ -325,13 +333,15 @@ Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas com
 
 Para um desligamento emergencial, execute sob demanda após conferir a identidade. Lembre que essa execução ignora data e filtro. Para saída planejada, teste com uma conta descartável, revise o histórico e só depois habilite a agenda com `-Apply -EnableSchedule` ou pelo portal.
 
+A mesma cadência de processamento descrita no Joiner vale para `employeeLeaveDateTime`. Não trate o workflow agendado como um bloqueio de hora exata. Em desligamentos urgentes, use o procedimento emergencial aprovado e a execução sob demanda.
+
 ### Validar e reverter
 
 Confirme `accountEnabled = false`, falha de novo login, revogação registrada, remoção das licenças diretas e encerramento das atribuições do pacote e PIM. Revogar sessões reduz a janela de uso de tokens, mas alguns aplicativos podem não reagir imediatamente. O bloqueio da conta continua sendo o controle principal.
 
 Se o workflow atingir a pessoa errada, desligue a agenda antes de qualquer correção. Reative a conta, restaure licenças e associações a partir do inventário e refaça as aprovações necessárias. A revogação de sessões não pode ser desfeita; a pessoa terá de autenticar novamente. Em usuários sincronizados, corrija também a fonte autoritativa para evitar que a próxima sincronização reverta sua recuperação.
 
-## 8. Validação integrada, riscos e licenciamento
+## Validação integrada, riscos e licenciamento
 
 Ao fim do piloto, reúna evidências de cada controle, não apenas prints da tela de criação.
 
@@ -345,7 +355,7 @@ Get-MgEntitlementManagementAccessPackage -All |
   Select-Object DisplayName, Id
 
 Get-MgRoleManagementDirectoryRoleEligibilitySchedule `
-  -Filter "principalId eq '<ANA_USER_ID>'" -All
+  -Filter "principalId eq '<ANNA_USER_ID>'" -All
 ```
 
 O aceite do laboratório deve provar:
@@ -362,7 +372,7 @@ Há impacto de custo, pois as pessoas que recebem, solicitam, aprovam ou revisam
 > [!CAUTION]
 > Não teste remoção automática, bloqueio de conta ou políticas PIM diretamente em produção. Use identidades descartáveis, mantenha contas de emergência fora do escopo, exporte o estado anterior e registre quem pode desligar a agenda ou restaurar uma atribuição.
 
-## 9. Conclusão
+## Conclusão
 
 No começo, Anna era mais um conjunto de tarefas espalhadas por chamados. Com atributos confiáveis, JML, pacotes de acesso, PIM e revisões, sua jornada passa a ter gatilhos, responsáveis, prazos, validações e evidências.
 
@@ -373,8 +383,10 @@ Comece com um departamento, um pacote, uma função privilegiada e uma revisão.
 ## Referências primárias
 
 - [Planejar uma implantação de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflows-deployment?wt.mc_id=studentamb_365381)
+- [Condições de execução e agendamento de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-execution-conditions?wt.mc_id=studentamb_365381)
 - [Executar um workflow sob demanda](https://learn.microsoft.com/entra/id-governance/on-demand-workflow?wt.mc_id=studentamb_365381)
 - [Configurar Temporary Access Pass](https://learn.microsoft.com/entra/identity/authentication/howto-authentication-temporary-access-pass?wt.mc_id=studentamb_365381)
+- [Atribuir licenças do Microsoft 365 a contas de usuário](https://learn.microsoft.com/microsoft-365/enterprise/assign-licenses-to-user-accounts?view=o365-worldwide&wt.mc_id=studentamb_365381)
 - [Criar um pacote de acesso](https://learn.microsoft.com/entra/id-governance/entitlement-management-access-package-create?wt.mc_id=studentamb_365381)
 - [Criar uma política de atribuição](https://learn.microsoft.com/graph/api/entitlementmanagement-post-assignmentpolicies?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
 - [Configurar definições de função no PIM](https://learn.microsoft.com/entra/id-governance/privileged-identity-management/pim-how-to-change-default-settings?wt.mc_id=studentamb_365381)

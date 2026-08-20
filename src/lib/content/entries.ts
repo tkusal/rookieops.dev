@@ -20,7 +20,7 @@ export function isPublished(entry: CollectionEntry<ContentType>) {
 }
 
 export async function getLocalizedEntries<T extends ContentType>(collection: T, locale: Locale) {
-  const entries = await getCollection(collection, ({ data }) => !data.draft);
+  const entries = await getCollection(collection, ({ data }) => import.meta.env.DEV || !data.draft);
   return entries
     .filter((entry) => entryLocale(entry as CollectionEntry<ContentType>) === locale)
     .sort((a, b) => entryDate(b as CollectionEntry<ContentType>).getTime() - entryDate(a as CollectionEntry<ContentType>).getTime());

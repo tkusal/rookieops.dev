@@ -209,7 +209,7 @@ Conceda a função certa, no menor escopo possível e pelo tempo necessário. O 
 
 Este roteiro não cria, edita ou exclui objetos.
 
-### 1. Confirme em qual locatário você está
+### Confirme em qual locatário você está
 
 Entre em [entra.microsoft.com](https://entra.microsoft.com/) e abra a visão geral do Microsoft Entra ID. Localize:
 
@@ -221,7 +221,7 @@ Registre essas informações apenas em uma anotação de trabalho apropriada. O 
 
 Se você administra mais de uma organização, confira o locatário selecionado antes de qualquer atividade futura. Muitos erros começam no ambiente certo aberto na guia errada.
 
-### 2. Observe usuários e grupos
+### Observe usuários e grupos
 
 Na área de usuários, identifique contas internas, convidados e o estado de cada conta. Depois, abra a área de grupos e observe como as associações reúnem pessoas com necessidades semelhantes.
 
@@ -233,7 +233,7 @@ Pergunte:
 
 O objetivo nesta etapa é aprender a formular perguntas.
 
-### 3. Reconheça aplicativos empresariais
+### Reconheça aplicativos empresariais
 
 Abra a área de aplicativos empresariais. Esses objetos representam instâncias de aplicativos que operam no locatário e podem receber atribuições, consentimentos e configurações de SSO.
 
@@ -244,13 +244,13 @@ Não confunda **registros de aplicativo** com **aplicativos empresariais**:
 
 Para um primeiro contato, basta notar que aplicativos também possuem identidade e permissões. Eles não são exceções invisíveis ao modelo de acesso.
 
-### 4. Consulte funções e administradores
+### Consulte funções e administradores
 
 Abra a área de funções e administradores e procure a opção que mostra suas próprias atribuições. Observe o nome e o escopo de cada função.
 
 Não presuma que “Administrador Global para garantir que funcione” seja uma solução aceitável. Se uma tarefa exige privilégio elevado, descubra a função menos privilegiada capaz de realizá-la.
 
-### 5. Leia os logs
+### Leia os logs
 
 Na área de monitoramento e integridade, abra os logs de entrada e, se sua permissão permitir, um evento da sua própria conta. Procure:
 

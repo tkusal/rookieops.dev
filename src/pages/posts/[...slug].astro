@@ -61,6 +61,11 @@ const related = relatedPosts(posts, entry, siteConfig.post.relatedCount);
   comments={entry.data.comments}
   math={hasMath}
 >
+  {import.meta.env.DEV && entry.data.draft && (
+    <div class="mb-6 rounded-[var(--radius-card)] border border-amber-400/40 bg-amber-400/10 px-4 py-3 text-sm text-amber-200">
+      Pré-visualização local de rascunho. Este conteúdo continua fora do build de produção enquanto <code>draft: true</code>.
+    </div>
+  )}
   <Breadcrumbs
     locale="pt-br"
     items={[
