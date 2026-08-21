@@ -1,0 +1,58 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 260" width="100%" height="100%">
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#0078D4" />
+    </marker>
+    <style>
+      .box { fill: #fdfdfd; stroke: #0078D4; stroke-width: 2px; rx: 8px; }
+      .text-main { fill: #242424; font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; text-anchor: middle; }
+      .text-sub { fill: #242424; font-family: system-ui, -apple-system, sans-serif; font-size: 15px; font-weight: 600; text-anchor: middle; }
+      .line { stroke: #0078D4; stroke-width: 2.5px; }
+      @media (prefers-color-scheme: dark) {
+        .box { fill: #1e1e1e; stroke: #4daafc; }
+        .text-main, .text-sub { fill: #e5e5e5; }
+        .line { stroke: #4daafc; }
+        #arrow path { fill: #4daafc; }
+      }
+    </style>
+  </defs>
+
+  <!-- Connectors -->
+  <line x1="175" y1="70" x2="215" y2="70" class="line" marker-end="url(#arrow)" />
+  <line x1="375" y1="70" x2="415" y2="70" class="line" marker-end="url(#arrow)" />
+  
+  <path d="M 500 100 L 500 150" class="line" marker-end="url(#arrow)" />
+  
+  <line x1="425" y1="190" x2="385" y2="190" class="line" marker-end="url(#arrow)" />
+  <line x1="225" y1="190" x2="185" y2="190" class="line" marker-end="url(#arrow)" />
+
+  <!-- Node 1 -->
+  <rect x="25" y="40" width="150" height="60" class="box" />
+  <text x="100" y="75" class="text-main">Cadastro</text>
+
+  <!-- Node 2 -->
+  <rect x="225" y="40" width="150" height="60" class="box" />
+  <text x="300" y="66" class="text-main">Registered</text>
+  <text x="300" y="86" class="text-sub">Member</text>
+
+  <!-- Node 3 -->
+  <rect x="425" y="40" width="150" height="60" class="box" />
+  <text x="500" y="66" class="text-main">Credencial</text>
+  <text x="500" y="86" class="text-sub">&amp; ID</text>
+
+  <!-- Node 4 -->
+  <rect x="425" y="160" width="150" height="60" class="box" />
+  <text x="500" y="186" class="text-main">Influencer</text>
+  <text x="500" y="206" class="text-sub">ou Skiller</text>
+
+  <!-- Node 5 -->
+  <rect x="225" y="160" width="150" height="60" class="box" />
+  <text x="300" y="186" class="text-main">Validação &amp;</text>
+  <text x="300" y="206" class="text-sub">Convite</text>
+
+  <!-- Node 6 -->
+  <rect x="25" y="160" width="150" height="60" class="box" />
+  <text x="100" y="186" class="text-main">Student</text>
+  <text x="100" y="206" class="text-sub">Ambassador</text>
+
+</svg>

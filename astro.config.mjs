@@ -16,6 +16,7 @@ import { rehypeHeadingAnchors } from './src/lib/markdown/rehype-heading-anchors.
 import { rehypeAlerts } from './src/lib/markdown/rehype-alerts.mjs';
 import { rehypeImageGroups } from './src/lib/markdown/rehype-image-groups.mjs';
 import { rehypeMermaid } from './src/lib/markdown/rehype-mermaid.mjs';
+import rehypeExternalLinks from 'rehype-external-links';
 
 const site = process.env.ASTRO_SITE || 'https://rookieops.dev';
 const base = process.env.ASTRO_BASE;
@@ -36,7 +37,7 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath, remarkDirective, remarkTabs],
-      rehypePlugins: [rehypeKatex, rehypeDetectMath, rehypeHeadingAnchors, rehypeAlerts, rehypeImageGroups, rehypeMermaid]
+      rehypePlugins: [rehypeKatex, rehypeDetectMath, rehypeHeadingAnchors, rehypeAlerts, rehypeImageGroups, rehypeMermaid, [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]]
     })
   },
   vite: {

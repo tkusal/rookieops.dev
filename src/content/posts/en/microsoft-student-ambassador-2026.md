@@ -1,5 +1,5 @@
----
-title: "Microsoft Student Ambassador in 2026"
+﻿---
+title: "How to become a Microsoft Student Ambassador in 2026"
 description: "Learn the current requirements, contribution paths, benefits, and onboarding process to become a Microsoft Student Ambassador in 2026."
 pubDate: 2026-08-21
 author: "Thiago Kusal"
@@ -15,20 +15,18 @@ draft: false
 ---
 
 ## Introduction
-
 I joined the Microsoft Student Ambassadors program in 2024. Since then, I have organized activities, contributed to the community, progressed through the program milestones, and become a **Senior Student Ambassador**.
 
 At the time of publication, Brazil has two active Seniors: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/) and me. That is a snapshot from August 2026, and it can change as more Ambassadors advance.
 
 This experience has placed me on both sides of the conversation. I was once the student trying to figure out where to begin. Today, I help people who arrive with the same questions: Do I need a certification? Is registration an application process? Which path should I choose? When can I actually use the title?
 
-This guide answers those questions using the current process. The journey starts with registration, continues through the **Registered Member** stage, requires a recent credential and one of two contribution paths, and ends with an invitation and onboarding as a **Student Ambassador**. Until early 2026, the milestones were called **Alpha**, **Beta**, and **Gold**. During the first half of 2026, they became **Student Ambassador**, **Associate Student Ambassador**, and **Senior Student Ambassador**, respectively. I will use the current names from this point forward.
+This guide answers those questions using the current process. The journey starts with registration, continues through the **Registered Member** stage, requires a recent credential and one of two contribution paths, and ends with an invitation and onboarding as a **Student Ambassador**. After that, I will also explain how to remain active in the program and advance to **Associate Student Ambassador** and **Senior Student Ambassador**.
 
 > [!IMPORTANT]
-> This information was verified on August 20, 2026. Targets, benefits, and operational calendars may change. After registering, treat the portal, member handbook, and emails from the program team as the source of truth for your cycle.
+> This information was verified on August 21, 2026. Some operational details described in this article come from guidance provided to registered members and may not appear in the public documentation. Targets, benefits, and operational calendars may change. After registering, treat the portal, member handbook, and emails from the program team as the source of truth for your cycle.
 
 ## What is Microsoft Student Ambassadors?
-
 [Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors) is a global community where students develop technical and leadership skills while helping other people learn Microsoft technologies. That contribution can take the form of online content, Microsoft Learn Plans, projects, campus events, and activities coordinated by the program.
 
 It is not an internship, a job, or a professional certification, and it does not guarantee a role at Microsoft. It is an extracurricular contribution program. You learn something, turn that knowledge into a useful experience for other people, measure the result, and improve the next delivery. It sounds a bit like a DevOps cycle, except with fewer arguments about YAML indentation.
@@ -41,39 +39,48 @@ You do not need to arrive as an expert either. For students near the beginning o
 
 The Student Ambassadors program can also be a useful starting point for anyone who hopes to become a [Microsoft MVP](https://mvp.microsoft.com/) someday. Creating content, organizing events, contributing to communities, and producing measurable technical impact are all relevant experiences in that direction. The programs are independent, though. Being an Ambassador does not guarantee an MVP nomination or award.
 
-## Requirements to register
+## Why join the program?
+The most visible benefits include Azure credits, Microsoft 365, Visual Studio Enterprise, certification vouchers, swag, and other opportunities that vary by milestone. The longer-lasting value, however, often comes from the indirect benefits: you practice communication and teaching, learn to organize events and projects, build a portfolio, and turn study into demonstrable experience.
 
+The community also expands your contact with students from other countries, Microsoft MVPs, and Microsoft employees. This can lead to collaborations, mentoring, and learning opportunities that are harder to find by following an individual study path alone. Later in this guide, the benefits section shows what may become available at each program milestone.
+
+## How the process works at a glance
+For anyone who wants to see the full journey before getting into the details, the current process can be summarized like this:
+
+**Journey map:**
+
+![Journey map summarized in a linear flowchart](/images/posts/microsoft-student-ambassador-2026/journey-flow-en.svg)
+
+After onboarding, the journey continues with quarterly requirements, approved events, and the possibility of advancing to Associate and Senior.
+
+## Requirements to register
 According to the official [Student Ambassadors FAQ](https://mvp.microsoft.com/faq?section=student), you must:
 
 1. be at least 18 years old when you register;
 2. be enrolled full time at an accredited academic institution, such as a college or university;
-3. have an active Azure for Students account; (the Azure for Students active account requirement has been paused for now)
+3. have an active Azure for Students account when that requirement is in effect; the public FAQ still lists the account among the requirements, but a temporary pause applies to the current process, as explained below;
 4. not have been previously removed from the program by Microsoft;
 5. not be a current Microsoft employee or contractor while participating.
 
-> [!IMPORTANT]
-> Use a Microsoft account you can keep. Ideally, your Microsoft Learn profile, Azure for Students subscription, and program registration should all use the same identity. Spreading each service across a different account often creates linking problems and leaves the process stuck like a ticket with no assignment group.
+Use a Microsoft account you can keep. Ideally, your Microsoft Learn profile, Azure for Students subscription, and program registration should all use the same identity. Using different identities across these services can cause linking issues and make it harder to track your registration.
 
 Geographic restrictions also apply because of United States export regulations. The FAQ lists Cuba, Iran, North Korea, Sudan, Syria, Russia, Belarus, and the Crimea region as ineligible locations. Students in the United States on an F-1 visa should check with their institution or qualified immigration counsel to confirm that participation is compatible with their status.
 
 ### Azure for Students
-
-Azure for Students is an entry requirement, not just a shiny benefit in the display window. The offer is available to higher education students, requires academic verification, and provides USD 100 in credit for 12 months without requiring a credit card, as described in the [Azure for Students documentation](https://learn.microsoft.com/azure/education-hub/find-ids?wt.mc_id=studentamb_365381).
+Azure for Students is normally part of the program's entry requirements, rather than simply being a benefit on display. The offer is available to higher education students, requires academic verification, and provides USD 100 in credit for 12 months without requiring a credit card, as described in the [Azure for Students documentation](https://learn.microsoft.com/azure/education-hub/find-ids?wt.mc_id=studentamb_365381).
 
 > [!IMPORTANT]
-> As of August 21, 2026, the date I'm publishing this post, the Azure for Students active account requirement has been paused for now. You can proceed with registration normally even without this account while the pause is in effect. Check the official program FAQ to confirm whether and when this requirement comes back into effect.
+> As of August 21, 2026, there is a discrepancy between the public documentation and the operational process. The [official program FAQ](https://mvp.microsoft.com/faq?section=student) still lists an active Azure for Students account among the entry requirements. However, according to the current operational guidance for this cycle, that requirement is temporarily paused. You can proceed with registration without that account while the pause remains in effect. Check the FAQ, portal, and guidance you receive from the program before starting a new registration, since this condition may change.
 
 ## How to register
-
 Registration begins on the [Microsoft Student Ambassadors portal](https://mvp.microsoft.com/studentambassadors). Microsoft says the form takes less than five minutes. The most important work happens before you open it, when you organize your accounts and confirm that your academic information is correct.
 
 ### Checklist before the form
-
 Confirm that you have:
 
 - the Microsoft account you will use for the program;
 - a Microsoft Learn profile connected to the same identity;
-- an active and verified Azure for Students account;
+- an active and verified Azure for Students account, if the requirement is in effect when you register;
 - regular access to the email address you provide;
 - current information about your institution and degree.
 
@@ -83,33 +90,27 @@ Do not post academic documents, subscription IDs, or personal information in pub
 > If the Learn Username field was filled in incorrectly or with extra information during registration, your progress reports may fail to index correctly later on. If you notice this problem, delete your current registration and register again with the correct field, rather than trying to fix it afterward through support.
 
 ### Registration and the Code of Conduct
+On the portal, select **Get Started**, complete the form, and accept the terms. Read the [Student Ambassadors Code of Conduct](https://aka.ms/sacoc) as well. It applies to online and in-person activities associated with the program and sets expectations for respectful and responsible participation in the community.
 
-On the portal, select **Get Started**, complete the form, and accept the terms. Read the [Student Ambassadors Code of Conduct](https://aka.ms/sacoc) as well. It applies to online and in-person activities associated with the program. Leadership without respect is just noise wearing a badge.
-
-After completing this step, you become a **Registered Member**. This gives you access to the global Discord community, resources, guidance, and training, but it does not grant the Student Ambassador title yet. The invitation to the Discord channel arrives by email from `sa-reply@microsoft.com`. Check your spam folder if it does not appear in your inbox.
+After completing this step, you become a **Registered Member**. This gives you access to the global Discord community, resources, guidance, and training, but it does not grant the Student Ambassador title yet. The invitation to the Discord channel arrives by email from `sa-noreply@microsoft.com`. Check your spam folder if it does not appear in your inbox.
 
 ### Contributor ID
-
-The next steps arrive at the email address used during registration. One of them is your **Student Ambassadors Contributor ID**, usually sent three to five days after registration. The identifier remains the same while you are a Registered Member and attributes eligible activity results to your profile.
-
-> [!NOTE]
-> If you have not received your Contributor ID yet, that is normal: it is typically sent within three to five business days after you register for the program. Before opening a support ticket, check your spam or junk folder as well. If that window passes and the ID still hasn't arrived, send an email to `registration@studentambassadors.com` describing the issue.
+The next steps arrive at the email address used during registration. One of them is your **Student Ambassadors Contributor ID**. It is typically sent within three to five business days after registration. This identifier allows eligible activity results to be attributed to your profile. Before opening a support ticket for a delay, check your spam or junk folder. If that window passes and the ID still hasn't arrived, send an email to `registration@studentambassadors.com` describing the issue.
 
 It appears in links as a tracking parameter. In the example below, I am using my own Contributor ID, `studentamb_365381`. Every member receives an individual identifier and must replace this value with the one sent by Microsoft:
-
 ```text title="Contributor ID example"
 ?wt.mc_id=studentamb_365381
 ```
 
-The Student Ambassadors Contributor ID is not a password, token, or the identifier shown in your Microsoft Learn profile settings. That second value is the Learn Contributor ID. Keep the program identifier you received and follow the format required by each path. Mixing the two is a small detail with a remarkable talent for becoming a large incident.
+The Student Ambassadors Contributor ID is not a password, token, or the identifier shown in your Microsoft Learn profile settings. That second value is the Learn Contributor ID. Keep the program identifier you received and follow the format required by each path, because using the wrong ID may prevent the contribution from being attributed to your profile.
 
 ## What to complete as a Registered Member
-
 After registration, the route to onboarding has two parts: earn a recent Microsoft credential and meet the target for one contribution path. You do not need to complete both paths.
 
-### A recent certification or Applied Skills credential
+There is no fixed published deadline for completing the Registered Member activities. According to the [official program FAQ](https://mvp.microsoft.com/faq?section=student), you can complete them at your own pace. The important point is to meet the requirements in effect when you become eligible for onboarding, especially the credential's 12-month window and the target for your chosen path.
 
-The process requires a credential earned during the 12 months before onboarding. It can be a **Microsoft Certification** or a **Microsoft Applied Skills** credential.
+### A recent certification or Applied Skills credential
+The process requires a credential earned during the 12 months before onboarding. It can be a **Microsoft Certification** or a **Microsoft Applied Skills** credential. In other words, if your approval and onboarding as a Student Ambassador happen in October 2026, for example, your credential must have been issued between October 2025 and October 2026.
 
 Applied Skills is a scenario-based credential. Instead of assessing a broad job role, it validates a specific skill through a lab. Microsoft compares the formats in the [Applied Skills FAQ](https://learn.microsoft.com/credentials/support/applied-skills-faq?wt.mc_id=studentamb_365381).
 
@@ -117,13 +118,21 @@ You can register before earning the credential, but you must obtain it within th
 
 Choose a credential that fits both your current level and the topic you want to share. The best first step is one you can study, practice, and then explain to someone else.
 
-### Path 1: Community Influencer Path
+### How to choose a path
+| If you prefer to | More suitable path | Target in August 2026 |
+| --- | --- | --- |
+| write, record, and distribute content | Community Influencer | 250 Preferred Visitors |
+| organize groups and facilitate learning | Community Skiller | 1,000 net-new modules |
 
+Do not choose Skiller only because you enjoy studying alone, since the result depends on other people. Do not dismiss Influencer because your follower count is small either. A focused community can respond better than a huge audience that never asked for the content.
+
+### Path 1: Community Influencer Path
 The **Community Influencer Path** is designed for people who create and share online content. The current target is **250 Preferred Visitors** on eligible Microsoft pages shared with your Contributor ID.
 
-Preferred Visitors does not mean 250 raw clicks. It is a Microsoft metric, and its exact dimensions are not publicly disclosed. Refreshing a page, buying traffic, or dropping links without context does not turn a click into a valid contribution. Use the program report as your reference, not the impression counter on a social platform.
+#### How to generate a valid contribution
+Preferred Visitors does not mean 250 raw clicks. It is a Microsoft metric and the exact qualification methodology is not publicly disclosed. Refreshing a page, buying traffic, or dropping links without context does not guarantee a click will be counted as a Preferred Visitor. Use the program report as your reference, not the impression counter on a social platform.
 
-An example helps visualize the difference: sharing a link on LinkedIn with context, explaining why that resource solves a real problem, tends to generate genuine clicks from interested people — and those people may repost it to their own network, growing the reach organically. Dropping the same link into several WhatsApp groups with no connection to what people there actually care about tends to generate silence or irritation, not a valid contribution.
+An example helps visualize the difference: sharing a link on LinkedIn with context, explaining why that resource solves a real problem, tends to generate genuine clicks from interested people. Those people may repost it to their own network and grow the reach organically. Dropping the same link into several WhatsApp groups with no connection to what people there actually care about tends to generate silence or irritation, not a valid contribution.
 
 In practice:
 
@@ -134,67 +143,62 @@ In practice:
 - share it in channels where there is genuine interest;
 - monitor the progress report.
 
-### Eligible pages for your Contributor ID
+#### Eligible pages for your Contributor ID
+Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors:
 
-Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors, organized by area of interest:
+<details>
+<summary>View eligible domains for Preferred Visitors</summary>
 
-**Developer**
 - azure.microsoft.com
 - azure.microsoft.com/free
 - azure.microsoft.com/free/students
+- blog.fabric.microsoft.com
 - code.visualstudio.com
+- community.fabric.microsoft.com
+- community.powerplatform.com
+- copilot.microsoft.com
 - devblogs.microsoft.com
 - developer.microsoft.com
 - dotnet.microsoft.com
+- events.microsoft.com
+- imaginecup.microsoft.com
+- learn.microsoft.com
+- learn.microsoft.com/copilot
 - learn.microsoft.com/developer
+- learn.microsoft.com/fabric
+- learn.microsoft.com/power-apps
+- learn.microsoft.com/power-automate
+- learn.microsoft.com/power-bi
+- learn.microsoft.com/power-pages
+- learn.microsoft.com/power-platform
+- learn.microsoft.com/startups
+- learn.microsoft.com/training/topics/startups
+- microsoft.com/insidetrack
+- microsoft.com/microsoft-365-copilot
+- microsoft.com/microsoft-365/copilot-learning-center
 - microsoft.com/microsoft-cloud/blog
-
-**Startups**
+- microsoft.com/microsoft-copilot/for-individuals
+- microsoft.com/microsoft-fabric
+- microsoft.com/power-platform
 - microsoft.com/startups
 - microsoft.com/startups/ai
 - microsoft.com/startups/blog
-- learn.microsoft.com/startups
-- learn.microsoft.com/training/topics/startups
-- imaginecup.microsoft.com
-
-**Copilot**
-- copilot.microsoft.com
-- learn.microsoft.com/copilot
-- microsoft.com/microsoft-365-copilot
-- microsoft.com/microsoft-365/copilot-learning-center
-- microsoft.com/microsoft-copilot/for-individuals
-
-**Data Science**
-- microsoft.com/microsoft-fabric
-- blog.fabric.microsoft.com
-- community.fabric.microsoft.com
-- learn.microsoft.com/fabric
-
-**Low Code**
-- microsoft.com/power-platform
-- learn.microsoft.com/power-platform
-- community.powerplatform.com
-- learn.microsoft.com/power-bi
 - powerbi.microsoft.com/blog
-- learn.microsoft.com/power-apps
-- learn.microsoft.com/power-pages
-- learn.microsoft.com/power-automate
-
-**General Skilling and professional interests**
-- events.microsoft.com
 - reactor.microsoft.com
-- learn.microsoft.com
 - studentambassadors.microsoft.com
-- microsoft.com/insidetrack
 - techcommunity.microsoft.com
+
+</details>
 
 Sharing a link outside this list may still generate clicks, but they won't count toward the path's official total.
 
-### Tools to automate adding your Contributor ID
+Avoid sharing just the homepage of these domains. Look for a specific piece of content, such as an article, a post, documentation, or an announcement within these pages, that fits what your audience cares about. Homepages tend to attract less attention than content aimed at a specific interest.
 
-Adding the Contributor ID to each link by hand works fine, but a few Microsoft MVPs have built tools to speed up the process:
+#### Optional tips and tools for your Contributor ID
+Adding the Contributor ID to each link manually is already enough. If you want to speed up the process, a few Microsoft MVPs have built optional tools:
 
 - A **Chrome and Edge extension**, built by MVP [Martin Brandl](https://mvp.microsoft.com/en-us/mvp/Martin%20%20Brandl-5003203), adds your Contributor ID to a link in one click. Available for [Chrome](https://chrome.google.com/webstore/detail/mvp-docs-learn-champion-e/eichjbmnicihhbhodbejfkceoknaclfd), [Edge](https://microsoftedge.microsoft.com/addons/detail/mvp-docs-learn-champion/fmbcbeaecledoacfmelbailimfbcjpkb?hl=de-DE), and as open-source code on [GitHub](https://github.com/mjisaak/mvp-docs-learn-champion-extension).
+
 - An **Azure Function**, built by MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), takes a block of text, finds the eligible URLs in it, and appends your Contributor ID to each one in the correct format. The instructions are in the [author's repository](https://gist.github.com/Ba4bes/2b77e04ca265c8a2987d567e097e1a44).
 
 > [!IMPORTANT]
@@ -202,10 +206,7 @@ Adding the Contributor ID to each link by hand works fine, but a few Microsoft M
 
 If the URL already contains a parameter introduced by `?`, add the Contributor ID with `&`. Microsoft Learn Plans do not count toward Preferred Visitors for the Influencer path.
 
-Create an experience that earns the click: a post, video, demo, thread, or technical publication with context. Dropping the same link into several group chats may increase the silence, but it will not improve the contribution.
-
 ### Path 2: Community Skiller Path
-
 The **Community Skiller Path** is for people who organize structured learning. The current target is to help participants complete **1,000 net-new modules** through Microsoft Learn Plans created and shared by the candidate.
 
 A [Microsoft Learn Plan](https://learn.microsoft.com/training/support/plans?wt.mc_id=studentamb_365381) organizes content into milestones, lets you invite participants, and tracks their progress. **Net-new** means a module must be new to that participant after they join the plan. Modules completed earlier do not count again, and the organizer's own study does not replace participant completions.
@@ -223,62 +224,33 @@ One thousand modules becomes easier to understand when you turn the number into 
     <img src="/images/posts/microsoft-student-ambassador-2026/atividade-em-comunidade.webp" alt="A diverse group of students with laptops takes part in a collaborative technical learning activity" loading="lazy" decoding="async" class="mx-auto block max-h-[30rem] w-auto max-w-full cursor-zoom-in object-contain">
   </div>
   <figcaption class="image-caption mt-2.5 text-center text-sm text-muted-foreground">
-    Photo by <a href="https://www.pexels.com/photo/people-with-laptops-at-lecture-in-technical-school-19895774/">ThisIsEngineering on Pexels</a>, used under the <a href="https://www.pexels.com/license/">Pexels license</a>.
+     Photo by <a href="https://www.pexels.com/photo/people-with-laptops-at-lecture-in-technical-school-19895774/" target="_blank" rel="noopener noreferrer">ThisIsEngineering on Pexels</a>, used under the <a href="https://www.pexels.com/license/" target="_blank" rel="noopener noreferrer">Pexels license</a>.
   </figcaption>
 </figure>
 
 Start with a clear outcome, such as publishing a first API on Azure or understanding identity fundamentals. Invite a real group, schedule short sessions, and help with questions. The documentation for [creating and managing Microsoft Learn Plans](https://learn.microsoft.com/training/support/plans-create-manage?wt.mc_id=studentamb_365381) explains how the platform works.
 
-### How to choose
-
-| If you prefer to | More suitable path | Target in August 2026 |
-| --- | --- | --- |
-| write, record, and distribute content | Community Influencer | 250 Preferred Visitors |
-| organize groups and facilitate learning | Community Skiller | 1,000 net-new modules |
-
-Do not choose Skiller only because you enjoy studying alone, since the result depends on other people. Do not dismiss Influencer because your follower count is small either. A focused community can respond better than a huge audience that never asked for the content.
-
 ## From the target to onboarding
-
 Meeting the target does not change your title immediately. Microsoft processes the metrics, verifies the requirements, and sends invitations in quarterly rounds expected in January, April, July, and October.
 
-Influencer and Skiller reports are updated weekly on Saturdays in Pacific Time and may take up to 48 hours to reflect recent activity. If Friday's result did not appear on Saturday, wait for that window before opening a support request. Not every delayed dashboard needs a war room.
+Influencer and Skiller reports are updated weekly on Saturdays in Pacific Time and may take up to 48 hours to reflect recent activity. If Friday's result did not appear on Saturday, wait for that window before opening a support request.
 
-The complete flow looks like this:
+The flow after reaching the target looks like this:
 
-1. meet the public requirements;
-2. register on the portal;
-3. join as a Registered Member;
-4. receive the Contributor ID and complete the assigned training;
-5. earn a Certification or Applied Skills credential within the 12-month window;
-6. meet the Community Influencer or Community Skiller target;
-7. wait for validation and the next quarterly round;
-8. receive and accept the invitation;
-9. complete onboarding.
+1. metrics processing;
+2. requirements validation by the team;
+3. inclusion in the quarterly invitation round;
+4. invitation acceptance by the student;
+5. onboarding completion.
 
 Only after accepting the invitation and completing onboarding do you receive the official **Microsoft Student Ambassador** title, certificate, `@studentambassadors.com` email account, benefits, and access to the program community in Microsoft Teams.
 
 This distinction matters. A Registered Member participates in the entry community but should not present themselves as a Student Ambassador yet. The title begins at the end of this flow, not when you click the registration button.
 
-## Benefits and recognition at each milestone
+## After you become a Student Ambassador
+After onboarding, the logic changes: the Influencer and Skiller paths are no longer the gateway into the program. The focus shifts to keeping your participation active each quarter, organizing eligible activities, and building a consistent record of contribution.
 
-The official [milestones page](https://mvp.microsoft.com/studentambassadors/milestones) separates benefits by stage. Your certificate is updated whenever you advance to a new milestone. Swag, vouchers, and special experiences depend on your level, availability, or an invitation.
-
-| Stage | What you receive or may unlock |
-| --- | --- |
-| **Student Ambassador** | Title, certificate, `@studentambassadors.com` email, Microsoft 365, Visual Studio Enterprise, USD 150 in monthly Azure credits, AI tools, Microsoft Teams, program badges, and an annual Credly digital badge. |
-| **Associate Student Ambassador** | Previous benefits, USD 100 in swag credit for the Snappy store, an opportunity for a certification voucher, possible program support for a campus club letter, event support, feedback groups, collaborative testing sessions known as bug bashes, and pre-release testing. |
-| **Senior Student Ambassador** | Previous benefits, USD 200 in swag credit for the Snappy store, consideration for special events, campaign leadership, pilots, mentoring with Microsoft MVPs, and possible consideration for an MVP program nomination after graduation. |
-
-The indirect benefits matter too. Producing content deepens your technical knowledge. Organizing events develops communication, teaching, leadership, and planning. Community participation expands your network with other Ambassadors, MVPs, and Microsoft employees, creating opportunities for collaboration, mentoring, and a stronger portfolio.
-
-> [!NOTE]
-> Azure credit is not cash and cannot be withdrawn. Charges above the available balance are the Ambassador's responsibility. Vouchers, letters, swag, and events are not automatic. The swag values listed here were current in August 2026, and Snappy credit must be redeemed within the deadline communicated by the program.
-
-Do not confuse the Student Ambassador's USD 150 in monthly Azure credit with the USD 100 for 12 months from Azure for Students required during registration. They are separate offers used at different stages of the journey.
-
-## How to remain in the program after onboarding
-
+### How to remain in the program
 The two paths described earlier help you enter the program. After onboarding, an Ambassador must complete two activities every quarter: reach **50 Preferred Visitors** by sharing Microsoft content with the Contributor ID and host **one approved event** that teaches participants about Microsoft technology.
 
 The quarters run from January through March, April through June, July through September, and October through December. Meeting the requirements renews your membership for another quarter. Ambassadors who do not meet them may be removed from the program.
@@ -288,11 +260,11 @@ Ambassadors who also satisfy the reward requirement receive **5,000 Microsoft Re
 People who completed the previous quarter may also be invited to **Insider Calls**, which cover career development, leadership, and community topics. **Rotations** connect Ambassadors with product teams and require two approved events in the rotation's technology area during the previous quarter. Taking part in a Rotation does not replace the current quarter's membership requirements.
 
 ## How to advance to Associate and Senior
-
 After onboarding, each advancement follows a different process. Associate depends on an approved event. Senior depends on consistent impact and a nomination from the program team.
 
-### From Student Ambassador to Associate
+Until early 2026, the milestones were called **Alpha**, **Beta**, and **Gold**. With the update introduced during the first half of 2026, they became **Student Ambassador**, **Associate Student Ambassador**, and **Senior Student Ambassador**, respectively. From this point forward, I use the current names.
 
+### From Student Ambassador to Associate
 To advance, you must:
 
 1. create and present an event that teaches participants about Microsoft technology;
@@ -303,7 +275,6 @@ To advance, you must:
 Events hosted by third parties or Microsoft are not eligible. Learn Plans do not count toward this advancement either. Each event can be submitted only once, and only one Ambassador can use it to advance to Associate.
 
 ### From Associate to Senior
-
 The program team reviews nominations in January and July, looking for sustained contribution and demonstrable impact.
 
 The criteria considered include:
@@ -318,8 +289,24 @@ Meeting the criteria does not make the promotion automatic. Nomination and appro
 
 Being one of two Seniors in Brazil makes me proud, but it also brings responsibility. Recognition matters when it becomes room to guide new members and help the community grow. A title without delivery is just an expensive line on your profile.
 
-## Snapshots from the journey
+## Benefits and recognition at each milestone
+The official [milestones page](https://mvp.microsoft.com/studentambassadors/milestones) separates benefits by stage. Your certificate is updated whenever you advance to a new milestone. Swag, vouchers, and special experiences depend on your level, availability, or an invitation.
 
+The table below provides a consolidated view of what changes at each milestone and which benefits or opportunities may become available along the journey.
+
+| Stage | What you receive or may unlock |
+| --- | --- |
+| **Student Ambassador** | Title, certificate, `@studentambassadors.com` email, Microsoft 365, Visual Studio Enterprise, USD 150 in monthly Azure credits, AI tools, Microsoft Teams, program badges, and an annual badge on Credly, a digital credential platform. |
+| **Associate Student Ambassador** | Previous benefits, USD 100 in swag credit for redemption in the Snappy store, an opportunity for a certification voucher, a possible program letter for a university club called a Campus Club letter, event support, feedback groups, collaborative testing sessions known as bug bashes, and pre-release testing. |
+| **Senior Student Ambassador** | Previous benefits, USD 200 in swag credit for the Snappy store, consideration for special events, campaign leadership, pilots, mentoring with Microsoft MVPs, and possible consideration for an MVP program nomination after graduation. |
+
+The indirect benefits matter too. Producing content deepens your technical knowledge. Organizing events develops communication, teaching, leadership, and planning. Community participation expands your network with other Ambassadors, MVPs, and Microsoft employees, creating opportunities for collaboration, mentoring, and a stronger portfolio.
+
+Azure credit is not cash and cannot be withdrawn. Charges above the available balance are the Ambassador's responsibility. Vouchers, letters, swag, and events are not automatic. The swag values listed here were current in August 2026, and Snappy credit must be redeemed within the deadline communicated by the program.
+
+Do not confuse the Student Ambassador's USD 150 in monthly Azure credit with the USD 100 for 12 months from Azure for Students. They are separate offers used at different stages of the journey.
+
+## Snapshots from the journey
 I selected a few images that make this journey more tangible. The photos move in a continuous loop and pause when the pointer is over an image. On mobile, swipe sideways to move forward or back. Select any image to enlarge it. On the former Beta and Gold milestone photos, place the pointer over the image to read the context behind the change.
 
 <div class="image-carousel not-prose my-8" data-image-carousel aria-label="Microsoft Student Ambassadors journey snapshots">
@@ -374,8 +361,14 @@ I selected a few images that make this journey more tangible. The photos move in
   </div>
 </div>
 
-## References
+## Conclusion
+The current path requires aligned accounts, a recent credential, and the target from one contribution path. Azure for Students is normally part of the entry requirements, but that requirement is temporarily paused as of this publication. After validation, invitation, and onboarding, you move from Registered Member to Student Ambassador.
 
+The journey continues through approved events, quarterly participation, and consistent contribution. I started in 2024, and I now see the program from the Senior milestone. The title matters, but the best stories come from people who learned something at one of your activities and from the confidence you gained to lead the next one.
+
+Still have a question about registration, or want to share which path you chose? [Message me on LinkedIn](https://www.linkedin.com/in/tkusal/) and tell me where you are in the journey.
+
+## References
 - [Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors)
 - [Student Ambassadors FAQ](https://mvp.microsoft.com/faq?section=student)
 - [Student Ambassadors program milestones](https://mvp.microsoft.com/studentambassadors/milestones)
@@ -387,11 +380,3 @@ I selected a few images that make this journey more tangible. The photos move in
 - [Microsoft Learn Plans overview](https://learn.microsoft.com/training/support/plans?wt.mc_id=studentamb_365381)
 - [Create and manage Microsoft Learn Plans](https://learn.microsoft.com/training/support/plans-create-manage?wt.mc_id=studentamb_365381)
 - Cover image edited and composed by Thiago Kusal, based on a photo by [Startup Stock Photos on Pexels](https://www.pexels.com/photo/person-sitting-in-front-of-the-laptop-computer-7102/), provided as CC0 on the original photo page.
-
-## Conclusion
-
-The current path requires aligned accounts, Azure for Students, a recent credential, and the target from one contribution path. After validation, invitation, and onboarding, you move from Registered Member to Student Ambassador.
-
-The journey continues through approved events, quarterly participation, and consistent contribution. I started in 2024, and I now see the program from the Senior milestone. The title matters, but the best stories come from people who learned something at one of your activities and from the confidence you gained to lead the next one.
-
-Still have a question about registration, or want to share which path you chose? [Message me on LinkedIn](https://www.linkedin.com/in/tkusal/) and tell me where you are in the journey.
