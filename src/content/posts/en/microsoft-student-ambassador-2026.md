@@ -18,7 +18,7 @@ draft: false
 
 I joined the Microsoft Student Ambassadors program in 2024. Since then, I have organized activities, contributed to the community, progressed through the program milestones, and become a **Senior Student Ambassador**.
 
-At the time of publication, Brazil has two active Seniors: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/) and [me](https://www.linkedin.com/in/tkusal/). That is a snapshot from August 2026, and it can change as more Ambassadors advance.
+At the time of publication, Brazil has two active Seniors: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/) and me. That is a snapshot from August 2026, and it can change as more Ambassadors advance.
 
 This experience has placed me on both sides of the conversation. I was once the student trying to figure out where to begin. Today, I help people who arrive with the same questions: Do I need a certification? Is registration an application process? Which path should I choose? When can I actually use the title?
 
@@ -35,6 +35,8 @@ It is not an internship, a job, or a professional certification, and it does not
 
 The program is not limited to technology degrees. A Business student can run a session about Microsoft 365 Copilot, a Design student can teach AI-assisted prototyping, and an Engineering student can organize an Azure learning journey. What matters is not the name of your degree. It is your ability to learn, share, and lead responsibly.
 
+The program's official materials also lean into an innovation angle: building AI-driven solutions, entering competitions like the Imagine Cup, and exploring FounderHub for Startups resources for anyone already thinking about entrepreneurship. That does not replace the contribution path you choose at registration, but it shows the program is also a space for people who want to move past theory and test ideas with Microsoft technology.
+
 You do not need to arrive as an expert either. For students near the beginning of university, the program offers a way to build practical experience while learning with a community.
 
 The Student Ambassadors program can also be a useful starting point for anyone who hopes to become a [Microsoft MVP](https://mvp.microsoft.com/) someday. Creating content, organizing events, contributing to communities, and producing measurable technical impact are all relevant experiences in that direction. The programs are independent, though. Being an Ambassador does not guarantee an MVP nomination or award.
@@ -45,7 +47,7 @@ According to the official [Student Ambassadors FAQ](https://mvp.microsoft.com/fa
 
 1. be at least 18 years old when you register;
 2. be enrolled full time at an accredited academic institution, such as a college or university;
-3. have an active Azure for Students account;
+3. have an active Azure for Students account; (the Azure for Students active account requirement has been paused for now)
 4. not have been previously removed from the program by Microsoft;
 5. not be a current Microsoft employee or contractor while participating.
 
@@ -76,6 +78,9 @@ Confirm that you have:
 - current information about your institution and degree.
 
 Do not post academic documents, subscription IDs, or personal information in public forums when asking for help. If you have a linking or verification problem, use the official contact listed in the FAQ: `sa-help@microsoft.com`.
+
+> [!WARNING]
+> If the Learn Username field was filled in incorrectly or with extra information during registration, your progress reports may fail to index correctly later on. If you notice this problem, delete your current registration and register again with the correct field, rather than trying to fix it afterward through support.
 
 ### Registration and the Code of Conduct
 
@@ -118,6 +123,8 @@ The **Community Influencer Path** is designed for people who create and share on
 
 Preferred Visitors does not mean 250 raw clicks. It is a Microsoft metric, and its exact dimensions are not publicly disclosed. Refreshing a page, buying traffic, or dropping links without context does not turn a click into a valid contribution. Use the program report as your reference, not the impression counter on a social platform.
 
+An example helps visualize the difference: sharing a link on LinkedIn with context, explaining why that resource solves a real problem, tends to generate genuine clicks from interested people — and those people may repost it to their own network, growing the reach organically. Dropping the same link into several WhatsApp groups with no connection to what people there actually care about tends to generate silence or irritation, not a valid contribution.
+
 In practice:
 
 - choose an eligible Microsoft page that is useful to your audience;
@@ -126,6 +133,24 @@ In practice:
 - explain the problem the resource helps solve;
 - share it in channels where there is genuine interest;
 - monitor the progress report.
+
+### Eligible pages for your Contributor ID
+
+Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors:
+
+| Domain | Domain |
+| --- | --- |
+| Azure.Microsoft.Com | Imaginecup.Microsoft.Com |
+| Blog.Fabric.Microsoft.Com | Learn.Microsoft.Com |
+| Code.Visualstudio.Com | Learn.Microsoft.Com/Copilot |
+| Community.Fabric.Microsoft.Com | Microsoft.Com/Microsoft-Cloud/Blog |
+| Devblogs.Microsoft.Com | Microsoft.Com/Microsoft-Fabric |
+| Developer.Microsoft.Com | Microsoft.Com/Startups |
+| Dotnet.Microsoft.Com | Mvp.Microsoft.Com |
+| Events.Microsoft.Com | Reactor.Microsoft.Com |
+| Foundershub.Startups.Microsoft.Com | Techcommunity.Microsoft.Com |
+
+Sharing a link outside this list may still generate clicks, but they won't count toward the path's official total.
 
 If the URL already contains a parameter introduced by `?`, add the Contributor ID with `&`. Microsoft Learn Plans do not count toward Preferred Visitors for the Influencer path.
 
@@ -136,6 +161,8 @@ Create an experience that earns the click: a post, video, demo, thread, or techn
 The **Community Skiller Path** is for people who organize structured learning. The current target is to help participants complete **1,000 net-new modules** through Microsoft Learn Plans created and shared by the candidate.
 
 A [Microsoft Learn Plan](https://learn.microsoft.com/training/support/plans?wt.mc_id=studentamb_365381) organizes content into milestones, lets you invite participants, and tracks their progress. **Net-new** means a module must be new to that participant after they join the plan. Modules completed earlier do not count again, and the organizer's own study does not replace participant completions.
+
+A simplified example helps make the rule stick: if someone already completed a module on cloud computing months ago and later joins a Learn Plan that includes that same module, that earlier completion does not count as net-new. Only what the person completes after joining the plan counts toward the target.
 
 When creating the plan, add the Student Ambassadors Contributor ID at the end of its description and to the invitation link, following the path handbook. Microsoft Learn may add the Learn Contributor ID automatically. If that happens, keep the existing parameter and append the program identifier with `&`.
 

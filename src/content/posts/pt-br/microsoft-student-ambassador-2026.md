@@ -36,6 +36,8 @@ Não é estágio, emprego ou certificação profissional, nem garante uma vaga n
 
 O programa não é exclusivo de cursos de tecnologia. Uma pessoa de Administração pode criar uma sessão sobre Microsoft 365 Copilot, alguém de Design pode ensinar prototipação com IA e uma estudante de Engenharia pode organizar uma jornada de Azure. O ponto não é o nome do curso, mas a capacidade de aprender, compartilhar e liderar com responsabilidade.
 
+O material oficial do programa também reforça um viés de inovação: construir soluções orientadas por IA, participar de competições como o Imagine Cup e explorar recursos do FounderHub for Startups para quem já pensa em empreender. Isso não substitui a trilha de contribuição escolhida no cadastro, mas mostra que o programa também é um espaço para quem quer sair da teoria e testar ideias com tecnologia da Microsoft.
+
 Também não é necessário chegar como especialista. Para quem está no início da graduação, o programa permite construir experiência prática enquanto aprende em comunidade.
 
 O Student Ambassadors também pode ser um bom ponto de partida para quem deseja se tornar [Microsoft MVP](https://mvp.microsoft.com/) no futuro. Produzir conteúdo, organizar eventos, contribuir com comunidades e criar impacto técnico são experiências relevantes nessa direção. Os programas, porém, são independentes: ser Ambassador não garante uma indicação nem uma futura nomeação como MVP.
@@ -46,7 +48,7 @@ Segundo o [FAQ oficial do Student Ambassadors](https://mvp.microsoft.com/faq?sec
 
 1. ter pelo menos 18 anos na data do cadastro;
 2. estar matriculado em tempo integral em uma instituição acadêmica credenciada, como faculdade ou universidade;
-3. possuir uma conta ativa do Azure for Students;
+3. possuir uma conta ativa do Azure for Students; (a exigência de conta ativa do Azure for Students foi suspensa por enquanto)
 4. não ter sido removido anteriormente do programa pela Microsoft;
 5. não ser funcionário nem prestador de serviços atual da Microsoft durante a participação.
 
@@ -77,6 +79,9 @@ Confirme estes itens:
 - dados atuais da instituição e do curso.
 
 Não publique documentos acadêmicos, IDs de assinatura ou dados pessoais para pedir ajuda em fóruns. Se houver problema de vínculo ou verificação, use o contato oficial exibido no FAQ, `sa-help@microsoft.com`.
+
+> [!WARNING]
+> Se o campo Learn Username foi preenchido errado ou com informação extra no cadastro, seus relatórios de progresso podem não indexar corretamente depois. Se perceber esse problema, apague o registro atual e cadastre-se novamente com o campo correto, em vez de tentar corrigir depois pelo suporte.
 
 ### Registro e código de conduta
 
@@ -119,6 +124,8 @@ A **Community Influencer Path** é voltada a quem cria e compartilha conteúdo o
 
 Preferred Visitors não significa 250 cliques brutos. É uma métrica própria da Microsoft, e suas dimensões exatas não são divulgadas. Recarregar uma página, comprar tráfego ou espalhar links sem contexto não transforma um clique em contribuição válida. Use o relatório do programa como referência, não o contador de impressões da rede social.
 
+Um exemplo ajuda a visualizar a diferença: compartilhar um link no LinkedIn com contexto, explicando por que aquele conteúdo resolve um problema real, tende a gerar cliques genuínos de pessoas interessadas — e essas pessoas podem repostar para a própria rede, ampliando o alcance de forma orgânica. Já jogar o mesmo link em vários grupos do WhatsApp sem relação com o interesse de quem está ali tende a gerar silêncio ou irritação, não uma contribuição válida.
+
 Na prática:
 
 - escolha uma página Microsoft elegível e útil para seu público;
@@ -127,6 +134,24 @@ Na prática:
 - explique o problema que o recurso ajuda a resolver;
 - compartilhe em canais nos quais exista interesse real;
 - acompanhe o relatório de progresso.
+
+### Páginas elegíveis para usar com o Contributor ID
+
+Nem toda página da Microsoft aceita o Contributor ID. Só o tráfego para os domínios abaixo conta para os 250 Preferred Visitors:
+
+| Domínio | Domínio |
+| --- | --- |
+| Azure.Microsoft.Com | Imaginecup.Microsoft.Com |
+| Blog.Fabric.Microsoft.Com | Learn.Microsoft.Com |
+| Code.Visualstudio.Com | Learn.Microsoft.Com/Copilot |
+| Community.Fabric.Microsoft.Com | Microsoft.Com/Microsoft-Cloud/Blog |
+| Devblogs.Microsoft.Com | Microsoft.Com/Microsoft-Fabric |
+| Developer.Microsoft.Com | Microsoft.Com/Startups |
+| Dotnet.Microsoft.Com | Mvp.Microsoft.Com |
+| Events.Microsoft.Com | Reactor.Microsoft.Com |
+| Foundershub.Startups.Microsoft.Com | Techcommunity.Microsoft.Com |
+
+Compartilhar um link fora dessa lista, os clicks não entrarãom na contagem oficial da trilha.
 
 Se a URL já tiver um parâmetro iniciado por `?`, o identificador adicional deve começar por `&`. Microsoft Learn Plans não entram na contagem de Preferred Visitors da trilha Influencer.
 
@@ -137,6 +162,8 @@ Produza uma experiência que justifique o clique: artigo, vídeo, demonstração
 A **Community Skiller Path** é voltada a quem organiza aprendizagem estruturada. A meta atual é fazer participantes concluírem **1.000 módulos net-new** em Microsoft Learn Plans criados e compartilhados pelo candidato.
 
 Um [Microsoft Learn Plan](https://learn.microsoft.com/training/support/plans?wt.mc_id=studentamb_365381) organiza conteúdos em marcos, permite convidar participantes e acompanha o progresso. **Net-new** significa que o módulo precisa ser novo para aquela pessoa depois que ela entra no plano. Módulos concluídos anteriormente não contam novamente, e o estudo do próprio organizador não substitui as conclusões dos participantes.
+
+Um exemplo simplificado ajuda a fixar a regra: se alguém já concluiu um módulo sobre computação em nuvem meses atrás e depois entra em um Learn Plan que contém esse mesmo módulo, essa conclusão antiga não conta como net-new. Só o que a pessoa completa depois de entrar no plano é somado à meta.
 
 Ao criar o plano, inclua o Student Ambassadors Contributor ID no fim da descrição e também no link de convite, conforme o manual da trilha. O Microsoft Learn pode adicionar automaticamente o Learn Contributor ID. Nesse caso, mantenha esse parâmetro e acrescente o identificador do programa com `&`.
 
