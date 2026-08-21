@@ -50,7 +50,7 @@ Segundo o [FAQ oficial do Student Ambassadors](https://mvp.microsoft.com/faq?sec
 5. não ser funcionário nem prestador de serviços atual da Microsoft durante a participação.
 
 > [!IMPORTANT]
-> Na data de 21/08/2026, em que publico essa postagem, a exigência de conta ativa do Azure for Students foi suspensa por enquanto. Você pode seguir com o cadastro normalmente mesmo sem essa conta enquanto a pausa estiver em vigor. Acompanhe o FAQ oficial do programa para confirmar se e quando esse requisito volta a valer.
+> Use uma conta Microsoft que você consiga manter. O ideal é que perfil do Learn, Azure for Students e cadastro do programa estejam associados à mesma identidade. Espalhar cada serviço por uma conta diferente costuma criar problemas de vínculo e deixar o processo parado como ticket sem grupo de atribuição.
 
 Há restrições geográficas relacionadas às regras de exportação dos Estados Unidos. O FAQ lista Cuba, Irã, Coreia do Norte, Sudão, Síria, Rússia, Belarus e a região da Crimeia como localidades não qualificadas. Estudantes com visto F-1 nos Estados Unidos devem confirmar com a instituição ou com orientação jurídica de imigração se a participação é compatível com o próprio status.
 
@@ -59,7 +59,7 @@ Há restrições geográficas relacionadas às regras de exportação dos Estado
 O Azure for Students é requisito de entrada, não apenas um benefício colocado na vitrine. A oferta atende estudantes de instituições de ensino superior, exige verificação acadêmica e fornece USD 100 em crédito por 12 meses, sem cartão de crédito, conforme a [documentação do Azure for Students](https://learn.microsoft.com/azure/education-hub/find-ids?wt.mc_id=studentamb_365381).
 
 > [!IMPORTANT]
-> Use uma conta Microsoft que você consiga manter. O ideal é que perfil do Learn, Azure for Students e cadastro do programa estejam associados à mesma identidade. Espalhar cada serviço por uma conta diferente costuma criar problemas de vínculo e deixar o processo parado como ticket sem grupo de atribuição.
+> Na data de 21/08/2026, em que publico essa postagem, a exigência de conta ativa do Azure for Students foi suspensa por enquanto. Você pode seguir com o cadastro normalmente mesmo sem essa conta enquanto a pausa estiver em vigor. Acompanhe o FAQ oficial do programa para confirmar se e quando esse requisito volta a valer.
 
 ## Como fazer o cadastro
 

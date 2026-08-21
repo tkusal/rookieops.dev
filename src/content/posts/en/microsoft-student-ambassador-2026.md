@@ -50,7 +50,7 @@ According to the official [Student Ambassadors FAQ](https://mvp.microsoft.com/fa
 5. not be a current Microsoft employee or contractor while participating.
 
 > [!IMPORTANT]
-> As of August 21, 2026, the date I'm publishing this post, the Azure for Students active account requirement has been paused for now. You can proceed with registration normally even without this account while the pause is in effect. Check the official program FAQ to confirm whether and when this requirement comes back into effect.
+> Use a Microsoft account you can keep. Ideally, your Microsoft Learn profile, Azure for Students subscription, and program registration should all use the same identity. Spreading each service across a different account often creates linking problems and leaves the process stuck like a ticket with no assignment group.
 
 Geographic restrictions also apply because of United States export regulations. The FAQ lists Cuba, Iran, North Korea, Sudan, Syria, Russia, Belarus, and the Crimea region as ineligible locations. Students in the United States on an F-1 visa should check with their institution or qualified immigration counsel to confirm that participation is compatible with their status.
 
@@ -59,7 +59,7 @@ Geographic restrictions also apply because of United States export regulations. 
 Azure for Students is an entry requirement, not just a shiny benefit in the display window. The offer is available to higher education students, requires academic verification, and provides USD 100 in credit for 12 months without requiring a credit card, as described in the [Azure for Students documentation](https://learn.microsoft.com/azure/education-hub/find-ids?wt.mc_id=studentamb_365381).
 
 > [!IMPORTANT]
-> Use a Microsoft account you can keep. Ideally, your Microsoft Learn profile, Azure for Students subscription, and program registration should all use the same identity. Spreading each service across a different account often creates linking problems and leaves the process stuck like a ticket with no assignment group.
+> As of August 21, 2026, the date I'm publishing this post, the Azure for Students active account requirement has been paused for now. You can proceed with registration normally even without this account while the pause is in effect. Check the official program FAQ to confirm whether and when this requirement comes back into effect.
 
 ## How to register
 
