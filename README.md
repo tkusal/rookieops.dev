@@ -54,14 +54,14 @@ Os artigos ficam em `src/content/posts/pt-br/`. Exemplo de frontmatter:
 
 ```yaml
 ---
-title: "Título claro e específico do artigo"
-description: "Resumo exclusivo usado nos resultados de busca, listagens e RSS."
+title: 'Título claro e específico do artigo'
+description: 'Resumo exclusivo usado nos resultados de busca, listagens e RSS.'
 pubDate: 2026-07-25
-author: "Nome da pessoa autora"
-authorUrl: "https://github.com/usuario"
+author: 'Nome da pessoa autora'
+authorUrl: 'https://github.com/usuario'
 lang: pt-br
-categories: ["Categoria"]
-tags: ["Tag"]
+categories: ['Categoria']
+tags: ['Tag']
 draft: false
 ---
 ```

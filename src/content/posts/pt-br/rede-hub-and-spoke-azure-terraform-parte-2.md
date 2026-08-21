@@ -1,14 +1,14 @@
 ---
-title: "Rede hub and spoke no Azure com Terraform, parte 2: NSGs e regras de segurança"
-description: "Proteja subnets de uma rede hub and spoke no Azure com NSGs modulares, regras explícitas e associações gerenciadas pelo Terraform."
+title: 'Rede hub and spoke no Azure com Terraform, parte 2: NSGs e regras de segurança'
+description: 'Proteja subnets de uma rede hub and spoke no Azure com NSGs modulares, regras explícitas e associações gerenciadas pelo Terraform.'
 pubDate: 2026-08-13
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Cloud"]
-tags: ["Azure", "Terraform", "IaC", "NSG", "Redes", "Intermediário"]
-cover: "/images/posts/rede-hub-and-spoke-azure-terraform-parte-2/capa.webp"
-coverAlt: "Ilustração isométrica de uma rede hub and spoke no Azure com escudos e cadeados representando NSGs junto às subnets"
+categories: ['Cloud']
+tags: ['Azure', 'Terraform', 'IaC', 'NSG', 'Redes', 'Intermediário']
+cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-2/capa.webp'
+coverAlt: 'Ilustração isométrica de uma rede hub and spoke no Azure com escudos e cadeados representando NSGs junto às subnets'
 toc: true
 comments: false
 mermaid: true
@@ -81,22 +81,22 @@ Todo NSG do laboratório recebe uma regra final de negação de entrada e outra 
 
 O Azure aceita prioridades de `100` a `4096` para regras personalizadas. Portanto, `4096` é literalmente o último slot disponível antes das regras padrão entrarem em cena. As liberações começam em `100`, deixando espaço entre elas e a negação final para requisitos futuros sem exigir uma renumeração coletiva. Em uma rede real, vale reservar faixas por finalidade e registrar essa convenção. Números aleatórios funcionam até o dia em que duas equipes escolhem `237` pelo mesmo motivo místico.
 
-| NSG | Prioridade | Direção | Protocolo | Origem | Destino | Porta de destino | Ação |
-| --- | ---: | --- | --- | --- | --- | --- | --- |
-| `web` | 100 | Entrada | TCP | `Internet` | `10.65.10.0/24` | 443 | Permitir |
-| `web` | 4096 | Entrada | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `web` | 100 | Saída | TCP | `10.65.10.0/24` | `10.65.20.0/24` | 8080 | Permitir |
-| `web` | 4096 | Saída | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `app` | 100 | Entrada | TCP | `10.65.10.0/24` | `10.65.20.0/24` | 8080 | Permitir |
-| `app` | 4096 | Entrada | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `app` | 4096 | Saída | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `data` | 100 | Entrada | TCP | `10.66.20.0/24` | `10.66.10.0/24` | 1433 | Permitir |
-| `data` | 4096 | Entrada | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `data` | 4096 | Saída | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `integration` | 100 | Entrada | TCP | `10.64.10.0/24` | `10.66.20.0/24` | 443 | Permitir |
-| `integration` | 4096 | Entrada | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
-| `integration` | 100 | Saída | TCP | `10.66.20.0/24` | `10.66.10.0/24` | 1433 | Permitir |
-| `integration` | 4096 | Saída | Qualquer | Qualquer | Qualquer | Qualquer | Negar |
+| NSG           | Prioridade | Direção | Protocolo | Origem          | Destino         | Porta de destino | Ação     |
+| ------------- | ---------: | ------- | --------- | --------------- | --------------- | ---------------- | -------- |
+| `web`         |        100 | Entrada | TCP       | `Internet`      | `10.65.10.0/24` | 443              | Permitir |
+| `web`         |       4096 | Entrada | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `web`         |        100 | Saída   | TCP       | `10.65.10.0/24` | `10.65.20.0/24` | 8080             | Permitir |
+| `web`         |       4096 | Saída   | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `app`         |        100 | Entrada | TCP       | `10.65.10.0/24` | `10.65.20.0/24` | 8080             | Permitir |
+| `app`         |       4096 | Entrada | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `app`         |       4096 | Saída   | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `data`        |        100 | Entrada | TCP       | `10.66.20.0/24` | `10.66.10.0/24` | 1433             | Permitir |
+| `data`        |       4096 | Entrada | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `data`        |       4096 | Saída   | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `integration` |        100 | Entrada | TCP       | `10.64.10.0/24` | `10.66.20.0/24` | 443              | Permitir |
+| `integration` |       4096 | Entrada | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
+| `integration` |        100 | Saída   | TCP       | `10.66.20.0/24` | `10.66.10.0/24` | 1433             | Permitir |
+| `integration` |       4096 | Saída   | Qualquer  | Qualquer        | Qualquer        | Qualquer         | Negar    |
 
 `source_port_range` é `*` em todas as regras deste laboratório. A porta de origem escolhida pelo cliente é efêmera, normalmente uma porta alta e dinâmica, portanto não deve ser confundida com a porta conhecida do serviço no destino. O campo usa `optional(string, "*")` em `variables.tf` e pode ser omitido de cada regra sem mudar esse comportamento.
 

@@ -9,8 +9,7 @@ function fallbackCopy(value: string) {
   document.body.append(input);
   input.select();
   const executeCopy = Reflect.get(document, 'execCommand') as
-    | ((commandId: string) => boolean)
-    | undefined;
+    ((commandId: string) => boolean) | undefined;
   const copied = executeCopy?.call(document, 'copy') ?? false;
   input.remove();
 
@@ -69,8 +68,7 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-share-root]')) 
   if (!toggle || !menu || !copyButton || menuItems.length === 0) continue;
 
   const canonicalUrl =
-    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href ||
-    window.location.href;
+    document.querySelector<HTMLLinkElement>('link[rel="canonical"]')?.href || window.location.href;
   const title = toggle.dataset.shareTitle || document.title;
   const whatsapp = root.querySelector<HTMLAnchorElement>('[data-share-platform="whatsapp"]');
   const linkedin = root.querySelector<HTMLAnchorElement>('[data-share-platform="linkedin"]');
@@ -140,7 +138,8 @@ for (const root of document.querySelectorAll<HTMLElement>('[data-share-root]')) 
     let nextIndex: number | undefined;
 
     if (event.key === 'ArrowDown') nextIndex = (currentIndex + 1) % menuItems.length;
-    if (event.key === 'ArrowUp') nextIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
+    if (event.key === 'ArrowUp')
+      nextIndex = (currentIndex - 1 + menuItems.length) % menuItems.length;
     if (event.key === 'Home') nextIndex = 0;
     if (event.key === 'End') nextIndex = menuItems.length - 1;
 

@@ -23,6 +23,7 @@ const base = process.env.ASTRO_BASE;
 
 // https://astro.build/config
 export default defineConfig({
+  prefetch: true,
   ...(site ? { site } : {}),
   ...(base ? { base } : {}),
   i18n: {
@@ -37,10 +38,21 @@ export default defineConfig({
   markdown: {
     processor: unified({
       remarkPlugins: [remarkMath, remarkDirective, remarkTabs],
-      rehypePlugins: [rehypeKatex, rehypeDetectMath, rehypeHeadingAnchors, rehypeAlerts, rehypeImageGroups, rehypeMermaid, [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]]
+      rehypePlugins: [
+        rehypeKatex,
+        rehypeDetectMath,
+        rehypeHeadingAnchors,
+        rehypeAlerts,
+        rehypeImageGroups,
+        rehypeMermaid,
+        [rehypeExternalLinks, { target: '_blank', rel: ['noopener', 'noreferrer'] }]
+      ]
     })
   },
   vite: {
-    plugins: [tailwindcss()]
+    plugins: [tailwindcss()],
+    build: {
+      chunkSizeWarningLimit: 1200
+    }
   }
 });

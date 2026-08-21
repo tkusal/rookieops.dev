@@ -32,8 +32,8 @@ if (banner) {
 
       const stored = JSON.parse(rawValue) as Partial<StoredConsent>;
       if (
-        stored.version !== STORAGE_VERSION
-        || (stored.analytics !== 'granted' && stored.analytics !== 'denied')
+        stored.version !== STORAGE_VERSION ||
+        (stored.analytics !== 'granted' && stored.analytics !== 'denied')
       ) {
         return null;
       }

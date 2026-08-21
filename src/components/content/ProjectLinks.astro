@@ -15,19 +15,21 @@ interface Props {
 const { links = [] } = Astro.props;
 ---
 
-{links.length > 0 && (
-  <div class="mb-8 flex flex-wrap gap-3">
-    {links.map((link) => (
-      <a
-        href={link.url}
-        class:list={[
-          'inline-flex items-center gap-2 rounded-[var(--radius-control)] px-3 py-2 text-sm transition-colors',
-          'border border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground'
-        ]}
-      >
-        {link.icon && <Icon name={link.icon} class="h-4 w-4" />}
-        {link.label}
-      </a>
-    ))}
-  </div>
-)}
+{
+  links.length > 0 && (
+    <div class="mb-8 flex flex-wrap gap-3">
+      {links.map((link) => (
+        <a
+          href={link.url}
+          class:list={[
+            'inline-flex items-center gap-2 rounded-[var(--radius-control)] px-3 py-2 text-sm transition-colors',
+            'border-border text-muted-foreground hover:bg-accent hover:text-accent-foreground border'
+          ]}
+        >
+          {link.icon && <Icon name={link.icon} class="h-4 w-4" />}
+          {link.label}
+        </a>
+      ))}
+    </div>
+  )
+}

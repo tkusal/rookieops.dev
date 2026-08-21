@@ -8,7 +8,8 @@ export const siteConfig = {
     en: 'RookieOps - Infrastructure, Cloud, and DevOps'
   },
   description: {
-    'pt-br': 'Guias práticos sobre servidores Windows e Linux, Azure, AWS, DevOps e automação com Terraform, Ansible, containers e scripting.',
+    'pt-br':
+      'Guias práticos sobre servidores Windows e Linux, Azure, AWS, DevOps e automação com Terraform, Ansible, containers e scripting.',
     en: 'Practical guides to Windows and Linux servers, Azure, AWS, DevOps, and automation with Terraform, Ansible, containers, and scripting.'
   },
   url: 'https://rookieops.dev',
@@ -36,7 +37,8 @@ export const siteConfig = {
       en: 'From rookie to ops, one coffee at a time.'
     },
     description: {
-      'pt-br': 'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!',
+      'pt-br':
+        'Conteúdo técnico sem enrolação. Tutoriais, scripts, notícias e guias sobre infraestrutura, cloud e soluções DevOps. Tudo o que você precisa!',
       en: 'Technical content without the runaround. Tutorials, scripts, news, and guides about infrastructure, cloud, and DevOps solutions.'
     },
     mobileDescription: {
@@ -46,7 +48,11 @@ export const siteConfig = {
     avatar: '/favicon.svg',
     social: [
       { name: 'GitHub', url: 'https://github.com/tkusal', icon: 'simple-icons:github' },
-      { name: 'LinkedIn', url: 'https://www.linkedin.com/in/tkusal/', icon: 'simple-icons:linkedin' }
+      {
+        name: 'LinkedIn',
+        url: 'https://www.linkedin.com/in/tkusal/',
+        icon: 'simple-icons:linkedin'
+      }
     ]
   },
   contentWidth: '56rem',
@@ -82,13 +88,13 @@ export const siteConfig = {
     }
   ],
   comments: {
-    enabled: false,
+    enabled: true,
     provider: 'giscus',
     giscus: {
-      repo: '',
-      repoId: '',
-      category: '',
-      categoryId: '',
+      repo: 'tkusal/rookieops.dev',
+      repoId: 'R_kgDOTiwBMg',
+      category: 'General',
+      categoryId: 'DIC_kwDOTiwBMs4DD6Uc',
       mapping: 'pathname',
       strict: '0',
       reactionsEnabled: '1',
@@ -129,7 +135,8 @@ export const siteConfig = {
         en: '/license/'
       },
       description: {
-        'pt-br': 'A republicação exige crédito à pessoa autora e ao RookieOps, além de um link para o artigo original.',
+        'pt-br':
+          'A republicação exige crédito à pessoa autora e ao RookieOps, além de um link para o artigo original.',
         en: 'Republication requires credit to the author and RookieOps, along with a link to the original post.'
       }
     }

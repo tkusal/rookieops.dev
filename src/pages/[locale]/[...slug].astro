@@ -9,7 +9,12 @@ export async function getStaticPaths() {
   const paths = [];
   for (const locale of locales.filter((item) => item !== 'pt-br')) {
     const pages = await getLocalizedEntries('pages', locale);
-    paths.push(...pages.map((entry) => ({ params: { locale, slug: entrySlug(entry as any) }, props: { entry, locale } })));
+    paths.push(
+      ...pages.map((entry) => ({
+        params: { locale, slug: entrySlug(entry as any) },
+        props: { entry, locale }
+      }))
+    );
   }
   return paths;
 }
@@ -20,8 +25,22 @@ const hasMath = Boolean(entry.data.math || remarkPluginFrontmatter.math);
 const isTimeline = entry.data.layout === 'timeline';
 ---
 
-<BaseLayout title={entry.data.title} description={entry.data.description} locale={locale} availableLocales={locales} headings={headings} toc={entry.data.toc ?? (headings.length > 0 ? 'side' : false)} comments={entry.data.comments} math={hasMath}>
-  <PageHeader title={entry.data.title} description={entry.data.description} date={entry.data.pubDate} locale={locale} />
+<BaseLayout
+  title={entry.data.title}
+  description={entry.data.description}
+  locale={locale}
+  availableLocales={locales}
+  headings={headings}
+  toc={entry.data.toc ?? (headings.length > 0 ? 'side' : false)}
+  comments={entry.data.comments}
+  math={hasMath}
+>
+  <PageHeader
+    title={entry.data.title}
+    description={entry.data.description}
+    date={entry.data.pubDate}
+    locale={locale}
+  />
   <article class:list={['prose mb-12 max-w-none', { 'timeline-prose': isTimeline }]}>
     <Content />
   </article>

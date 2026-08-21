@@ -1,15 +1,15 @@
 ---
-title: "Rede hub and spoke no Azure com Terraform, parte 1: base, IPAM e peerings"
-description: "Monte uma rede hub and spoke no Azure com Terraform, IPAM sem sobreposição, módulos reutilizáveis e peerings prontos para validar."
+title: 'Rede hub and spoke no Azure com Terraform, parte 1: base, IPAM e peerings'
+description: 'Monte uma rede hub and spoke no Azure com Terraform, IPAM sem sobreposição, módulos reutilizáveis e peerings prontos para validar.'
 pubDate: 2026-08-09
 updatedDate: 2026-08-11
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Cloud"]
-tags: ["Azure", "Terraform", "IaC", "IPAM", "Redes", "Intermediário"]
-cover: "/images/posts/rede-hub-and-spoke-azure-terraform-parte-1/capa.webp"
-coverAlt: "Ilustração isométrica com símbolos do Azure e do Terraform sobre uma VNet hub conectada por peerings luminosos a duas VNets spoke"
+categories: ['Cloud']
+tags: ['Azure', 'Terraform', 'IaC', 'IPAM', 'Redes', 'Intermediário']
+cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-1/capa.webp'
+coverAlt: 'Ilustração isométrica com símbolos do Azure e do Terraform sobre uma VNet hub conectada por peerings luminosos a duas VNets spoke'
 toc: true
 comments: false
 mermaid: true
@@ -103,12 +103,12 @@ Também vale avaliar outras topologias quando o requisito principal é isolament
 
 O laboratório usa abreviações recomendadas pelo Cloud Adoption Framework:
 
-| Tipo | Prefixo | Exemplo |
-| --- | --- | --- |
-| Resource group | `rg` | `rg-network-hub-lab-brs-001` |
-| Virtual network | `vnet` | `vnet-hub-lab-brs-001` |
-| Subnet | `snet` | `snet-web-lab-brs-001` |
-| VNet peering | `peer` | `peer-hub-to-app-lab-brs-001` |
+| Tipo            | Prefixo | Exemplo                       |
+| --------------- | ------- | ----------------------------- |
+| Resource group  | `rg`    | `rg-network-hub-lab-brs-001`  |
+| Virtual network | `vnet`  | `vnet-hub-lab-brs-001`        |
+| Subnet          | `snet`  | `snet-web-lab-brs-001`        |
+| VNet peering    | `peer`  | `peer-hub-to-app-lab-brs-001` |
 
 O restante do nome combina função, ambiente, código regional e instância. `brs` representa Brazil South e `001` permite uma segunda instância sem inventar um sufixo durante um incidente.
 
@@ -127,18 +127,18 @@ location_code = "brs"
 
 **IP Address Management (IPAM)** é a disciplina de planejar, registrar e controlar os endereços usados pela organização. Aqui reservamos o superbloco `10.64.0.0/12` como referência de planejamento. Ele não é criado como recurso no Azure.
 
-| Uso | CIDR | Capacidade e decisão |
-| --- | --- | --- |
-| Superbloco planejado | `10.64.0.0/12` | Contém 16 blocos `/16` |
-| VNet hub | `10.64.0.0/16` | Espaço amplo para a evolução do hub |
-| Subnet compartilhada do hub | `10.64.10.0/24` | 256 endereços, 251 utilizáveis no Azure |
-| Spoke de aplicação | `10.65.0.0/16` | Isola o domínio da aplicação |
-| Subnet web | `10.65.10.0/24` | Camada de entrada da aplicação |
-| Subnet app | `10.65.20.0/24` | Camada de processamento |
-| Spoke de dados | `10.66.0.0/16` | Isola dados e integrações |
-| Subnet data | `10.66.10.0/24` | Serviços da camada de dados |
-| Subnet integration | `10.66.20.0/24` | Integrações privadas futuras |
-| Reserva para novos spokes | `10.67.0.0/16` a `10.79.0.0/16` | Treze blocos `/16` livres |
+| Uso                         | CIDR                            | Capacidade e decisão                    |
+| --------------------------- | ------------------------------- | --------------------------------------- |
+| Superbloco planejado        | `10.64.0.0/12`                  | Contém 16 blocos `/16`                  |
+| VNet hub                    | `10.64.0.0/16`                  | Espaço amplo para a evolução do hub     |
+| Subnet compartilhada do hub | `10.64.10.0/24`                 | 256 endereços, 251 utilizáveis no Azure |
+| Spoke de aplicação          | `10.65.0.0/16`                  | Isola o domínio da aplicação            |
+| Subnet web                  | `10.65.10.0/24`                 | Camada de entrada da aplicação          |
+| Subnet app                  | `10.65.20.0/24`                 | Camada de processamento                 |
+| Spoke de dados              | `10.66.0.0/16`                  | Isola dados e integrações               |
+| Subnet data                 | `10.66.10.0/24`                 | Serviços da camada de dados             |
+| Subnet integration          | `10.66.20.0/24`                 | Integrações privadas futuras            |
+| Reserva para novos spokes   | `10.67.0.0/16` a `10.79.0.0/16` | Treze blocos `/16` livres               |
 
 Os blocos `/16` são maiores do que este laboratório precisa. A escolha é intencional: a VNet ganha espaço para várias subnets sem precisar ser renumerada a cada nova camada. As subnets `/24` oferecem um tamanho fácil de operar em estudos e deixam intervalos entre usos.
 

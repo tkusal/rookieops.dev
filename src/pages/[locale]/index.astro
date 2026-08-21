@@ -11,24 +11,32 @@ export function getStaticPaths() {
 }
 
 const locale = Astro.params.locale as Locale;
-const sections = await Promise.all(Object.entries(contentTypes)
-  .filter(([, config]) => config.home?.enabled)
-  .map(async ([id, config]) => {
-    const home = config.home!;
-    const entries = await getLocalizedEntries(config.collection, locale);
-    const visibleEntries = 'featuredOnly' in home && home.featuredOnly
-      ? entries.filter((entry) => 'featured' in entry.data && entry.data.featured)
-      : entries;
+const sections = await Promise.all(
+  Object.entries(contentTypes)
+    .filter(([, config]) => config.home?.enabled)
+    .map(async ([id, config]) => {
+      const home = config.home!;
+      const entries = await getLocalizedEntries(config.collection, locale);
+      const visibleEntries =
+        'featuredOnly' in home && home.featuredOnly
+          ? entries.filter((entry) => 'featured' in entry.data && entry.data.featured)
+          : entries;
 
-    return {
-      id: id as keyof typeof contentTypes,
-      title: home.title[locale],
-      href: getLocalePath(locale, config.path),
-      entries: visibleEntries.slice(0, home.limit)
-    };
-  }));
+      return {
+        id: id as keyof typeof contentTypes,
+        title: home.title[locale],
+        href: getLocalePath(locale, config.path),
+        entries: visibleEntries.slice(0, home.limit)
+      };
+    })
+);
 ---
 
-<BaseLayout title={siteConfig.name} description={siteConfig.description[locale]} locale={locale} availableLocales={locales}>
+<BaseLayout
+  title={siteConfig.name}
+  description={siteConfig.description[locale]}
+  locale={locale}
+  availableLocales={locales}
+>
   <HomePage locale={locale} sections={sections} />
 </BaseLayout>

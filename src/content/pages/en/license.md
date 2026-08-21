@@ -1,6 +1,6 @@
 ---
-title: "Content license"
-description: "Terms for republishing posts and other editorial content from RookieOps."
+title: 'Content license'
+description: 'Terms for republishing posts and other editorial content from RookieOps.'
 pubDate: 2026-07-25
 updatedDate: 2026-07-26
 lang: en

@@ -66,12 +66,14 @@ export async function GET({ site, url }: { site?: URL; url: URL }) {
   }
 
   const urls = [...uniqueEntries.values()]
-    .map(({ path, lastmod }) => [
-      '<url>',
-      `<loc>${escapeXml(`${origin}${path}`)}</loc>`,
-      lastmod ? `<lastmod>${lastmod.toISOString()}</lastmod>` : '',
-      '</url>'
-    ].join(''))
+    .map(({ path, lastmod }) =>
+      [
+        '<url>',
+        `<loc>${escapeXml(`${origin}${path}`)}</loc>`,
+        lastmod ? `<lastmod>${lastmod.toISOString()}</lastmod>` : '',
+        '</url>'
+      ].join('')
+    )
     .join('');
 
   return new Response(

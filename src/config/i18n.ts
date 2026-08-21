@@ -3,7 +3,10 @@ export const locales = ['pt-br', 'en'] as const;
 
 export type Locale = (typeof locales)[number];
 
-export const localeMeta: Record<Locale, { label: string; htmlLang: string; dateLocale: string; ogLocale: string }> = {
+export const localeMeta: Record<
+  Locale,
+  { label: string; htmlLang: string; dateLocale: string; ogLocale: string }
+> = {
   'pt-br': {
     label: 'Português',
     htmlLang: 'pt-BR',
@@ -39,7 +42,8 @@ export function isLocale(value: string | undefined): value is Locale {
 
 export function getLocalePath(locale: Locale, path = '/') {
   const normalized = path.startsWith('/') ? path : `/${path}`;
-  const localized = locale === defaultLocale ? normalized : `/${locale}${normalized === '/' ? '/' : normalized}`;
+  const localized =
+    locale === defaultLocale ? normalized : `/${locale}${normalized === '/' ? '/' : normalized}`;
   const base = import.meta.env.BASE_URL || '/';
   if (base === '/') return localized;
   return `${base.replace(/\/$/, '')}${localized}`.replace(/\/+/g, '/');
@@ -61,10 +65,14 @@ export function switchLocalePath(targetLocale: Locale, currentPath: string) {
   const segments = normalized.split('/').filter(Boolean);
   const currentLocale = isLocale(segments[0]) ? segments[0] : defaultLocale;
   const rest = currentLocale === defaultLocale ? segments : segments.slice(1);
-  const translatedRest = rest.length === 1 && localizedRouteSegments[targetLocale][rest[0]]
-    ? [localizedRouteSegments[targetLocale][rest[0]]]
-    : rest;
-  const path = `/${translatedRest.join('/')}${translatedRest.length > 0 ? '/' : ''}`.replace(/\/+/g, '/');
+  const translatedRest =
+    rest.length === 1 && localizedRouteSegments[targetLocale][rest[0]]
+      ? [localizedRouteSegments[targetLocale][rest[0]]]
+      : rest;
+  const path = `/${translatedRest.join('/')}${translatedRest.length > 0 ? '/' : ''}`.replace(
+    /\/+/g,
+    '/'
+  );
   return getLocalePath(targetLocale, path);
 }
 

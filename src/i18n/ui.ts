@@ -11,7 +11,8 @@ export const ui = {
   'pt-br': {
     'a11y.skipToContent': 'Pular para o conteúdo',
     'breadcrumbs.label': 'Navegação estrutural',
-    'archive.description': 'Filtre os artigos por categoria, tag ou dificuldade e navegue por ano e mês de publicação.',
+    'archive.description':
+      'Filtre os artigos por categoria, tag ou dificuldade e navegue por ano e mês de publicação.',
     'archive.filter.all': 'Todos',
     'archive.filter.active': 'Filtros ativos',
     'archive.filter.allDifficulty': 'Todas',
@@ -24,7 +25,8 @@ export const ui = {
     'archive.filter.noTagResults': 'Nenhuma tag encontrada.',
     'archive.filter.noTags': 'Nenhuma tag disponível nesta categoria.',
     'archive.filter.remove': 'Remover filtro',
-    'archive.filter.removedTags': 'Algumas tags foram removidas porque não estão disponíveis nesta categoria.',
+    'archive.filter.removedTags':
+      'Algumas tags foram removidas porque não estão disponíveis nesta categoria.',
     'archive.filter.searchTags': 'Buscar tags',
     'archive.filter.selectedTag': 'tag selecionada',
     'archive.filter.selectedTags': 'tags selecionadas',
@@ -35,7 +37,8 @@ export const ui = {
     'archive.results.suffix': 'artigos',
     'archive.title': 'Arquivo',
     'consent.accept': 'Aceitar',
-    'consent.description': 'Usamos cookies opcionais do Google Analytics para entender como o blog é utilizado e melhorar o conteúdo. Nenhum dado é enviado ao Google antes da sua autorização.',
+    'consent.description':
+      'Usamos cookies opcionais do Google Analytics para entender como o blog é utilizado e melhorar o conteúdo. Nenhum dado é enviado ao Google antes da sua autorização.',
     'consent.preferences': 'Preferências de privacidade',
     'consent.reject': 'Recusar',
     'consent.revisit': 'Você poderá mudar esta escolha a qualquer momento no rodapé.',
@@ -106,7 +109,8 @@ export const ui = {
   en: {
     'a11y.skipToContent': 'Skip to content',
     'breadcrumbs.label': 'Breadcrumb navigation',
-    'archive.description': 'Filter posts by category, tag, or difficulty, then browse by publication year and month.',
+    'archive.description':
+      'Filter posts by category, tag, or difficulty, then browse by publication year and month.',
     'archive.filter.all': 'All',
     'archive.filter.active': 'Active filters',
     'archive.filter.allDifficulty': 'All',
@@ -119,7 +123,8 @@ export const ui = {
     'archive.filter.noTagResults': 'No tags found.',
     'archive.filter.noTags': 'No tags are available in this category.',
     'archive.filter.remove': 'Remove filter',
-    'archive.filter.removedTags': 'Some tags were removed because they are not available in this category.',
+    'archive.filter.removedTags':
+      'Some tags were removed because they are not available in this category.',
     'archive.filter.searchTags': 'Search tags',
     'archive.filter.selectedTag': 'tag selected',
     'archive.filter.selectedTags': 'tags selected',
@@ -130,7 +135,8 @@ export const ui = {
     'archive.results.suffix': 'posts',
     'archive.title': 'Archive',
     'consent.accept': 'Accept',
-    'consent.description': 'We use optional Google Analytics cookies to understand how the blog is used and improve its content. No data is sent to Google before you grant permission.',
+    'consent.description':
+      'We use optional Google Analytics cookies to understand how the blog is used and improve its content. No data is sent to Google before you grant permission.',
     'consent.preferences': 'Privacy preferences',
     'consent.reject': 'Reject',
     'consent.revisit': 'You can change this choice at any time in the footer.',

@@ -32,8 +32,9 @@ export function createDialogController({
   let backgroundState: BackgroundState[] = [];
 
   const focusableElements = () =>
-    [...dialog.querySelectorAll<HTMLElement>(focusableSelector)]
-      .filter((element) => element.getClientRects().length > 0);
+    [...dialog.querySelectorAll<HTMLElement>(focusableSelector)].filter(
+      (element) => element.getClientRects().length > 0
+    );
 
   const handleKeydown = (event: KeyboardEvent) => {
     if (!active) return;
@@ -71,17 +72,19 @@ export function createDialogController({
   const activate = () => {
     if (active) return;
     active = true;
-    previouslyFocused = document.activeElement instanceof HTMLElement ? document.activeElement : null;
+    previouslyFocused =
+      document.activeElement instanceof HTMLElement ? document.activeElement : null;
     previousBodyOverflow = document.body.style.overflow;
 
     const background = document.querySelectorAll<HTMLElement>(
       '[data-page-shell], [data-reading-progress], #search-modal, #search-overlay, [data-lightbox-root]'
     );
     backgroundState = [...background]
-      .filter((element) =>
-        element !== dialog &&
-        !element.contains(dialog) &&
-        !preserve.some((preserved) => preserved === element || preserved.contains(element))
+      .filter(
+        (element) =>
+          element !== dialog &&
+          !element.contains(dialog) &&
+          !preserve.some((preserved) => preserved === element || preserved.contains(element))
       )
       .map((element) => ({
         element,

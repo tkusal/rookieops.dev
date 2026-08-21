@@ -37,42 +37,56 @@ const avatarSrc = assetPath(author.avatar);
 <ParticleBackground />
 
 <section class="py-4 sm:py-10">
-  <div class="profile-card rounded-[var(--radius-card)] border border-border bg-background px-5 py-5 shadow-[var(--surface-shadow)] sm:px-8 sm:py-6">
-    <div class="flex flex-col items-center gap-3 text-center sm:gap-6 md:flex-row md:items-start md:text-left">
+  <div
+    class="profile-card border-border bg-background rounded-[var(--radius-card)] border px-5 py-5 shadow-[var(--surface-shadow)] sm:px-8 sm:py-6"
+  >
+    <div
+      class="flex flex-col items-center gap-3 text-center sm:gap-6 md:flex-row md:items-start md:text-left"
+    >
       <img
         src={avatarSrc}
         alt=""
-        class="h-16 w-16 shrink-0 rounded-full border-4 border-primary/20 object-cover shadow-sm sm:h-24 sm:w-24"
+        class="border-primary/20 h-16 w-16 shrink-0 rounded-full border-4 object-cover shadow-sm sm:h-24 sm:w-24"
       />
 
       <div class="min-w-0 flex-1">
         <h1 class="text-2xl font-bold tracking-tight sm:text-3xl">{author.name}</h1>
-        <p class="profile-slogan mt-1 text-base font-medium sm:mt-1.5 sm:text-lg">{author.title[locale]}</p>
-        <p class="profile-slogan mt-1 hidden text-sm font-semibold sm:block">{author.tagline[locale]}</p>
-        <p class="mt-2 text-sm leading-relaxed text-foreground sm:hidden">{author.mobileDescription[locale]}</p>
-        <p class="mt-3 hidden text-base leading-relaxed text-foreground sm:block">{author.description[locale]}</p>
+        <p class="profile-slogan mt-1 text-base font-medium sm:mt-1.5 sm:text-lg">
+          {author.title[locale]}
+        </p>
+        <p class="profile-slogan mt-1 hidden text-sm font-semibold sm:block">
+          {author.tagline[locale]}
+        </p>
+        <p class="text-foreground mt-2 text-sm leading-relaxed sm:hidden">
+          {author.mobileDescription[locale]}
+        </p>
+        <p class="text-foreground mt-3 hidden text-base leading-relaxed sm:block">
+          {author.description[locale]}
+        </p>
 
         <a
           href={getLocalePath(locale, '/posts/')}
-          class="mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] bg-primary px-4 py-2 text-sm font-semibold text-primary-foreground shadow-sm transition-colors hover:bg-primary/90 sm:hidden"
+          class="bg-primary text-primary-foreground hover:bg-primary/90 mt-4 inline-flex min-h-11 items-center justify-center gap-2 rounded-[var(--radius-control)] px-4 py-2 text-sm font-semibold shadow-sm transition-colors sm:hidden"
         >
           {t('home.readPosts')}
           <Icon name="lucide:arrow-right" class="h-4 w-4" />
         </a>
-
       </div>
     </div>
   </div>
 </section>
 
-{sections.map((section) => (
-  section.entries.length > 0 && (
-    <section class="py-8">
-      <div class="mb-3 flex items-end justify-between gap-4">
-        <h2 class="text-2xl font-semibold">{section.title}</h2>
-        <ViewAll href={section.href} locale={locale} />
-      </div>
-      <EntryList entries={section.entries} collection={section.id} locale={locale} />
-    </section>
+{
+  sections.map(
+    (section) =>
+      section.entries.length > 0 && (
+        <section class="py-8">
+          <div class="mb-3 flex items-end justify-between gap-4">
+            <h2 class="text-2xl font-semibold">{section.title}</h2>
+            <ViewAll href={section.href} locale={locale} />
+          </div>
+          <EntryList entries={section.entries} collection={section.id} locale={locale} />
+        </section>
+      )
   )
-))}
+}

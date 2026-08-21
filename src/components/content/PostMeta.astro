@@ -46,47 +46,65 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
 ---
 
 <header class="mb-10">
-  {series && (
-    <a
-      href={series.href}
-      class="mb-3 inline-flex min-h-8 flex-wrap items-center gap-1.5 rounded-[var(--radius-control)] text-xs font-medium text-muted-foreground transition-colors duration-200 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 motion-reduce:transition-none"
-    >
-      <Icon name="lucide:list-ordered" class="h-3.5 w-3.5" />
-      <span class="uppercase tracking-[0.14em]">{t('series.label')}</span>
-      <span aria-hidden="true">·</span>
-      <span class="text-foreground">{series.title}</span>
-      <span aria-hidden="true">·</span>
-      <span class="tabular-nums">{series.position} / {series.total}</span>
-    </a>
-  )}
-  <h1 class="text-3xl font-bold leading-tight tracking-tight sm:text-4xl">{title}</h1>
-  {description && <p class="mt-4 text-lg leading-relaxed text-muted-foreground">{description}</p>}
+  {
+    series && (
+      <a
+        href={series.href}
+        class="text-muted-foreground hover:text-primary focus-visible:ring-primary/35 mb-3 inline-flex min-h-8 flex-wrap items-center gap-1.5 rounded-[var(--radius-control)] text-xs font-medium transition-colors duration-200 focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
+      >
+        <Icon name="lucide:list-ordered" class="h-3.5 w-3.5" />
+        <span class="tracking-[0.14em] uppercase">{t('series.label')}</span>
+        <span aria-hidden="true">·</span>
+        <span class="text-foreground">{series.title}</span>
+        <span aria-hidden="true">·</span>
+        <span class="tabular-nums">
+          {series.position} / {series.total}
+        </span>
+      </a>
+    )
+  }
+  <h1 class="text-3xl leading-tight font-bold tracking-tight sm:text-4xl">{title}</h1>
+  {description && <p class="text-muted-foreground mt-4 text-lg leading-relaxed">{description}</p>}
 
   <div class="surface-panel mt-6 p-5 text-sm">
     <div class="flex flex-wrap items-center justify-between gap-3">
-      <div class="flex flex-wrap items-center gap-x-5 gap-y-2 text-muted-foreground">
-        {date && date.getTime() > 0 && (
-          <span class="inline-flex items-center gap-1.5">
-            <Icon name="lucide:calendar" class="h-4 w-4" />
-            <time datetime={date.toISOString()}>{formatDate(date, locale)}</time>
-          </span>
-        )}
-        {updatedDate && date && updatedDate.getTime() > date.getTime() && (
-          <span class="inline-flex items-center gap-1.5">
-            <Icon name="lucide:refresh-cw" class="h-4 w-4" />
-            <span>{t('post.updated')}</span>
-            <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate, locale)}</time>
-          </span>
-        )}
-        {author && (
-          <span class="inline-flex items-center gap-1.5">
-            <Icon name="lucide:user-round" class="h-4 w-4" />
-            <span>{t('post.author')}</span>
-            {authorUrl
-              ? <a href={authorUrl} rel="author" class="text-foreground hover:text-primary hover:underline">{author}</a>
-              : <span class="text-foreground">{author}</span>}
-          </span>
-        )}
+      <div class="text-muted-foreground flex flex-wrap items-center gap-x-5 gap-y-2">
+        {
+          date && date.getTime() > 0 && (
+            <span class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:calendar" class="h-4 w-4" />
+              <time datetime={date.toISOString()}>{formatDate(date, locale)}</time>
+            </span>
+          )
+        }
+        {
+          updatedDate && date && updatedDate.getTime() > date.getTime() && (
+            <span class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:refresh-cw" class="h-4 w-4" />
+              <span>{t('post.updated')}</span>
+              <time datetime={updatedDate.toISOString()}>{formatDate(updatedDate, locale)}</time>
+            </span>
+          )
+        }
+        {
+          author && (
+            <span class="inline-flex items-center gap-1.5">
+              <Icon name="lucide:user-round" class="h-4 w-4" />
+              <span>{t('post.author')}</span>
+              {authorUrl ? (
+                <a
+                  href={authorUrl}
+                  rel="author"
+                  class="text-foreground hover:text-primary hover:underline"
+                >
+                  {author}
+                </a>
+              ) : (
+                <span class="text-foreground">{author}</span>
+              )}
+            </span>
+          )
+        }
         <span class="inline-flex items-center gap-1.5">
           <Icon name="lucide:clock-3" class="h-4 w-4" />
           <time datetime={`PT${readingMinutes}M`}>{readingMinutes} {t('post.readingTime')}</time>
@@ -104,12 +122,16 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
           aria-controls="post-share-menu"
           aria-expanded="false"
           aria-haspopup="menu"
-          class="inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-control)] border border-border bg-secondary px-3 py-2 font-semibold text-secondary-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary motion-reduce:transition-none"
+          class="border-border bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary inline-flex min-h-11 cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-control)] border px-3 py-2 font-semibold shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 motion-reduce:transition-none"
         >
           <Icon data-share-default-icon name="lucide:share-2" class="h-4 w-4" />
           <Icon data-share-success-icon name="lucide:check" class="hidden h-4 w-4" />
           <span data-share-label>{t('post.share')}</span>
-          <Icon data-share-chevron name="lucide:chevron-down" class="h-3.5 w-3.5 transition-transform motion-reduce:transition-none" />
+          <Icon
+            data-share-chevron
+            name="lucide:chevron-down"
+            class="h-3.5 w-3.5 transition-transform motion-reduce:transition-none"
+          />
         </button>
         <span data-share-feedback class="sr-only" aria-live="polite"></span>
 
@@ -118,7 +140,7 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
           data-share-menu
           role="menu"
           aria-label={t('post.share.menu')}
-          class="absolute top-full right-0 z-30 mt-2 hidden w-52 rounded-[var(--radius-panel)] border border-border bg-popover p-1.5 text-popover-foreground shadow-xl"
+          class="border-border bg-popover text-popover-foreground absolute top-full right-0 z-30 mt-2 hidden w-52 rounded-[var(--radius-panel)] border p-1.5 shadow-xl"
         >
           <a
             href="#"
@@ -126,7 +148,7 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
             role="menuitem"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+            class="hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] motion-reduce:transition-none"
           >
             <Icon name="simple-icons:whatsapp" class="h-4 w-4" />
             <span>{t('post.share.whatsapp')}</span>
@@ -137,7 +159,7 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
             role="menuitem"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+            class="hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] motion-reduce:transition-none"
           >
             <Icon name="simple-icons:linkedin" class="h-4 w-4" />
             <span>{t('post.share.linkedin')}</span>
@@ -148,17 +170,17 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
             role="menuitem"
             target="_blank"
             rel="noopener noreferrer"
-            class="flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+            class="hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary flex min-h-11 items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] motion-reduce:transition-none"
           >
             <Icon name="simple-icons:x" class="h-4 w-4" />
             <span>{t('post.share.x')}</span>
           </a>
-          <div class="my-1 h-px bg-border" role="separator"></div>
+          <div class="bg-border my-1 h-px" role="separator"></div>
           <button
             type="button"
             data-share-copy
             role="menuitem"
-            class="flex min-h-11 w-full cursor-pointer items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 text-left font-medium transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-[-2px] focus-visible:outline-primary motion-reduce:transition-none"
+            class="hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary flex min-h-11 w-full cursor-pointer items-center gap-3 rounded-[var(--radius-control)] px-3 py-2 text-left font-medium transition-colors focus-visible:outline-2 focus-visible:outline-offset-[-2px] motion-reduce:transition-none"
           >
             <Icon name="lucide:link" class="h-4 w-4" />
             <span>{t('post.share.copy')}</span>
@@ -167,25 +189,30 @@ const hasTaxonomy = taxonomyGroups.some((group) => group.terms.length > 0);
       </div>
     </div>
 
-    {hasTaxonomy && (
-      <div class="mt-4 space-y-3 border-t border-border pt-4 text-sm">
-        {taxonomyGroups.filter((group) => group.terms.length > 0).map((group) => (
-          <div class="grid gap-2 sm:grid-cols-[6rem_minmax(0,1fr)] sm:items-start">
-            <span class="pt-1.5 font-medium text-muted-foreground">{group.label}</span>
-            <div class="flex flex-wrap gap-2">
-              {group.terms.map((term) => (
-                <a
-                  href={archiveFilterPath(locale, group.filter, term)}
-                  class="rounded-full bg-muted px-3 py-1.5 text-muted-foreground transition-colors duration-200 hover:bg-primary/10 hover:text-primary focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/35 motion-reduce:transition-none"
-                >
-                  {group.prefix}{term}
-                </a>
-              ))}
-            </div>
-          </div>
-        ))}
-      </div>
-    )}
+    {
+      hasTaxonomy && (
+        <div class="border-border mt-4 space-y-3 border-t pt-4 text-sm">
+          {taxonomyGroups
+            .filter((group) => group.terms.length > 0)
+            .map((group) => (
+              <div class="grid gap-2 sm:grid-cols-[6rem_minmax(0,1fr)] sm:items-start">
+                <span class="text-muted-foreground pt-1.5 font-medium">{group.label}</span>
+                <div class="flex flex-wrap gap-2">
+                  {group.terms.map((term) => (
+                    <a
+                      href={archiveFilterPath(locale, group.filter, term)}
+                      class="bg-muted text-muted-foreground hover:bg-primary/10 hover:text-primary focus-visible:ring-primary/35 rounded-full px-3 py-1.5 transition-colors duration-200 focus-visible:ring-2 focus-visible:outline-none motion-reduce:transition-none"
+                    >
+                      {group.prefix}
+                      {term}
+                    </a>
+                  ))}
+                </div>
+              </div>
+            ))}
+        </div>
+      )
+    }
   </div>
 </header>
 

@@ -28,9 +28,10 @@ const homeHref = getLocalePath(locale, '/');
 const currentPath = Astro.url.pathname;
 const postsHref = getLocalePath(locale, '/posts/');
 const normalizedCurrentPath = currentPath.replace(/\/?$/, '/');
-const backFallback = normalizedCurrentPath.startsWith(postsHref) && normalizedCurrentPath !== postsHref
-  ? postsHref
-  : homeHref;
+const backFallback =
+  normalizedCurrentPath.startsWith(postsHref) && normalizedCurrentPath !== postsHref
+    ? postsHref
+    : homeHref;
 const parsedContentWidth = /^\d+(?:\.\d+)?rem$/.test(siteConfig.contentWidth)
   ? Number.parseFloat(siteConfig.contentWidth)
   : 56;
@@ -39,59 +40,105 @@ const minimumContentWidth = Math.max(32, Math.floor(defaultContentWidth - 16));
 const maximumContentWidth = Math.ceil(defaultContentWidth + 24);
 ---
 
-<div class="dock-shell fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 border p-1 shadow-[var(--surface-shadow-strong)] md:right-5 md:left-auto md:translate-x-0" data-reading-progress>
-  <button type="button" data-history-back data-fallback={backFallback} class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.back} title={labels.back}>
+<div
+  class="dock-shell fixed bottom-[max(1rem,env(safe-area-inset-bottom))] left-1/2 z-40 flex -translate-x-1/2 items-center gap-1 border p-1 shadow-[var(--surface-shadow-strong)] md:right-5 md:left-auto md:translate-x-0"
+  data-reading-progress
+>
+  <button
+    type="button"
+    data-history-back
+    data-fallback={backFallback}
+    class="dock-control text-muted-foreground hover:bg-accent hover:text-accent-foreground grid h-11 w-11 place-items-center rounded-xl transition"
+    aria-label={labels.back}
+    title={labels.back}
+  >
     <Icon name="lucide:arrow-left" class="h-4 w-4" />
   </button>
 
-  <a href={homeHref} class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.home} title={labels.home}>
+  <a
+    href={homeHref}
+    class="dock-control text-muted-foreground hover:bg-accent hover:text-accent-foreground grid h-11 w-11 place-items-center rounded-xl transition"
+    aria-label={labels.home}
+    title={labels.home}
+  >
     <Icon name="lucide:home" class="h-4 w-4" />
   </a>
 
-  <span class="relative z-10 h-5 w-px bg-border/80" aria-hidden="true"></span>
+  <span class="bg-border/80 relative z-10 h-5 w-px" aria-hidden="true"></span>
 
   <div class="relative z-10">
-    <button type="button" data-display-menu aria-expanded="false" class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.display} title={labels.display}>
+    <button
+      type="button"
+      data-display-menu
+      aria-expanded="false"
+      class="dock-control text-muted-foreground hover:bg-accent hover:text-accent-foreground grid h-11 w-11 place-items-center rounded-xl transition"
+      aria-label={labels.display}
+      title={labels.display}
+    >
       <Icon name="lucide:settings-2" class="h-4 w-4" />
     </button>
-    <div data-display-panel class="absolute bottom-full left-1/2 mb-2 hidden w-[min(20rem,calc(100vw-2rem))] -translate-x-1/2 rounded-[var(--radius-panel)] border border-border bg-popover p-3 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0" aria-label={labels.display}>
+    <div
+      data-display-panel
+      class="border-border bg-popover absolute bottom-full left-1/2 mb-2 hidden w-[min(20rem,calc(100vw-2rem))] -translate-x-1/2 rounded-[var(--radius-panel)] border p-3 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0"
+      aria-label={labels.display}
+    >
       <div class="mb-3 flex items-center justify-between gap-3">
         <span class="font-semibold">{labels.display}</span>
-        <button type="button" data-display-close class="grid h-11 w-11 cursor-pointer place-items-center rounded-[var(--radius-control)] text-muted-foreground transition-colors hover:bg-accent hover:text-accent-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary" aria-label={labels.displayClose}>
+        <button
+          type="button"
+          data-display-close
+          class="text-muted-foreground hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary grid h-11 w-11 cursor-pointer place-items-center rounded-[var(--radius-control)] transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+          aria-label={labels.displayClose}
+        >
           <Icon name="lucide:x" class="h-4 w-4" />
         </button>
       </div>
 
       <div class="space-y-1">
-        <span class="text-xs font-medium text-muted-foreground">{labels.theme}</span>
+        <span class="text-muted-foreground text-xs font-medium">{labels.theme}</span>
         <div class="grid grid-cols-2 gap-1">
-          {themes.map((theme) => (
-            <button
-              type="button"
-              data-theme-value={theme.id}
-              aria-pressed={theme.id === defaultTheme ? 'true' : 'false'}
-              class="flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-control)] px-2 py-1.5 text-left transition-colors hover:bg-accent hover:text-accent-foreground aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary"
-            >
-              <span>{theme.name}</span>
-              <Icon data-theme-indicator name="lucide:check" class:list={['h-3.5 w-3.5', theme.id === defaultTheme ? '' : 'hidden']} />
-            </button>
-          ))}
+          {
+            themes.map((theme) => (
+              <button
+                type="button"
+                data-theme-value={theme.id}
+                aria-pressed={theme.id === defaultTheme ? 'true' : 'false'}
+                class="hover:bg-accent hover:text-accent-foreground aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary focus-visible:outline-primary flex min-h-11 cursor-pointer items-center justify-between gap-2 rounded-[var(--radius-control)] px-2 py-1.5 text-left transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+              >
+                <span>{theme.name}</span>
+                <Icon
+                  data-theme-indicator
+                  name="lucide:check"
+                  class:list={['h-3.5 w-3.5', theme.id === defaultTheme ? '' : 'hidden']}
+                />
+              </button>
+            ))
+          }
         </div>
       </div>
 
-      <div class="my-3 h-px bg-border" aria-hidden="true"></div>
+      <div class="bg-border my-3 h-px" aria-hidden="true"></div>
 
-      <button type="button" data-color-mode aria-pressed="false" class="flex min-h-11 w-full cursor-pointer items-center justify-between rounded-[var(--radius-control)] px-2 py-2 transition-colors hover:bg-accent hover:text-accent-foreground aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+      <button
+        type="button"
+        data-color-mode
+        aria-pressed="false"
+        class="hover:bg-accent hover:text-accent-foreground aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary focus-visible:outline-primary flex min-h-11 w-full cursor-pointer items-center justify-between rounded-[var(--radius-control)] px-2 py-2 transition-colors focus-visible:outline-2 focus-visible:outline-offset-2"
+      >
         <span>{labels.colorMode}</span>
         <Icon name="lucide:sun-moon" class="h-4 w-4" />
       </button>
 
-      <div class="my-3 h-px bg-border" aria-hidden="true"></div>
+      <div class="bg-border my-3 h-px" aria-hidden="true"></div>
 
       <div class="space-y-2">
         <div class="flex items-center justify-between gap-3">
           <label for="layout-width" class="font-medium">{labels.displayWidth}</label>
-          <output data-layout-width-output for="layout-width" class="tabular-nums text-muted-foreground">{siteConfig.contentWidth}</output>
+          <output
+            data-layout-width-output
+            for="layout-width"
+            class="text-muted-foreground tabular-nums">{siteConfig.contentWidth}</output
+          >
         </div>
         <input
           id="layout-width"
@@ -102,37 +149,66 @@ const maximumContentWidth = Math.ceil(defaultContentWidth + 24);
           max={maximumContentWidth}
           step="1"
           value={defaultContentWidth}
-          class="w-full cursor-pointer accent-primary"
+          class="accent-primary w-full cursor-pointer"
         />
-        <div class="flex items-center justify-between gap-3 text-xs text-muted-foreground">
+        <div class="text-muted-foreground flex items-center justify-between gap-3 text-xs">
           <span>{minimumContentWidth}rem</span>
           <span>{maximumContentWidth}rem</span>
         </div>
-        <button type="button" data-layout-width-reset class="flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-control)] border border-border bg-secondary px-3 py-2 font-medium text-secondary-foreground shadow-sm transition-colors hover:bg-accent hover:text-accent-foreground disabled:cursor-default disabled:opacity-50 disabled:hover:bg-secondary disabled:hover:text-secondary-foreground focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-primary">
+        <button
+          type="button"
+          data-layout-width-reset
+          class="border-border bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground disabled:hover:bg-secondary disabled:hover:text-secondary-foreground focus-visible:outline-primary flex min-h-11 w-full cursor-pointer items-center justify-center gap-2 rounded-[var(--radius-control)] border px-3 py-2 font-medium shadow-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 disabled:cursor-default disabled:opacity-50"
+        >
           <Icon name="lucide:rotate-ccw" class="h-4 w-4" />
           <span>{labels.displayReset}</span>
-          <span class="rounded bg-background/70 px-1.5 py-0.5 text-xs font-normal text-muted-foreground">{siteConfig.contentWidth}</span>
+          <span
+            class="bg-background/70 text-muted-foreground rounded px-1.5 py-0.5 text-xs font-normal"
+            >{siteConfig.contentWidth}</span
+          >
         </button>
       </div>
     </div>
   </div>
 
-  {availableLocales.length > 1 && (
-    <div class="relative z-10">
-      <button type="button" data-lang-menu aria-expanded="false" class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.language} title={labels.language}>
-        <Icon name="lucide:languages" class="h-4 w-4" />
-      </button>
-      <div data-lang-panel class="absolute bottom-full left-1/2 mb-2 hidden w-36 -translate-x-1/2 rounded-[var(--radius-panel)] border border-border bg-popover p-1 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0">
-        {availableLocales.map((item) => (
-          <a href={switchLocalePath(item, currentPath)} class="flex min-h-11 items-center rounded px-2 py-1.5 hover:bg-accent" aria-current={item === locale ? 'page' : undefined}>
-            {localeMeta[item].label}
-          </a>
-        ))}
+  {
+    availableLocales.length > 1 && (
+      <div class="relative z-10">
+        <button
+          type="button"
+          data-lang-menu
+          aria-expanded="false"
+          class="dock-control text-muted-foreground hover:bg-accent hover:text-accent-foreground grid h-11 w-11 place-items-center rounded-xl transition"
+          aria-label={labels.language}
+          title={labels.language}
+        >
+          <Icon name="lucide:languages" class="h-4 w-4" />
+        </button>
+        <div
+          data-lang-panel
+          class="border-border bg-popover absolute bottom-full left-1/2 mb-2 hidden w-36 -translate-x-1/2 rounded-[var(--radius-panel)] border p-1 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0"
+        >
+          {availableLocales.map((item) => (
+            <a
+              href={switchLocalePath(item, currentPath)}
+              class="hover:bg-accent flex min-h-11 items-center rounded px-2 py-1.5"
+              aria-current={item === locale ? 'page' : undefined}
+            >
+              {localeMeta[item].label}
+            </a>
+          ))}
+        </div>
       </div>
-    </div>
-  )}
+    )
+  }
 
-  <button type="button" data-back-top class="dock-control grid h-11 w-11 place-items-center rounded-xl text-muted-foreground transition hover:bg-accent hover:text-accent-foreground" aria-label={labels.top} title={labels.top}>
+  <button
+    type="button"
+    data-back-top
+    class="dock-control text-muted-foreground hover:bg-accent hover:text-accent-foreground grid h-11 w-11 place-items-center rounded-xl transition"
+    aria-label={labels.top}
+    title={labels.top}
+  >
     <Icon name="lucide:arrow-up" class="h-4 w-4" />
   </button>
 </div>

@@ -13,7 +13,9 @@ export async function getStaticPaths() {
   const paths = [];
   for (const locale of locales.filter((item) => item !== 'pt-br')) {
     const series = await getLocalizedSeries(locale);
-    paths.push(...series.map((item) => ({ params: { locale, slug: item.slug }, props: { item, locale } })));
+    paths.push(
+      ...series.map((item) => ({ params: { locale, slug: item.slug }, props: { item, locale } }))
+    );
   }
   return paths;
 }
@@ -24,16 +26,29 @@ const hasMath = Boolean(remarkPluginFrontmatter.math);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={item.entry.data.title} description={item.entry.data.description} locale={locale} math={hasMath}>
+<BaseLayout
+  title={item.entry.data.title}
+  description={item.entry.data.description}
+  locale={locale}
+  math={hasMath}
+>
   <Breadcrumbs
     locale={locale}
     items={[
       { label: siteConfig.shortName, href: getLocalePath(locale, '/'), icon: 'lucide:home' },
-      { label: t('series.title'), href: getLocalePath(locale, '/series/'), icon: 'lucide:list-ordered' },
+      {
+        label: t('series.title'),
+        href: getLocalePath(locale, '/series/'),
+        icon: 'lucide:list-ordered'
+      },
       { label: item.entry.data.title, icon: 'lucide:book-open' }
     ]}
   />
-  <PageHeader title={item.entry.data.title} description={item.entry.data.description} locale={locale} />
+  <PageHeader
+    title={item.entry.data.title}
+    description={item.entry.data.description}
+    locale={locale}
+  />
   <article class="prose max-w-none">
     <Content />
   </article>

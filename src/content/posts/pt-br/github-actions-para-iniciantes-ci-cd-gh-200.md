@@ -1,14 +1,14 @@
 ---
-title: "GitHub Actions para iniciantes: CI/CD na prática"
-description: "Aprenda GitHub Actions na prática: crie uma pipeline segura de CI/CD com testes, matriz, artefatos e deploy no GitHub Pages para a certificação GH-200."
+title: 'GitHub Actions para iniciantes: CI/CD na prática'
+description: 'Aprenda GitHub Actions na prática: crie uma pipeline segura de CI/CD com testes, matriz, artefatos e deploy no GitHub Pages para a certificação GH-200.'
 pubDate: 2026-08-02
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["DevOps"]
-tags: ["GitHub Actions", "CI/CD", "Intermediário"]
-cover: "/images/posts/github-actions-para-iniciantes-ci-cd-gh-200/capa.webp"
-coverAlt: "Ilustração de uma alteração de código atravessando testes, empacotamento e implantação automatizados"
+categories: ['DevOps']
+tags: ['GitHub Actions', 'CI/CD', 'Intermediário']
+cover: '/images/posts/github-actions-para-iniciantes-ci-cd-gh-200/capa.webp'
+coverAlt: 'Ilustração de uma alteração de código atravessando testes, empacotamento e implantação automatizados'
 toc: true
 comments: false
 draft: false
@@ -50,13 +50,13 @@ Pull request → testes em Node 22 e 24 → build → revisão → merge em main
 
 Na versão do guia de estudo consultada em 2 de agosto de 2026, as habilidades medidas estão distribuídas assim:
 
-| Área | Peso no exame | O que você praticará aqui |
-| --- | ---: | --- |
-| Criar e gerenciar workflows | 20–25% | eventos, jobs, steps, matriz, contextos, dependências e saídas |
-| Consumir e solucionar problemas de workflows | 15–20% | histórico de execuções, logs, nomes da matriz e reexecução |
-| Criar e manter actions | 15–20% | diferença entre `run` e `uses`; consumo seguro de actions |
-| Gerenciar GitHub Actions para a organização | 20–25% | runners, escopo de secrets e variáveis, políticas e componentes reutilizáveis |
-| Automação segura e otimizada | 10–15% | privilégio mínimo, SHA completo, ambientes, OIDC, concorrência e custo da matriz |
+| Área                                         | Peso no exame | O que você praticará aqui                                                        |
+| -------------------------------------------- | ------------: | -------------------------------------------------------------------------------- |
+| Criar e gerenciar workflows                  |        20–25% | eventos, jobs, steps, matriz, contextos, dependências e saídas                   |
+| Consumir e solucionar problemas de workflows |        15–20% | histórico de execuções, logs, nomes da matriz e reexecução                       |
+| Criar e manter actions                       |        15–20% | diferença entre `run` e `uses`; consumo seguro de actions                        |
+| Gerenciar GitHub Actions para a organização  |        20–25% | runners, escopo de secrets e variáveis, políticas e componentes reutilizáveis    |
+| Automação segura e otimizada                 |        10–15% | privilégio mínimo, SHA completo, ambientes, OIDC, concorrência e custo da matriz |
 
 Um único laboratório não cobre toda a certificação. Actions JavaScript, Docker e compostas, workflows reutilizáveis, runner groups, políticas empresariais, atestações e APIs de administração continuam no seu plano de estudo. A vantagem deste projeto é criar o modelo mental sobre o qual esses assuntos se apoiam.
 
@@ -64,11 +64,11 @@ Um único laboratório não cobre toda a certificação. Actions JavaScript, Doc
 
 As três expressões são próximas, mas não são sinônimos:
 
-| Prática | Pergunta respondida | Resultado |
-| --- | --- | --- |
-| Integração contínua | “Esta mudança pode ser integrada com segurança?” | testes, análise e build executados a cada mudança |
-| Entrega contínua | “Existe um pacote aprovado e pronto para produção?” | artefato reproduzível; a promoção pode exigir aprovação humana |
-| Implantação contínua | “Uma mudança aprovada pode chegar automaticamente ao usuário?” | deploy automático após todas as verificações |
+| Prática              | Pergunta respondida                                            | Resultado                                                      |
+| -------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
+| Integração contínua  | “Esta mudança pode ser integrada com segurança?”               | testes, análise e build executados a cada mudança              |
+| Entrega contínua     | “Existe um pacote aprovado e pronto para produção?”            | artefato reproduzível; a promoção pode exigir aprovação humana |
+| Implantação contínua | “Uma mudança aprovada pode chegar automaticamente ao usuário?” | deploy automático após todas as verificações                   |
 
 Neste artigo, **CD** será usado como o guarda-chuva comum para entrega e implantação contínuas. O exemplo final faz implantação contínua no GitHub Pages. Se você adicionar um revisor obrigatório ao ambiente, o mesmo desenho passa a ter uma barreira manual antes da produção e se aproxima da entrega contínua.
 

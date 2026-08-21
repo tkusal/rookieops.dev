@@ -1,6 +1,6 @@
 name: Sugestão
 description: Sugira uma melhoria, correção ou novo conteúdo para o RookieOps.
-title: "[Sugestão]: "
+title: '[Sugestão]: '
 body:
   - type: markdown
     attributes:

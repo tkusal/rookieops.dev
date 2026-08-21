@@ -1,8 +1,8 @@
 function containsKatex(node) {
   if (
-    node.type === 'element'
-    && Array.isArray(node.properties?.className)
-    && node.properties.className.includes('katex')
+    node.type === 'element' &&
+    Array.isArray(node.properties?.className) &&
+    node.properties.className.includes('katex')
   ) {
     return true;
   }

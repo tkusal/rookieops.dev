@@ -1,14 +1,14 @@
 ---
-title: "Governança de Identidades no Microsoft 365: Automatizando o ciclo de vida (JML) e PIM com Entra ID Governance"
-description: "Automatize entrada, movimentação, saída, revisões e privilégios JIT no Microsoft 365 com o Microsoft Entra ID Governance."
+title: 'Governança de Identidades no Microsoft 365: Automatizando o ciclo de vida (JML) e PIM com Entra ID Governance'
+description: 'Automatize entrada, movimentação, saída, revisões e privilégios JIT no Microsoft 365 com o Microsoft Entra ID Governance.'
 pubDate: 2026-08-23
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Microsoft 365"]
-tags: ["Azure", "Entra ID", "IAM", "Segurança", "PowerShell", "Intermediário"]
-cover: "/images/posts/governanca-identidades-m365-entra-id/capa.webp"
-coverAlt: "Ilustração isométrica de crachás, engrenagens e um fluxo de aprovação flutuando sobre a logo do Microsoft Entra ID."
+categories: ['Microsoft 365']
+tags: ['Azure', 'Entra ID', 'IAM', 'Segurança', 'PowerShell', 'Intermediário']
+cover: '/images/posts/governanca-identidades-m365-entra-id/capa.webp'
+coverAlt: 'Ilustração isométrica de crachás, engrenagens e um fluxo de aprovação flutuando sobre a logo do Microsoft Entra ID.'
 toc: true
 comments: false
 draft: true
@@ -22,7 +22,7 @@ O tenant já exige autenticação multifator. As políticas de Acesso Condiciona
 
 Dra. Anna Bette Bírquin, Pesquisadora Sênior da fictícia Umbrella do Brasil S.A., trabalhará no Laboratório NEST. No domínio `umbrella.com.br`, seu nome de usuário e UPN serão `anna.birquin` e `anna.birquin@umbrella.com.br`. Na jornada, assume novas responsabilidades, administra o Exchange Online numa janela de manutenção e depois deixa a organização. O objetivo é tornar a TI quase invisível para Anna: o acesso certo aparece no momento necessário, pede aprovação quando deve e desaparece quando perde a justificativa.
 
-Chamaremos essa jornada de **JML**, sigla para *Joiner, Mover e Leaver*: entrada, movimentação e saída. Usaremos Lifecycle Workflows para tarefas orientadas a datas, Entitlement Management para autoatendimento governado, Access Reviews para recertificação e Privileged Identity Management, ou PIM, para privilégio temporário.
+Chamaremos essa jornada de **JML**, sigla para _Joiner, Mover e Leaver_: entrada, movimentação e saída. Usaremos Lifecycle Workflows para tarefas orientadas a datas, Entitlement Management para autoatendimento governado, Access Reviews para recertificação e Privileged Identity Management, ou PIM, para privilégio temporário.
 
 ### Resultado esperado
 
@@ -42,19 +42,19 @@ Sem integração com RH, a admissão começa por chamado. O analista executa `05
 
 ## A jornada da identidade e a arquitetura JML
 
-O Joiner começa antes do primeiro login. Dados como área, gestor e data de contratação precisam estar corretos para que uma regra encontre Anna. O Mover acontece quando cargo, projeto ou responsabilidade mudam. É a fase em que surge o *privilege creep*, o acúmulo silencioso de permissões antigas. O Leaver encerra acessos e sessões conforme a data e o risco do desligamento.
+O Joiner começa antes do primeiro login. Dados como área, gestor e data de contratação precisam estar corretos para que uma regra encontre Anna. O Mover acontece quando cargo, projeto ou responsabilidade mudam. É a fase em que surge o _privilege creep_, o acúmulo silencioso de permissões antigas. O Leaver encerra acessos e sessões conforme a data e o risco do desligamento.
 
 PIM e Access Reviews atravessam essas três fases. PIM reduz o tempo durante o qual um privilégio fica ativo. A revisão pergunta periodicamente se uma decisão passada ainda é válida.
 
 ![Diagrama da jornada de identidade de Anna, dividido nas fases Joiner, Mover e Leaver, com PIM, Access Reviews e auditoria como controles transversais.](/images/posts/governanca-identidades-m365-entra-id/jornada-identidade-jml.svg)
 
-| Componente | Decisão automatizada |
-| --- | --- |
-| Lifecycle Workflows | Quando executar tarefas de entrada ou saída e para quais pessoas |
-| Entitlement Management | Quais recursos formam um pacote, quem solicita e quem aprova |
-| PIM | Quando um privilégio elegível pode ficar ativo e por quanto tempo |
-| Access Reviews | Quem confirma periodicamente se o acesso continua necessário |
-| Microsoft Graph PowerShell | Como consultar, criar e validar configurações de forma repetível |
+| Componente                 | Decisão automatizada                                              |
+| -------------------------- | ----------------------------------------------------------------- |
+| Lifecycle Workflows        | Quando executar tarefas de entrada ou saída e para quais pessoas  |
+| Entitlement Management     | Quais recursos formam um pacote, quem solicita e quem aprova      |
+| PIM                        | Quando um privilégio elegível pode ficar ativo e por quanto tempo |
+| Access Reviews             | Quem confirma periodicamente se o acesso continua necessário      |
+| Microsoft Graph PowerShell | Como consultar, criar e validar configurações de forma repetível  |
 
 ## Pré-requisitos e preparação do laboratório
 
@@ -64,16 +64,16 @@ Use uma identidade fictícia, um departamento piloto e recursos sem dados de pro
 
 Para reproduzir o cenário, considere Microsoft Entra ID Governance ou Microsoft Entra Suite. Algumas capacidades também existem no Microsoft Entra ID P2, mas Lifecycle Workflows não está incluído em P2 isoladamente. Valide o contrato antes do piloto.
 
-| Etapa | Função administrativa de menor privilégio | Escopo delegado principal |
-| --- | --- | --- |
-| Criar Anna e atribuir gestor | User Administrator | `User.ReadWrite.All` |
-| Lifecycle Workflows | Lifecycle Workflows Administrator | `LifecycleWorkflows.ReadWrite.All` |
-| Catálogo e pacote | Identity Governance Administrator ou Catalog owner | `EntitlementManagement.ReadWrite.All` |
-| Política do pacote | Access Package Manager ou função superior no catálogo | `EntitlementManagement.ReadWrite.All` |
-| Elegibilidade e política PIM | Privileged Role Administrator | `RoleEligibilitySchedule.ReadWrite.Directory` |
-| Ativação pela própria Anna | Usuária elegível | `RoleAssignmentSchedule.ReadWrite.Directory` |
-| Descoberta dos recursos | Leitor adequado para cada objeto | `User.Read.All`, `Group.Read.All` e `Application.Read.All` |
-| Consulta de licenças | Directory Reader ou função equivalente | `Organization.Read.All` |
+| Etapa                        | Função administrativa de menor privilégio             | Escopo delegado principal                                  |
+| ---------------------------- | ----------------------------------------------------- | ---------------------------------------------------------- |
+| Criar Anna e atribuir gestor | User Administrator                                    | `User.ReadWrite.All`                                       |
+| Lifecycle Workflows          | Lifecycle Workflows Administrator                     | `LifecycleWorkflows.ReadWrite.All`                         |
+| Catálogo e pacote            | Identity Governance Administrator ou Catalog owner    | `EntitlementManagement.ReadWrite.All`                      |
+| Política do pacote           | Access Package Manager ou função superior no catálogo | `EntitlementManagement.ReadWrite.All`                      |
+| Elegibilidade e política PIM | Privileged Role Administrator                         | `RoleEligibilitySchedule.ReadWrite.Directory`              |
+| Ativação pela própria Anna   | Usuária elegível                                      | `RoleAssignmentSchedule.ReadWrite.Directory`               |
+| Descoberta dos recursos      | Leitor adequado para cada objeto                      | `User.Read.All`, `Group.Read.All` e `Application.Read.All` |
+| Consulta de licenças         | Directory Reader ou função equivalente                | `Organization.Read.All`                                    |
 
 Escopo OAuth sozinho não concede a função administrativa; a conta precisa de ambas as autorizações. Catalog owner adiciona recursos; Access Package Manager cria pacotes com recursos disponíveis.
 
@@ -117,13 +117,13 @@ Com função User Administrator, o analista transfere para o script os dados do 
 
 Sem `-Apply`, o script simula. Depois, repita com `-Apply -WhatIf` e, por fim, `-Apply`. Ele valida domínio, duplicidade, gestor e email; gera uma senha não revelada; cria a conta; e atribui o gestor. Anna usará o TAP no bootstrap. Se o AD local for a fonte autoritativa, não use o script: crie a conta lá e deixe a sincronização propagá-la.
 
-| Dado | Valor de exemplo | Por que importa |
-| --- | --- | --- |
-| `department` | `Laboratório NEST` | Limita o escopo dos workflows |
-| `employeeHireDate` | `2026-09-01T12:00:00Z` | Aciona o Joiner |
-| `manager` | ID do gestor de Anna | Recebe o TAP, aprova e revisa |
-| `mail` do gestor | Endereço válido | Permite a entrega das notificações |
-| `usageLocation` | `BR` | Evita falhas posteriores na atribuição de licenças |
+| Dado               | Valor de exemplo       | Por que importa                                    |
+| ------------------ | ---------------------- | -------------------------------------------------- |
+| `department`       | `Laboratório NEST`     | Limita o escopo dos workflows                      |
+| `employeeHireDate` | `2026-09-01T12:00:00Z` | Aciona o Joiner                                    |
+| `manager`          | ID do gestor de Anna   | Recebe o TAP, aprova e revisa                      |
+| `mail` do gestor   | Endereço válido        | Permite a entrega das notificações                 |
+| `usageLocation`    | `BR`                   | Evita falhas posteriores na atribuição de licenças |
 
 > [!IMPORTANT]
 > Preencha `usageLocation` antes das licenças. Use o código de duas letras do país ou região, como `BR`, para validar a disponibilidade legal dos serviços. Sem isso, atribuições diretas ou por grupo podem falhar.

@@ -63,9 +63,21 @@ function setupArchiveFilters(root: HTMLElement) {
   const unavailableTags = root.querySelector<HTMLElement>('[data-archive-tag-unavailable]');
   const noTagResults = root.querySelector<HTMLElement>('[data-archive-tag-no-results]');
   const available = {
-    category: new Set(controls.filter((control) => control.dataset.archiveFilterKind === 'category').map((control) => control.dataset.archiveFilterValue || '')),
-    tag: new Set(controls.filter((control) => control.dataset.archiveFilterKind === 'tag').map((control) => control.dataset.archiveFilterValue || '')),
-    difficulty: new Set(controls.filter((control) => control.dataset.archiveFilterKind === 'difficulty').map((control) => control.dataset.archiveFilterValue || ''))
+    category: new Set(
+      controls
+        .filter((control) => control.dataset.archiveFilterKind === 'category')
+        .map((control) => control.dataset.archiveFilterValue || '')
+    ),
+    tag: new Set(
+      controls
+        .filter((control) => control.dataset.archiveFilterKind === 'tag')
+        .map((control) => control.dataset.archiveFilterValue || '')
+    ),
+    difficulty: new Set(
+      controls
+        .filter((control) => control.dataset.archiveFilterKind === 'difficulty')
+        .map((control) => control.dataset.archiveFilterValue || '')
+    )
   };
 
   function writeStateToUrl(state: FilterState, method: 'push' | 'replace') {
@@ -83,11 +95,13 @@ function setupArchiveFilters(root: HTMLElement) {
     let changed = false;
 
     const requestedCategory = url.searchParams.get(parameterByKind.category);
-    if (requestedCategory && available.category.has(requestedCategory)) state.category = requestedCategory;
+    if (requestedCategory && available.category.has(requestedCategory))
+      state.category = requestedCategory;
     else if (requestedCategory !== null) changed = true;
 
     const requestedDifficulty = url.searchParams.get(parameterByKind.difficulty);
-    if (requestedDifficulty && available.difficulty.has(requestedDifficulty)) state.difficulty = requestedDifficulty;
+    if (requestedDifficulty && available.difficulty.has(requestedDifficulty))
+      state.difficulty = requestedDifficulty;
     else if (requestedDifficulty !== null) changed = true;
 
     const seenTags = new Set<string>();
@@ -112,7 +126,10 @@ function setupArchiveFilters(root: HTMLElement) {
   }
 
   function normalize(value: string) {
-    return value.normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLocaleLowerCase(document.documentElement.lang || 'pt-BR');
+    return value
+      .normalize('NFD')
+      .replace(/[\u0300-\u036f]/g, '')
+      .toLocaleLowerCase(document.documentElement.lang || 'pt-BR');
   }
 
   function filterTagOptions() {
@@ -171,8 +188,14 @@ function setupArchiveFilters(root: HTMLElement) {
     }
 
     tagRows
-      .sort((a, b) => Number(b.dataset.archiveTagCount) - Number(a.dataset.archiveTagCount)
-        || (a.dataset.archiveTagLabel || '').localeCompare(b.dataset.archiveTagLabel || '', document.documentElement.lang || 'pt-BR'))
+      .sort(
+        (a, b) =>
+          Number(b.dataset.archiveTagCount) - Number(a.dataset.archiveTagCount) ||
+          (a.dataset.archiveTagLabel || '').localeCompare(
+            b.dataset.archiveTagLabel || '',
+            document.documentElement.lang || 'pt-BR'
+          )
+      )
       .forEach((row) => tagOptions?.append(row));
     filterTagOptions();
 
@@ -209,7 +232,8 @@ function setupArchiveFilters(root: HTMLElement) {
       chip.type = 'button';
       chip.dataset.archiveRemoveKind = item.kind;
       chip.dataset.archiveRemoveValue = item.value;
-      chip.className = 'inline-flex min-h-8 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[0.6875rem] font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40';
+      chip.className =
+        'inline-flex min-h-8 items-center gap-1 rounded-full border border-primary/30 bg-primary/10 px-2 py-0.5 text-[0.6875rem] font-medium text-foreground transition-colors hover:border-primary/50 hover:bg-primary/15 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40';
       chip.setAttribute('aria-label', `${labels.removeFilter}: ${item.value}`);
 
       const text = document.createElement('span');
@@ -226,7 +250,9 @@ function setupArchiveFilters(root: HTMLElement) {
   function updateTagSummary(state: FilterState) {
     const selectedCount = state.tags.length;
     const selectedLabel = selectedCount === 1 ? labels.selectedTag : labels.selectedTags;
-    if (tagSummary) tagSummary.textContent = selectedCount > 0 ? `${selectedCount} ${selectedLabel}` : labels.chooseTags;
+    if (tagSummary)
+      tagSummary.textContent =
+        selectedCount > 0 ? `${selectedCount} ${selectedLabel}` : labels.chooseTags;
     if (tagBadge) {
       tagBadge.textContent = String(selectedCount);
       tagBadge.hidden = selectedCount === 0;
@@ -250,18 +276,23 @@ function setupArchiveFilters(root: HTMLElement) {
     let visibleCount = 0;
     for (const entry of entries) {
       const entryTags = entryTerms(entry, 'tags');
-      const matchesCategory = !state.category || entryTerms(entry, 'categories').includes(state.category);
-      const matchesTag = state.tags.length === 0 || state.tags.some((tag) => entryTags.includes(tag));
+      const matchesCategory =
+        !state.category || entryTerms(entry, 'categories').includes(state.category);
+      const matchesTag =
+        state.tags.length === 0 || state.tags.some((tag) => entryTags.includes(tag));
       const matchesDifficulty = !state.difficulty || entryTags.includes(state.difficulty);
       entry.hidden = !(matchesCategory && matchesTag && matchesDifficulty);
       if (!entry.hidden) visibleCount += 1;
     }
 
-    for (const month of months) month.hidden = !month.querySelector<HTMLElement>('[data-archive-entry]:not([hidden])');
-    for (const year of years) year.hidden = !year.querySelector<HTMLElement>('[data-archive-entry]:not([hidden])');
+    for (const month of months)
+      month.hidden = !month.querySelector<HTMLElement>('[data-archive-entry]:not([hidden])');
+    for (const year of years)
+      year.hidden = !year.querySelector<HTMLElement>('[data-archive-entry]:not([hidden])');
 
     if (resultCount) resultCount.textContent = String(visibleCount);
-    if (resultLabel) resultLabel.textContent = visibleCount === 1 ? labels.foundSingle : labels.foundPlural;
+    if (resultLabel)
+      resultLabel.textContent = visibleCount === 1 ? labels.foundSingle : labels.foundPlural;
     if (emptyState) emptyState.hidden = visibleCount > 0;
     renderActiveFilters(state);
     updateTagSummary(state);
@@ -285,7 +316,9 @@ function setupArchiveFilters(root: HTMLElement) {
         const state = readState();
         const value = control.dataset.archiveFilterValue || '';
         const checked = (control as HTMLInputElement).checked;
-        state.tags = checked ? [...new Set([...state.tags, value])] : state.tags.filter((tag) => tag !== value);
+        state.tags = checked
+          ? [...new Set([...state.tags, value])]
+          : state.tags.filter((tag) => tag !== value);
         writeStateToUrl(state, 'push');
         applyState(state);
       });
@@ -302,7 +335,9 @@ function setupArchiveFilters(root: HTMLElement) {
   }
 
   activeList?.addEventListener('click', (event) => {
-    const chip = (event.target as HTMLElement).closest<HTMLButtonElement>('[data-archive-remove-kind]');
+    const chip = (event.target as HTMLElement).closest<HTMLButtonElement>(
+      '[data-archive-remove-kind]'
+    );
     if (!chip) return;
     const state = readState();
     const kind = chip.dataset.archiveRemoveKind as FilterKind;
@@ -319,11 +354,17 @@ function setupArchiveFilters(root: HTMLElement) {
     applyState(state);
   });
 
-  tagToggle?.addEventListener('click', () => setTagPanel(tagToggle.getAttribute('aria-expanded') !== 'true'));
+  tagToggle?.addEventListener('click', () =>
+    setTagPanel(tagToggle.getAttribute('aria-expanded') !== 'true')
+  );
   tagSearch?.addEventListener('input', filterTagOptions);
 
   document.addEventListener('pointerdown', (event) => {
-    if (tagToggle?.getAttribute('aria-expanded') === 'true' && !tagSelect?.contains(event.target as Node)) setTagPanel(false);
+    if (
+      tagToggle?.getAttribute('aria-expanded') === 'true' &&
+      !tagSelect?.contains(event.target as Node)
+    )
+      setTagPanel(false);
   });
 
   root.addEventListener('keydown', (event) => {
@@ -338,6 +379,7 @@ function setupArchiveFilters(root: HTMLElement) {
   root.hidden = false;
 }
 
-for (const root of document.querySelectorAll<HTMLElement>('[data-archive-filter-root]')) setupArchiveFilters(root);
+for (const root of document.querySelectorAll<HTMLElement>('[data-archive-filter-root]'))
+  setupArchiveFilters(root);
 
 export {};

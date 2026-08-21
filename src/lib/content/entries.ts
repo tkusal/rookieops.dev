@@ -1,5 +1,11 @@
 import { getCollection, type CollectionEntry } from 'astro:content';
-import { getLocaleFromId, getLocalePath, localeMeta, stripLocaleFromId, type Locale } from '../../config/i18n';
+import {
+  getLocaleFromId,
+  getLocalePath,
+  localeMeta,
+  stripLocaleFromId,
+  type Locale
+} from '../../config/i18n';
 
 export type ContentType = 'posts' | 'projects' | 'pages';
 
@@ -23,7 +29,11 @@ export async function getLocalizedEntries<T extends ContentType>(collection: T, 
   const entries = await getCollection(collection, ({ data }) => import.meta.env.DEV || !data.draft);
   return entries
     .filter((entry) => entryLocale(entry as CollectionEntry<ContentType>) === locale)
-    .sort((a, b) => entryDate(b as CollectionEntry<ContentType>).getTime() - entryDate(a as CollectionEntry<ContentType>).getTime());
+    .sort(
+      (a, b) =>
+        entryDate(b as CollectionEntry<ContentType>).getTime() -
+        entryDate(a as CollectionEntry<ContentType>).getTime()
+    );
 }
 
 export function localizedEntryPath(collection: ContentType, entry: CollectionEntry<ContentType>) {
@@ -74,7 +84,10 @@ export function collectArchiveTerms(
     .sort((a, b) => collator.compare(a.value, b.value));
 }
 
-export function adjacentEntries<T extends ContentType>(entries: Array<CollectionEntry<T>>, current: CollectionEntry<T>) {
+export function adjacentEntries<T extends ContentType>(
+  entries: Array<CollectionEntry<T>>,
+  current: CollectionEntry<T>
+) {
   const index = entries.findIndex((entry) => entry.id === current.id);
   return {
     previous: index >= 0 ? entries[index + 1] : undefined,
@@ -82,7 +95,11 @@ export function adjacentEntries<T extends ContentType>(entries: Array<Collection
   };
 }
 
-export function relatedPosts(posts: Array<CollectionEntry<'posts'>>, current: CollectionEntry<'posts'>, limit = 3) {
+export function relatedPosts(
+  posts: Array<CollectionEntry<'posts'>>,
+  current: CollectionEntry<'posts'>,
+  limit = 3
+) {
   const currentTerms = new Set(current.data.tags || []);
 
   return posts
@@ -93,7 +110,11 @@ export function relatedPosts(posts: Array<CollectionEntry<'posts'>>, current: Co
       return { entry, score };
     })
     .filter((item) => item.score > 0)
-    .sort((a, b) => b.score - a.score || entryDate(b.entry as any).getTime() - entryDate(a.entry as any).getTime())
+    .sort(
+      (a, b) =>
+        b.score - a.score ||
+        entryDate(b.entry as any).getTime() - entryDate(a.entry as any).getTime()
+    )
     .slice(0, limit)
     .map((item) => item.entry);
 }

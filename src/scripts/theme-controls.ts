@@ -20,9 +20,13 @@ function syncDisplayState() {
   document.querySelectorAll<HTMLElement>('[data-theme-value]').forEach((button) => {
     const active = button.dataset.themeValue === activeTheme;
     button.setAttribute('aria-pressed', String(active));
-    button.querySelector<HTMLElement>('[data-theme-indicator]')?.classList.toggle('hidden', !active);
+    button
+      .querySelector<HTMLElement>('[data-theme-indicator]')
+      ?.classList.toggle('hidden', !active);
   });
-  document.querySelector<HTMLElement>('[data-color-mode]')?.setAttribute('aria-pressed', String(root.classList.contains('dark')));
+  document
+    .querySelector<HTMLElement>('[data-color-mode]')
+    ?.setAttribute('aria-pressed', String(root.classList.contains('dark')));
 }
 
 function notifyColorModeChange() {
@@ -100,16 +104,29 @@ document.addEventListener('click', (event) => {
     return;
   }
 
-  if (!target.closest('[data-display-panel]')) setPanel(displayPanel, document.querySelector('[data-display-menu]'), false);
+  if (!target.closest('[data-display-panel]'))
+    setPanel(displayPanel, document.querySelector('[data-display-menu]'), false);
   if (!target.closest('[data-lang-panel]')) setPanel(langPanel, langMenu, false);
   if (!target.closest('[data-mobile-panel]')) setPanel(mobilePanel, mobileMenu, false);
 });
 
 document.addEventListener('keydown', (event) => {
   if (event.key !== 'Escape') return;
-  setPanel(document.querySelector('[data-display-panel]'), document.querySelector('[data-display-menu]'), false);
-  setPanel(document.querySelector('[data-lang-panel]'), document.querySelector('[data-lang-menu]'), false);
-  setPanel(document.querySelector('[data-mobile-panel]'), document.querySelector('[data-mobile-menu]'), false);
+  setPanel(
+    document.querySelector('[data-display-panel]'),
+    document.querySelector('[data-display-menu]'),
+    false
+  );
+  setPanel(
+    document.querySelector('[data-lang-panel]'),
+    document.querySelector('[data-lang-menu]'),
+    false
+  );
+  setPanel(
+    document.querySelector('[data-mobile-panel]'),
+    document.querySelector('[data-mobile-menu]'),
+    false
+  );
 });
 
 syncCodeTheme();

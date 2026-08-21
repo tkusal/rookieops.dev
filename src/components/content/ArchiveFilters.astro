@@ -21,7 +21,9 @@ const difficulties = localizedDifficultyLevels.flatMap((level) => {
 });
 const tagTerms = tags
   .filter(({ value }) => !difficultyValues.has(value))
-  .sort((a, b) => b.count - a.count || a.value.localeCompare(b.value, localeMeta[locale].dateLocale));
+  .sort(
+    (a, b) => b.count - a.count || a.value.localeCompare(b.value, localeMeta[locale].dateLocale)
+  );
 const filterButtonClass =
   'inline-flex min-h-8 items-center rounded-full border border-border bg-card px-2.5 py-1 text-[0.6875rem] font-medium text-muted-foreground transition-colors duration-200 hover:border-primary/40 hover:bg-muted hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background aria-pressed:border-primary aria-pressed:bg-primary aria-pressed:text-primary-foreground aria-pressed:hover:bg-primary aria-pressed:hover:text-primary-foreground motion-reduce:transition-none';
 ---
@@ -36,7 +38,7 @@ const filterButtonClass =
     <fieldset>
       <legend class="sr-only">{t('archive.filter.categories')}</legend>
       <div class="sm:grid sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start sm:gap-4">
-        <span aria-hidden="true" class="text-xs font-semibold text-foreground sm:pt-2">
+        <span aria-hidden="true" class="text-foreground text-xs font-semibold sm:pt-2">
           {t('archive.filter.categories')}
         </span>
         <div class="mt-2 flex min-w-0 flex-wrap gap-1 sm:mt-0">
@@ -50,18 +52,20 @@ const filterButtonClass =
           >
             {t('archive.filter.all')}
           </button>
-          {categories.map((term) => (
-            <button
-              type="button"
-              data-archive-filter-kind="category"
-              data-archive-filter-value={term.value}
-              aria-pressed="false"
-              aria-controls="archive-results"
-              class={filterButtonClass}
-            >
-              {term.value}
-            </button>
-          ))}
+          {
+            categories.map((term) => (
+              <button
+                type="button"
+                data-archive-filter-kind="category"
+                data-archive-filter-value={term.value}
+                aria-pressed="false"
+                aria-controls="archive-results"
+                class={filterButtonClass}
+              >
+                {term.value}
+              </button>
+            ))
+          }
         </div>
       </div>
     </fieldset>
@@ -69,7 +73,7 @@ const filterButtonClass =
     <fieldset>
       <legend class="sr-only">{t('archive.filter.difficulty')}</legend>
       <div class="sm:grid sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start sm:gap-4">
-        <span aria-hidden="true" class="text-xs font-semibold text-foreground sm:pt-2">
+        <span aria-hidden="true" class="text-foreground text-xs font-semibold sm:pt-2">
           {t('archive.filter.difficulty')}
         </span>
         <div class="mt-2 flex min-w-0 flex-wrap gap-1 sm:mt-0">
@@ -83,18 +87,20 @@ const filterButtonClass =
           >
             {t('archive.filter.allDifficulty')}
           </button>
-          {difficulties.map((term) => (
-            <button
-              type="button"
-              data-archive-filter-kind="difficulty"
-              data-archive-filter-value={term.value}
-              aria-pressed="false"
-              aria-controls="archive-results"
-              class={filterButtonClass}
-            >
-              {term.value}
-            </button>
-          ))}
+          {
+            difficulties.map((term) => (
+              <button
+                type="button"
+                data-archive-filter-kind="difficulty"
+                data-archive-filter-value={term.value}
+                aria-pressed="false"
+                aria-controls="archive-results"
+                class={filterButtonClass}
+              >
+                {term.value}
+              </button>
+            ))
+          }
         </div>
       </div>
     </fieldset>
@@ -102,7 +108,7 @@ const filterButtonClass =
     <fieldset>
       <legend class="sr-only">{t('archive.filter.tags')}</legend>
       <div class="sm:grid sm:grid-cols-[5.5rem_minmax(0,1fr)] sm:items-start sm:gap-4">
-        <span aria-hidden="true" class="text-xs font-semibold text-foreground sm:pt-3">
+        <span aria-hidden="true" class="text-foreground text-xs font-semibold sm:pt-3">
           {t('archive.filter.tags')}
         </span>
         <div data-archive-tag-select class="relative mt-2 min-w-0 sm:mt-0">
@@ -112,15 +118,24 @@ const filterButtonClass =
             aria-expanded="false"
             aria-controls="archive-tag-panel"
             aria-haspopup="true"
-            class="flex min-h-11 w-full items-center justify-between gap-3 rounded-[var(--radius-control)] border border-border bg-card px-3 py-2 text-left text-sm font-medium text-foreground shadow-sm transition-colors hover:border-primary/40 hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40 focus-visible:ring-offset-2 focus-visible:ring-offset-background sm:max-w-sm"
+            class="border-border bg-card text-foreground hover:border-primary/40 hover:bg-muted focus-visible:ring-primary/40 focus-visible:ring-offset-background flex min-h-11 w-full items-center justify-between gap-3 rounded-[var(--radius-control)] border px-3 py-2 text-left text-sm font-medium shadow-sm transition-colors focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:outline-none sm:max-w-sm"
           >
             <span class="flex min-w-0 items-center gap-2">
-              <Icon name="lucide:tags" class="h-4 w-4 shrink-0 text-muted-foreground" />
-              <span data-archive-tag-summary class="truncate">{t('archive.filter.chooseTags')}</span>
+              <Icon name="lucide:tags" class="text-muted-foreground h-4 w-4 shrink-0" />
+              <span data-archive-tag-summary class="truncate">{t('archive.filter.chooseTags')}</span
+              >
             </span>
             <span class="flex shrink-0 items-center gap-2">
-              <span data-archive-tag-badge hidden class="min-w-5 rounded-full bg-primary px-1.5 py-0.5 text-center text-[0.6875rem] font-semibold text-primary-foreground"></span>
-              <Icon data-archive-tag-chevron name="lucide:chevron-down" class="h-4 w-4 text-muted-foreground transition-transform" />
+              <span
+                data-archive-tag-badge
+                hidden
+                class="bg-primary text-primary-foreground min-w-5 rounded-full px-1.5 py-0.5 text-center text-[0.6875rem] font-semibold"
+              ></span>
+              <Icon
+                data-archive-tag-chevron
+                name="lucide:chevron-down"
+                class="text-muted-foreground h-4 w-4 transition-transform"
+              />
             </span>
           </button>
 
@@ -128,47 +143,67 @@ const filterButtonClass =
             id="archive-tag-panel"
             data-archive-tag-panel
             hidden
-            class="mt-2 rounded-[var(--radius-card)] border border-border bg-popover p-2 shadow-[var(--surface-shadow-strong)] sm:absolute sm:left-0 sm:z-20 sm:w-96"
+            class="border-border bg-popover mt-2 rounded-[var(--radius-card)] border p-2 shadow-[var(--surface-shadow-strong)] sm:absolute sm:left-0 sm:z-20 sm:w-96"
           >
             <label class="relative block">
               <span class="sr-only">{t('archive.filter.searchTags')}</span>
-              <Icon name="lucide:search" class="pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2 text-muted-foreground" />
+              <Icon
+                name="lucide:search"
+                class="text-muted-foreground pointer-events-none absolute top-1/2 left-3 h-4 w-4 -translate-y-1/2"
+              />
               <input
                 type="search"
                 data-archive-tag-search
                 placeholder={t('archive.filter.searchTags')}
                 autocomplete="off"
-                class="min-h-10 w-full rounded-[var(--radius-control)] border border-border bg-background py-2 pr-3 pl-9 text-sm text-foreground outline-none placeholder:text-muted-foreground focus:border-primary/50 focus:ring-2 focus:ring-primary/30"
+                class="border-border bg-background text-foreground placeholder:text-muted-foreground focus:border-primary/50 focus:ring-primary/30 min-h-10 w-full rounded-[var(--radius-control)] border py-2 pr-3 pl-9 text-sm outline-none focus:ring-2"
               />
             </label>
 
-            <div data-archive-tag-options class="mt-2 max-h-64 space-y-0.5 overflow-y-auto" aria-label={t('archive.filter.tags')}>
-              {tagTerms.map((term) => (
-                <label
-                  data-archive-tag-row
-                  data-archive-tag-label={term.value}
-                  data-archive-tag-count={term.count}
-                  class="flex min-h-10 cursor-pointer items-center gap-3 rounded-[var(--radius-control)] px-2.5 py-2 text-sm text-foreground transition-colors hover:bg-accent hover:text-accent-foreground"
-                >
-                  <input
-                    type="checkbox"
-                    data-archive-filter-kind="tag"
-                    data-archive-filter-value={term.value}
-                    aria-controls="archive-results"
-                    class="h-4 w-4 shrink-0 accent-primary"
-                  />
-                  <span class="min-w-0 flex-1 truncate">{term.value}</span>
-                  <span data-archive-filter-count class="shrink-0 text-xs tabular-nums text-muted-foreground">
-                    {term.count}
-                  </span>
-                </label>
-              ))}
+            <div
+              data-archive-tag-options
+              class="mt-2 max-h-64 space-y-0.5 overflow-y-auto"
+              aria-label={t('archive.filter.tags')}
+            >
+              {
+                tagTerms.map((term) => (
+                  <label
+                    data-archive-tag-row
+                    data-archive-tag-label={term.value}
+                    data-archive-tag-count={term.count}
+                    class="text-foreground hover:bg-accent hover:text-accent-foreground flex min-h-10 cursor-pointer items-center gap-3 rounded-[var(--radius-control)] px-2.5 py-2 text-sm transition-colors"
+                  >
+                    <input
+                      type="checkbox"
+                      data-archive-filter-kind="tag"
+                      data-archive-filter-value={term.value}
+                      aria-controls="archive-results"
+                      class="accent-primary h-4 w-4 shrink-0"
+                    />
+                    <span class="min-w-0 flex-1 truncate">{term.value}</span>
+                    <span
+                      data-archive-filter-count
+                      class="text-muted-foreground shrink-0 text-xs tabular-nums"
+                    >
+                      {term.count}
+                    </span>
+                  </label>
+                ))
+              }
             </div>
 
-            <p data-archive-tag-unavailable hidden class="px-3 py-4 text-center text-sm text-muted-foreground">
+            <p
+              data-archive-tag-unavailable
+              hidden
+              class="text-muted-foreground px-3 py-4 text-center text-sm"
+            >
               {t('archive.filter.noTags')}
             </p>
-            <p data-archive-tag-no-results hidden class="px-3 py-4 text-center text-sm text-muted-foreground">
+            <p
+              data-archive-tag-no-results
+              hidden
+              class="text-muted-foreground px-3 py-4 text-center text-sm"
+            >
               {t('archive.filter.noTagResults')}
             </p>
           </div>
@@ -177,44 +212,57 @@ const filterButtonClass =
     </fieldset>
   </div>
 
-  <p data-archive-filter-notice hidden role="status" class="mt-4 rounded-[var(--radius-control)] bg-muted px-3 py-2 text-xs text-muted-foreground"></p>
+  <p
+    data-archive-filter-notice
+    hidden
+    role="status"
+    class="bg-muted text-muted-foreground mt-4 rounded-[var(--radius-control)] px-3 py-2 text-xs"
+  >
+  </p>
 
-  <div data-archive-active hidden class="mt-3 border-t border-border pt-3">
+  <div data-archive-active hidden class="border-border mt-3 border-t pt-3">
     <div class="flex flex-wrap items-center gap-2">
-      <span class="mr-1 text-xs font-semibold text-foreground">{t('archive.filter.active')}</span>
+      <span class="text-foreground mr-1 text-xs font-semibold">{t('archive.filter.active')}</span>
       <div data-archive-active-list class="flex min-w-0 flex-1 flex-wrap gap-1"></div>
       <button
         type="button"
         data-archive-clear
-        class="min-h-8 rounded-[var(--radius-control)] px-2 py-1 text-[0.6875rem] font-semibold text-primary transition-colors hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-primary/40"
+        class="text-primary hover:bg-accent focus-visible:ring-primary/40 min-h-8 rounded-[var(--radius-control)] px-2 py-1 text-[0.6875rem] font-semibold transition-colors focus-visible:ring-2 focus-visible:outline-none"
       >
         {t('archive.filter.clear')}
       </button>
     </div>
   </div>
 
-  <div class="mt-3 border-t border-border pt-3 text-sm text-muted-foreground">
+  <div class="border-border text-muted-foreground mt-3 border-t pt-3 text-sm">
     <p aria-live="polite" aria-atomic="true">
-      <strong data-archive-result-count class="font-semibold text-foreground">{total}</strong>{' '}
+      <strong data-archive-result-count class="text-foreground font-semibold">{total}</strong>{' '}
       <span data-archive-result-label>
         {total === 1 ? t('archive.results.foundSingle') : t('archive.results.foundPlural')}
       </span>
     </p>
-    <p data-archive-empty hidden class="mt-3 rounded-[var(--radius-control)] bg-muted px-4 py-3 text-foreground">
+    <p
+      data-archive-empty
+      hidden
+      class="bg-muted text-foreground mt-3 rounded-[var(--radius-control)] px-4 py-3"
+    >
       {t('archive.filter.empty')}
     </p>
   </div>
 </section>
 
-<script is:inline define:vars={{
-  chooseTagsLabel: t('archive.filter.chooseTags'),
-  selectedTagLabel: t('archive.filter.selectedTag'),
-  selectedTagsLabel: t('archive.filter.selectedTags'),
-  removedTagsNotice: t('archive.filter.removedTags'),
-  removeFilterLabel: t('archive.filter.remove'),
-  foundSingleLabel: t('archive.results.foundSingle'),
-  foundPluralLabel: t('archive.results.foundPlural')
-}}>
+<script
+  is:inline
+  define:vars={{
+    chooseTagsLabel: t('archive.filter.chooseTags'),
+    selectedTagLabel: t('archive.filter.selectedTag'),
+    selectedTagsLabel: t('archive.filter.selectedTags'),
+    removedTagsNotice: t('archive.filter.removedTags'),
+    removeFilterLabel: t('archive.filter.remove'),
+    foundSingleLabel: t('archive.results.foundSingle'),
+    foundPluralLabel: t('archive.results.foundPlural')
+  }}
+>
   window.archiveFilterLabels = {
     chooseTags: chooseTagsLabel,
     selectedTag: selectedTagLabel,

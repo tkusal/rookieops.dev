@@ -1,14 +1,14 @@
 ---
-title: "Do reconhecimento ao hardening no Microsoft Entra ID"
-description: "Transforme o reconhecimento do Microsoft Entra ID em um plano de proteção com menor privilégio, PIM e Acesso Condicional."
+title: 'Do reconhecimento ao hardening no Microsoft Entra ID'
+description: 'Transforme o reconhecimento do Microsoft Entra ID em um plano de proteção com menor privilégio, PIM e Acesso Condicional.'
 pubDate: 2026-07-30
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Microsoft 365"]
-tags: ["Entra ID", "IAM", "Segurança", "Intermediário"]
-cover: "/images/posts/do-reconhecimento-ao-hardening-no-microsoft-entra-id/camadas-de-seguranca-e-menor-privilegio.webp"
-coverAlt: "Ilustração de identidades de pessoa, carga de trabalho e dispositivo atravessando camadas de políticas de acesso."
+categories: ['Microsoft 365']
+tags: ['Entra ID', 'IAM', 'Segurança', 'Intermediário']
+cover: '/images/posts/do-reconhecimento-ao-hardening-no-microsoft-entra-id/camadas-de-seguranca-e-menor-privilegio.webp'
+coverAlt: 'Ilustração de identidades de pessoa, carga de trabalho e dispositivo atravessando camadas de políticas de acesso.'
 toc: true
 comments: false
 draft: false
@@ -66,14 +66,14 @@ Quando a automação é executada em um recurso Azure compatível, uma **identid
 
 Existem dois tipos:
 
-| Tipo | Ciclo de vida | Uso típico |
-| --- | --- | --- |
-| Atribuída pelo sistema | Vinculado ao recurso Azure; a identidade é removida com ele | Uma carga de trabalho com identidade exclusiva |
+| Tipo                   | Ciclo de vida                                                     | Uso típico                                            |
+| ---------------------- | ----------------------------------------------------------------- | ----------------------------------------------------- |
+| Atribuída pelo sistema | Vinculado ao recurso Azure; a identidade é removida com ele       | Uma carga de trabalho com identidade exclusiva        |
 | Atribuída pelo usuário | Recurso independente, associável a uma ou mais cargas de trabalho | Identidade reutilizável ou administrada separadamente |
 
 “Sem segredo no código” não significa “sem autorização”. A identidade ainda precisa receber permissão no recurso de destino. Um token válido para o Key Vault, por exemplo, não autoriza a leitura se a função ou a política de acesso necessária não tiver sido concedida.
 
-Para cargas de trabalho executadas fora do Azure, um registro de aplicativo e o respectivo *service principal* ainda são comuns. Se a plataforma de origem oferecer uma identidade confiável, prefira a **federação de identidade de carga de trabalho**, que permite trocar o token externo por um token do Microsoft Entra sem manter um segredo estático. Quando a federação não for possível, prefira um certificado armazenado e rotacionado com segurança; use *client secrets* apenas como último recurso.
+Para cargas de trabalho executadas fora do Azure, um registro de aplicativo e o respectivo _service principal_ ainda são comuns. Se a plataforma de origem oferecer uma identidade confiável, prefira a **federação de identidade de carga de trabalho**, que permite trocar o token externo por um token do Microsoft Entra sem manter um segredo estático. Quando a federação não for possível, prefira um certificado armazenado e rotacionado com segurança; use _client secrets_ apenas como último recurso.
 
 Dentro do Azure, quando o serviço de origem aceita identidade gerenciada e o destino oferece autenticação pelo Microsoft Entra, a identidade gerenciada continua sendo a opção recomendada. Em qualquer cenário, segredos estáticos em arquivos de configuração, pipelines e repositórios devem ser tratados como risco a eliminar.
 
@@ -89,10 +89,10 @@ OIDC e OAuth 2.0 podem participar da mesma experiência, mas respondem a pergunt
 
 Os principais tokens também têm finalidades distintas:
 
-| Token | Destinatário e finalidade |
-| --- | --- |
-| Token de ID | Ajuda o aplicativo cliente a confirmar a autenticação da pessoa |
-| Token de acesso | É apresentado à API ou ao recurso protegido para solicitar acesso |
+| Token                | Destinatário e finalidade                                              |
+| -------------------- | ---------------------------------------------------------------------- |
+| Token de ID          | Ajuda o aplicativo cliente a confirmar a autenticação da pessoa        |
+| Token de acesso      | É apresentado à API ou ao recurso protegido para solicitar acesso      |
 | Token de atualização | Permite ao cliente solicitar novos tokens, conforme as regras do fluxo |
 
 Tokens são credenciais temporárias e sensíveis. Não devem ser colados em chamados, capturas de tela, repositórios ou ferramentas públicas. Aplicações devem usar bibliotecas suportadas, solicitar apenas os escopos necessários e validar os tokens destinados a elas.

@@ -1,6 +1,6 @@
 ---
-title: "Licença do conteúdo"
-description: "Condições para republicar artigos e outros conteúdos editoriais do RookieOps."
+title: 'Licença do conteúdo'
+description: 'Condições para republicar artigos e outros conteúdos editoriais do RookieOps.'
 pubDate: 2026-07-25
 updatedDate: 2026-07-26
 lang: pt-br

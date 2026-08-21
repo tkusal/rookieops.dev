@@ -1,14 +1,14 @@
 ---
-title: "Rede hub and spoke no Azure com Terraform, parte 3: Azure Firewall e rotas customizadas"
-description: "Centralize a inspeção de uma rede hub and spoke no Azure com Firewall Basic, Firewall Policy e UDRs gerenciadas pelo Terraform."
+title: 'Rede hub and spoke no Azure com Terraform, parte 3: Azure Firewall e rotas customizadas'
+description: 'Centralize a inspeção de uma rede hub and spoke no Azure com Firewall Basic, Firewall Policy e UDRs gerenciadas pelo Terraform.'
 pubDate: 2026-08-20
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Cloud"]
-tags: ["Azure", "Terraform", "Azure Firewall", "UDR", "Intermediário"]
-cover: "/images/posts/rede-hub-and-spoke-azure-terraform-parte-3/capa.webp"
-coverAlt: "Ilustração isométrica de uma rede hub and spoke no Azure com um firewall em forma de muro no hub e setas de tráfego passando por ele"
+categories: ['Cloud']
+tags: ['Azure', 'Terraform', 'Azure Firewall', 'UDR', 'Intermediário']
+cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-3/capa.webp'
+coverAlt: 'Ilustração isométrica de uma rede hub and spoke no Azure com um firewall em forma de muro no hub e setas de tráfego passando por ele'
 toc: true
 comments: false
 mermaid: true
@@ -89,18 +89,18 @@ Os novos recursos são:
 
 O hub já usa `10.64.0.0/16`, enquanto `snet-shared` ocupa `10.64.10.0/24`. Reservaremos `10.64.0.0/26` para dados do firewall e `10.64.1.0/26` para gerenciamento. Os blocos não se sobrepõem e deixam intervalos livres para outros componentes especializados.
 
-| Rede ou subnet | CIDR | Função nesta parte |
-| --- | --- | --- |
-| VNet hub | `10.64.0.0/16` | Serviços centrais de rede |
-| **`AzureFirewallSubnet`** | `10.64.0.0/26` | Plano de dados do Azure Firewall |
-| **`AzureFirewallManagementSubnet`** | `10.64.1.0/26` | Gerenciamento exigido pela SKU Basic |
-| `snet-shared` | `10.64.10.0/24` | Serviços compartilhados futuros |
-| Spoke de aplicação | `10.65.0.0/16` | Domínio da aplicação |
-| `snet-web` | `10.65.10.0/24` | Camada web |
-| `snet-app` | `10.65.20.0/24` | Camada de aplicação |
-| Spoke de dados | `10.66.0.0/16` | Dados e integrações |
-| `snet-data` | `10.66.10.0/24` | Camada de dados |
-| `snet-integration` | `10.66.20.0/24` | Integrações privadas |
+| Rede ou subnet                      | CIDR            | Função nesta parte                   |
+| ----------------------------------- | --------------- | ------------------------------------ |
+| VNet hub                            | `10.64.0.0/16`  | Serviços centrais de rede            |
+| **`AzureFirewallSubnet`**           | `10.64.0.0/26`  | Plano de dados do Azure Firewall     |
+| **`AzureFirewallManagementSubnet`** | `10.64.1.0/26`  | Gerenciamento exigido pela SKU Basic |
+| `snet-shared`                       | `10.64.10.0/24` | Serviços compartilhados futuros      |
+| Spoke de aplicação                  | `10.65.0.0/16`  | Domínio da aplicação                 |
+| `snet-web`                          | `10.65.10.0/24` | Camada web                           |
+| `snet-app`                          | `10.65.20.0/24` | Camada de aplicação                  |
+| Spoke de dados                      | `10.66.0.0/16`  | Dados e integrações                  |
+| `snet-data`                         | `10.66.10.0/24` | Camada de dados                      |
+| `snet-integration`                  | `10.66.20.0/24` | Integrações privadas                 |
 
 Um `/26` contém 64 endereços. Como o Azure reserva cinco endereços em cada subnet IPv4, restam 59 utilizáveis pelo serviço. Reduzir o bloco para economizar endereços faria o deploy falhar. A economia seria parecida com remover a escada de incêndio para ganhar alguns metros no corredor.
 
@@ -124,24 +124,24 @@ A Firewall Policy combina uma precedência fixa por tipo com prioridades numéri
 
 Se nenhuma regra permitir o fluxo, o Azure Firewall nega por padrão. Não precisamos criar uma regra decorativa de `deny any any` para obter esse comportamento.
 
-| Prioridade | Coleção e regra | Protocolo | Origem | Destino | Ação |
-| ---: | --- | --- | --- | --- | --- |
-| 100 | `allow-east-west` / `allow-app-to-data` | TCP 1433 | `10.65.20.0/24` | `10.66.10.0/24` | Permitir |
-| 200 | `allow-system-updates` / `allow-windows-update` | HTTPS 443 | `10.65.0.0/16`, `10.66.0.0/16` | Tag FQDN `WindowsUpdate` | Permitir |
-| Padrão | Sem correspondência | Qualquer | Qualquer | Qualquer | Negar |
+| Prioridade | Coleção e regra                                 | Protocolo | Origem                         | Destino                  | Ação     |
+| ---------: | ----------------------------------------------- | --------- | ------------------------------ | ------------------------ | -------- |
+|        100 | `allow-east-west` / `allow-app-to-data`         | TCP 1433  | `10.65.20.0/24`                | `10.66.10.0/24`          | Permitir |
+|        200 | `allow-system-updates` / `allow-windows-update` | HTTPS 443 | `10.65.0.0/16`, `10.66.0.0/16` | Tag FQDN `WindowsUpdate` | Permitir |
+|     Padrão | Sem correspondência                             | Qualquer  | Qualquer                       | Qualquer                 | Negar    |
 
 ### Regras de NSG adicionadas nesta parte
 
 A policy central não substitui os controles distribuídos da parte 2. Estas são as liberações acrescentadas aos NSGs para que o pacote alcance o firewall e seja aceito também na subnet de destino:
 
-| NSG | Prioridade | Regra | Direção | Protocolo e porta | Origem | Destino |
-| --- | ---: | --- | --- | --- | --- | --- |
-| `nsg-web` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.65.10.0/24` | `Internet` |
-| `nsg-app` | 100 | `allow-data-outbound` | Saída | TCP 1433 | `10.65.20.0/24` | `10.66.10.0/24` |
-| `nsg-app` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.65.20.0/24` | `Internet` |
-| `nsg-data` | 110 | `allow-app-inbound` | Entrada | TCP 1433 | `10.65.20.0/24` | `10.66.10.0/24` |
-| `nsg-data` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.66.10.0/24` | `Internet` |
-| `nsg-integration` | 110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída | TCP 80 e 443 | `10.66.20.0/24` | `Internet` |
+| NSG               | Prioridade | Regra                                                      | Direção | Protocolo e porta | Origem          | Destino         |
+| ----------------- | ---------: | ---------------------------------------------------------- | ------- | ----------------- | --------------- | --------------- |
+| `nsg-web`         |  110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída   | TCP 80 e 443      | `10.65.10.0/24` | `Internet`      |
+| `nsg-app`         |        100 | `allow-data-outbound`                                      | Saída   | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-app`         |  110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída   | TCP 80 e 443      | `10.65.20.0/24` | `Internet`      |
+| `nsg-data`        |        110 | `allow-app-inbound`                                        | Entrada | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-data`        |  110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída   | TCP 80 e 443      | `10.66.10.0/24` | `Internet`      |
+| `nsg-integration` |  110 e 120 | `allow-windows-update-http` e `allow-windows-update-https` | Saída   | TCP 80 e 443      | `10.66.20.0/24` | `Internet`      |
 
 O fluxo entre spokes demonstra a inspeção leste-oeste: `snet-app` alcança `snet-data` somente em TCP 1433. Tanto o Azure Firewall quanto os NSGs são stateful e reconhecem o retorno de uma conexão permitida. Portanto, não precisamos liberar portas efêmeras de resposta nos NSGs. As UDRs nos dois spokes continuam essenciais para que ida e volta atravessem o firewall, que precisa observar as duas direções do fluxo para preservar o estado da sessão.
 

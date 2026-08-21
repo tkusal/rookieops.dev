@@ -15,16 +15,19 @@ const t = useTranslations(locale);
 const licenseUrl = getLocalePath(locale, license.url[locale]);
 ---
 
-{license.enabled && (
-  <section class="mt-10 rounded-lg border border-border bg-muted/40 p-4 text-sm text-muted-foreground">
-    <div class="mb-2 flex items-center gap-2 font-medium text-foreground">
-      <Icon name="lucide:badge-check" class="h-4 w-4" />
-      <span>{t('license.label')}</span>
-    </div>
-    <p>
-      <a href={licenseUrl} class="text-primary hover:underline">{license.name[locale]}</a>
-      {' '}
-      {license.description[locale]}
-    </p>
-  </section>
-)}
+{
+  license.enabled && (
+    <section class="border-border bg-muted/40 text-muted-foreground mt-10 rounded-lg border p-4 text-sm">
+      <div class="text-foreground mb-2 flex items-center gap-2 font-medium">
+        <Icon name="lucide:badge-check" class="h-4 w-4" />
+        <span>{t('license.label')}</span>
+      </div>
+      <p>
+        <a href={licenseUrl} class="text-primary hover:underline">
+          {license.name[locale]}
+        </a>{' '}
+        {license.description[locale]}
+      </p>
+    </section>
+  )
+}

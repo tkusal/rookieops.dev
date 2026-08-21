@@ -1,14 +1,14 @@
 ---
-title: "Git para quem está começando em DevOps"
-description: "Aprenda o fluxo essencial do Git para versionar automações, colaborar com segurança e recuperar mudanças sem medo no dia a dia de DevOps."
+title: 'Git para quem está começando em DevOps'
+description: 'Aprenda o fluxo essencial do Git para versionar automações, colaborar com segurança e recuperar mudanças sem medo no dia a dia de DevOps.'
 pubDate: 2026-07-29
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["DevOps"]
-tags: ["Git", "Versionamento", "Iniciante"]
-cover: "/images/posts/git-para-quem-esta-comecando-em-devops/fluxo-git.webp"
-coverAlt: "Ilustração do fluxo do Git desde o diretório de trabalho até o repositório remoto"
+categories: ['DevOps']
+tags: ['Git', 'Versionamento', 'Iniciante']
+cover: '/images/posts/git-para-quem-esta-comecando-em-devops/fluxo-git.webp'
+coverAlt: 'Ilustração do fluxo do Git desde o diretório de trabalho até o repositório remoto'
 toc: true
 comments: false
 draft: false
@@ -450,12 +450,12 @@ Em DevOps, um conflito em uma regra de firewall, variável de ambiente ou etapa 
 
 “Desfazer” pode significar coisas diferentes. Antes de executar um comando, identifique onde a mudança está:
 
-| Situação | Comando | Efeito |
-| --- | --- | --- |
-| Arquivo foi adicionado ao staging por engano | `git restore --staged <ARQUIVO>` | Retira do próximo commit e mantém a edição local |
-| Edição local de arquivo rastreado deve ser descartada | `git restore <ARQUIVO>` | Restaura o arquivo e descarta a edição não commitada |
-| Commit compartilhado introduziu um erro | `git revert <HASH_DO_COMMIT>` | Cria um novo commit que aplica a operação inversa |
-| Merge em andamento deve ser cancelado | `git merge --abort` | Retorna ao estado anterior ao início do merge, quando possível |
+| Situação                                              | Comando                          | Efeito                                                         |
+| ----------------------------------------------------- | -------------------------------- | -------------------------------------------------------------- |
+| Arquivo foi adicionado ao staging por engano          | `git restore --staged <ARQUIVO>` | Retira do próximo commit e mantém a edição local               |
+| Edição local de arquivo rastreado deve ser descartada | `git restore <ARQUIVO>`          | Restaura o arquivo e descarta a edição não commitada           |
+| Commit compartilhado introduziu um erro               | `git revert <HASH_DO_COMMIT>`    | Cria um novo commit que aplica a operação inversa              |
+| Merge em andamento deve ser cancelado                 | `git merge --abort`              | Retorna ao estado anterior ao início do merge, quando possível |
 
 ### Pratique a diferença entre staging e edição local
 

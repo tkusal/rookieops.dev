@@ -17,34 +17,49 @@ const t = useTranslations(locale);
 <section class="mt-10" aria-labelledby="series-chapters-title">
   <div class="mb-4 flex items-end justify-between gap-4">
     <div>
-      <p class="text-xs font-semibold uppercase tracking-[0.16em] text-muted-foreground">{t('series.label')}</p>
+      <p class="text-muted-foreground text-xs font-semibold tracking-[0.16em] uppercase">
+        {t('series.label')}
+      </p>
       <h2 id="series-chapters-title" class="mt-1 text-xl font-semibold">{t('series.chapters')}</h2>
     </div>
-    <span class="text-sm tabular-nums text-muted-foreground">{chapters.length} {t('series.chapterCount')}</span>
+    <span class="text-muted-foreground text-sm tabular-nums"
+      >{chapters.length} {t('series.chapterCount')}</span
+    >
   </div>
 
-  <ol class="surface-panel divide-y divide-border overflow-hidden">
-    {chapters.map((chapter, index) => (
-      <li>
-        <a
-          href={localizedEntryPath('posts', chapter as any)}
-          class="group grid gap-3 p-4 transition-colors duration-200 hover:bg-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-primary/35 motion-reduce:transition-none sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:items-center sm:p-5"
-        >
-          <span class="text-sm font-semibold tabular-nums text-muted-foreground group-hover:text-primary">
-            {String(index + 1).padStart(2, '0')}
-          </span>
-          <span class="min-w-0">
-            <strong class="block font-medium text-foreground group-hover:text-primary">{chapter.data.title}</strong>
-            {chapter.data.description && (
-              <span class="mt-1 line-clamp-2 block text-sm leading-6 text-muted-foreground">{chapter.data.description}</span>
-            )}
-          </span>
-          <span class="flex items-center gap-2 text-xs text-muted-foreground">
-            <time datetime={chapter.data.pubDate.toISOString()}>{formatDate(chapter.data.pubDate, locale)}</time>
-            <Icon name="lucide:arrow-right" class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none" />
-          </span>
-        </a>
-      </li>
-    ))}
+  <ol class="surface-panel divide-border divide-y overflow-hidden">
+    {
+      chapters.map((chapter, index) => (
+        <li>
+          <a
+            href={localizedEntryPath('posts', chapter as any)}
+            class="group hover:bg-accent focus-visible:ring-primary/35 grid gap-3 p-4 transition-colors duration-200 focus-visible:ring-2 focus-visible:outline-none focus-visible:ring-inset motion-reduce:transition-none sm:grid-cols-[3rem_minmax(0,1fr)_auto] sm:items-center sm:p-5"
+          >
+            <span class="text-muted-foreground group-hover:text-primary text-sm font-semibold tabular-nums">
+              {String(index + 1).padStart(2, '0')}
+            </span>
+            <span class="min-w-0">
+              <strong class="text-foreground group-hover:text-primary block font-medium">
+                {chapter.data.title}
+              </strong>
+              {chapter.data.description && (
+                <span class="text-muted-foreground mt-1 line-clamp-2 block text-sm leading-6">
+                  {chapter.data.description}
+                </span>
+              )}
+            </span>
+            <span class="text-muted-foreground flex items-center gap-2 text-xs">
+              <time datetime={chapter.data.pubDate.toISOString()}>
+                {formatDate(chapter.data.pubDate, locale)}
+              </time>
+              <Icon
+                name="lucide:arrow-right"
+                class="h-3.5 w-3.5 transition-transform duration-200 group-hover:translate-x-1 motion-reduce:transition-none"
+              />
+            </span>
+          </a>
+        </li>
+      ))
+    }
   </ol>
 </section>

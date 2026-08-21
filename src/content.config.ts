@@ -4,38 +4,40 @@ import { z } from 'astro/zod';
 
 const taxonomyTerm = z.string().trim().min(1);
 
-const baseSchema = z.object({
-  title: z.string(),
-  description: z.string().optional(),
-  pubDate: z.coerce.date().optional(),
-  updatedDate: z.coerce.date().optional(),
-  draft: z.boolean().default(false),
-  cover: z.string().trim().min(1).optional(),
-  coverAlt: z.string().trim().min(1).optional(),
-  lang: z.enum(['pt-br', 'en']).optional(),
-  toc: z.union([z.boolean(), z.enum(['center', 'side'])]).optional(),
-  comments: z.boolean().optional(),
-  math: z.boolean().optional(),
-  mermaid: z.boolean().optional(),
-  gallery: z.boolean().optional(),
-  lightbox: z.boolean().optional()
-}).superRefine((data, ctx) => {
-  if (data.cover !== undefined && data.coverAlt === undefined) {
-    ctx.addIssue({
-      code: 'custom',
-      message: '`coverAlt` deve ser informado quando `cover` estiver presente.',
-      path: ['coverAlt']
-    });
-  }
+const baseSchema = z
+  .object({
+    title: z.string(),
+    description: z.string().optional(),
+    pubDate: z.coerce.date().optional(),
+    updatedDate: z.coerce.date().optional(),
+    draft: z.boolean().default(false),
+    cover: z.string().trim().min(1).optional(),
+    coverAlt: z.string().trim().min(1).optional(),
+    lang: z.enum(['pt-br', 'en']).optional(),
+    toc: z.union([z.boolean(), z.enum(['center', 'side'])]).optional(),
+    comments: z.boolean().optional(),
+    math: z.boolean().optional(),
+    mermaid: z.boolean().optional(),
+    gallery: z.boolean().optional(),
+    lightbox: z.boolean().optional()
+  })
+  .superRefine((data, ctx) => {
+    if (data.cover !== undefined && data.coverAlt === undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '`coverAlt` deve ser informado quando `cover` estiver presente.',
+        path: ['coverAlt']
+      });
+    }
 
-  if (data.cover === undefined && data.coverAlt !== undefined) {
-    ctx.addIssue({
-      code: 'custom',
-      message: '`cover` deve ser informado quando `coverAlt` estiver presente.',
-      path: ['cover']
-    });
-  }
-});
+    if (data.cover === undefined && data.coverAlt !== undefined) {
+      ctx.addIssue({
+        code: 'custom',
+        message: '`cover` deve ser informado quando `coverAlt` estiver presente.',
+        path: ['cover']
+      });
+    }
+  });
 
 const posts = defineCollection({
   loader: glob({ base: './src/content/posts', pattern: '**/*.{md,mdx}' }),
@@ -53,12 +55,16 @@ const projects = defineCollection({
   loader: glob({ base: './src/content/projects', pattern: '**/*.{md,mdx}' }),
   schema: baseSchema.safeExtend({
     tags: z.array(taxonomyTerm).default([]),
-    links: z.array(z.object({
-      label: z.string(),
-      url: z.url(),
-      icon: z.string().optional(),
-      variant: z.enum(['primary', 'secondary']).default('secondary')
-    })).default([]),
+    links: z
+      .array(
+        z.object({
+          label: z.string(),
+          url: z.url(),
+          icon: z.string().optional(),
+          variant: z.enum(['primary', 'secondary']).default('secondary')
+        })
+      )
+      .default([]),
     featured: z.boolean().default(false)
   })
 });

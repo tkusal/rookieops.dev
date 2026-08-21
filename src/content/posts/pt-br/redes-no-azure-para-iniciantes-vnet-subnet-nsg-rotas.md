@@ -1,14 +1,14 @@
 ---
-title: "Redes no Azure para iniciantes: VNet, subnet, NSG e rotas sem confusão"
-description: "Entenda como VNet, subnet, NSG e rotas trabalham juntas no Azure e crie um laboratório seguro com Azure CLI."
+title: 'Redes no Azure para iniciantes: VNet, subnet, NSG e rotas sem confusão'
+description: 'Entenda como VNet, subnet, NSG e rotas trabalham juntas no Azure e crie um laboratório seguro com Azure CLI.'
 pubDate: 2026-08-05
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Cloud"]
-tags: ["Azure", "Redes", "Iniciante"]
-cover: "/images/posts/redes-no-azure-para-iniciantes-vnet-subnet-nsg-rotas/capa.webp"
-coverAlt: "Ilustração de uma rede virtual dividida em duas subnets, com um escudo filtrando pacotes e uma placa indicando rotas"
+categories: ['Cloud']
+tags: ['Azure', 'Redes', 'Iniciante']
+cover: '/images/posts/redes-no-azure-para-iniciantes-vnet-subnet-nsg-rotas/capa.webp'
+coverAlt: 'Ilustração de uma rede virtual dividida em duas subnets, com um escudo filtrando pacotes e uma placa indicando rotas'
 toc: true
 comments: false
 mermaid: true
@@ -110,13 +110,13 @@ Em IPv4, o Azure reserva cinco endereços de cada subnet: os quatro primeiros e 
 
 **Classless Inter-Domain Routing (CIDR)** combina o endereço da rede com o tamanho do prefixo. Quanto maior o número depois da barra, menor a faixa. Uma `/16` é maior que uma `/24`, apesar de o número parecer querer pregar uma peça no iniciante.
 
-| Uso | CIDR | Total de endereços | Disponíveis para recursos no Azure |
-| --- | --- | ---: | ---: |
-| VNet do laboratório | `10.42.0.0/16` | 65.536 | Divididos entre as subnets |
-| Camada web | `10.42.10.0/24` | 256 | 251 |
-| Camada de aplicação | `10.42.20.0/24` | 256 | 251 |
-| Camada de dados | `10.42.30.0/24` | 256 | 251 |
-| Azure Firewall futuro | `10.42.100.0/26` | 64 | 59 |
+| Uso                   | CIDR             | Total de endereços | Disponíveis para recursos no Azure |
+| --------------------- | ---------------- | -----------------: | ---------------------------------: |
+| VNet do laboratório   | `10.42.0.0/16`   |             65.536 |         Divididos entre as subnets |
+| Camada web            | `10.42.10.0/24`  |                256 |                                251 |
+| Camada de aplicação   | `10.42.20.0/24`  |                256 |                                251 |
+| Camada de dados       | `10.42.30.0/24`  |                256 |                                251 |
+| Azure Firewall futuro | `10.42.100.0/26` |                 64 |                                 59 |
 
 As quatro subnets cabem dentro de `10.42.0.0/16` e não se sobrepõem. O espaço restante permite crescer sem trocar todos os IPs. Requisitos de tamanho variam por serviço e variante de capacidade, portanto valide a documentação antes da implantação.
 
@@ -160,11 +160,11 @@ A Route Table é associada a uma ou mais subnets, não à VNet inteira e nem dir
 
 NSG, UDR e Azure Firewall não são três tamanhos da mesma fechadura. Um filtra, outro escolhe o caminho e o terceiro inspeciona de forma centralizada. O Firewall também entende **Fully Qualified Domain Names (FQDNs)**, nomes completos como `api.exemplo.com`.
 
-| Componente | Pergunta principal | Escopo comum | Use quando | Não use como substituto de |
-| --- | --- | --- | --- | --- |
-| NSG | Este fluxo pode passar? | Subnet e, excepcionalmente, NIC | Você precisa filtrar IP, porta e protocolo de forma distribuída | Roteamento, inspeção por FQDN ou proteção de aplicação web |
-| Route Table com UDR | Por qual próximo salto o pacote deve seguir? | Subnet | Você precisa forçar passagem por firewall ou NVA, usar gateway ou descartar uma faixa | Controle stateful ou análise de conteúdo |
-| Azure Firewall | O tráfego central deve ser inspecionado e registrado? | VNet central com subnet dedicada | Você precisa de políticas centralizadas, regras de rede e aplicação, FQDN, inteligência contra ameaças ou recursos Premium | Segmentação básica que um NSG resolve com menor complexidade |
+| Componente          | Pergunta principal                                    | Escopo comum                     | Use quando                                                                                                                 | Não use como substituto de                                   |
+| ------------------- | ----------------------------------------------------- | -------------------------------- | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| NSG                 | Este fluxo pode passar?                               | Subnet e, excepcionalmente, NIC  | Você precisa filtrar IP, porta e protocolo de forma distribuída                                                            | Roteamento, inspeção por FQDN ou proteção de aplicação web   |
+| Route Table com UDR | Por qual próximo salto o pacote deve seguir?          | Subnet                           | Você precisa forçar passagem por firewall ou NVA, usar gateway ou descartar uma faixa                                      | Controle stateful ou análise de conteúdo                     |
+| Azure Firewall      | O tráfego central deve ser inspecionado e registrado? | VNet central com subnet dedicada | Você precisa de políticas centralizadas, regras de rede e aplicação, FQDN, inteligência contra ameaças ou recursos Premium | Segmentação básica que um NSG resolve com menor complexidade |
 
 Os três podem trabalhar juntos: a UDR leva o pacote ao Firewall, ele inspeciona, e o NSG limita cada camada. Duplicar regras produz três porteiros com três planilhas diferentes. Defina quem decide o quê.
 
@@ -332,21 +332,21 @@ O Network Watcher pode testar o fluxo de IP e mostrar o próximo salto. Rotas e 
 
 Se a documentação parece uma reunião em que todos combinaram usar siglas para economizar vogais, esta tabela devolve as peças ao mundo real.
 
-| Termo | Tradução prática |
-| --- | --- |
-| VNet | O terreno privado onde suas ruas de rede existem |
-| Subnet | Uma rua ou setor reservado para um tipo de recurso |
-| NIC | A porta de rede do recurso, com seus endereços IP |
-| NSG | A portaria que permite ou nega por origem, destino, protocolo e porta |
-| CIDR | A forma compacta de escrever onde uma rede começa e qual é seu tamanho |
-| Route Table | A coleção de instruções de caminho associada à subnet |
-| UDR | Uma instrução de rota criada por você para alterar o caminho padrão |
-| Next hop | O próximo ponto para o qual o pacote será entregue |
-| Peering | Uma conexão privada direta entre duas VNets, sem transitividade automática |
-| BGP | O protocolo pelo qual roteadores anunciam uns aos outros quais redes conseguem alcançar |
-| Azure Firewall | Um posto central de inspeção com políticas e registros avançados |
-| NVA | Um appliance virtual de rede, como firewall ou roteador de um fornecedor |
-| SNAT | A troca do IP privado de origem por um endereço válido para sair da rede |
+| Termo          | Tradução prática                                                                        |
+| -------------- | --------------------------------------------------------------------------------------- |
+| VNet           | O terreno privado onde suas ruas de rede existem                                        |
+| Subnet         | Uma rua ou setor reservado para um tipo de recurso                                      |
+| NIC            | A porta de rede do recurso, com seus endereços IP                                       |
+| NSG            | A portaria que permite ou nega por origem, destino, protocolo e porta                   |
+| CIDR           | A forma compacta de escrever onde uma rede começa e qual é seu tamanho                  |
+| Route Table    | A coleção de instruções de caminho associada à subnet                                   |
+| UDR            | Uma instrução de rota criada por você para alterar o caminho padrão                     |
+| Next hop       | O próximo ponto para o qual o pacote será entregue                                      |
+| Peering        | Uma conexão privada direta entre duas VNets, sem transitividade automática              |
+| BGP            | O protocolo pelo qual roteadores anunciam uns aos outros quais redes conseguem alcançar |
+| Azure Firewall | Um posto central de inspeção com políticas e registros avançados                        |
+| NVA            | Um appliance virtual de rede, como firewall ou roteador de um fornecedor                |
+| SNAT           | A troca do IP privado de origem por um endereço válido para sair da rede                |
 
 ## Guia rápido de custos
 

@@ -8,7 +8,15 @@ export function getStaticPaths() {
     .map((locale) => ({ params: { locale } }));
 }
 
-export async function GET({ params, site, url }: { params: { locale: Locale }; site?: URL; url: URL }) {
+export async function GET({
+  params,
+  site,
+  url
+}: {
+  params: { locale: Locale };
+  site?: URL;
+  url: URL;
+}) {
   const posts = await getLocalizedEntries('posts', params.locale);
   const origin = site?.origin || url.origin;
 

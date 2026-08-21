@@ -55,16 +55,19 @@ export const contentTypes = {
       }
     }
   }
-} satisfies Record<string, {
-  collection: ContentCollection;
-  path: string;
-  icon: string;
-  label: Record<Locale, string>;
-  showMeta: boolean;
-  cardStyle: EntryCardStyle;
-  listLayout: EntryListLayout;
-  gridColumns: EntryGridColumns;
-  home?: HomeSectionConfig;
-}>;
+} satisfies Record<
+  string,
+  {
+    collection: ContentCollection;
+    path: string;
+    icon: string;
+    label: Record<Locale, string>;
+    showMeta: boolean;
+    cardStyle: EntryCardStyle;
+    listLayout: EntryListLayout;
+    gridColumns: EntryGridColumns;
+    home?: HomeSectionConfig;
+  }
+>;
 
 export type ContentTypeId = keyof typeof contentTypes;

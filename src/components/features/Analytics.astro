@@ -12,59 +12,68 @@ const { locale } = Astro.props;
 const t = useTranslations(locale);
 const analytics = siteConfig.analytics;
 const measurementId = analytics.googleAnalytics?.measurementId?.trim();
-const enabled = analytics.enabled
-  && analytics.provider === 'google-analytics'
-  && /^G-[A-Z0-9]+$/i.test(measurementId || '');
+const enabled =
+  analytics.enabled &&
+  analytics.provider === 'google-analytics' &&
+  /^G-[A-Z0-9]+$/i.test(measurementId || '');
 const cookieDomain = new URL(siteConfig.url).hostname;
 ---
 
-{enabled && (
-  <section
-    id="analytics-consent"
-    data-analytics-consent
-    data-measurement-id={measurementId}
-    data-cookie-domain={cookieDomain}
-    class="consent-banner surface-panel"
-    role="region"
-    aria-labelledby="analytics-consent-title"
-    aria-describedby="analytics-consent-description analytics-consent-revisit"
-    hidden
-  >
-    <div class="consent-banner__copy">
-      <span class="consent-banner__icon" aria-hidden="true">
-        <Icon name="lucide:cookie" class="h-5 w-5" />
-      </span>
-      <div>
-        <h2 id="analytics-consent-title" class="font-semibold text-foreground">
-          {t('consent.title')}
-        </h2>
-        <p id="analytics-consent-description" class="mt-1 text-sm leading-relaxed text-muted-foreground">
-          {t('consent.description')}
-        </p>
-        <p id="analytics-consent-revisit" class="mt-1 text-xs leading-relaxed text-muted-foreground">
-          {t('consent.revisit')}
-        </p>
+{
+  enabled && (
+    <section
+      id="analytics-consent"
+      data-analytics-consent
+      data-measurement-id={measurementId}
+      data-cookie-domain={cookieDomain}
+      class="consent-banner surface-panel"
+      role="region"
+      aria-labelledby="analytics-consent-title"
+      aria-describedby="analytics-consent-description analytics-consent-revisit"
+      hidden
+    >
+      <div class="consent-banner__copy">
+        <span class="consent-banner__icon" aria-hidden="true">
+          <Icon name="lucide:cookie" class="h-5 w-5" />
+        </span>
+        <div>
+          <h2 id="analytics-consent-title" class="text-foreground font-semibold">
+            {t('consent.title')}
+          </h2>
+          <p
+            id="analytics-consent-description"
+            class="text-muted-foreground mt-1 text-sm leading-relaxed"
+          >
+            {t('consent.description')}
+          </p>
+          <p
+            id="analytics-consent-revisit"
+            class="text-muted-foreground mt-1 text-xs leading-relaxed"
+          >
+            {t('consent.revisit')}
+          </p>
+        </div>
       </div>
-    </div>
 
-    <div class="consent-banner__actions">
-      <button
-        type="button"
-        data-consent-reject
-        class="consent-button border border-border bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground"
-      >
-        {t('consent.reject')}
-      </button>
-      <button
-        type="button"
-        data-consent-accept
-        class="consent-button bg-primary text-primary-foreground hover:brightness-95"
-      >
-        {t('consent.accept')}
-      </button>
-    </div>
-  </section>
-)}
+      <div class="consent-banner__actions">
+        <button
+          type="button"
+          data-consent-reject
+          class="consent-button border-border bg-secondary text-secondary-foreground hover:bg-accent hover:text-accent-foreground border"
+        >
+          {t('consent.reject')}
+        </button>
+        <button
+          type="button"
+          data-consent-accept
+          class="consent-button bg-primary text-primary-foreground hover:brightness-95"
+        >
+          {t('consent.accept')}
+        </button>
+      </div>
+    </section>
+  )
+}
 
 <script>
   import '../../scripts/analytics-consent.ts';

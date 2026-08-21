@@ -18,7 +18,12 @@ const tags = collectArchiveTerms(posts, 'tags', locale);
 const t = useTranslations(locale);
 ---
 
-<BaseLayout title={t('archive.title')} description={t('archive.description')} locale={locale} availableLocales={locales}>
+<BaseLayout
+  title={t('archive.title')}
+  description={t('archive.description')}
+  locale={locale}
+  availableLocales={locales}
+>
   <PageHeader title={t('archive.title')} description={t('archive.description')} locale={locale} />
   <ArchiveFilters categories={categories} tags={tags} total={posts.length} locale={locale} />
   <ArchiveTimeline posts={posts} locale={locale} />

@@ -65,17 +65,21 @@ async function ensureIndex() {
     hide(empty);
     show(loading);
     indexPromise = fetch(`${base}api/search.json`).then((response) => {
-      if (!response.ok) throw new Error(`Search index request failed with status ${response.status}.`);
+      if (!response.ok)
+        throw new Error(`Search index request failed with status ${response.status}.`);
       return response.json();
     });
   }
   const data = await indexPromise;
   if (!fuse) {
-    fuse = new Fuse(data.filter((item) => item.lang === locale), {
-      keys: ['title', 'description', 'tags', 'categories', 'content'],
-      threshold: 0.35,
-      ignoreLocation: true
-    });
+    fuse = new Fuse(
+      data.filter((item) => item.lang === locale),
+      {
+        keys: ['title', 'description', 'tags', 'categories', 'content'],
+        threshold: 0.35,
+        ignoreLocation: true
+      }
+    );
   }
   hide(loading);
   show(empty);

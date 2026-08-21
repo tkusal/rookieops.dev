@@ -20,16 +20,29 @@ const hasMath = Boolean(remarkPluginFrontmatter.math);
 const t = useTranslations('pt-br');
 ---
 
-<BaseLayout title={item.entry.data.title} description={item.entry.data.description} locale="pt-br" math={hasMath}>
+<BaseLayout
+  title={item.entry.data.title}
+  description={item.entry.data.description}
+  locale="pt-br"
+  math={hasMath}
+>
   <Breadcrumbs
     locale="pt-br"
     items={[
       { label: siteConfig.shortName, href: getLocalePath('pt-br', '/'), icon: 'lucide:home' },
-      { label: t('series.title'), href: getLocalePath('pt-br', '/series/'), icon: 'lucide:list-ordered' },
+      {
+        label: t('series.title'),
+        href: getLocalePath('pt-br', '/series/'),
+        icon: 'lucide:list-ordered'
+      },
       { label: item.entry.data.title, icon: 'lucide:book-open' }
     ]}
   />
-  <PageHeader title={item.entry.data.title} description={item.entry.data.description} locale="pt-br" />
+  <PageHeader
+    title={item.entry.data.title}
+    description={item.entry.data.description}
+    locale="pt-br"
+  />
   <article class="prose max-w-none">
     <Content />
   </article>

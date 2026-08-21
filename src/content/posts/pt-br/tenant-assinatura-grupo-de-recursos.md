@@ -1,14 +1,14 @@
 ---
-title: "Tenant, assinatura e grupo de recursos no Azure: quem é quem"
-description: "Entenda como tenant, assinatura e grupo de recursos se relacionam e use cada limite para organizar identidade, custos e operações."
+title: 'Tenant, assinatura e grupo de recursos no Azure: quem é quem'
+description: 'Entenda como tenant, assinatura e grupo de recursos se relacionam e use cada limite para organizar identidade, custos e operações.'
 pubDate: 2026-07-27
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Cloud"]
-tags: ["Azure", "Entra ID", "Iniciante"]
-cover: "/images/posts/tenant-assinatura-grupo-de-recursos/capa.svg"
-coverAlt: "Ilustração das relações entre tenant do Microsoft Entra, assinatura do Azure e grupo de recursos"
+categories: ['Cloud']
+tags: ['Azure', 'Entra ID', 'Iniciante']
+cover: '/images/posts/tenant-assinatura-grupo-de-recursos/capa.svg'
+coverAlt: 'Ilustração das relações entre tenant do Microsoft Entra, assinatura do Azure e grupo de recursos'
 toc: true
 comments: false
 mermaid: true
@@ -43,11 +43,11 @@ O laboratório usa o modo Bash do Azure Cloud Shell e cria somente um grupo de r
 
 ## A visão de trinta segundos
 
-| Camada | Pergunta que responde | O que delimita |
-| --- | --- | --- |
-| Tenant do Microsoft Entra | De qual diretório vêm as identidades autorizáveis? | Diretório, autenticação e relação de confiança |
-| Assinatura do Azure | Onde os recursos serão governados e contabilizados? | Recursos, custos, cotas, políticas e acesso |
-| Grupo de recursos | O que será administrado no mesmo ciclo de vida? | Implantação, operação e exclusão de recursos relacionados |
+| Camada                    | Pergunta que responde                               | O que delimita                                            |
+| ------------------------- | --------------------------------------------------- | --------------------------------------------------------- |
+| Tenant do Microsoft Entra | De qual diretório vêm as identidades autorizáveis?  | Diretório, autenticação e relação de confiança            |
+| Assinatura do Azure       | Onde os recursos serão governados e contabilizados? | Recursos, custos, cotas, políticas e acesso               |
+| Grupo de recursos         | O que será administrado no mesmo ciclo de vida?     | Implantação, operação e exclusão de recursos relacionados |
 
 Uma assinatura confia em **um tenant do Microsoft Entra por vez**, enquanto um tenant pode estar associado a várias assinaturas. Dentro da assinatura, cada recurso pertence a um único grupo de recursos, embora possa se comunicar com recursos de outros grupos.
 

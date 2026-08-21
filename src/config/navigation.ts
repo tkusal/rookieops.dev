@@ -2,11 +2,13 @@ import { getLocalePath, type Locale } from './i18n';
 import { contentTypes } from './content';
 import { siteConfig } from './site';
 
-export type NavigationConfigItem = string | {
-  label: Record<Locale, string>;
-  href: string;
-  icon: string;
-};
+export type NavigationConfigItem =
+  | string
+  | {
+      label: Record<Locale, string>;
+      href: string;
+      icon: string;
+    };
 
 const systemRoutes = {
   archives: {
@@ -19,24 +21,35 @@ const systemRoutes = {
     href: '/series/',
     icon: 'lucide:list-ordered'
   }
-} satisfies Record<string, {
-  label: Record<Locale, string>;
-  href: string;
-  icon: string;
-}>;
+} satisfies Record<
+  string,
+  {
+    label: Record<Locale, string>;
+    href: string;
+    icon: string;
+  }
+>;
 
 const routeRegistry = {
-  ...Object.fromEntries(Object.entries(contentTypes).map(([id, config]) => [id, {
-    label: config.label,
-    href: config.path,
-    icon: config.icon
-  }])),
+  ...Object.fromEntries(
+    Object.entries(contentTypes).map(([id, config]) => [
+      id,
+      {
+        label: config.label,
+        href: config.path,
+        icon: config.icon
+      }
+    ])
+  ),
   ...systemRoutes
-} as Record<string, {
-  label: Record<Locale, string>;
-  href: string;
-  icon: string;
-}>;
+} as Record<
+  string,
+  {
+    label: Record<Locale, string>;
+    href: string;
+    icon: string;
+  }
+>;
 
 function resolveNavigationItem(item: NavigationConfigItem) {
   if (typeof item !== 'string') return item;
@@ -44,7 +57,12 @@ function resolveNavigationItem(item: NavigationConfigItem) {
 }
 
 function resolveHref(locale: Locale, href: string) {
-  if (/^(https?:)?\/\//.test(href) || href.startsWith('mailto:') || href.startsWith('tel:') || href.startsWith('#')) {
+  if (
+    /^(https?:)?\/\//.test(href) ||
+    href.startsWith('mailto:') ||
+    href.startsWith('tel:') ||
+    href.startsWith('#')
+  ) {
     return href;
   }
   return getLocalePath(locale, href);

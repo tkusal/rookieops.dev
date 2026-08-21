@@ -69,18 +69,18 @@ Copie o modelo abaixo. Substitua todos os valores entre `<...>`. Para um tutoria
 
 ```markdown
 ---
-title: "<TÍTULO CLARO E ESPECÍFICO>"
-description: "<RESUMO EXCLUSIVO ENTRE 50 E 160 CARACTERES>"
+title: '<TÍTULO CLARO E ESPECÍFICO>'
+description: '<RESUMO EXCLUSIVO ENTRE 50 E 160 CARACTERES>'
 pubDate: <AAAA-MM-DD>
-author: "<NOME PÚBLICO>"
-authorUrl: "<URL PÚBLICA PRINCIPAL>"
+author: '<NOME PÚBLICO>'
+authorUrl: '<URL PÚBLICA PRINCIPAL>'
 lang: pt-br
-categories: ["<CATEGORIA PRINCIPAL>"]
+categories: ['<CATEGORIA PRINCIPAL>']
 # Use exatamente uma dificuldade: Iniciante, Intermediário ou Avançado.
-tags: ["<TAG TEMÁTICA>", "Iniciante"]
+tags: ['<TAG TEMÁTICA>', 'Iniciante']
 # Remova as duas linhas abaixo se o artigo não tiver imagem de capa.
-cover: "/images/posts/nome-do-artigo/capa.webp"
-coverAlt: "<DESCRIÇÃO OBJETIVA DA IMAGEM DE CAPA>"
+cover: '/images/posts/nome-do-artigo/capa.webp'
+coverAlt: '<DESCRIÇÃO OBJETIVA DA IMAGEM DE CAPA>'
 toc: true
 comments: false
 draft: true

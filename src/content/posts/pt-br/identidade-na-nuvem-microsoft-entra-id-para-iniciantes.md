@@ -1,14 +1,14 @@
 ---
-title: "Identidade na nuvem: Microsoft Entra ID para iniciantes"
-description: "Entenda locatário, autenticação, autorização e tokens e faça um reconhecimento seguro do Microsoft Entra ID."
+title: 'Identidade na nuvem: Microsoft Entra ID para iniciantes'
+description: 'Entenda locatário, autenticação, autorização e tokens e faça um reconhecimento seguro do Microsoft Entra ID.'
 pubDate: 2026-07-28
-author: "Thiago Kusal"
-authorUrl: "https://tkusal.com.br"
+author: 'Thiago Kusal'
+authorUrl: 'https://tkusal.com.br'
 lang: pt-br
-categories: ["Microsoft 365"]
-tags: ["Entra ID", "Segurança", "IAM", "Iniciante"]
-cover: "/images/posts/identidade-na-nuvem-microsoft-entra-id-para-iniciantes/identidade-como-porta-de-acesso.webp"
-coverAlt: "Ilustração de uma profissional diante de um portal de identidade conectado a aplicativos e dados na nuvem."
+categories: ['Microsoft 365']
+tags: ['Entra ID', 'Segurança', 'IAM', 'Iniciante']
+cover: '/images/posts/identidade-na-nuvem-microsoft-entra-id-para-iniciantes/identidade-como-porta-de-acesso.webp'
+coverAlt: 'Ilustração de uma profissional diante de um portal de identidade conectado a aplicativos e dados na nuvem.'
 toc: true
 comments: false
 mermaid: true
@@ -79,7 +79,7 @@ Essa separação importa. Se Marina futuramente configurar uma automação para 
 
 ## O locatário é a casa das identidades
 
-Um **locatário**, ou *tenant*, é uma instância dedicada do Microsoft Entra ID que representa uma organização. Ele armazena objetos como usuários, grupos, dispositivos e registros de aplicativos, além de políticas de acesso e dados de configuração.
+Um **locatário**, ou _tenant_, é uma instância dedicada do Microsoft Entra ID que representa uma organização. Ele armazena objetos como usuários, grupos, dispositivos e registros de aplicativos, além de políticas de acesso e dados de configuração.
 
 Pense no locatário como o condomínio da história de Marina:
 
@@ -99,10 +99,10 @@ B2B e `UserType: Guest` não são sinônimos absolutos: o tipo de usuário repre
 
 Esses conceitos aparecem juntos, mas não são equivalentes:
 
-| Conceito | Função principal | Exemplos do que contém ou controla |
-| --- | --- | --- |
-| Locatário do Microsoft Entra | Fronteira de identidade e acesso | Usuários, grupos, aplicativos, dispositivos, funções do diretório e políticas |
-| Assinatura Azure | Fronteira de recursos, cobrança e cotas | Máquinas virtuais, redes, bancos de dados, cofres e contas de armazenamento |
+| Conceito                     | Função principal                        | Exemplos do que contém ou controla                                            |
+| ---------------------------- | --------------------------------------- | ----------------------------------------------------------------------------- |
+| Locatário do Microsoft Entra | Fronteira de identidade e acesso        | Usuários, grupos, aplicativos, dispositivos, funções do diretório e políticas |
+| Assinatura Azure             | Fronteira de recursos, cobrança e cotas | Máquinas virtuais, redes, bancos de dados, cofres e contas de armazenamento   |
 
 Uma assinatura Azure mantém uma relação de confiança com um locatário para autenticar identidades. Ainda assim, criar um usuário no locatário não concede automaticamente acesso aos recursos da assinatura.
 
@@ -110,13 +110,13 @@ Uma assinatura Azure mantém uma relação de confiança com um locatário para 
 
 O nome antigo, Azure Active Directory, levou muita gente a imaginar que o serviço seria apenas um controlador de domínio hospedado na nuvem. Não é.
 
-| Aspecto | Active Directory Domain Services | Microsoft Entra ID |
-| --- | --- | --- |
-| Projeto principal | Identidade e administração de ambientes locais baseados em domínio | Identidade e acesso a aplicativos e recursos na nuvem e em ambientes híbridos |
-| Protocolos comuns | Kerberos, NTLM e LDAP | OpenID Connect, OAuth 2.0, SAML e WS-Federation |
-| Estrutura administrativa | Domínios, florestas e unidades organizacionais | Locatários, objetos, grupos, funções e políticas |
-| Dispositivos | Ingresso em domínio e Política de Grupo | Registro ou ingresso no Microsoft Entra e integração com gerenciamento de dispositivos |
-| Aplicativos | Forte integração com recursos e aplicativos tradicionais | SSO e controle de acesso para Microsoft 365, Azure, SaaS e aplicativos modernos |
+| Aspecto                  | Active Directory Domain Services                                   | Microsoft Entra ID                                                                     |
+| ------------------------ | ------------------------------------------------------------------ | -------------------------------------------------------------------------------------- |
+| Projeto principal        | Identidade e administração de ambientes locais baseados em domínio | Identidade e acesso a aplicativos e recursos na nuvem e em ambientes híbridos          |
+| Protocolos comuns        | Kerberos, NTLM e LDAP                                              | OpenID Connect, OAuth 2.0, SAML e WS-Federation                                        |
+| Estrutura administrativa | Domínios, florestas e unidades organizacionais                     | Locatários, objetos, grupos, funções e políticas                                       |
+| Dispositivos             | Ingresso em domínio e Política de Grupo                            | Registro ou ingresso no Microsoft Entra e integração com gerenciamento de dispositivos |
+| Aplicativos              | Forte integração com recursos e aplicativos tradicionais           | SSO e controle de acesso para Microsoft 365, Azure, SaaS e aplicativos modernos        |
 
 As duas soluções podem coexistir. Organizações híbridas podem sincronizar identidades do Active Directory local com o Microsoft Entra ID. Aplicativos que dependem de LDAP, Kerberos, NTLM ou Política de Grupo continuam exigindo uma arquitetura compatível, como Active Directory Domain Services ou, em cenários específicos, Microsoft Entra Domain Services.
 
@@ -195,11 +195,11 @@ O Acesso Condicional não substitui a autorização do recurso. Ele decide se a 
 
 É comum alguém receber o título de “administrador” e ainda assim não conseguir concluir uma tarefa. O motivo pode estar na camada em que a permissão foi concedida.
 
-| Camada | O que administra | Exemplos |
-| --- | --- | --- |
-| Funções do Microsoft Entra | Objetos e configurações do diretório | Administrador Global, Administrador de Usuários, Leitor de Relatórios |
-| Azure RBAC | Recursos Azure em um escopo | Proprietário, Colaborador, Leitor |
-| Permissões do aplicativo ou serviço | Dados e operações daquele produto | Funções do Exchange, SharePoint, Teams ou de um aplicativo próprio |
+| Camada                              | O que administra                     | Exemplos                                                              |
+| ----------------------------------- | ------------------------------------ | --------------------------------------------------------------------- |
+| Funções do Microsoft Entra          | Objetos e configurações do diretório | Administrador Global, Administrador de Usuários, Leitor de Relatórios |
+| Azure RBAC                          | Recursos Azure em um escopo          | Proprietário, Colaborador, Leitor                                     |
+| Permissões do aplicativo ou serviço | Dados e operações daquele produto    | Funções do Exchange, SharePoint, Teams ou de um aplicativo próprio    |
 
 Um **Administrador Global** possui amplos poderes sobre o Microsoft Entra ID, mas não se torna automaticamente **Proprietário** de todas as assinaturas Azure. Da mesma forma, um Proprietário de assinatura não recebe automaticamente controle total sobre o diretório.
 
@@ -240,7 +240,7 @@ Abra a área de aplicativos empresariais. Esses objetos representam instâncias 
 Não confunda **registros de aplicativo** com **aplicativos empresariais**:
 
 - o registro descreve a definição do aplicativo no locatário onde ele foi registrado;
-- o aplicativo empresarial normalmente representa a identidade dessa aplicação, o *service principal*, dentro de um locatário.
+- o aplicativo empresarial normalmente representa a identidade dessa aplicação, o _service principal_, dentro de um locatário.
 
 Para um primeiro contato, basta notar que aplicativos também possuem identidade e permissões. Eles não são exceções invisíveis ao modelo de acesso.
 
