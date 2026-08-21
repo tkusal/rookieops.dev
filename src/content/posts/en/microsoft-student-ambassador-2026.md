@@ -136,21 +136,69 @@ In practice:
 
 ### Eligible pages for your Contributor ID
 
-Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors:
+Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors, organized by area of interest:
 
-| Domain | Domain |
-| --- | --- |
-| Azure.Microsoft.Com | Imaginecup.Microsoft.Com |
-| Blog.Fabric.Microsoft.Com | Learn.Microsoft.Com |
-| Code.Visualstudio.Com | Learn.Microsoft.Com/Copilot |
-| Community.Fabric.Microsoft.Com | Microsoft.Com/Microsoft-Cloud/Blog |
-| Devblogs.Microsoft.Com | Microsoft.Com/Microsoft-Fabric |
-| Developer.Microsoft.Com | Microsoft.Com/Startups |
-| Dotnet.Microsoft.Com | Mvp.Microsoft.Com |
-| Events.Microsoft.Com | Reactor.Microsoft.Com |
-| Foundershub.Startups.Microsoft.Com | Techcommunity.Microsoft.Com |
+**Developer**
+- azure.microsoft.com
+- azure.microsoft.com/free
+- azure.microsoft.com/free/students
+- code.visualstudio.com
+- devblogs.microsoft.com
+- developer.microsoft.com
+- dotnet.microsoft.com
+- learn.microsoft.com/developer
+- microsoft.com/microsoft-cloud/blog
+
+**Startups**
+- microsoft.com/startups
+- microsoft.com/startups/ai
+- microsoft.com/startups/blog
+- learn.microsoft.com/startups
+- learn.microsoft.com/training/topics/startups
+- imaginecup.microsoft.com
+
+**Copilot**
+- copilot.microsoft.com
+- learn.microsoft.com/copilot
+- microsoft.com/microsoft-365-copilot
+- microsoft.com/microsoft-365/copilot-learning-center
+- microsoft.com/microsoft-copilot/for-individuals
+
+**Data Science**
+- microsoft.com/microsoft-fabric
+- blog.fabric.microsoft.com
+- community.fabric.microsoft.com
+- learn.microsoft.com/fabric
+
+**Low Code**
+- microsoft.com/power-platform
+- learn.microsoft.com/power-platform
+- community.powerplatform.com
+- learn.microsoft.com/power-bi
+- powerbi.microsoft.com/blog
+- learn.microsoft.com/power-apps
+- learn.microsoft.com/power-pages
+- learn.microsoft.com/power-automate
+
+**General Skilling and professional interests**
+- events.microsoft.com
+- reactor.microsoft.com
+- learn.microsoft.com
+- studentambassadors.microsoft.com
+- microsoft.com/insidetrack
+- techcommunity.microsoft.com
 
 Sharing a link outside this list may still generate clicks, but they won't count toward the path's official total.
+
+### Tools to automate adding your Contributor ID
+
+Adding the Contributor ID to each link by hand works fine, but a few Microsoft MVPs have built tools to speed up the process:
+
+- A **Chrome and Edge extension**, built by MVP [Martin Brandl](https://mvp.microsoft.com/en-us/mvp/Martin%20%20Brandl-5003203), adds your Contributor ID to a link in one click. Available for [Chrome](https://chrome.google.com/webstore/detail/mvp-docs-learn-champion-e/eichjbmnicihhbhodbejfkceoknaclfd), [Edge](https://microsoftedge.microsoft.com/addons/detail/mvp-docs-learn-champion/fmbcbeaecledoacfmelbailimfbcjpkb?hl=de-DE), and as open-source code on [GitHub](https://github.com/mjisaak/mvp-docs-learn-champion-extension).
+- An **Azure Function**, built by MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), takes a block of text, finds the eligible URLs in it, and appends your Contributor ID to each one in the correct format. The instructions are in the [author's repository](https://gist.github.com/Ba4bes/2b77e04ca265c8a2987d567e097e1a44).
+
+> [!IMPORTANT]
+> These tools are built and maintained by the community, not by Microsoft. When using one, double-check that your ID was added correctly: the generated URL should look the same as one you would produce by adding the identifier yourself.
 
 If the URL already contains a parameter introduced by `?`, add the Contributor ID with `&`. Microsoft Learn Plans do not count toward Preferred Visitors for the Influencer path.
 

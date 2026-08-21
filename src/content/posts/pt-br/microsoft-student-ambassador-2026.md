@@ -137,21 +137,87 @@ Na prática:
 
 ### Páginas elegíveis para usar com o Contributor ID
 
-Nem toda página da Microsoft aceita o Contributor ID. Só o tráfego para os domínios abaixo conta para os 250 Preferred Visitors:
+Nem toda página da Microsoft aceita o Contributor ID. Só o tráfego para os domínios abaixo conta para os 250 Preferred Visitors, organizados por área de interesse:
 
-| Domínio | Domínio |
-| --- | --- |
-| Azure.Microsoft.Com | Imaginecup.Microsoft.Com |
-| Blog.Fabric.Microsoft.Com | Learn.Microsoft.Com |
-| Code.Visualstudio.Com | Learn.Microsoft.Com/Copilot |
-| Community.Fabric.Microsoft.Com | Microsoft.Com/Microsoft-Cloud/Blog |
-| Devblogs.Microsoft.Com | Microsoft.Com/Microsoft-Fabric |
-| Developer.Microsoft.Com | Microsoft.Com/Startups |
-| Dotnet.Microsoft.Com | Mvp.Microsoft.Com |
-| Events.Microsoft.Com | Reactor.Microsoft.Com |
-| Foundershub.Startups.Microsoft.Com | Techcommunity.Microsoft.Com |
+**Developer**
 
-Compartilhar um link fora dessa lista, os clicks não entrarãom na contagem oficial da trilha.
+| URL |
+| --- |
+| azure.microsoft.com |
+| azure.microsoft.com/free |
+| azure.microsoft.com/free/students |
+| code.visualstudio.com |
+| devblogs.microsoft.com |
+| developer.microsoft.com |
+| dotnet.microsoft.com |
+| learn.microsoft.com/developer |
+| microsoft.com/microsoft-cloud/blog |
+
+**Startups**
+
+| URL |
+| --- |
+| microsoft.com/startups |
+| microsoft.com/startups/ai |
+| microsoft.com/startups/blog |
+| learn.microsoft.com/startups |
+| learn.microsoft.com/training/topics/startups |
+| imaginecup.microsoft.com |
+
+**Copilot**
+
+| URL |
+| --- |
+| copilot.microsoft.com |
+| learn.microsoft.com/copilot |
+| microsoft.com/microsoft-365-copilot |
+| microsoft.com/microsoft-365/copilot-learning-center |
+| microsoft.com/microsoft-copilot/for-individuals |
+
+**Data Science**
+
+| URL |
+| --- |
+| microsoft.com/microsoft-fabric |
+| blog.fabric.microsoft.com |
+| community.fabric.microsoft.com |
+| learn.microsoft.com/fabric |
+
+**Low Code**
+
+| URL |
+| --- |
+| microsoft.com/power-platform |
+| learn.microsoft.com/power-platform |
+| community.powerplatform.com |
+| learn.microsoft.com/power-bi |
+| powerbi.microsoft.com/blog |
+| learn.microsoft.com/power-apps |
+| learn.microsoft.com/power-pages |
+| learn.microsoft.com/power-automate |
+
+**General Skilling e interesses profissionais**
+
+| URL |
+| --- |
+| events.microsoft.com |
+| reactor.microsoft.com |
+| learn.microsoft.com |
+| studentambassadors.microsoft.com |
+| microsoft.com/insidetrack |
+| techcommunity.microsoft.com |
+
+Compartilhar um link fora dessa lista pode até gerar cliques, mas eles não entram na contagem oficial da trilha.
+
+### Ferramentas para automatizar a inclusão do Contributor ID
+
+Adicionar o Contributor ID manualmente em cada link funciona bem, mas alguns Microsoft MVPs criaram ferramentas para tornar esse processo mais rápido:
+
+- **Extensão para Chrome e Edge**, criada pelo MVP [Martin Brandl](https://mvp.microsoft.com/en-us/mvp/Martin%20%20Brandl-5003203), adiciona o Contributor ID ao link com um clique. Disponível para [Chrome](https://chrome.google.com/webstore/detail/mvp-docs-learn-champion-e/eichjbmnicihhbhodbejfkceoknaclfd), [Edge](https://microsoftedge.microsoft.com/addons/detail/mvp-docs-learn-champion/fmbcbeaecledoacfmelbailimfbcjpkb?hl=de-DE) e com código aberto no [GitHub](https://github.com/mjisaak/mvp-docs-learn-champion-extension).
+- **Azure Function**, criada pela MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), recebe um texto como entrada, identifica as URLs elegíveis e adiciona o Contributor ID no formato correto a cada uma. O passo a passo está no [repositório da autora](https://gist.github.com/Ba4bes/2b77e04ca265c8a2987d567e097e1a44).
+
+> [!IMPORTANT]
+> Essas ferramentas são criadas e mantidas pela comunidade, não pela Microsoft. Ao usá-las, confira se o ID foi adicionado corretamente: a URL gerada deve ficar igual à que você produziria adicionando o identificador manualmente.
 
 Se a URL já tiver um parâmetro iniciado por `?`, o identificador adicional deve começar por `&`. Microsoft Learn Plans não entram na contagem de Preferred Visitors da trilha Influencer.
 
