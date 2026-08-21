@@ -93,7 +93,7 @@ After completing this step, you become a **Registered Member**. This gives you a
 The next steps arrive at the email address used during registration. One of them is your **Student Ambassadors Contributor ID**, usually sent three to five days after registration. The identifier remains the same while you are a Registered Member and attributes eligible activity results to your profile.
 
 > [!NOTE]
-> If you have not received your Contributor ID yet, that is normal: it is typically sent within three to five business days after you register for the program. Before opening a support ticket, check your spam or junk folder as well.
+> If you have not received your Contributor ID yet, that is normal: it is typically sent within three to five business days after you register for the program. Before opening a support ticket, check your spam or junk folder as well. If that window passes and the ID still hasn't arrived, send an email to `registration@studentambassadors.com` describing the issue.
 
 It appears in links as a tracking parameter. In the example below, I am using my own Contributor ID, `studentamb_365381`. Every member receives an individual identifier and must replace this value with the one sent by Microsoft:
 
