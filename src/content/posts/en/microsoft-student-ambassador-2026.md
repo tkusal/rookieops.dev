@@ -49,6 +49,9 @@ According to the official [Student Ambassadors FAQ](https://mvp.microsoft.com/fa
 4. not have been previously removed from the program by Microsoft;
 5. not be a current Microsoft employee or contractor while participating.
 
+> [!IMPORTANT]
+> As of August 21, 2026, the date I'm publishing this post, the Azure for Students active account requirement has been paused for now. You can proceed with registration normally even without this account while the pause is in effect. Check the official program FAQ to confirm whether and when this requirement comes back into effect.
+
 Geographic restrictions also apply because of United States export regulations. The FAQ lists Cuba, Iran, North Korea, Sudan, Syria, Russia, Belarus, and the Crimea region as ineligible locations. Students in the United States on an F-1 visa should check with their institution or qualified immigration counsel to confirm that participation is compatible with their status.
 
 ### Azure for Students
@@ -83,6 +86,9 @@ After completing this step, you become a **Registered Member**. This gives you a
 ### Contributor ID
 
 The next steps arrive at the email address used during registration. One of them is your **Student Ambassadors Contributor ID**, usually sent three to five days after registration. The identifier remains the same while you are a Registered Member and attributes eligible activity results to your profile.
+
+> [!NOTE]
+> If you have not received your Contributor ID yet, that is normal: it is typically sent within three to five business days after you register for the program. Before opening a support ticket, check your spam or junk folder as well.
 
 It appears in links as a tracking parameter. In the example below, I am using my own Contributor ID, `studentamb_365381`. Every member receives an individual identifier and must replace this value with the one sent by Microsoft:
 
