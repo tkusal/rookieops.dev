@@ -18,7 +18,8 @@ draft: false
 
 Eu entrei no Microsoft Student Ambassadors em 2024. De lá para cá, organizei atividades, participei da comunidade, avancei pelos marcos do programa e hoje sou **Senior Student Ambassador**.
 
-Até a publicação deste artigo, o Brasil conta com dois Seniors ativos: eu e o [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/). Essa é uma fotografia de agosto de 2026 e pode mudar conforme novos Ambassadors avançam.
+Até a publicação deste artigo, o Brasil conta com dois Seniors ativos: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/)
+e eu. Essa é uma fotografia de agosto de 2026 e pode mudar conforme novos Ambassadors avançam.
 
 Essa experiência me colocou dos dois lados da conversa. Eu já fui o estudante tentando entender por onde começar e hoje acompanho pessoas que chegam com as mesmas perguntas: preciso ter certificação? O cadastro é uma seleção? Qual trilha escolho? Quando posso usar o título?
 

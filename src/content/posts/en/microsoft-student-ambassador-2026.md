@@ -18,7 +18,7 @@ draft: false
 
 I joined the Microsoft Student Ambassadors program in 2024. Since then, I have organized activities, contributed to the community, progressed through the program milestones, and become a **Senior Student Ambassador**.
 
-At the time of publication, Brazil has two active Seniors: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/) and me. That is a snapshot from August 2026, and it can change as more Ambassadors advance.
+At the time of publication, Brazil has two active Seniors: [Jhonatan Lobo](https://www.linkedin.com/in/jhonatan-lobo/) and [me](https://www.linkedin.com/in/tkusal/). That is a snapshot from August 2026, and it can change as more Ambassadors advance.
 
 This experience has placed me on both sides of the conversation. I was once the student trying to figure out where to begin. Today, I help people who arrive with the same questions: Do I need a certification? Is registration an application process? Which path should I choose? When can I actually use the title?
 
