@@ -24,15 +24,15 @@ In this analysis, our selection criteria wasn't simply listing student benefits 
 
 In 2026, companies like Google, AWS, and GitHub offer programs with these characteristics, allowing students to work in areas like cloud, DevOps, and artificial intelligence. To make your choice and comparison with MSA easier, including also initiatives more focused on growth and advocacy so you can compare the full spectrum of options, we have prepared a quick summary of each one:
 
-| Program | Main Focus | Applications | Similarity to MSA |
-| :--- | :--- | :--- | :--- |
-| **GitHub Campus Experts** | Community leadership & Open Source | Annually (July) | Very high |
-| **GDG on Campus (Google)** | Broad tech community & Google ecosystem | Varies by region/cycle | Very high |
-| **Google Student Ambassador 2026** | Promoting AI and Gemini usage | Varies by country | High |
-| **AWS Student Builder Group Leader** | Technical community for Cloud & AI | By cohorts / variable calendar | Very high |
-| **AWS Student Builder Campus Leader** | Marketing, cloud adoption & growth | Varies by campus/region | Medium |
+| Program                               | Main Focus                              | Applications                   | Similarity to MSA |
+| :------------------------------------ | :-------------------------------------- | :----------------------------- | :---------------- |
+| **GitHub Campus Experts**             | Community leadership & Open Source      | Annually (July)                | Very high         |
+| **GDG on Campus (Google)**            | Broad tech community & Google ecosystem | Varies by region/cycle         | Very high         |
+| **Google Student Ambassador 2026**    | Promoting AI and Gemini usage           | Varies by country              | High              |
+| **AWS Student Builder Group Leader**  | Technical community for Cloud & AI      | By cohorts / variable calendar | Very high         |
+| **AWS Student Builder Campus Leader** | Marketing, cloud adoption & growth      | Varies by campus/region        | Medium            |
 
-*The similarity rating is an editorial assessment considering factors such as community leadership, autonomy to organize events, knowledge sharing, and term continuity.*
+_The similarity rating is an editorial assessment considering factors such as community leadership, autonomy to organize events, knowledge sharing, and term continuity._
 
 ---
 
@@ -57,7 +57,7 @@ The selection process is highly competitive. Current guidelines and documentatio
 
 The application opening is standardized: GitHub typically opens applications every year during the month of **July**, with the application window usually lasting for one month.
 
-The process has two stages: first, you submit the application form, and then you submit a *video resume* detailing your vision and proposals. Upon final approval, the student undergoes six weeks of training. Only after successfully completing the training does the student officially act as a Campus Expert.
+The process has two stages: first, you submit the application form, and then you submit a _video resume_ detailing your vision and proposals. Upon final approval, the student undergoes six weeks of training. Only after successfully completing the training does the student officially act as a Campus Expert.
 
 ---
 
@@ -69,7 +69,7 @@ Currently, Google runs distinct student leadership initiatives. Unlike in the pa
 
 GDG on Campus is the historical program, the direct successor to the Google Developer Student Clubs (GDSC). It focuses on developing university communities and covers a broad portfolio of technologies (Google Cloud, Android, AI, Web, etc.).
 
-- **What it is:** The student acts as the local community leader (organizing workshops and hackathons) or as a support member (*Core Team Member*).
+- **What it is:** The student acts as the local community leader (organizing workshops and hackathons) or as a support member (_Core Team Member_).
 - **Benefits:** The official page emphasizes hands-on experience, development of technical and leadership skills, networking, and career preparation. Organizers can also gain recognition for their involvement within the Google Developer ecosystem.
 - **How to apply:** Application windows typically vary between regions and cycles; in some editions, the selection of new leaders occurs during the first half of the year. The application requires a detailed form, often involves a leadership profile assessment, and frequently happens through referrals or transitions within existing chapters. Official information is available on the Google for Developers page.
 
@@ -99,8 +99,6 @@ AWS underwent a restructuring in 2026, offering two student tracks with very dis
 - **Structure and Benefits:** It is a paid part-time role. The contract usually requires 8 to 10 hours a week with a fixed 12-week commitment. Students earn financial compensation for fulfilling program responsibilities, alongside career development and direct access to Amazon teams.
 - **Prerequisites and Application:** Currently, AWS itself officially confirms that the program is available in Brazil, the United States, and India. Applications are continuous (rolling), with limited spots per campus.
 
-
-
 ## Which program is closest to Microsoft Student Ambassadors?
 
 If your goal is to have an experience similar to MSA, focused on building a community, organizing technical events, mentoring other students, and producing valuable content, there are three direct alternatives:
@@ -119,7 +117,7 @@ These three ecosystems offer different pathways to develop leadership. But the m
 
 GitHub and AWS, for example, explicitly show that their leaders spend their terms teaching other students, organizing meetups, and building projects practically.
 
-Before applying, carefully read the current documentation for each program and ask yourself: *"Which one will give me the best opportunity to truly contribute and walk away with concrete achievements?"*. The ideal program is the one that will help you transition from someone who "just studies tech" to someone who also produces, teaches, and organizes.
+Before applying, carefully read the current documentation for each program and ask yourself: _"Which one will give me the best opportunity to truly contribute and walk away with concrete achievements?"_. The ideal program is the one that will help you transition from someone who "just studies tech" to someone who also produces, teaches, and organizes.
 
 ## References
 

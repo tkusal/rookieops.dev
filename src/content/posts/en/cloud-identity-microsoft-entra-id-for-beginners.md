@@ -99,10 +99,10 @@ B2B and `UserType: Guest` are not absolute synonyms: the user type represents th
 
 These concepts appear together, but they are not equivalent:
 
-| Concept                      | Main purpose                            | Examples of what it contains or controls                                 |
-| ---------------------------- | --------------------------------------- | ------------------------------------------------------------------------ |
-| Microsoft Entra tenant       | Identity and access boundary            | Users, groups, applications, devices, directory roles, and policies      |
-| Azure subscription           | Resource, billing, and quota boundary   | Virtual machines, networks, databases, vaults, and storage accounts      |
+| Concept                | Main purpose                          | Examples of what it contains or controls                            |
+| ---------------------- | ------------------------------------- | ------------------------------------------------------------------- |
+| Microsoft Entra tenant | Identity and access boundary          | Users, groups, applications, devices, directory roles, and policies |
+| Azure subscription     | Resource, billing, and quota boundary | Virtual machines, networks, databases, vaults, and storage accounts |
 
 An Azure subscription maintains a trust relationship with a tenant to authenticate identities. Still, creating a user in the tenant does not automatically grant access to the subscription's resources.
 
@@ -110,13 +110,13 @@ An Azure subscription maintains a trust relationship with a tenant to authentica
 
 The old name, Azure Active Directory, led many people to imagine that the service would just be a domain controller hosted in the cloud. It's not.
 
-| Aspect                   | Active Directory Domain Services                                | Microsoft Entra ID                                                                  |
-| ------------------------ | --------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
-| Main design              | Identity and administration for domain-based on-premises setups | Identity and access to applications and resources in the cloud and hybrid setups    |
-| Common protocols         | Kerberos, NTLM, and LDAP                                        | OpenID Connect, OAuth 2.0, SAML, and WS-Federation                                  |
-| Administrative structure | Domains, forests, and organizational units                      | Tenants, objects, groups, roles, and policies                                       |
-| Devices                  | Domain join and Group Policy                                    | Microsoft Entra join or registration and integration with device management         |
-| Applications             | Strong integration with traditional resources and applications  | SSO and access control for Microsoft 365, Azure, SaaS, and modern applications      |
+| Aspect                   | Active Directory Domain Services                                | Microsoft Entra ID                                                               |
+| ------------------------ | --------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| Main design              | Identity and administration for domain-based on-premises setups | Identity and access to applications and resources in the cloud and hybrid setups |
+| Common protocols         | Kerberos, NTLM, and LDAP                                        | OpenID Connect, OAuth 2.0, SAML, and WS-Federation                               |
+| Administrative structure | Domains, forests, and organizational units                      | Tenants, objects, groups, roles, and policies                                    |
+| Devices                  | Domain join and Group Policy                                    | Microsoft Entra join or registration and integration with device management      |
+| Applications             | Strong integration with traditional resources and applications  | SSO and access control for Microsoft 365, Azure, SaaS, and modern applications   |
 
 The two solutions can coexist. Hybrid organizations can synchronize identities from the on-premises Active Directory to Microsoft Entra ID. Applications that rely on LDAP, Kerberos, NTLM, or Group Policy still require a compatible architecture, like Active Directory Domain Services or, in specific scenarios, Microsoft Entra Domain Services.
 
@@ -195,11 +195,11 @@ Conditional Access doesn't replace the resource's authorization. It decides whet
 
 It's common for someone to receive the title of "administrator" and still be unable to complete a task. The reason might lie in the layer where the permission was granted.
 
-| Layer                                | What it manages                     | Examples                                                              |
-| ------------------------------------ | ----------------------------------- | --------------------------------------------------------------------- |
-| Microsoft Entra roles                | Directory objects and configurations| Global Administrator, User Administrator, Reports Reader              |
-| Azure RBAC                           | Azure resources in a scope          | Owner, Contributor, Reader                                            |
-| Application or service permissions   | Data and operations of that product | Exchange, SharePoint, Teams, or custom app roles                      |
+| Layer                              | What it manages                      | Examples                                                 |
+| ---------------------------------- | ------------------------------------ | -------------------------------------------------------- |
+| Microsoft Entra roles              | Directory objects and configurations | Global Administrator, User Administrator, Reports Reader |
+| Azure RBAC                         | Azure resources in a scope           | Owner, Contributor, Reader                               |
+| Application or service permissions | Data and operations of that product  | Exchange, SharePoint, Teams, or custom app roles         |
 
 A **Global Administrator** has broad powers over Microsoft Entra ID, but doesn't automatically become the **Owner** of all Azure subscriptions. Similarly, a subscription Owner doesn't automatically receive full control over the directory.
 

@@ -103,12 +103,12 @@ It is also worth evaluating other topologies when the main requirement is total 
 
 The lab uses abbreviations recommended by the Cloud Adoption Framework:
 
-| Type            | Prefix  | Example                       |
-| --------------- | ------- | ----------------------------- |
-| Resource group  | `rg`    | `rg-network-hub-lab-brs-001`  |
-| Virtual network | `vnet`  | `vnet-hub-lab-brs-001`        |
-| Subnet          | `snet`  | `snet-web-lab-brs-001`        |
-| VNet peering    | `peer`  | `peer-hub-to-app-lab-brs-001` |
+| Type            | Prefix | Example                       |
+| --------------- | ------ | ----------------------------- |
+| Resource group  | `rg`   | `rg-network-hub-lab-brs-001`  |
+| Virtual network | `vnet` | `vnet-hub-lab-brs-001`        |
+| Subnet          | `snet` | `snet-web-lab-brs-001`        |
+| VNet peering    | `peer` | `peer-hub-to-app-lab-brs-001` |
 
 The rest of the name combines function, environment, regional code, and instance. `brs` represents Brazil South, and `001` allows for a second instance without having to invent a suffix during an incident.
 
@@ -127,18 +127,18 @@ location_code = "brs"
 
 **IP Address Management (IPAM)** is the discipline of planning, registering, and tracking the addresses used by the organization. Here we reserve the `10.64.0.0/12` superblock as a planning reference. It is not created as a resource in Azure.
 
-| Usage | CIDR | Capacity and decision |
-| --------------------------- | ------------------------------- | --------------------------------------- |
-| Planned superblock | `10.64.0.0/12` | Contains 16 `/16` blocks |
-| Hub VNet | `10.64.0.0/16` | Ample space for hub evolution |
-| Hub shared subnet | `10.64.10.0/24` | 256 addresses, 251 usable in Azure |
-| Application spoke | `10.65.0.0/16` | Isolates the application domain |
-| Web subnet | `10.65.10.0/24` | Application entry layer |
-| App subnet | `10.65.20.0/24` | Processing layer |
-| Data spoke | `10.66.0.0/16` | Isolates data and integrations |
-| Data subnet | `10.66.10.0/24` | Data layer services |
-| Integration subnet | `10.66.20.0/24` | Future private integrations |
-| Reserve for new spokes | `10.67.0.0/16` to `10.79.0.0/16` | Thirteen free `/16` blocks |
+| Usage                  | CIDR                             | Capacity and decision              |
+| ---------------------- | -------------------------------- | ---------------------------------- |
+| Planned superblock     | `10.64.0.0/12`                   | Contains 16 `/16` blocks           |
+| Hub VNet               | `10.64.0.0/16`                   | Ample space for hub evolution      |
+| Hub shared subnet      | `10.64.10.0/24`                  | 256 addresses, 251 usable in Azure |
+| Application spoke      | `10.65.0.0/16`                   | Isolates the application domain    |
+| Web subnet             | `10.65.10.0/24`                  | Application entry layer            |
+| App subnet             | `10.65.20.0/24`                  | Processing layer                   |
+| Data spoke             | `10.66.0.0/16`                   | Isolates data and integrations     |
+| Data subnet            | `10.66.10.0/24`                  | Data layer services                |
+| Integration subnet     | `10.66.20.0/24`                  | Future private integrations        |
+| Reserve for new spokes | `10.67.0.0/16` to `10.79.0.0/16` | Thirteen free `/16` blocks         |
 
 The `/16` blocks are larger than this lab needs. The choice is intentional: the VNet gains space for multiple subnets without needing to be renumbered for each new layer. The `/24` subnets offer a size that is easy to manage in studies and leave gaps between uses.
 

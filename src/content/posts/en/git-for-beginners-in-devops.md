@@ -450,12 +450,12 @@ In DevOps, a conflict in a firewall rule, environment variable, or pipeline step
 
 "Undoing" can mean different things. Before running a command, identify where the change is:
 
-| Situation                                              | Command                          | Effect                                                         |
-| ----------------------------------------------------- | -------------------------------- | -------------------------------------------------------------- |
-| File was added to staging by mistake                  | `git restore --staged <FILE>`    | Removes it from the next commit and keeps the local edit       |
-| Local edit of a tracked file should be discarded      | `git restore <FILE>`             | Restores the file and discards the uncommitted edit            |
-| Shared commit introduced an error                     | `git revert <COMMIT_HASH>`       | Creates a new commit that applies the inverse operation        |
-| In-progress merge should be aborted                   | `git merge --abort`              | Returns to the state before the merge started, when possible   |
+| Situation                                        | Command                       | Effect                                                       |
+| ------------------------------------------------ | ----------------------------- | ------------------------------------------------------------ |
+| File was added to staging by mistake             | `git restore --staged <FILE>` | Removes it from the next commit and keeps the local edit     |
+| Local edit of a tracked file should be discarded | `git restore <FILE>`          | Restores the file and discards the uncommitted edit          |
+| Shared commit introduced an error                | `git revert <COMMIT_HASH>`    | Creates a new commit that applies the inverse operation      |
+| In-progress merge should be aborted              | `git merge --abort`           | Returns to the state before the merge started, when possible |
 
 ### Practice the difference between staging and local edit
 

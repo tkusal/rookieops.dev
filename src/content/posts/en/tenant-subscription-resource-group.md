@@ -43,11 +43,11 @@ The lab uses the Azure Cloud Shell Bash mode and creates only an empty resource 
 
 ## The thirty-second overview
 
-| Layer                     | Question it answers                                 | What it bounds                                            |
-| ------------------------- | --------------------------------------------------- | --------------------------------------------------------- |
-| Microsoft Entra tenant    | Which directory provides the authorized identities? | Directory, authentication, and trust relationship         |
-| Azure subscription        | Where will the resources be governed and billed?    | Resources, costs, quotas, policies, and access            |
-| Resource group            | What will be managed in the same lifecycle?         | Deployment, operation, and deletion of related resources  |
+| Layer                  | Question it answers                                 | What it bounds                                           |
+| ---------------------- | --------------------------------------------------- | -------------------------------------------------------- |
+| Microsoft Entra tenant | Which directory provides the authorized identities? | Directory, authentication, and trust relationship        |
+| Azure subscription     | Where will the resources be governed and billed?    | Resources, costs, quotas, policies, and access           |
+| Resource group         | What will be managed in the same lifecycle?         | Deployment, operation, and deletion of related resources |
 
 A subscription trusts **one Microsoft Entra tenant at a time**, while a tenant can be associated with multiple subscriptions. Within the subscription, each resource belongs to a single resource group, although it can communicate with resources from other groups.
 

@@ -48,13 +48,13 @@ PIM and Access Reviews span these three phases. PIM reduces the time a privilege
 
 ![Diagram of Anna's identity journey, divided into Joiner, Mover, and Leaver phases, with PIM, Access Reviews, and audit as cross-cutting controls.](/images/posts/governanca-identidades-m365-entra-id/jornada-identidade-jml.svg)
 
-| Component                  | Automated decision                                                |
-| -------------------------- | ----------------------------------------------------------------- |
-| Lifecycle Workflows        | When to run entry or exit tasks and for which people              |
-| Entitlement Management     | Which resources form a package, who requests, and who approves    |
-| PIM                        | When an eligible privilege can be active and for how long         |
-| Access Reviews             | Who periodically confirms if the access is still needed           |
-| Microsoft Graph PowerShell | How to query, create, and validate configurations repeatably      |
+| Component                  | Automated decision                                             |
+| -------------------------- | -------------------------------------------------------------- |
+| Lifecycle Workflows        | When to run entry or exit tasks and for which people           |
+| Entitlement Management     | Which resources form a package, who requests, and who approves |
+| PIM                        | When an eligible privilege can be active and for how long      |
+| Access Reviews             | Who periodically confirms if the access is still needed        |
+| Microsoft Graph PowerShell | How to query, create, and validate configurations repeatably   |
 
 ## Prerequisites and lab preparation
 
@@ -64,16 +64,16 @@ Use a fictional identity, a pilot department, and resources without production d
 
 To reproduce the scenario, consider Microsoft Entra ID Governance or Microsoft Entra Suite. Some capabilities also exist in Microsoft Entra ID P2, but Lifecycle Workflows is not included in P2 alone. Validate the contract before the pilot.
 
-| Step                                | Least privilege administrative role                   | Main delegated scope                                       |
-| ----------------------------------- | ----------------------------------------------------- | ---------------------------------------------------------- |
-| Create Anna and assign manager      | User Administrator                                    | `User.ReadWrite.All`                                       |
-| Lifecycle Workflows                 | Lifecycle Workflows Administrator                     | `LifecycleWorkflows.ReadWrite.All`                         |
-| Catalog and package                 | Identity Governance Administrator or Catalog owner    | `EntitlementManagement.ReadWrite.All`                      |
-| Package policy                      | Access Package Manager or a higher role in the catalog| `EntitlementManagement.ReadWrite.All`                      |
-| PIM eligibility and policy          | Privileged Role Administrator                         | `RoleEligibilitySchedule.ReadWrite.Directory`              |
-| Activation by Anna herself          | Eligible user                                         | `RoleAssignmentSchedule.ReadWrite.Directory`               |
-| Resource discovery                  | Appropriate reader for each object                    | `User.Read.All`, `Group.Read.All`, and `Application.Read.All` |
-| License query                       | Directory Reader or equivalent role                   | `Organization.Read.All`                                    |
+| Step                           | Least privilege administrative role                    | Main delegated scope                                          |
+| ------------------------------ | ------------------------------------------------------ | ------------------------------------------------------------- |
+| Create Anna and assign manager | User Administrator                                     | `User.ReadWrite.All`                                          |
+| Lifecycle Workflows            | Lifecycle Workflows Administrator                      | `LifecycleWorkflows.ReadWrite.All`                            |
+| Catalog and package            | Identity Governance Administrator or Catalog owner     | `EntitlementManagement.ReadWrite.All`                         |
+| Package policy                 | Access Package Manager or a higher role in the catalog | `EntitlementManagement.ReadWrite.All`                         |
+| PIM eligibility and policy     | Privileged Role Administrator                          | `RoleEligibilitySchedule.ReadWrite.Directory`                 |
+| Activation by Anna herself     | Eligible user                                          | `RoleAssignmentSchedule.ReadWrite.Directory`                  |
+| Resource discovery             | Appropriate reader for each object                     | `User.Read.All`, `Group.Read.All`, and `Application.Read.All` |
+| License query                  | Directory Reader or equivalent role                    | `Organization.Read.All`                                       |
 
 An OAuth scope alone does not grant the administrative role. The account needs both authorizations. A Catalog owner adds resources, while an Access Package Manager creates packages with available resources.
 
@@ -117,13 +117,13 @@ Using the User Administrator role, the analyst transfers the approved ticket dat
 
 Without `-Apply`, the script simulates the action. Later, repeat with `-Apply -WhatIf` and finally with `-Apply`. It validates the domain, duplication, manager, and email. It generates an unrevealed password, creates the account, and assigns the manager. Anna will use the TAP (Temporary Access Pass, a time-limited passcode) for bootstrapping. If the local AD is the authoritative source, do not use the script. Create the account there and let the synchronization propagate it.
 
-| Data               | Example value          | Why it matters                                     |
-| ------------------ | ---------------------- | -------------------------------------------------- |
-| `department`       | `Laboratório NEST`     | Limits the workflows scope                         |
-| `employeeHireDate` | `2026-09-01T12:00:00Z` | Triggers the Joiner process                        |
-| `manager`          | Anna's manager ID      | Receives the TAP, approves, and reviews            |
-| Manager's `mail`   | Valid address          | Allows the delivery of notifications               |
-| `usageLocation`    | `BR`                   | Prevents later failures in license assignment      |
+| Data               | Example value          | Why it matters                                |
+| ------------------ | ---------------------- | --------------------------------------------- |
+| `department`       | `Laboratório NEST`     | Limits the workflows scope                    |
+| `employeeHireDate` | `2026-09-01T12:00:00Z` | Triggers the Joiner process                   |
+| `manager`          | Anna's manager ID      | Receives the TAP, approves, and reviews       |
+| Manager's `mail`   | Valid address          | Allows the delivery of notifications          |
+| `usageLocation`    | `BR`                   | Prevents later failures in license assignment |
 
 > [!IMPORTANT]
 > Fill in `usageLocation` before assigning licenses. Use the two-letter country or region code, like `BR`, to validate the legal availability of services. Without this, direct or group assignments may fail.

@@ -50,13 +50,13 @@ Pull request → testes em Node 22 e 24 → build → revisão → merge em main
 
 In the study guide version checked on August 2, 2026, the measured skills are distributed like this:
 
-| Area                                         | Exam weight | What you will practice here                                                        |
-| -------------------------------------------- | ------------: | -------------------------------------------------------------------------------- |
-| Create and manage workflows                  |        20-25% | events, jobs, steps, matrix, contexts, dependencies, and outputs                   |
-| Consume and troubleshoot workflows           |        15-20% | execution history, logs, matrix names, and re-running                       |
-| Create and maintain actions                  |        15-20% | difference between `run` and `uses`; safe action consumption                        |
-| Manage GitHub Actions for the enterprise     |        20-25% | runners, secrets and variables scope, policies, and reusable components    |
-| Secure and optimized automation              |        10-15% | least privilege, full SHA, environments, OIDC, concurrency, and matrix cost |
+| Area                                     | Exam weight | What you will practice here                                                 |
+| ---------------------------------------- | ----------: | --------------------------------------------------------------------------- |
+| Create and manage workflows              |      20-25% | events, jobs, steps, matrix, contexts, dependencies, and outputs            |
+| Consume and troubleshoot workflows       |      15-20% | execution history, logs, matrix names, and re-running                       |
+| Create and maintain actions              |      15-20% | difference between `run` and `uses`; safe action consumption                |
+| Manage GitHub Actions for the enterprise |      20-25% | runners, secrets and variables scope, policies, and reusable components     |
+| Secure and optimized automation          |      10-15% | least privilege, full SHA, environments, OIDC, concurrency, and matrix cost |
 
 A single lab does not cover the entire certification. JavaScript, Docker, and composite actions, reusable workflows, runner groups, enterprise policies, attestations, and administration APIs remain in your study plan. The advantage of this project is to create the mental model on which these topics rest.
 
@@ -64,11 +64,11 @@ A single lab does not cover the entire certification. JavaScript, Docker, and co
 
 The three terms are close, but they are not synonyms:
 
-| Practice             | Question answered                                              | Result                                                         |
-| -------------------- | -------------------------------------------------------------- | -------------------------------------------------------------- |
-| Continuous integration | "Can this change be safely integrated?"                          | tests, analysis, and build run on every change                 |
-| Continuous delivery    | "Is there an approved package ready for production?"             | reproducible artifact; promotion may require human approval    |
-| Continuous deployment  | "Can an approved change automatically reach the user?"           | automatic deployment after all checks                          |
+| Practice               | Question answered                                      | Result                                                      |
+| ---------------------- | ------------------------------------------------------ | ----------------------------------------------------------- |
+| Continuous integration | "Can this change be safely integrated?"                | tests, analysis, and build run on every change              |
+| Continuous delivery    | "Is there an approved package ready for production?"   | reproducible artifact; promotion may require human approval |
+| Continuous deployment  | "Can an approved change automatically reach the user?" | automatic deployment after all checks                       |
 
 In this article, **CD** will be used as the common umbrella for continuous delivery and continuous deployment. The final example does continuous deployment to GitHub Pages. If you add a mandatory reviewer to the environment, the same design will have a manual barrier before production and gets closer to continuous delivery.
 

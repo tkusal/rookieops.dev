@@ -89,18 +89,18 @@ The new resources are:
 
 The hub already uses `10.64.0.0/16`, while `snet-shared` occupies `10.64.10.0/24`. We will reserve `10.64.0.0/26` for firewall data and `10.64.1.0/26` for management. The blocks do not overlap and leave free ranges for other specialized components.
 
-| Network or subnet                   | CIDR            | Role in this part                    |
-| ----------------------------------- | --------------- | ------------------------------------ |
-| Hub VNet                            | `10.64.0.0/16`  | Central network services             |
-| **`AzureFirewallSubnet`**           | `10.64.0.0/26`  | Azure Firewall data plane            |
-| **`AzureFirewallManagementSubnet`** | `10.64.1.0/26`  | Management required by Basic SKU     |
-| `snet-shared`                       | `10.64.10.0/24` | Future shared services               |
-| Application spoke                   | `10.65.0.0/16`  | Application domain                   |
-| `snet-web`                          | `10.65.10.0/24` | Web tier                             |
-| `snet-app`                          | `10.65.20.0/24` | Application tier                     |
-| Data spoke                          | `10.66.0.0/16`  | Data and integrations                |
-| `snet-data`                         | `10.66.10.0/24` | Data tier                            |
-| `snet-integration`                  | `10.66.20.0/24` | Private integrations                 |
+| Network or subnet                   | CIDR            | Role in this part                |
+| ----------------------------------- | --------------- | -------------------------------- |
+| Hub VNet                            | `10.64.0.0/16`  | Central network services         |
+| **`AzureFirewallSubnet`**           | `10.64.0.0/26`  | Azure Firewall data plane        |
+| **`AzureFirewallManagementSubnet`** | `10.64.1.0/26`  | Management required by Basic SKU |
+| `snet-shared`                       | `10.64.10.0/24` | Future shared services           |
+| Application spoke                   | `10.65.0.0/16`  | Application domain               |
+| `snet-web`                          | `10.65.10.0/24` | Web tier                         |
+| `snet-app`                          | `10.65.20.0/24` | Application tier                 |
+| Data spoke                          | `10.66.0.0/16`  | Data and integrations            |
+| `snet-data`                         | `10.66.10.0/24` | Data tier                        |
+| `snet-integration`                  | `10.66.20.0/24` | Private integrations             |
 
 A `/26` contains 64 addresses. Since Azure reserves five addresses in each IPv4 subnet, 59 are left for the service to use. Shrinking the block to save addresses would make the deploy fail. The savings would be akin to removing the fire escape to gain a few meters in the hallway.
 
@@ -134,14 +134,14 @@ If no rule allows the flow, the Azure Firewall denies it by default. We do not n
 
 The central policy does not replace the distributed controls from part 2. These are the allowances added to the NSGs so the packet reaches the firewall and is also accepted in the destination subnet:
 
-| NSG               | Priority | Rule                                                       | Direction | Protocol and port | Source          | Destination     |
-| ----------------- | -------: | ---------------------------------------------------------- | --------- | ----------------- | --------------- | --------------- |
-| `nsg-web`         | 110 & 120| `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.65.10.0/24` | `Internet`      |
-| `nsg-app`         |      100 | `allow-data-outbound`                                      | Outbound  | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
-| `nsg-app`         | 110 & 120| `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.65.20.0/24` | `Internet`      |
-| `nsg-data`        |      110 | `allow-app-inbound`                                        | Inbound   | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
-| `nsg-data`        | 110 & 120| `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.66.10.0/24` | `Internet`      |
-| `nsg-integration` | 110 & 120| `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.66.20.0/24` | `Internet`      |
+| NSG               |  Priority | Rule                                                       | Direction | Protocol and port | Source          | Destination     |
+| ----------------- | --------: | ---------------------------------------------------------- | --------- | ----------------- | --------------- | --------------- |
+| `nsg-web`         | 110 & 120 | `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.65.10.0/24` | `Internet`      |
+| `nsg-app`         |       100 | `allow-data-outbound`                                      | Outbound  | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-app`         | 110 & 120 | `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.65.20.0/24` | `Internet`      |
+| `nsg-data`        |       110 | `allow-app-inbound`                                        | Inbound   | TCP 1433          | `10.65.20.0/24` | `10.66.10.0/24` |
+| `nsg-data`        | 110 & 120 | `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.66.10.0/24` | `Internet`      |
+| `nsg-integration` | 110 & 120 | `allow-windows-update-http` & `allow-windows-update-https` | Outbound  | TCP 80 & 443      | `10.66.20.0/24` | `Internet`      |
 
 The flow between spokes demonstrates east-west inspection: `snet-app` reaches `snet-data` only on TCP 1433. Both Azure Firewall and NSGs are stateful and recognize the return of an allowed connection. Therefore, we do not need to allow ephemeral response ports in the NSGs. The UDRs in both spokes remain essential so that round trips traverse the firewall, which needs to observe both directions of the flow to preserve session state.
 

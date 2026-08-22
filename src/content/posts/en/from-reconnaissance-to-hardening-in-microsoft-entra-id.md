@@ -66,10 +66,10 @@ When the automation runs on a compatible Azure resource, a **managed identity** 
 
 There are two types:
 
-| Type                   | Lifecycle                                                               | Typical usage                                         |
-| ---------------------- | ----------------------------------------------------------------------- | ----------------------------------------------------- |
-| System-assigned        | Tied to the Azure resource; the identity is deleted when it is deleted  | A workload with an exclusive identity                 |
-| User-assigned          | Independent resource, can be associated with one or more workloads      | Reusable or separately managed identity               |
+| Type            | Lifecycle                                                              | Typical usage                           |
+| --------------- | ---------------------------------------------------------------------- | --------------------------------------- |
+| System-assigned | Tied to the Azure resource; the identity is deleted when it is deleted | A workload with an exclusive identity   |
+| User-assigned   | Independent resource, can be associated with one or more workloads     | Reusable or separately managed identity |
 
 “No secret in the code” does not mean “no authorization”. The identity still needs to be granted permission on the target resource. A valid token for Key Vault, for instance, does not authorize reading if the required role or access policy has not been granted.
 
@@ -89,11 +89,11 @@ OIDC and OAuth 2.0 can participate in the same experience, but they answer diffe
 
 The main tokens also serve different purposes:
 
-| Token          | Recipient and purpose                                                 |
-| -------------- | --------------------------------------------------------------------- |
-| ID token       | Helps the client application confirm the person's authentication      |
-| Access token   | Is presented to the API or protected resource to request access       |
-| Refresh token  | Allows the client to request new tokens, according to the flow's rules|
+| Token         | Recipient and purpose                                                  |
+| ------------- | ---------------------------------------------------------------------- |
+| ID token      | Helps the client application confirm the person's authentication       |
+| Access token  | Is presented to the API or protected resource to request access        |
+| Refresh token | Allows the client to request new tokens, according to the flow's rules |
 
 Tokens are sensitive and temporary credentials. They should not be pasted into support tickets (like the ones stuck in the Service Desk queue), screenshots, repositories, or public tools. Applications should use supported libraries, request only the necessary scopes, and validate the tokens intended for them.
 

@@ -110,13 +110,13 @@ In IPv4, Azure reserves five addresses from each subnet: the first four and the 
 
 **Classless Inter-Domain Routing (CIDR)** combines the network address with the prefix size. The larger the number after the slash, the smaller the range. A `/16` is larger than a `/24`, even though the number seems to want to play a trick on the beginner.
 
-| Use                     | CIDR             | Total addresses | Available for resources in Azure |
-| ----------------------- | ---------------- | --------------: | -------------------------------: |
-| Lab VNet                | `10.42.0.0/16`   |          65,536 |      Divided among the subnets   |
-| Web tier                | `10.42.10.0/24`  |             256 |                              251 |
-| Application tier        | `10.42.20.0/24`  |             256 |                              251 |
-| Data tier               | `10.42.30.0/24`  |             256 |                              251 |
-| Future Azure Firewall   | `10.42.100.0/26` |              64 |                               59 |
+| Use                   | CIDR             | Total addresses | Available for resources in Azure |
+| --------------------- | ---------------- | --------------: | -------------------------------: |
+| Lab VNet              | `10.42.0.0/16`   |          65,536 |        Divided among the subnets |
+| Web tier              | `10.42.10.0/24`  |             256 |                              251 |
+| Application tier      | `10.42.20.0/24`  |             256 |                              251 |
+| Data tier             | `10.42.30.0/24`  |             256 |                              251 |
+| Future Azure Firewall | `10.42.100.0/26` |              64 |                               59 |
 
 The four subnets fit inside `10.42.0.0/16` and do not overlap. The remaining space allows growing without changing all IPs. Size requirements vary by service and capacity variant, so validate the documentation before deployment.
 
@@ -160,11 +160,11 @@ The Route Table is associated with one or more subnets, not the entire VNet or d
 
 NSG, UDR and Azure Firewall are not three sizes of the same lock. One filters, another chooses the path and the third inspects centrally. The Firewall also understands **Fully Qualified Domain Names (FQDNs)**, full names like `api.example.com`.
 
-| Component              | Main question                                        | Common scope                      | Use when                                                                                                                  | Do not use as a substitute for                                  |
-| ---------------------- | ---------------------------------------------------- | --------------------------------- | ------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| NSG                    | Can this flow pass?                                  | Subnet and exceptionally NIC      | You need to filter IP, port and protocol in a distributed way                                                             | Routing, inspection by FQDN or web application protection       |
-| Route Table with UDR   | Which next hop should the packet follow?             | Subnet                            | You need to force passage through a firewall or NVA, use a gateway or drop a range                                        | Stateful control or content analysis                            |
-| Azure Firewall         | Should central traffic be inspected and logged?      | Central VNet with dedicated subnet| You need centralized policies, network and application rules, FQDN, threat intelligence or Premium features               | Basic segmentation that an NSG solves with less complexity      |
+| Component            | Main question                                   | Common scope                       | Use when                                                                                                    | Do not use as a substitute for                             |
+| -------------------- | ----------------------------------------------- | ---------------------------------- | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| NSG                  | Can this flow pass?                             | Subnet and exceptionally NIC       | You need to filter IP, port and protocol in a distributed way                                               | Routing, inspection by FQDN or web application protection  |
+| Route Table with UDR | Which next hop should the packet follow?        | Subnet                             | You need to force passage through a firewall or NVA, use a gateway or drop a range                          | Stateful control or content analysis                       |
+| Azure Firewall       | Should central traffic be inspected and logged? | Central VNet with dedicated subnet | You need centralized policies, network and application rules, FQDN, threat intelligence or Premium features | Basic segmentation that an NSG solves with less complexity |
 
 The three can work together: the UDR takes the packet to the Firewall, it inspects it, and the NSG limits each tier. Duplicating rules produces three guards with three different spreadsheets. Define who decides what.
 
@@ -332,21 +332,21 @@ Network Watcher can test IP flow and show the next hop. Effective routes and NSG
 
 If the documentation looks like a meeting where everyone agreed to use acronyms to save vowels, this table brings the pieces back to the real world.
 
-| Term           | Practical translation                                                                     |
-| -------------- | ----------------------------------------------------------------------------------------- |
-| VNet           | The private land where your network streets exist                                         |
-| Subnet         | A street or sector reserved for a type of resource                                        |
-| NIC            | The network port of the resource, with its IP addresses                                   |
-| NSG            | The security gate that allows or denies by source, destination, protocol and port         |
-| CIDR           | The compact way of writing where a network starts and what its size is                    |
-| Route Table    | The collection of path instructions associated with the subnet                            |
-| UDR            | A route instruction created by you to change the default path                             |
-| Next hop       | The next point to which the packet will be delivered                                      |
-| Peering        | A direct private connection between two VNets, without automatic transitivity             |
-| BGP            | The protocol by which routers announce to each other which networks they can reach        |
-| Azure Firewall | A central inspection post with advanced policies and logs                                 |
-| NVA            | A network virtual appliance, like a firewall or router from a vendor                      |
-| SNAT           | The exchange of the source private IP for a valid address to exit the network             |
+| Term           | Practical translation                                                              |
+| -------------- | ---------------------------------------------------------------------------------- |
+| VNet           | The private land where your network streets exist                                  |
+| Subnet         | A street or sector reserved for a type of resource                                 |
+| NIC            | The network port of the resource, with its IP addresses                            |
+| NSG            | The security gate that allows or denies by source, destination, protocol and port  |
+| CIDR           | The compact way of writing where a network starts and what its size is             |
+| Route Table    | The collection of path instructions associated with the subnet                     |
+| UDR            | A route instruction created by you to change the default path                      |
+| Next hop       | The next point to which the packet will be delivered                               |
+| Peering        | A direct private connection between two VNets, without automatic transitivity      |
+| BGP            | The protocol by which routers announce to each other which networks they can reach |
+| Azure Firewall | A central inspection post with advanced policies and logs                          |
+| NVA            | A network virtual appliance, like a firewall or router from a vendor               |
+| SNAT           | The exchange of the source private IP for a valid address to exit the network      |
 
 ## Quick cost guide
 
