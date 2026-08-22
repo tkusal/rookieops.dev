@@ -1,4 +1,4 @@
-﻿---
+---
 title: 'How to become a Microsoft Student Ambassador in 2026'
 description: 'Learn the current requirements, contribution paths, benefits, and onboarding process to become a Microsoft Student Ambassador in 2026.'
 pubDate: 2026-08-21
@@ -10,7 +10,7 @@ tags: ['Azure', 'Students', 'Microsoft Learn', 'Microsoft Student Ambassadors', 
 cover: '/images/posts/microsoft-student-ambassador-2026/capa.webp'
 coverAlt: 'Student Ambassador, Associate, and Senior milestone badges over a photo of a student using a laptop'
 toc: true
-comments: false
+comments: true
 draft: false
 ---
 

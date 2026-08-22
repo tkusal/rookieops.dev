@@ -10,7 +10,7 @@ tags: ['Azure', 'Entra ID', 'IAM', 'Segurança', 'PowerShell', 'Intermediário']
 cover: '/images/posts/governanca-identidades-m365-entra-id/capa.webp'
 coverAlt: 'Ilustração isométrica de crachás, engrenagens e um fluxo de aprovação flutuando sobre a logo do Microsoft Entra ID.'
 toc: true
-comments: false
+comments: true
 draft: true
 ---
 

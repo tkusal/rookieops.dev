@@ -10,7 +10,7 @@ tags: ['Azure', 'Terraform', 'IaC', 'NSG', 'Redes', 'Intermediário']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-2/capa.webp'
 coverAlt: 'Ilustração isométrica de uma rede hub and spoke no Azure com escudos e cadeados representando NSGs junto às subnets'
 toc: true
-comments: false
+comments: true
 mermaid: true
 draft: false
 ---

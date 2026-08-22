@@ -1,4 +1,4 @@
-﻿---
+---
 title: 'Como se tornar Microsoft Student Ambassador em 2026'
 description: 'Entenda os requisitos, as trilhas e o processo atual para sair do cadastro e se tornar Microsoft Student Ambassador em 2026.'
 pubDate: 2026-08-21
@@ -10,7 +10,7 @@ tags: ['Azure', 'Estudantes', 'Microsoft', 'Microsoft Student Ambassadors', 'Ini
 cover: '/images/posts/microsoft-student-ambassador-2026/capa.webp'
 coverAlt: 'Selos dos marcos Student Ambassador, Associate e Senior sobre uma fotografia de estudante usando um notebook'
 toc: true
-comments: false
+comments: true
 draft: false
 ---
 

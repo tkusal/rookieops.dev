@@ -10,7 +10,7 @@ tags: ['Git', 'Versionamento', 'Iniciante']
 cover: '/images/posts/git-para-quem-esta-comecando-em-devops/fluxo-git.webp'
 coverAlt: 'Ilustração do fluxo do Git desde o diretório de trabalho até o repositório remoto'
 toc: true
-comments: false
+comments: true
 draft: false
 ---
 

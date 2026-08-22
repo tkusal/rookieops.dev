@@ -10,7 +10,7 @@ tags: ['Azure', 'Entra ID', 'Iniciante']
 cover: '/images/posts/tenant-assinatura-grupo-de-recursos/capa.svg'
 coverAlt: 'Ilustração das relações entre tenant do Microsoft Entra, assinatura do Azure e grupo de recursos'
 toc: true
-comments: false
+comments: true
 mermaid: true
 draft: false
 ---

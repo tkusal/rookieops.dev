@@ -11,7 +11,7 @@ tags: ['Azure', 'Terraform', 'IaC', 'IPAM', 'Redes', 'Intermediário']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-1/capa.webp'
 coverAlt: 'Ilustração isométrica com símbolos do Azure e do Terraform sobre uma VNet hub conectada por peerings luminosos a duas VNets spoke'
 toc: true
-comments: false
+comments: true
 mermaid: true
 draft: false
 ---

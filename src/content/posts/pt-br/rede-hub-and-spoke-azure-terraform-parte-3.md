@@ -10,7 +10,7 @@ tags: ['Azure', 'Terraform', 'Azure Firewall', 'UDR', 'Intermediário']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-3/capa.webp'
 coverAlt: 'Ilustração isométrica de uma rede hub and spoke no Azure com um firewall em forma de muro no hub e setas de tráfego passando por ele'
 toc: true
-comments: false
+comments: true
 mermaid: true
 draft: false
 ---

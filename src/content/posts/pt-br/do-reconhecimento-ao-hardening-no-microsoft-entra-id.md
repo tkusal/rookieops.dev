@@ -10,7 +10,7 @@ tags: ['Entra ID', 'IAM', 'Segurança', 'Intermediário']
 cover: '/images/posts/do-reconhecimento-ao-hardening-no-microsoft-entra-id/camadas-de-seguranca-e-menor-privilegio.webp'
 coverAlt: 'Ilustração de identidades de pessoa, carga de trabalho e dispositivo atravessando camadas de políticas de acesso.'
 toc: true
-comments: false
+comments: true
 draft: false
 ---
 

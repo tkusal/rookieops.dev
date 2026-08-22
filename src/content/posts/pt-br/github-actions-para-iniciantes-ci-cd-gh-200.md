@@ -10,7 +10,7 @@ tags: ['GitHub Actions', 'CI/CD', 'Intermediário']
 cover: '/images/posts/github-actions-para-iniciantes-ci-cd-gh-200/capa.webp'
 coverAlt: 'Ilustração de uma alteração de código atravessando testes, empacotamento e implantação automatizados'
 toc: true
-comments: false
+comments: true
 draft: false
 ---
 

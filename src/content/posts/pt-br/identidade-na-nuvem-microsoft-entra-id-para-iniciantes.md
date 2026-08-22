@@ -10,7 +10,7 @@ tags: ['Entra ID', 'Segurança', 'IAM', 'Iniciante']
 cover: '/images/posts/identidade-na-nuvem-microsoft-entra-id-para-iniciantes/identidade-como-porta-de-acesso.webp'
 coverAlt: 'Ilustração de uma profissional diante de um portal de identidade conectado a aplicativos e dados na nuvem.'
 toc: true
-comments: false
+comments: true
 mermaid: true
 draft: false
 ---

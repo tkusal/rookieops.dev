@@ -10,7 +10,7 @@ tags: ['Estudantes', 'Google', 'AWS', 'GitHub', 'Comunidade', 'Iniciante']
 cover: '/images/posts/google-aws-student-ambassador-2026/capa.jpg'
 coverAlt: 'Logotipos do Google, AWS e GitHub ao lado de estudantes colaborando em tecnologia'
 toc: true
-comments: false
+comments: true
 draft: true
 ---
 
