@@ -215,9 +215,9 @@ Avoid sharing just the homepage of these domains. Look for a specific piece of c
 
 Adding the Contributor ID to each link manually is already enough. If you want to speed up the process, a few Microsoft MVPs have built optional tools:
 
-- A **Chrome and Edge extension**, built by MVP [Martin Brandl](https://mvp.microsoft.com/en-us/mvp/Martin%20%20Brandl-5003203), adds your Contributor ID to a link in one click. Available for [Chrome](https://chrome.google.com/webstore/detail/mvp-docs-learn-champion-e/eichjbmnicihhbhodbejfkceoknaclfd), [Edge](https://microsoftedge.microsoft.com/addons/detail/mvp-docs-learn-champion/fmbcbeaecledoacfmelbailimfbcjpkb?hl=de-DE), and as open-source code on [GitHub](https://github.com/mjisaak/mvp-docs-learn-champion-extension).
+- **Chrome and Edge extension**, originally created by MVP [Martin Brandl](https://github.com/mjisaak), allowed users to add their Contributor ID to links with a single click. The original project was discontinued and archived, but I am currently working on a refactored version adapted to the current Microsoft Student Ambassador workflow. You can follow the development in this [repository](https://github.com/tkusal/ambassador-referral-linker).
 
-- An **Azure Function**, built by MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), takes a block of text, finds the eligible URLs in it, and appends your Contributor ID to each one in the correct format. The instructions are in the [author's repository](https://gist.github.com/Ba4bes/2b77e04ca265c8a2987d567e097e1a44).
+- **Azure Function**, originally developed by MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), can help add your Contributor ID to Microsoft URLs in existing content. Since the original documentation had become outdated, I updated it for the current Microsoft Student Ambassador workflow. You can find the updated instructions in this [repository](https://gist.github.com/tkusal/0af7eb4284f8c7f1eeef77340a56973d).
 
 > [!IMPORTANT]
 > These tools are built and maintained by the community, not by Microsoft. When using one, double-check that your ID was added correctly: the generated URL should look the same as one you would produce by adding the identifier yourself.

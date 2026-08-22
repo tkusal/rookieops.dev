@@ -220,9 +220,9 @@ Evite compartilhar apenas a página inicial desses domínios. Procure um conteú
 
 Adicionar o Contributor ID manualmente em cada link já é suficiente. Se quiser agilizar esse processo, alguns Microsoft MVPs criaram ferramentas opcionais:
 
-- **Extensão para Chrome e Edge**, criada pelo MVP [Martin Brandl](https://mvp.microsoft.com/en-us/mvp/Martin%20%20Brandl-5003203), adiciona o Contributor ID ao link com um clique. Disponível para [Chrome](https://chrome.google.com/webstore/detail/mvp-docs-learn-champion-e/eichjbmnicihhbhodbejfkceoknaclfd), [Edge](https://microsoftedge.microsoft.com/addons/detail/mvp-docs-learn-champion/fmbcbeaecledoacfmelbailimfbcjpkb?hl=de-DE) e com código aberto no [GitHub](https://github.com/mjisaak/mvp-docs-learn-champion-extension).
+- **Extensão para Chrome e Edge**, criada originalmente pelo MVP [Martin Brandl](https://github.com/mjisaak), permitia adicionar o Contributor ID aos links com um clique. O projeto original foi descontinuado e arquivado, mas estou trabalhando em uma refatoração para adaptá-lo ao fluxo atual do Microsoft Student Ambassador. O desenvolvimento pode ser acompanhado neste [repositório](https://github.com/tkusal/ambassador-referral-linker).
 
-- **Azure Function**, criada pela MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), recebe um texto como entrada, identifica as URLs elegíveis e adiciona o Contributor ID no formato correto a cada uma. O passo a passo está no [repositório da autora](https://gist.github.com/Ba4bes/2b77e04ca265c8a2987d567e097e1a44).
+- **Azure Function**, desenvolvida originalmente pela MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), pode ajudar a adicionar seu Contributor ID às URLs da Microsoft em conteúdos já existentes. Como a documentação original estava desatualizada, fiz uma atualização para o fluxo atual do Microsoft Student Ambassador. Você pode consultar as instruções atualizada neste [repositório](https://gist.github.com/tkusal/0af7eb4284f8c7f1eeef77340a56973d#file-addid-pt-br-md).
 
 > [!IMPORTANT]
 > Essas ferramentas são criadas e mantidas pela comunidade, não pela Microsoft. Ao usá-las, confira se o ID foi adicionado corretamente: a URL gerada deve ficar igual à que você produziria adicionando o identificador manualmente.
