@@ -219,9 +219,16 @@ const themeInit = `
 
   // Language redirect on root
   try {
-    const savedLang = localStorage.getItem('language');
-    if (savedLang === 'en' && window.location.pathname === '/') {
-      window.location.replace('/en/');
+    if (window.location.pathname === '/') {
+      let lang = localStorage.getItem('language');
+      if (!lang) {
+        const browserLang = navigator.language || '';
+        lang = browserLang.toLowerCase().startsWith('en') ? 'en' : 'pt-br';
+        localStorage.setItem('language', lang);
+      }
+      if (lang === 'en') {
+        window.location.replace('/en/');
+      }
     }
   } catch {}
 })();
