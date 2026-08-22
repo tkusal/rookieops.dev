@@ -129,5 +129,7 @@ document.addEventListener('keydown', (event) => {
   );
 });
 
-syncCodeTheme();
-syncDisplayState();
+document.addEventListener('astro:page-load', () => {
+  syncCodeTheme();
+  syncDisplayState();
+});

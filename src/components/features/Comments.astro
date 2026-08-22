@@ -10,6 +10,7 @@ const enabled = comments.enabled && comments.provider === 'giscus' && comments.g
     <section class="border-border mt-14 border-t pt-8">
       <script
         is:inline
+        data-astro-rerun
         src="https://giscus.app/client.js"
         data-repo={comments.giscus.repo}
         data-repo-id={comments.giscus.repoId}

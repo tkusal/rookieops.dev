@@ -1,6 +1,5 @@
-const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
-
 function updateProgress() {
+  const progress = document.querySelector<HTMLElement>('[data-reading-progress]');
   if (!progress) return;
   const max = document.documentElement.scrollHeight - window.innerHeight;
   const value = max <= 0 ? 0 : (window.scrollY / max) * 100;
@@ -8,6 +7,6 @@ function updateProgress() {
   progress.style.setProperty('--reading-progress', `${clamped}%`);
 }
 
-updateProgress();
+document.addEventListener('astro:page-load', updateProgress);
 document.addEventListener('scroll', updateProgress, { passive: true });
 window.addEventListener('resize', updateProgress);
