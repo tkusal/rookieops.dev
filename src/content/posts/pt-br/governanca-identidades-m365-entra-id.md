@@ -1,5 +1,5 @@
 ---
-title: 'Governança de Identidades no Microsoft 365: Automatizando o ciclo de vida (JML) e PIM com Entra ID Governance'
+title: 'Governança de Identidades no Microsoft 365: Automatizando o ciclo de vida e PIM com Entra ID Governance'
 description: 'Automatize entrada, movimentação, saída, revisões e privilégios JIT no Microsoft 365 com o Microsoft Entra ID Governance.'
 pubDate: 2026-08-23
 author: 'Thiago Kusal'
@@ -18,7 +18,7 @@ draft: true
 
 O tenant já exige autenticação multifator. As políticas de Acesso Condicional estão em produção. Mesmo assim, a equipe de TI começa toda segunda-feira copiando dados de chamados, adicionando pessoas a grupos e perguntando quem aprovou determinado acesso. Na sexta-feira, alguém descobre uma conta administrativa ativa desde o projeto do ano passado. A segurança melhorou, mas a operação continua dependente de memória, planilha e sorte.
 
-É aqui que segurança e governança se separam. Segurança decide se uma tentativa de acesso pode prosseguir. Governança responde quem deveria ter acesso, por qual motivo, durante quanto tempo e quem precisa revisar essa decisão.
+É aqui que a segurança e a governança se separam. A segurança decide se uma tentativa de acesso pode prosseguir. A governança responde quem deveria ter acesso, por qual motivo, durante quanto tempo e quem precisa revisar essa decisão.
 
 Dra. Anna Bette Bírquin, Pesquisadora Sênior da fictícia Umbrella do Brasil S.A., trabalhará no Laboratório NEST. No domínio `umbrella.com.br`, seu nome de usuário e UPN serão `anna.birquin` e `anna.birquin@umbrella.com.br`. Na jornada, assume novas responsabilidades, administra o Exchange Online numa janela de manutenção e depois deixa a organização. O objetivo é tornar a TI quase invisível para Anna: o acesso certo aparece no momento necessário, pede aprovação quando deve e desaparece quando perde a justificativa.
 
@@ -29,16 +29,16 @@ Chamaremos essa jornada de **JML**, sigla para _Joiner, Mover e Leaver_: entrada
 Ao final, você terá um laboratório verificável para:
 
 - preparar a entrada de Anna a partir de `employeeHireDate`;
-- entregar um pacote de acesso aprovado pelo gestor quando ela mudar de função;
+- entregar um pacote de acesso aprovado pelo gestor quando suas responsabilidades ou necessidades de acesso mudarem;
 - tornar Exchange Administrator elegível, sem privilégio ativo permanente;
 - revisar trimestralmente as atribuições do pacote;
-- bloquear a conta, revogar sessões e remover licenças diretas na saída.
+- revogar privilégios administrativos, bloquear a conta, revogar sessões e remover acessos e licenças diretas na saída;
 
-Os scripts estão no repositório [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). Eles começam em modo de simulação e não incluem credenciais, segredos nem identificadores reais.
+Os scripts estão no repositório [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). Eles começam em modo de simulação e não incluem credenciais, segredos nem identificadores reais.
 
 ### Como os dados entram no laboratório
 
-Sem integração com RH, a admissão começa por chamado. O analista executa `05-new-cloud-user.ps1` com dados aprovados e `RequestId`. Esse valor aparece na saída, sem gravação no Entra ou em log local. Lifecycle Workflows encontra a conta criada e inicia o Joiner; não executa o `.ps1`.
+Sem integração com RH, a admissão começa por chamado. O analista executa `05-new-cloud-user.ps1` com dados aprovados e `RequestId`. Esse valor aparece na saída, sem gravação no Entra ou em log local (em produção, persista esse ID em um atributo apropriado para manter o rastro de auditoria. Em usuários cloud-only, pode ser utilizado um `onPremisesExtensionAttributes.extensionAttributeX`; em identidades sincronizadas, grave o valor na fonte autoritativa). Quando o workflow estiver agendado e a identidade atender às condições de execução, o Lifecycle Workflows encontrará a conta criada e executará o Joiner; ele não executa o `.ps1`.
 
 ## A jornada da identidade e a arquitetura JML
 
@@ -73,7 +73,7 @@ Para reproduzir o cenário, considere Microsoft Entra ID Governance ou Microsoft
 | Elegibilidade e política PIM | Privileged Role Administrator                         | `RoleEligibilitySchedule.ReadWrite.Directory`              |
 | Ativação pela própria Anna   | Usuária elegível                                      | `RoleAssignmentSchedule.ReadWrite.Directory`               |
 | Descoberta dos recursos      | Leitor adequado para cada objeto                      | `User.Read.All`, `Group.Read.All` e `Application.Read.All` |
-| Consulta de licenças         | Directory Reader ou função equivalente                | `Organization.Read.All`                                    |
+| Consulta de licenças         | Directory Reader ou função equivalente                | `LicenseAssignment.Read.All`                               |
 
 Escopo OAuth sozinho não concede a função administrativa; a conta precisa de ambas as autorizações. Catalog owner adiciona recursos; Access Package Manager cria pacotes com recursos disponíveis.
 
@@ -88,12 +88,12 @@ Get-InstalledModule Microsoft.Graph* |
   Sort-Object Name |
   Select-Object Name, Version
 
-git clone https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance.git iam-governance-lab
+git clone https://github.com/tkusal/Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance.git iam-governance-lab
 Set-Location .\iam-governance-lab
 .\scripts\00-connect-graph.ps1
 ```
 
-O último comando solicita leitura. Para escrita, escolha entre `UserProvisioning`, `Lifecycle`, `Entitlement`, `PimEligibility` e `PimActivation`. Confirme conta, tenant e escopos com `Get-MgContext`.
+O último comando solicita apenas escopos de leitura. Para escrita, escolha entre `UserProvisioning`, `Lifecycle`, `Entitlement`, `PimEligibility` e `PimActivation`. Confirme conta, tenant e escopos com `Get-MgContext`.
 
 ### Preparar Anna e os recursos
 
@@ -115,7 +115,7 @@ Com função User Administrator, o analista transfere para o script os dados do 
   -EmployeeHireDate '2026-09-01T12:00:00Z'
 ```
 
-Sem `-Apply`, o script simula. Depois, repita com `-Apply -WhatIf` e, por fim, `-Apply`. Ele valida domínio, duplicidade, gestor e email; gera uma senha não revelada; cria a conta; e atribui o gestor. Anna usará o TAP no bootstrap. Se o AD local for a fonte autoritativa, não use o script: crie a conta lá e deixe a sincronização propagá-la.
+Sem `-Apply`, o script simula. Depois, repita com `-Apply -WhatIf` e, por fim, `-Apply`. Ele valida domínio, duplicidade, gestor e email; gera uma senha não revelada; cria a conta; e atribui o gestor. Anna usará o TAP no primeiro acesso (bootstrap). Se o AD local for a fonte autoritativa, não use o script: crie a conta lá e deixe a sincronização propagá-la.
 
 | Dado               | Valor de exemplo       | Por que importa                                    |
 | ------------------ | ---------------------- | -------------------------------------------------- |
@@ -147,7 +147,9 @@ Prepare um catálogo `Laboratório NEST`, um grupo Microsoft 365 associado ao Te
 
 Um **Temporary Access Pass**, ou TAP, é uma credencial temporária usada no primeiro registro de métodos de autenticação. No nosso fluxo, uma tarefa nativa gera um TAP de uso único por oito horas e o envia ao gestor. A política de TAP precisa permitir 480 minutos e incluir Anna ou o grupo piloto.
 
-Os 480 minutos mantêm o valor didático do exemplo. Em produção, a Microsoft recomenda máximo de 1440 minutos para evitar expiração entre fusos e ciclos agendados. O TAP serve para bootstrap, recuperação e registro de passkey, FIDO2 ou Windows Hello for Business. Não é credencial contínua nem substituto da senha.
+Os 480 minutos são um valor didático para este laboratório. Em produção, ajuste o tempo de vida do TAP à janela real de onboarding e à política de segurança da organização, utilizando o menor período operacionalmente adequado. A tarefa do Lifecycle Workflows aceita valores entre 10 e 43.200 minutos. O TAP serve para o primeiro acesso, recuperação e registro de métodos passwordless resistentes a phishing, como passkeys e Windows Hello for Business (importante: em TAP de uso único, o registro de um novo método passwordless deve ser concluído em até 10 minutos após o login). Não é credencial contínua nem substituto da senha.
+
+Essa estratégia também acompanha a transição dos métodos de autenticação do Microsoft Entra ID. A partir de 1º de setembro de 2026, usuários habilitados para SMS ou chamadas de voz serão automaticamente habilitados para passkeys e incentivados a registrá-las. Em 1º de fevereiro de 2027, a Microsoft descontinuará a entrega nativa de SMS e voz; organizações que ainda necessitem desses canais deverão utilizar um provedor de telecomunicações gerenciado pelo cliente. Por isso, novos fluxos de onboarding devem priorizar métodos resistentes a phishing, como passkeys e Windows Hello for Business.
 
 ### Antes de configurar
 
@@ -224,7 +226,7 @@ O ID esperado para a aplicação é o `Id` do **service principal**, não o `App
 7. Exija justificativa do aprovador e defina expiração da atribuição em 180 dias.
 8. Crie a política e mantenha o pacote visível apenas para a população que deve solicitá-lo.
 
-O gestor vem do atributo `manager`. Se não for encontrado, o fallback configurado recebe a solicitação. O Entra não escolhe automaticamente o administrador; por isso, o script exige `FallbackApproverUserId` e um responsável explícito. Teste no portal **My Access** com Anna e confirme a notificação ao aprovador.
+O gestor vem do atributo `manager`. Se não for encontrado, o fallback configurado recebe a solicitação. O Entra não escolhe automaticamente o administrador; por isso, o script exige `FallbackApproverUserId` e um responsável explícito. Teste a solicitação no portal **My Access** com Anna (em sua sessão) e confirme a notificação e aprovação com a conta do gestor (em outra sessão isolada).
 
 ### Automatizar com simulação
 
@@ -280,7 +282,9 @@ Faça as operações em sessões separadas. A primeira pertence ao Privileged Ro
   -RoleDisplayName 'Exchange Administrator' `
   -Activate `
   -ActivationHours 2 `
-  -Justification '<CHAMADO_E_MOTIVO>'
+  -Justification '<MOTIVO>' `
+  -TicketNumber '<NUMERO_CHAMADO>' `
+  -TicketSystem '<SISTEMA_DE_CHAMADOS>'
 ```
 
 Acrescente `-Apply -WhatIf` antes da aplicação real. Anna também pode abrir **PIM > My roles > Microsoft Entra roles > Eligible assignments > Activate**, informar duração, justificativa e chamado, concluir MFA e aguardar aprovação.
@@ -320,7 +324,7 @@ Confirme que a ocorrência foi criada, que o gestor recebeu email e consegue reg
 
 ## O desligamento e a limpeza com Lifecycle Workflows
 
-Na saída, o RH autoriza a data e a equipe de identidades preenche `employeeLeaveDateTime`. Depois, o Leaver bloqueia a conta, revoga sessões e remove licenças diretas.
+Na saída, o RH autoriza a data e a equipe de identidades preenche `employeeLeaveDateTime`. Antes do bloqueio, são tratadas as atribuições e elegibilidades administrativas aplicáveis. Em seguida, o Leaver cancela solicitações pendentes de pacotes de acesso, bloqueia a conta, revoga sessões, remove atribuições de Access Packages e remove licenças diretas.
 
 > [!NOTE]
 > Em conta cloud-only, preencher `employeeLeaveDateTime` exige `User.Read.All`, `User-LifeCycleInfo.ReadWrite.All` e, no fluxo delegado documentado, a função Global Administrator.
@@ -332,8 +336,11 @@ Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas com
 1. Abra **ID Governance > Lifecycle workflows > Create workflow** e escolha um modelo Leaver.
 2. Nomeie como `JML | Offboarding | Laboratório NEST`.
 3. Use `department eq 'Laboratório NEST'` apenas no piloto.
-4. Configure `employeeLeaveDateTime` com deslocamento de zero dia.
-5. Ordene as tarefas: **Disable user account**, **Revoke all refresh tokens for user** e **Remove all licenses for user**.
+4. Configure `employeeLeaveDateTime` com deslocamento de zero dias.
+> [!WARNING]
+> A tarefa nativa **Disable user account** não oferece suporte a usuários com atribuições de funções do Microsoft Entra nem a usuários que sejam membros ou proprietários de grupos _role-assignable_. Como Anna recebeu uma elegibilidade PIM para Exchange Administrator neste laboratório, remova previamente as atribuições ou elegibilidades administrativas aplicáveis via PIM ou Microsoft Graph **antes** de executar o bloqueio.
+
+5. Ordene as tarefas: **Cancel all pending access package assignment requests for user**, **Disable user account**, **Revoke all refresh tokens for user**, **Remove all access package assignments for user** e **Remove all licenses for user**.
 6. Mantenha `continueOnError` desabilitado no bloqueio e avalie-o nas tarefas seguintes.
 7. Crie com a agenda desligada.
 
@@ -391,7 +398,7 @@ O aceite do laboratório deve provar:
 - solicitação, aprovação, expiração e três recursos do pacote registrados;
 - elegibilidade PIM sem atribuição ativa permanente e ativação encerrada após duas horas;
 - revisão criada com gestor, fallback, recorrência e comportamento de expiração corretos;
-- Leaver executado na ordem prevista, com conta bloqueada e licenças diretas removidas;
+- Leaver executado na ordem prevista, com privilégios administrativos tratados, conta bloqueada, sessões revogadas, Access Packages encerrados e licenças diretas removidas;
 - procedimento de reversão ensaiado com a conta descartável.
 
 Há impacto de custo, pois as pessoas que recebem, solicitam, aprovam ou revisam acesso podem entrar na contagem de licenças, conforme o recurso. Não use preço fixo como critério de arquitetura. Valide os fundamentos oficiais de licenciamento e o contrato da organização.
@@ -426,6 +433,7 @@ Comece com um departamento, um pacote, uma função privilegiada e uma revisão.
 - [Histórico de Lifecycle Workflows](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-history?wt.mc_id=studentamb_365381)
 - [Consultar logs de auditoria do diretório](https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
 - [Fundamentos de licenciamento do Microsoft Entra ID Governance](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals?wt.mc_id=studentamb_365381)
+- [Passkeys by default and retirement of Microsoft-provided SMS and voice authentication](https://learn.microsoft.com/entra/identity/authentication/concept-sms-voice-retirement?wt.mc_id=studentamb_365381)
 
 ## Nota de independência e marcas
 

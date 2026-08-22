@@ -1,5 +1,5 @@
 ---
-title: 'Identity Governance in Microsoft 365: Automating the lifecycle (JML) and PIM with Entra ID Governance'
+title: 'Identity Governance in Microsoft 365: Automating the lifecycle and PIM with Entra ID Governance'
 description: 'Automate joiner, mover, leaver, reviews, and JIT privileges in Microsoft 365 using Microsoft Entra ID Governance.'
 pubDate: 2026-08-23
 author: 'Thiago Kusal'
@@ -32,13 +32,13 @@ In the end, you will have a verifiable lab to:
 - deliver an access package approved by the manager when she changes roles;
 - make Exchange Administrator eligible, without permanent active privilege;
 - review the package assignments quarterly;
-- block the account, revoke sessions, and remove direct licenses upon departure.
+- revoke administrative privileges, block the account, revoke sessions, and remove access and direct licenses upon departure;
 
-The scripts are in the repository [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). They start in simulation mode and do not include credentials, secrets, or real identifiers.
+The scripts are in the repository [Automatizando o ciclo de vida JML e PIM com Entra ID Governance](https://github.com/tkusal/Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance). They start in simulation mode and do not include credentials, secrets, or real identifiers.
 
 ### How data enters the lab
 
-Without HR integration, onboarding starts with a ticket. The analyst runs `05-new-cloud-user.ps1` with approved data and `RequestId`. This value appears in the output, without being recorded in Entra or a local log. Lifecycle Workflows finds the created account and starts the Joiner process. It does not run the `.ps1` file.
+Without HR integration, onboarding starts with a ticket. The analyst runs `05-new-cloud-user.ps1` with approved data and `RequestId`. This value appears in the output, without being recorded in Entra or a local log (in production, persist this ID in an appropriate attribute to maintain an audit trail. For cloud-only users, you can use an `onPremisesExtensionAttributes.extensionAttributeX`; for synchronized identities, record the value in the authoritative source). When the workflow is scheduled and the identity meets the execution conditions, Lifecycle Workflows will find the created account and execute the Joiner process; it does not run the `.ps1` file.
 
 ## The identity journey and JML architecture
 
@@ -73,7 +73,7 @@ To reproduce the scenario, consider Microsoft Entra ID Governance or Microsoft E
 | PIM eligibility and policy     | Privileged Role Administrator                          | `RoleEligibilitySchedule.ReadWrite.Directory`                 |
 | Activation by Anna herself     | Eligible user                                          | `RoleAssignmentSchedule.ReadWrite.Directory`                  |
 | Resource discovery             | Appropriate reader for each object                     | `User.Read.All`, `Group.Read.All`, and `Application.Read.All` |
-| License query                  | Directory Reader or equivalent role                    | `Organization.Read.All`                                       |
+| License query                  | Directory Reader or equivalent role                    | `LicenseAssignment.Read.All`                                  |
 
 An OAuth scope alone does not grant the administrative role. The account needs both authorizations. A Catalog owner adds resources, while an Access Package Manager creates packages with available resources.
 
@@ -88,12 +88,12 @@ Get-InstalledModule Microsoft.Graph* |
   Sort-Object Name |
   Select-Object Name, Version
 
-git clone https://github.com/tkusal/-Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance.git iam-governance-lab
+git clone https://github.com/tkusal/Automatizando-o-ciclo-de-vida-JML-e-PIM-com-Entra-ID-Governance.git iam-governance-lab
 Set-Location .\iam-governance-lab
 .\scripts\00-connect-graph.ps1
 ```
 
-The last command requests reading permissions. For writing, choose between `UserProvisioning`, `Lifecycle`, `Entitlement`, `PimEligibility`, and `PimActivation`. Confirm the account, tenant, and scopes with `Get-MgContext`.
+The last command requests only reading permissions. For writing, choose between `UserProvisioning`, `Lifecycle`, `Entitlement`, `PimEligibility`, and `PimActivation`. Confirm the account, tenant, and scopes with `Get-MgContext`.
 
 ### Prepare Anna and the resources
 
@@ -147,7 +147,9 @@ Prepare a catalog named `Laboratório NEST`, a Microsoft 365 group associated wi
 
 A **Temporary Access Pass**, or TAP, is a temporary credential used during the first registration of authentication methods. In our flow, a native task generates a single-use TAP for eight hours and sends it to the manager. The TAP policy must allow 480 minutes and include Anna or the pilot group.
 
-The 480 minutes maintain the didactic value of the example. In production, Microsoft recommends a maximum of 1440 minutes to avoid expiration between time zones and scheduled cycles. The TAP serves for bootstrap, recovery, and registration of a passkey, FIDO2, or Windows Hello for Business. It is not a continuous credential nor a password replacement.
+The 480 minutes are a didactic value for this lab. In production, adjust the TAP lifetime to the actual onboarding window and the organization's security policy, using the shortest operationally appropriate period. The Lifecycle Workflows task accepts values between 10 and 43,200 minutes. The TAP serves for the first access, recovery, and registration of phishing-resistant passwordless methods, like passkeys and Windows Hello for Business (important: for a single-use TAP, the registration of a new passwordless method must be completed within 10 minutes after login). It is not a continuous credential nor a password replacement.
+
+This strategy also aligns with the transition of Microsoft Entra ID authentication methods. Starting September 1, 2026, users enabled for SMS or voice calls will be automatically enabled for passkeys and encouraged to register them. On February 1, 2027, Microsoft will retire the native delivery of SMS and voice; organizations that still need these channels will have to use a customer-managed telecommunications provider. Therefore, new onboarding flows should prioritize phishing-resistant methods, such as passkeys and Windows Hello for Business.
 
 ### Before configuring
 
@@ -224,7 +226,7 @@ The expected ID for the application is the **service principal** `Id`, not the a
 7. Require justification from the approver and set the assignment expiration to 180 days.
 8. Create the policy and keep the package visible only to the population that should request it.
 
-The manager comes from the `manager` attribute. If not found, the configured fallback receives the request. Entra does not automatically pick the administrator. Therefore, the script requires `FallbackApproverUserId` and an explicit responsible person. Test in the **My Access** portal with Anna and confirm the notification to the approver.
+The manager comes from the `manager` attribute. If not found, the configured fallback receives the request. Entra does not automatically pick the administrator. Therefore, the script requires `FallbackApproverUserId` and an explicit responsible person. Test the request in the **My Access** portal with Anna (in her session) and confirm the notification and approval with the manager's account (in another isolated session).
 
 ### Automate with simulation
 
@@ -280,7 +282,9 @@ Perform the operations in separate sessions. The first belongs to the Privileged
   -RoleDisplayName 'Exchange Administrator' `
   -Activate `
   -ActivationHours 2 `
-  -Justification '<TICKET_AND_REASON>'
+  -Justification '<REASON>' `
+  -TicketNumber '<TICKET_NUMBER>' `
+  -TicketSystem '<TICKET_SYSTEM>'
 ```
 
 Add `-Apply -WhatIf` before the real application. Anna can also open **PIM > My roles > Microsoft Entra roles > Eligible assignments > Activate**, provide the duration, justification, and ticket, complete MFA, and wait for approval.
@@ -320,7 +324,7 @@ Confirm that the occurrence was created, that the manager received an email, and
 
 ## Departure and cleanup with Lifecycle Workflows
 
-Upon departure, HR authorizes the date and the identity team fills in `employeeLeaveDateTime`. Then, the Leaver process blocks the account, revokes sessions, and removes direct licenses.
+Upon departure, HR authorizes the date and the identity team fills in `employeeLeaveDateTime`. Before lockout, applicable administrative assignments and eligibilities are addressed. Then, the Leaver process cancels pending access package requests, blocks the account, revokes sessions, removes Access Packages assignments, and removes direct licenses.
 
 > [!NOTE]
 > For a cloud-only account, filling `employeeLeaveDateTime` requires `User.Read.All`, `User-LifeCycleInfo.ReadWrite.All`, and, in the documented delegated flow, the Global Administrator role.
@@ -333,7 +337,10 @@ Before automating, inventory the ownership of groups, Teams, sites, shared mailb
 2. Name it `JML | Offboarding | Laboratório NEST`.
 3. Use `department eq 'Laboratório NEST'` only in the pilot.
 4. Configure `employeeLeaveDateTime` with a zero-day offset.
-5. Order the tasks: **Disable user account**, **Revoke all refresh tokens for user**, and **Remove all licenses for user**.
+> [!WARNING]
+> The native **Disable user account** task does not support users with Microsoft Entra role assignments or users who are members or owners of _role-assignable_ groups. Since Anna received a PIM eligibility for Exchange Administrator in this lab, previously remove the applicable administrative assignments or eligibilities via PIM or Microsoft Graph **before** executing the lockout.
+
+5. Order the tasks: **Cancel all pending access package assignment requests for user**, **Disable user account**, **Revoke all refresh tokens for user**, **Remove all access package assignments for user**, and **Remove all licenses for user**.
 6. Keep `continueOnError` disabled on the lockout and evaluate it in the subsequent tasks.
 7. Create with the schedule turned off.
 
@@ -391,7 +398,7 @@ The lab acceptance must prove:
 - request, approval, expiration, and three package resources registered;
 - PIM eligibility without permanent active assignment and activation ended after two hours;
 - review created with correct manager, fallback, recurrence, and expiration behavior;
-- Leaver executed in the expected order, with account blocked and direct licenses removed;
+- Leaver executed in the expected order, with administrative privileges addressed, account blocked, sessions revoked, Access Packages terminated, and direct licenses removed;
 - reversion procedure rehearsed with the disposable account.
 
 There is a cost impact, as people who receive, request, approve, or review access might count towards licenses, depending on the resource. Do not use fixed pricing as an architectural criterion. Validate the official licensing fundamentals and the organization's contract.
@@ -426,6 +433,7 @@ Start with one department, one package, one privileged role, and one review. Exp
 - [Lifecycle Workflows history](https://learn.microsoft.com/entra/id-governance/lifecycle-workflow-history?wt.mc_id=studentamb_365381)
 - [List directoryAudits](https://learn.microsoft.com/graph/api/directoryaudit-list?view=graph-rest-1.0&wt.mc_id=studentamb_365381)
 - [Microsoft Entra ID Governance licensing fundamentals](https://learn.microsoft.com/entra/id-governance/licensing-fundamentals?wt.mc_id=studentamb_365381)
+- [Passkeys by default and retirement of Microsoft-provided SMS and voice authentication](https://learn.microsoft.com/entra/identity/authentication/concept-sms-voice-retirement?wt.mc_id=studentamb_365381)
 
 ## Independence and trademark note
 
