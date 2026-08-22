@@ -82,7 +82,7 @@ tags: ['<TAG TEMÁTICA>', 'Iniciante']
 cover: '/images/posts/nome-do-artigo/capa.webp'
 coverAlt: '<DESCRIÇÃO OBJETIVA DA IMAGEM DE CAPA>'
 toc: true
-comments: false
+comments: true
 draft: true
 ---
 
@@ -131,6 +131,7 @@ Regras dos campos:
 - `tags` deve conter pelo menos uma tag temática adequada e exatamente uma das três dificuldades permitidas.
 - `cover` e `coverAlt` são opcionais, mas devem ser usados juntos.
 - `updatedDate` deve ser omitido em artigos novos e alterado apenas em revisões editoriais relevantes.
+- `comments: true` permite que os leitores discutam o artigo através da integração com o Giscus (GitHub Discussions). Pode ser alterado para `false` caso não queira comentários nesta postagem.
 - Toda contribuição de artigo deve chegar ao pull request com `draft: true`. Esse valor mantém o artigo fora das páginas públicas, da busca, do sitemap e do RSS.
 - Depois da aprovação editorial, a manutenção ajusta `pubDate` e troca `draft` para `false` antes da publicação. O campo `draft` do artigo é independente da opção "Draft pull request" do GitHub.
 
@@ -240,9 +241,11 @@ Toda imagem informativa deve ter texto alternativo útil. Imagens meramente deco
 
 ## Validar a contribuição
 
-Execute:
+Nosso projeto possui CI automatizado que validará seu código no momento do Pull Request. Por favor, execute as validações locais antes de commitar:
 
 ```powershell
+pnpm format
+pnpm lint
 pnpm validate
 pnpm preview
 ```

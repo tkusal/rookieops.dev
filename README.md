@@ -20,7 +20,14 @@ pnpm dev
 
 O Astro informa o endereço local no terminal, normalmente `http://localhost:4321`.
 
-Para validar a versão de produção:
+O projeto conta com formatação (Prettier) e validação de código (ESLint) rigorosas. Antes de submeter código, formate e verifique erros com:
+
+```powershell
+pnpm format
+pnpm lint
+```
+
+Para validar a versão de produção (checagem de tipos TypeScript e build final):
 
 ```powershell
 pnpm validate
