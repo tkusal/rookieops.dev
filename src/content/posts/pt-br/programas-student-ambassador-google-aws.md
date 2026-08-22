@@ -117,14 +117,16 @@ A partir daí, eles iniciam seu mandato atuando ativamente no campus. Isso signi
 
 ## GitHub Campus Experts
 
-O programa **GitHub Campus Experts** é um dos mais prestigiados para estudantes interessados em desenvolvimento de software, metodologias ágeis, DevOps e, claro, controle de versão e open source. 
+O programa **GitHub Campus Experts** é um dos mais prestigiados para estudantes interessados em desenvolvimento de software, metodologias ágeis, DevOps e, claro, controle de versão e open source.
 
 ### O que é o programa
-O Campus Experts capacita estudantes para construir e crescer comunidades técnicas diversas e inclusivas em suas universidades. Diferente de outros programas que focam puramente em um produto comercial da empresa, o foco do GitHub é treinar você como **líder de comunidade**. 
+
+O Campus Experts capacita estudantes para construir e crescer comunidades técnicas diversas e inclusivas em suas universidades. Diferente de outros programas que focam puramente em um produto comercial da empresa, o foco do GitHub é treinar você como **líder de comunidade**.
 
 O papel do especialista no campus é analisar o que a sua comunidade universitária mais precisa (seja aprender Git básico, organizar um hackathon ou criar grupos focados em diversidade) e construir eventos e treinamentos para suprir essa demanda.
 
 ### Benefícios
+
 Fazer parte desta comunidade global oferece vantagens excepcionais, muito focadas em eventos:
 
 - **Treinamento de Elite:** Um curso preparatório exclusivo focado em oratória, organização de eventos, empatia e construção de comunidades inclusivas.
@@ -133,20 +135,23 @@ Fazer parte desta comunidade global oferece vantagens excepcionais, muito focada
 - **Prestígio e Viagens:** Os membros mais ativos frequentemente recebem convites (e suporte de viagem) para representar o GitHub em conferências globais, como o GitHub Universe.
 
 ### Pré-requisitos
+
 O processo de seleção é altamente competitivo e, para se candidatar, você precisa:
 
 1. **Idade e Vínculo Acadêmico:** Ter 18 anos ou mais e estar matriculado em um curso de ensino superior.
 2. **Tempo de Curso:** Ter **mais de um ano restante** até a graduação no momento da inscrição (garantindo que você tenha tempo para atuar no campus).
-3. **Usuário Ativo:** Ser um usuário do GitHub por pelo menos seis meses e ter seu status de estudante validado pelo [*GitHub Student Developer Pack*](https://education.github.com/pack).
+3. **Usuário Ativo:** Ser um usuário do GitHub por pelo menos seis meses e ter seu status de estudante validado pelo [_GitHub Student Developer Pack_](https://education.github.com/pack).
 4. **Perfil Comunitário:** O GitHub não busca necessariamente o "melhor programador", mas sim estudantes com profundo interesse em ajudar os outros e criar espaços seguros para aprendizado.
 
 ### Como se inscrever
+
 O GitHub costuma abrir o processo seletivo anualmente (geralmente durante o mês de **julho**).
 
 - Você deve acompanhar a página oficial do programa [GitHub Campus Experts](https://education.github.com/experts) e submeter sua candidatura quando a janela abrir.
 - O processo é muito criterioso: inicia-se com um formulário de candidatura detalhando sua experiência e visão de comunidade, sendo frequentemente seguido pelo envio de um "video resume" (vídeo de apresentação) onde você defende suas propostas para a universidade.
 
 ### Passos após a inscrição
+
 Uma vez aprovado na triagem inicial, você não vira um "Expert" imediatamente. Você é convidado a realizar o **Campus Experts Training**, um treinamento intensivo de várias semanas.
 
 Você deverá completar módulos de estudo e submeter projetos práticos de planejamento comunitário. Apenas após concluir o treinamento com sucesso e ter seu plano de ação aprovado pelo time do GitHub, você recebe oficialmente o título e as permissões de Campus Expert, iniciando sua jornada de organização de eventos no seu campus.
@@ -159,9 +164,9 @@ Ao contrário do programa da Microsoft, que possui uma escada clara de progress�
 
 A lógica desses programas é baseada em **papel (role)** e **mandato (term)**:
 
-- **No Google (GDG on Campus):** Você se candidata a um papel específico, como *Lead* (Organizador principal) ou *Core Team Member*. O mandato costuma durar um ano letivo.
+- **No Google (GDG on Campus):** Você se candidata a um papel específico, como _Lead_ (Organizador principal) ou _Core Team Member_. O mandato costuma durar um ano letivo.
 - **Na AWS (Campus Leader):** A atuação é baseada em um contrato de tempo determinado (um semestre ou 12 semanas, por exemplo), muitas vezes estruturado como um estágio. Não há "Junior" ou "Senior", há apenas o Campus Leader da universidade naquele período.
-- **No GitHub (Campus Experts):** Uma vez que você conclui o treinamento, você é um *Campus Expert*. O título não evolui para um nível superior; o crescimento é medido pelo tamanho dos eventos que você passa a organizar e pelas conferências para as quais é convidado ao longo dos anos, até se formar.
+- **No GitHub (Campus Experts):** Uma vez que você conclui o treinamento, você é um _Campus Expert_. O título não evolui para um nível superior; o crescimento é medido pelo tamanho dos eventos que você passa a organizar e pelas conferências para as quais é convidado ao longo dos anos, até se formar.
 
 ### Como as contribuições são contabilizadas?
 
@@ -182,6 +187,7 @@ Independente do ecossistema tecnológico que você preferir, o verdadeiro valor 
 Ficou interessado em alguma dessas iniciativas ou já está se preparando para o próximo ciclo de inscrições? Mantenha seu perfil técnico ativo, conecte-se com a comunidade e não perca a chance de transformar a sua universidade!
 
 ## Referências
+
 - [Google Developer Groups on Campus](https://developers.google.com/community/gdg-on-campus)
 - [AWS Builder Center for Students](https://aws.amazon.com/developer/community/students/)
 - [GitHub Campus Experts](https://education.github.com/experts)
