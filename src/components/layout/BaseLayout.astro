@@ -190,21 +190,40 @@ const structuredData = {
 };
 const themeInit = `
 (() => {
-  const root = document.documentElement;
-  try {
-    const theme = localStorage.getItem('theme') || '${defaultTheme}';
-    const mode = localStorage.getItem('color-mode');
-    const contentWidth = localStorage.getItem('content-width');
-    root.dataset.theme = theme;
-    if (contentWidth && /^\\d+(?:\\.\\d+)?rem$/.test(contentWidth)) {
-      root.style.setProperty('--layout-content-width', contentWidth);
-    }
-    if (mode !== 'light') {
+  const applyTheme = () => {
+    const root = document.documentElement;
+    try {
+      const theme = localStorage.getItem('theme') || '${defaultTheme}';
+      const mode = localStorage.getItem('color-mode');
+      const contentWidth = localStorage.getItem('content-width');
+      
+      root.dataset.theme = theme;
+      
+      if (contentWidth && /^\\d+(?:\\.\\d+)?rem$/.test(contentWidth)) {
+        root.style.setProperty('--layout-content-width', contentWidth);
+      }
+      
+      const prefersLight = window.matchMedia('(prefers-color-scheme: light)').matches;
+      if (mode === 'light' || (!mode && prefersLight)) {
+        root.classList.remove('dark');
+      } else {
+        root.classList.add('dark');
+      }
+    } catch {
       root.classList.add('dark');
     }
-  } catch {
-    root.classList.add('dark');
-  }
+  };
+  
+  applyTheme();
+  document.addEventListener('astro:after-swap', applyTheme);
+
+  // Language redirect on root
+  try {
+    const savedLang = localStorage.getItem('language');
+    if (savedLang === 'en' && window.location.pathname === '/') {
+      window.location.replace('/en/');
+    }
+  } catch {}
 })();
 `;
 ---

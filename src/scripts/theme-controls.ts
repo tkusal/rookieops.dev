@@ -104,6 +104,13 @@ document.addEventListener('click', (event) => {
     return;
   }
 
+  if (target.closest('[data-lang-panel] a')) {
+    const langLink = target.closest('[data-lang-panel] a') as HTMLAnchorElement;
+    const url = new URL(langLink.href);
+    const lang = url.pathname.split('/')[1] === 'en' ? 'en' : 'pt-br';
+    localStorage.setItem('language', lang);
+  }
+
   if (!target.closest('[data-display-panel]'))
     setPanel(displayPanel, document.querySelector('[data-display-menu]'), false);
   if (!target.closest('[data-lang-panel]')) setPanel(langPanel, langMenu, false);
