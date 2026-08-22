@@ -14,177 +14,102 @@ comments: true
 draft: true
 ---
 
+> **Note:** Last updated in August 2026. The requirements, participating countries, and application periods for these programs may change between cycles.
+
 ## Introduction
 
-Joining student programs from major tech companies is an excellent way to accelerate your career, build a portfolio, and make valuable connections. After talking about the [Microsoft Student Ambassadors](/en/posts/microsoft-student-ambassador-2026), many people are curious about how similar initiatives work at other industry giants.
+Joining student programs from major tech companies is a great way to accelerate your career, build a portfolio, and make connections. After talking about the [Microsoft Student Ambassadors](/en/posts/microsoft-student-ambassador-2026), we will explore how similar initiatives work at other industry giants.
 
-In 2026, these companies offer incredibly strong programs that empower students to lead communities, organize hackathons, and share knowledge about cloud computing, DevOps, and artificial intelligence.
+In 2026, companies like Google, AWS, and GitHub offer programs that empower students to lead communities, organize events, and share knowledge about cloud computing, DevOps, and artificial intelligence.
 
-In this article, we'll explore how three of the most sought-after student programs work, covering their benefits, requirements, and application processes. Feel free to jump straight to the program that interests you the most:
+To make your choice easier, we have prepared a quick summary of each one:
 
-- [Google Student Ambassador (GDG on Campus & Gemini)](#google-student-ambassador)
-- [AWS Student Ambassador (Campus Leader)](#aws-student-ambassador-aws-student-builder-campus-leader)
-- [GitHub Campus Experts](#github-campus-experts)
-
----
-
-## Google Student Ambassador
-
-Historically, Google has offered several variations of student programs, such as the Google Developer Student Clubs (GDSC). In 2026, opportunities are primarily focused on **Google Developer Groups (GDG) on Campus** (the evolution of GDSC) and specific initiatives like the **Google Gemini Student Ambassador**.
-
-### What the program is
-
-The program empowers student leaders to act as a bridge between Google and their universities. The main goal is to help peers develop technical skills (especially in Generative AI, like Gemini, and Google Cloud technologies) through workshops, hackathons, and hands-on projects.
-
-Community leaders organize events, help solve real-world problems for their local community, and drive technology education on campus.
-
-### Benefits
-
-Being part of an official Google community brings perks that go far beyond just adding a logo to your resume:
-
-- **Professional Development:** Access to mentorships with Google engineers, leadership training, and exclusive networking opportunities.
-- **Early Access & Resources:** Ambassadors frequently receive first-hand updates on Google products and features.
-- **Swag & Certification:** In addition to highly coveted official Google swag (t-shirts, stickers, etc.), students receive official recognition and completion certificates.
-- **Event Support:** Financial and technical backing (such as cloud credits and tools) to host on-campus events.
-
-### Prerequisites
-
-To apply to lead a GDG on Campus chapter or become a Gemini Student Ambassador in 2026, you generally need to:
-
-1. **University Enrollment:** Be actively enrolled in an undergraduate (or, in some cases, graduate) program at an accredited academic institution.
-2. **Passion for Tech & AI:** Have a strong interest in the Google ecosystem, programming, and specifically artificial intelligence solutions.
-3. **Leadership Profile:** Have previous experience in event organization, public speaking, content creation, or involvement in campus clubs.
-4. **Time Availability:** Commit a few hours per week or month to manage the community and organize activities throughout the academic year.
-
-### How to apply
-
-The selection process is usually annual. Applications for chapter leadership (Lead) typically open in the first half of the year (usually between April and June) for a term starting the following academic year.
-
-- You can track applications and full requirements on the official [Google Developer Groups page on Google for Developers](https://developers.google.com/community/gdg-on-campus).
-- The process involves filling out a detailed form about your experience and motivation, often followed by submitting a "pitch" video or an interview stage.
-
-### Steps after applying
-
-If approved, the student goes through a formal onboarding process, receiving training on how to build, engage, and manage inclusive communities.
-
-After that phase, the practical challenge begins: assembling a Core Team on campus, planning an event calendar, and starting to organize workshops and hackathons (like the famous Google Solution Challenge). It’s an ongoing journey of delivering technical results and local engagement.
+| Program | Main Focus | Applications | Compensation / Support |
+| :--- | :--- | :--- | :--- |
+| **GDG on Campus (Google)** | Broad tech community & Google ecosystem | First half of the year | Volunteer (Support and swag) |
+| **Gemini Student Ambassador (Google)** | Promoting AI and Gemini usage | Varies by country | Variable (Rewards or stipends) |
+| **AWS Student Builder Group Leader** | Cloud community and AWS ecosystem | Rolling / Cyclical | Volunteer (Technical support) |
+| **GitHub Campus Experts** | Community leadership & Open Source | Annually (July) | Volunteer (Event support) |
 
 ---
 
-## AWS Student Ambassador (AWS Student Builder Campus Leader)
+## Google: GDG on Campus and Gemini Student Ambassador
 
-In the Amazon ecosystem, the main opportunity focused on student community leadership in 2026 is the **AWS Student Builder Campus Leader (SBCL)** program. It's important not to confuse this with the "AWS Ambassador Program," which is aimed at seasoned partner professionals in the industry.
+Currently, Google runs distinct student leadership initiatives. Unlike in the past, where efforts were centralized mostly around GDSC, today, students have different entry paths depending on their goals.
 
-### What the program is
+### Google Developer Groups (GDG) on Campus
 
-The AWS Student Builder Campus Leader program recruits students to act as promoters and community leaders at their universities. The leader's role is to connect students to cloud computing by sharing AWS training resources, facilitating study groups, and organizing cloud-focused events.
+GDG on Campus is the historical program, the direct successor to the Google Developer Student Clubs (GDSC). It focuses on developing university communities and covers a broad portfolio of technologies (Google Cloud, Android, AI, Web, etc.).
 
-It’s a role heavily focused on peer-to-peer engagement, encouraging classmates to start their learning and development journeys within the Amazon Web Services ecosystem.
+- **What it is:** The student acts as the local community leader (organizing workshops and hackathons) or as a support member (*Core Team Member*).
+- **Benefits:** The official page emphasizes hands-on experience, career development, and management skills. Leaders may gain access to mentorships, certificates, and official swag, along with the possibility of technical support to host on-campus events (depending on the project and current cycle).
+- **How to apply:** The process usually takes place between February and June. The application requires a detailed form, often involves a leadership profile assessment, and frequently happens through referrals or transitions within existing chapters. Official information is available on the [Google for Developers](https://developers.google.com/community/gdg-on-campus) page.
 
-### Benefits
+### Gemini Student Ambassador
 
-Unlike most volunteer ambassador programs, the AWS program has some very attractive differentiators:
+This is a more recent and specific initiative focused almost exclusively on the adoption of Google's AI tools. Program management and structure often vary by country, frequently being operated by third-party marketing agencies hired by Google.
 
-- **Compensation:** In many regions, the Campus Leader position is structured as a paid part-time job.
-- **Career Development:** Hands-on training with AWS tools, ongoing coaching, and intensive soft skills development.
-- **Professional Visibility:** It creates an excellent gateway to future professional opportunities at Amazon and its extensive network of partner companies.
-- **Community Impact:** A real opportunity to transform your peers' careers by facilitating access to top-tier cloud technology training.
+- **What it is:** The ambassador focuses on promoting the Gemini app and educating peers about Google's Generative AI. There may be quantitative goals, such as driving a minimum number of prompt executions or tool adoptions among students.
+- **Benefits:** The structure varies. In some countries, it might be a paid format; in others, it is based on a point-accumulation system that can be exchanged for rewards.
+- **How to apply:** The application window and portal are usually distinct and often independent of the standard GDG calendar.
 
-### Prerequisites
+---
 
-To apply for an AWS Student Builder Campus Leader position, AWS generally looks for the following profile:
+## AWS Student Builder Group Leader
 
-1. **Active University Enrollment:** Be a student currently enrolled in higher education.
-2. **Time Remaining:** You usually need to have at least one year left until graduation to ensure you have enough time to act on campus.
-3. **Age Requirement:** Be 18 years of age or older.
-4. **Communicative & Proactive Profile:** AWS looks for individuals with strong communication skills, networking abilities, and who are comfortable speaking in public.
-5. **Time Commitment:** Availability to dedicate an average of 8 to 10 hours per week for the duration of the program (which can range from 6 to 12 weeks or follow semester cycles, depending on the region).
+AWS also underwent a restructuring in 2026, offering two student tracks with very different goals:
 
-### How to apply
+1. **AWS Student Builder Campus Leader:** Often a paid part-time role (requiring 8 to 10 hours a week for 12 weeks), focused on marketing and *growth* (increasing student sign-ups, posts, and campus activations).
+2. **AWS Student Builder Group Leader:** (Formerly "AWS Cloud Club Captain"). This role is much more focused on the **technical community**, making it the best fit if your goal is similar to traditional tech ambassadors.
 
-SBCL recruitment happens in cycles and varies significantly depending on the location and AWS's partnerships with universities.
+Focusing on the **Group Leader** role, the dynamic works like this:
 
-- Keep an eye on openings through the official student portal, the [AWS Builder Center](https://aws.amazon.com/developer/community/students/), through Amazon's university recruitment channels (like the NEXT GEN·TEAM agency), or via your university's career services.
-- The application involves submitting an updated resume—preferably using your official institutional email—and may include profile assessment stages to confirm your ability to lead initiatives.
-
-### Steps after applying
-
-Selected students go through onboarding and training sessions where they deeply learn about Amazon's culture and leadership principles, foundational cloud technologies, and effective community management techniques.
-
-From there, they begin their term actively engaging on campus. This means talking to professors, organizing discussion panels, distributing study materials, tracking the local student community's engagement, and reporting activity results to the responsible management team at AWS.
+- **What it is:** The Group Leader is responsible for starting or maintaining an AWS Student Builder Group (formerly Cloud Club). They focus on organizing technical events, discussion panels, and connecting students to cloud computing through collective learning and labs.
+- **Benefits:** Direct access to cloud training materials and AWS tools, soft skills development, and close ties to the Amazon partner network.
+- **Prerequisites and Application:** Openings are usually cyclical (*rolling*), limited per campus, and available in specific countries. For the Brazilian audience, **AWS has explicitly confirmed that the student program is active in Brazil**. Openings can be checked directly via the [AWS Builder Center](https://aws.amazon.com/developer/community/students/) portal or partner university agencies.
 
 ---
 
 ## GitHub Campus Experts
 
-The **GitHub Campus Experts** program is one of the most prestigious for students interested in software development, agile methodologies, DevOps, and, of course, version control and open source.
-
-### What the program is
-
-Campus Experts empowers students to build and grow diverse and inclusive technical communities at their universities. Unlike other programs that focus purely on a company's commercial product, GitHub's focus is on training you as a **community leader**.
-
-The role of a campus expert is to analyze what their university community needs the most—whether that’s learning basic Git, organizing a hackathon, or creating diversity-focused groups—and build events and training to meet that demand.
+The **GitHub Campus Experts** program empowers students to build inclusive technical communities. The focus isn't on selling a commercial product, but rather on shaping the student into a strong leader for the Open Source and development ecosystem.
 
 ### Benefits
 
-Being part of this global community offers exceptional advantages, heavily focused on events:
+- **Exclusive Training:** A preparatory course focused on empathy, diversity, event organization, and communication.
+- **Hackathon Support:** Experts can request logistical support, infrastructure, and swag from GitHub Education to run high-impact events at the university.
+- **Networking:** Close contact with other global student leaders and GitHub DevRels. In some editions, active students might receive invitations to represent the program at global conferences, like GitHub Universe.
 
-- **Elite Training:** An exclusive preparatory course focused on public speaking, event organization, empathy, and building inclusive communities.
-- **Support for Hackathons & Events:** Experts receive financial support, swag, and infrastructure from GitHub Education to organize major on-campus events.
-- **Global Networking:** Access to a closed network of student leaders from around the world, plus close contact with GitHub professionals and DevRels.
-- **Prestige and Travel:** The most active members frequently receive invitations (and travel support) to represent GitHub at global conferences, like GitHub Universe.
+### Prerequisites and Application
 
-### Prerequisites
+The selection process is highly competitive. The most recent guidelines and documentation confirm that you must:
 
-The selection process is highly competitive, and to apply, you must:
+1. Be **18 or older** and enrolled in a higher education program.
+2. Have **more than one academic year left** before graduating, ensuring you have time to serve.
+3. Be a GitHub user for **at least six months**.
+4. Have your student status actively validated via the [_GitHub Student Developer Pack_](https://education.github.com/pack).
 
-1. **Age and Academic Enrollment:** Be 18 or older and enrolled in a higher education program.
-2. **Time Remaining:** Have **more than one year left** until graduation at the time of application (ensuring you have time to serve on campus).
-3. **Active User:** Be a GitHub user for at least six months and have your student status validated via the [_GitHub Student Developer Pack_](https://education.github.com/pack).
-4. **Community Profile:** GitHub isn't necessarily looking for the "best programmer," but rather students with a deep interest in helping others and creating safe spaces for learning.
+The application opening is standardized: GitHub typically opens applications every year during the month of **July**, tracked on the [official program page](https://education.github.com/experts).
 
-### How to apply
-
-GitHub typically opens its selection process annually (usually during the month of **July**).
-
-- You should keep an eye on the official [GitHub Campus Experts](https://education.github.com/experts) page and submit your application when the window opens.
-- The process is very rigorous: it starts with an application form detailing your experience and community vision, often followed by submitting a "video resume" where you pitch your proposals for the university.
-
-### Steps after applying
-
-Once you pass the initial screening, you don't become an "Expert" right away. You are invited to take the **Campus Experts Training**, an intensive multi-week program.
-
-You will need to complete study modules and submit practical community planning projects. Only after successfully completing the training and having your action plan approved by the GitHub team will you officially receive the title and permissions of a Campus Expert, starting your journey of organizing events on your campus.
+The process has two stages: first, you submit the application form. If selected in the initial screening, you must then submit a *video resume* detailing your vision and proposals. Upon final approval, the student undergoes several weeks of training before officially receiving the title.
 
 ---
 
-## Growth and Measuring Results
+## Progression, duration, and evaluating contributions
 
-Unlike Microsoft's program, which has a clear ladder of title progression (Student Ambassador, Associate, and Senior), **the Google, AWS, and GitHub programs do not work with hierarchical levels**.
+While some programs adopt a clear hierarchical progression system (like Microsoft's Alpha, Beta, and Gold levels), at Google, AWS, and GitHub, evolution relies more on the roles assumed and the history of terms served.
 
-The logic behind these programs is based on **role** and **term**:
-
-- **At Google (GDG on Campus):** You apply for a specific role, such as _Lead_ (Main Organizer) or _Core Team Member_. The term usually lasts for one academic year.
-- **At AWS (Campus Leader):** The role is based on a fixed-term contract (one semester or 12 weeks, for example), often structured as an internship. There is no "Junior" or "Senior"; there is only the Campus Leader for the university during that period.
-- **At GitHub (Campus Experts):** Once you complete the training, you are a _Campus Expert_. The title doesn't evolve to a higher level; growth is measured by the scale of the events you organize and the conferences you are invited to over the years until you graduate.
-
-### How are contributions tracked?
-
-Since there are no "points" to level up, the work of ambassadors is measured by real impact and the volume of engagement within the local community:
-
-1. **Google:** The Lead manages their community through the official event platform (Bevy/community.dev). Success is measured by the number of events organized, attendance, and the completion of learning tracks on Google Cloud platforms.
-2. **AWS:** Results are reported in meetings or via periodic forms to the management team (like NEXT GEN·TEAM). The leader proves engagement by the number of students registered and active in the **AWS Builder Center**.
-3. **GitHub:** Engagement is measured by the continuous submission of event support requests on the GitHub Education portal. GitHub evaluates the impact through post-event reports sent by the Expert (number of attendees, projects created at hackathons, and community feedback).
+- **Google:** The student takes on specific roles for that academic year (whether leading a GDG on Campus or supporting as a Core Team member). Evaluation focuses on local impact and engagement.
+- **AWS:** Development can occur by transitioning between opportunities. For instance, after serving as a Campus Leader for one cycle, a student can expand their scope and apply for a Student Builder Group Leader role to build the technical study club on campus.
+- **GitHub:** After graduating from training, the established title is Campus Expert. Results are measured by the quality and frequency of post-event reports submitted and the number of supported initiatives at the university.
 
 ---
 
 ## Conclusion
 
-The Google, AWS, and GitHub programs offer fantastic pathways to connect academic theory with real-world tech industry practices. While Google focuses on community-led solution development and AWS drives cloud adoption through a peer-to-peer engagement model, GitHub prioritizes training leaders to foster collaboration, open source, and the organization of inclusive events.
+These three ecosystems offer different, yet all fantastic, pathways to enter the tech industry. GDG on Campus relies on broad community skills development; the Gemini program focuses on accelerating the AI ecosystem; AWS Student Builder Groups connect students with hands-on cloud practices; and GitHub heavily prioritizes the human development of leaders and diversity.
 
-Regardless of the tech ecosystem you prefer, the true value of taking on a student leadership role lies in **sharing knowledge**. Success isn't measured by the swag you collect, but by the real impact you have on boosting the careers of the peers around you.
-
-Are you interested in any of these initiatives or already preparing for the next application cycle? Keep your technical profile active, connect with the community, and don't miss the chance to transform your university!
+Before applying, carefully read the current year's rules, evaluate if you have the required weekly hours to commit, and choose the one that best aligns with your university's demands.
 
 ## References
 
