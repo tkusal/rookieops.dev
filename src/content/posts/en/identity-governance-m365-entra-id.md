@@ -337,6 +337,7 @@ Before automating, inventory the ownership of groups, Teams, sites, shared mailb
 2. Name it `JML | Offboarding | Laboratório NEST`.
 3. Use `department eq 'Laboratório NEST'` only in the pilot.
 4. Configure `employeeLeaveDateTime` with a zero-day offset.
+
 > [!WARNING]
 > The native **Disable user account** task does not support users with Microsoft Entra role assignments or users who are members or owners of _role-assignable_ groups. Since Anna received a PIM eligibility for Exchange Administrator in this lab, previously remove the applicable administrative assignments or eligibilities via PIM or Microsoft Graph **before** executing the lockout.
 

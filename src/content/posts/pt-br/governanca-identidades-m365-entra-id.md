@@ -337,6 +337,7 @@ Antes de automatizar, inventarie propriedade de grupos, Teams, sites, caixas com
 2. Nomeie como `JML | Offboarding | Laboratório NEST`.
 3. Use `department eq 'Laboratório NEST'` apenas no piloto.
 4. Configure `employeeLeaveDateTime` com deslocamento de zero dias.
+
 > [!WARNING]
 > A tarefa nativa **Disable user account** não oferece suporte a usuários com atribuições de funções do Microsoft Entra nem a usuários que sejam membros ou proprietários de grupos _role-assignable_. Como Anna recebeu uma elegibilidade PIM para Exchange Administrator neste laboratório, remova previamente as atribuições ou elegibilidades administrativas aplicáveis via PIM ou Microsoft Graph **antes** de executar o bloqueio.
 
