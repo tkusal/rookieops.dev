@@ -11,7 +11,7 @@ cover: '/images/posts/governanca-identidades-m365-entra-id/capa.webp'
 coverAlt: 'Ilustração isométrica de crachás, engrenagens e um fluxo de aprovação flutuando sobre a logo do Microsoft Entra ID.'
 toc: true
 comments: true
-draft: true
+draft: false
 ---
 
 ## Introdução: Quando o acesso funciona, mas a operação não

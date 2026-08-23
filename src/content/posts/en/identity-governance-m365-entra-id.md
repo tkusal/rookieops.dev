@@ -11,7 +11,7 @@ cover: '/images/posts/governanca-identidades-m365-entra-id/capa.webp'
 coverAlt: 'Isometric illustration of badges, gears, and an approval flow floating above the Microsoft Entra ID logo.'
 toc: true
 comments: true
-draft: true
+draft: false
 ---
 
 ## Introduction: When access works, but the operation doesn't
