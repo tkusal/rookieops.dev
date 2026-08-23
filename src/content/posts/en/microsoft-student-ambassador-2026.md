@@ -203,8 +203,6 @@ Adding the Contributor ID to each link manually is already enough. If you want t
 
 - **Chrome and Edge extension**, originally created by MVP [Martin Brandl](https://github.com/mjisaak), allowed users to add their Contributor ID to links with a single click. The original project was discontinued and archived, but I am currently working on a refactored version adapted to the current Microsoft Student Ambassador workflow. You can follow the development in this [repository](https://github.com/tkusal/ambassador-referral-linker).
 
-- **Azure Function**, originally developed by MVP [Barbara Forbes](https://mvp.microsoft.com/en-us/mvp/Barbara%20Forbes-5003674), can help add your Contributor ID to Microsoft URLs in existing content. Since the original documentation had become outdated, I updated it for the current Microsoft Student Ambassador workflow. You can find the updated instructions in this [repository](https://gist.github.com/tkusal/0af7eb4284f8c7f1eeef77340a56973d).
-
 > [!IMPORTANT]
 > These tools are built and maintained by the community, not by Microsoft. When using one, double-check that your ID was added correctly: the generated URL should look the same as one you would produce by adding the identifier yourself.
 
