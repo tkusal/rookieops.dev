@@ -167,8 +167,6 @@ Not every Microsoft page accepts the Contributor ID. Only traffic to the domains
 <summary>View eligible domains for Preferred Visitors</summary>
 
 - azure.microsoft.com
-- azure.microsoft.com/free
-- azure.microsoft.com/free/students
 - blog.fabric.microsoft.com
 - code.visualstudio.com
 - community.fabric.microsoft.com
@@ -181,28 +179,16 @@ Not every Microsoft page accepts the Contributor ID. Only traffic to the domains
 - imaginecup.microsoft.com
 - learn.microsoft.com
 - learn.microsoft.com/copilot
-- learn.microsoft.com/developer
-- learn.microsoft.com/fabric
-- learn.microsoft.com/power-apps
-- learn.microsoft.com/power-automate
-- learn.microsoft.com/power-bi
-- learn.microsoft.com/power-pages
-- learn.microsoft.com/power-platform
-- learn.microsoft.com/startups
-- learn.microsoft.com/training/topics/startups
 - microsoft.com/insidetrack
 - microsoft.com/microsoft-365-copilot
-- microsoft.com/microsoft-365/copilot-learning-center
 - microsoft.com/microsoft-cloud/blog
 - microsoft.com/microsoft-copilot/for-individuals
 - microsoft.com/microsoft-fabric
 - microsoft.com/power-platform
 - microsoft.com/startups
-- microsoft.com/startups/ai
-- microsoft.com/startups/blog
+- mvp.microsoft.com
 - powerbi.microsoft.com/blog
 - reactor.microsoft.com
-- studentambassadors.microsoft.com
 - techcommunity.microsoft.com
 
 </details>
