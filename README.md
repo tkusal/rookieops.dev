@@ -8,11 +8,11 @@
 
 Código-fonte e conteúdo do [rookieops.dev](https://rookieops.dev).
 
-[![Website](https://img.shields.io/badge/Website-rookieops.dev-0A0A0A?logo=googlechrome\&logoColor=white)](https://rookieops.dev)
-[![Astro](https://img.shields.io/badge/Astro-7.2.4-BC52EE?logo=astro\&logoColor=white)](https://astro.build/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss\&logoColor=white)](https://tailwindcss.com/)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare\&logoColor=white)](https://workers.cloudflare.com/)
+[![Website](https://img.shields.io/badge/Website-rookieops.dev-0A0A0A?logo=googlechrome&logoColor=white)](https://rookieops.dev)
+[![Astro](https://img.shields.io/badge/Astro-7.2.4-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 **Português (Brasil)** · [English](README.en.md)
@@ -27,17 +27,17 @@ O **RookieOps** é um blog técnico criado para compartilhar conhecimento de for
 
 O conteúdo aborda principalmente:
 
-* Microsoft Azure
-* Microsoft Entra ID e Identity & Access Management
-* Microsoft 365
-* Active Directory e Windows Server
-* Redes e infraestrutura
-* Segurança da informação
-* DevOps
-* Terraform e Infrastructure as Code
-* PowerShell e automação
-* Containers e Kubernetes
-* Ferramentas, boas práticas e experiências do dia a dia em TI
+- Microsoft Azure
+- Microsoft Entra ID e Identity & Access Management
+- Microsoft 365
+- Active Directory e Windows Server
+- Redes e infraestrutura
+- Segurança da informação
+- DevOps
+- Terraform e Infrastructure as Code
+- PowerShell e automação
+- Containers e Kubernetes
+- Ferramentas, boas práticas e experiências do dia a dia em TI
 
 A proposta é transformar assuntos técnicos complexos em conteúdos úteis tanto para quem está começando quanto para profissionais que querem aprofundar seus conhecimentos.
 
@@ -65,8 +65,8 @@ O layout do projeto é baseado no tema open source [Astro Narrow](https://github
 
 Para executar o projeto localmente, você precisará de:
 
-* **Node.js 22.12 ou superior**
-* **pnpm 10.11.1**
+- **Node.js 22.12 ou superior**
+- **pnpm 10.11.1**
 
 O arquivo `.node-version` registra a versão recomendada do Node.js para desenvolvimento.
 
@@ -219,16 +219,16 @@ src/content/posts/en/
 
 Ao criar ou editar artigos:
 
-* use `draft: true` para impedir a publicação de um artigo;
-* utilize títulos claros e específicos;
-* escreva uma descrição exclusiva para cada publicação;
-* mantenha uma hierarquia consistente de títulos e subtítulos;
-* prefira uma única categoria principal;
-* utilize tags diretamente relacionadas ao conteúdo;
-* atualize `updatedDate` somente quando houver uma alteração editorial relevante;
-* utilize `author` para definir a autoria;
-* utilize `authorUrl` quando desejar adicionar um link para o autor;
-* sempre forneça `coverAlt` quando utilizar uma imagem de capa.
+- use `draft: true` para impedir a publicação de um artigo;
+- utilize títulos claros e específicos;
+- escreva uma descrição exclusiva para cada publicação;
+- mantenha uma hierarquia consistente de títulos e subtítulos;
+- prefira uma única categoria principal;
+- utilize tags diretamente relacionadas ao conteúdo;
+- atualize `updatedDate` somente quando houver uma alteração editorial relevante;
+- utilize `author` para definir a autoria;
+- utilize `authorUrl` quando desejar adicionar um link para o autor;
+- sempre forneça `coverAlt` quando utilizar uma imagem de capa.
 
 As imagens relacionadas aos artigos devem ser armazenadas preferencialmente em:
 
@@ -244,15 +244,15 @@ Contribuições são bem-vindas.
 
 Você pode contribuir com:
 
-* correções de bugs;
-* melhorias no código;
-* melhorias de interface;
-* documentação;
-* novos artigos;
-* correções ou atualizações de conteúdo;
-* traduções;
-* melhorias de acessibilidade;
-* otimizações de desempenho.
+- correções de bugs;
+- melhorias no código;
+- melhorias de interface;
+- documentação;
+- novos artigos;
+- correções ou atualizações de conteúdo;
+- traduções;
+- melhorias de acessibilidade;
+- otimizações de desempenho.
 
 Antes de contribuir:
 

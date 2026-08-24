@@ -8,11 +8,11 @@
 
 Source code and content for [rookieops.dev](https://rookieops.dev).
 
-[![Website](https://img.shields.io/badge/Website-rookieops.dev-0A0A0A?logo=googlechrome\&logoColor=white)](https://rookieops.dev)
-[![Astro](https://img.shields.io/badge/Astro-7.2.4-BC52EE?logo=astro\&logoColor=white)](https://astro.build/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss\&logoColor=white)](https://tailwindcss.com/)
-[![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare\&logoColor=white)](https://workers.cloudflare.com/)
+[![Website](https://img.shields.io/badge/Website-rookieops.dev-0A0A0A?logo=googlechrome&logoColor=white)](https://rookieops.dev)
+[![Astro](https://img.shields.io/badge/Astro-7.2.4-BC52EE?logo=astro&logoColor=white)](https://astro.build/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss&logoColor=white)](https://tailwindcss.com/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare&logoColor=white)](https://workers.cloudflare.com/)
 [![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
 
 [Português (Brasil)](README.md) · **English**
@@ -27,17 +27,17 @@ Source code and content for [rookieops.dev](https://rookieops.dev).
 
 The content primarily covers:
 
-* Microsoft Azure
-* Microsoft Entra ID and Identity & Access Management
-* Microsoft 365
-* Active Directory and Windows Server
-* Networking and infrastructure
-* Information security
-* DevOps
-* Terraform and Infrastructure as Code
-* PowerShell and automation
-* Containers and Kubernetes
-* Tools, best practices, and real-world IT experiences
+- Microsoft Azure
+- Microsoft Entra ID and Identity & Access Management
+- Microsoft 365
+- Active Directory and Windows Server
+- Networking and infrastructure
+- Information security
+- DevOps
+- Terraform and Infrastructure as Code
+- PowerShell and automation
+- Containers and Kubernetes
+- Tools, best practices, and real-world IT experiences
 
 The goal is to make complex technical subjects easier to understand while providing useful content for both newcomers and experienced IT professionals.
 
@@ -65,8 +65,8 @@ The project layout is based on the open-source [Astro Narrow](https://github.com
 
 To run the project locally, you will need:
 
-* **Node.js 22.12 or later**
-* **pnpm 10.11.1**
+- **Node.js 22.12 or later**
+- **pnpm 10.11.1**
 
 The `.node-version` file records the recommended Node.js version for development.
 
@@ -219,16 +219,16 @@ src/content/posts/pt-br/
 
 When creating or editing articles:
 
-* use `draft: true` to prevent an article from being published;
-* use clear and specific titles;
-* provide a unique description for each publication;
-* maintain a consistent heading hierarchy;
-* prefer a single primary category;
-* use tags directly related to the article;
-* update `updatedDate` only when a meaningful editorial change is made;
-* use `author` to define article attribution;
-* use `authorUrl` when you want to provide a link to the author;
-* always provide `coverAlt` when using a cover image.
+- use `draft: true` to prevent an article from being published;
+- use clear and specific titles;
+- provide a unique description for each publication;
+- maintain a consistent heading hierarchy;
+- prefer a single primary category;
+- use tags directly related to the article;
+- update `updatedDate` only when a meaningful editorial change is made;
+- use `author` to define article attribution;
+- use `authorUrl` when you want to provide a link to the author;
+- always provide `coverAlt` when using a cover image.
 
 Article-related images should preferably be stored under:
 
@@ -244,15 +244,15 @@ Contributions are welcome.
 
 You can contribute with:
 
-* bug fixes;
-* code improvements;
-* interface improvements;
-* documentation;
-* new articles;
-* content corrections or updates;
-* translations;
-* accessibility improvements;
-* performance optimizations.
+- bug fixes;
+- code improvements;
+- interface improvements;
+- documentation;
+- new articles;
+- content corrections or updates;
+- translations;
+- accessibility improvements;
+- performance optimizations.
 
 Before contributing:
 
