@@ -1,63 +1,193 @@
+<div align="center">
+
+<img src="https://rookieops.dev/favicon.svg" alt="RookieOps" width="110">
+
 # RookieOps
 
-Blog técnico sobre infraestrutura, cloud, identidade, segurança e automação, publicado em [rookieops.dev](https://rookieops.dev).
+**Infraestrutura, Cloud, Identidade, Segurança, DevOps e Automação sem complicação.**
 
-O projeto usa [Astro Narrow](https://github.com/tom2almighty/astro-narrow), Astro 7.2.4, Tailwind CSS 4, tsParticles e geração estática para Cloudflare Workers.
+Código-fonte e conteúdo do [rookieops.dev](https://rookieops.dev).
+
+[![Website](https://img.shields.io/badge/Website-rookieops.dev-0A0A0A?logo=googlechrome\&logoColor=white)](https://rookieops.dev)
+[![Astro](https://img.shields.io/badge/Astro-7.2.4-BC52EE?logo=astro\&logoColor=white)](https://astro.build/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.3-3178C6?logo=typescript\&logoColor=white)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-4-06B6D4?logo=tailwindcss\&logoColor=white)](https://tailwindcss.com/)
+[![Cloudflare](https://img.shields.io/badge/Cloudflare-Workers-F38020?logo=cloudflare\&logoColor=white)](https://workers.cloudflare.com/)
+[![License: GPL v3](https://img.shields.io/badge/License-GPLv3-blue.svg)](LICENSE)
+
+**Português (Brasil)** · [English](README.en.md)
+
+</div>
+
+---
+
+## Sobre o RookieOps
+
+O **RookieOps** é um blog técnico criado para compartilhar conhecimento de forma prática, acessível e baseada em experiências reais com infraestrutura, cloud e operações.
+
+O conteúdo aborda principalmente:
+
+* Microsoft Azure
+* Microsoft Entra ID e Identity & Access Management
+* Microsoft 365
+* Active Directory e Windows Server
+* Redes e infraestrutura
+* Segurança da informação
+* DevOps
+* Terraform e Infrastructure as Code
+* PowerShell e automação
+* Containers e Kubernetes
+* Ferramentas, boas práticas e experiências do dia a dia em TI
+
+A proposta é transformar assuntos técnicos complexos em conteúdos úteis tanto para quem está começando quanto para profissionais que querem aprofundar seus conhecimentos.
+
+> Acesse o blog em [rookieops.dev](https://rookieops.dev).
+
+## Tecnologias
+
+O RookieOps é construído principalmente com:
+
+| Tecnologia                                                      | Uso                          |
+| --------------------------------------------------------------- | ---------------------------- |
+| [Astro](https://astro.build/)                                   | Framework e geração estática |
+| [TypeScript](https://www.typescriptlang.org/)                   | Desenvolvimento              |
+| [Tailwind CSS](https://tailwindcss.com/)                        | Estilização                  |
+| [tsParticles](https://particles.js.org/)                        | Elementos visuais            |
+| [Cloudflare Workers](https://workers.cloudflare.com/)           | Hospedagem e publicação      |
+| [Wrangler](https://developers.cloudflare.com/workers/wrangler/) | Deploy na Cloudflare         |
+| [pnpm](https://pnpm.io/)                                        | Gerenciamento de pacotes     |
+| [ESLint](https://eslint.org/)                                   | Análise estática             |
+| [Prettier](https://prettier.io/)                                | Formatação de código         |
+
+O layout do projeto é baseado no tema open source [Astro Narrow](https://github.com/tom2almighty/astro-narrow), adaptado para as necessidades e identidade do RookieOps.
 
 ## Requisitos
 
-- Node.js 22.12 ou superior
-- pnpm 10.11.1
+Para executar o projeto localmente, você precisará de:
+
+* **Node.js 22.12 ou superior**
+* **pnpm 10.11.1**
 
 O arquivo `.node-version` registra a versão recomendada do Node.js para desenvolvimento.
 
-## Desenvolvimento local
+## Começando
 
-```powershell
+### 1. Clone o repositório
+
+```bash
+git clone https://github.com/tkusal/rookieops.dev.git
+cd rookieops.dev
+```
+
+### 2. Instale as dependências
+
+```bash
 pnpm install
+```
+
+### 3. Inicie o ambiente de desenvolvimento
+
+```bash
 pnpm dev
 ```
 
-O Astro informa o endereço local no terminal, normalmente `http://localhost:4321`.
+O Astro exibirá o endereço do servidor local no terminal, normalmente:
 
-O projeto conta com formatação (Prettier) e validação de código (ESLint) rigorosas. Antes de submeter código, formate e verifique erros com:
+```text
+http://localhost:4321
+```
 
-```powershell
+## Scripts disponíveis
+
+| Comando                   | Descrição                                     |
+| ------------------------- | --------------------------------------------- |
+| `pnpm dev`                | Inicia o servidor de desenvolvimento          |
+| `pnpm check`              | Executa as verificações do Astro e TypeScript |
+| `pnpm build`              | Gera o build de produção                      |
+| `pnpm validate`           | Executa `astro check` e `astro build`         |
+| `pnpm preview`            | Executa localmente o build de produção        |
+| `pnpm format`             | Formata o projeto com Prettier                |
+| `pnpm lint`               | Executa o ESLint                              |
+| `pnpm deploy`             | Publica o projeto utilizando Wrangler         |
+| `pnpm preview:background` | Executa o preview em segundo plano            |
+| `pnpm preview:status`     | Exibe o status do preview em segundo plano    |
+| `pnpm preview:logs`       | Exibe os logs do preview em segundo plano     |
+| `pnpm preview:stop`       | Encerra o preview em segundo plano            |
+
+## Validação e qualidade de código
+
+Antes de enviar alterações, formate o código e execute o lint:
+
+```bash
 pnpm format
 pnpm lint
 ```
 
-Para validar a versão de produção (checagem de tipos TypeScript e build final):
+Para executar a validação completa:
 
-```powershell
+```bash
 pnpm validate
+```
+
+Esse comando executa:
+
+```text
+astro check
+astro build
+```
+
+O build estático de produção é criado em:
+
+```text
+dist/
+```
+
+### Preview do build
+
+Para testar localmente a versão de produção:
+
+```bash
 pnpm preview
 ```
 
-O build estático é criado em `dist/`.
+O Astro também permite executar o preview em segundo plano, algo útil para testes, automações e agentes de desenvolvimento:
 
-O Astro 7.2 permite executar o preview em segundo plano. Esse modo é útil para automações e agentes de desenvolvimento:
-
-```powershell
+```bash
 pnpm preview:background
 pnpm preview:status
 pnpm preview:logs
 pnpm preview:stop
 ```
 
-O estado e os logs desse processo ficam sob `.astro/`, que não deve ser versionado.
+O estado e os logs relacionados a esse processo ficam armazenados em `.astro/`, que não deve ser versionado.
 
-## Contribuições
+## Estrutura do conteúdo
 
-Contribuições de código, documentação e artigos são bem-vindas. Antes de começar:
+Os artigos são organizados por idioma:
 
-- leia o [guia de contribuição](CONTRIBUTING.md), que descreve o padrão editorial, a atribuição de autoria e o fluxo de pull request;
-- siga o [Código de Conduta](CODE_OF_CONDUCT.md);
-- para mudanças grandes, abra uma issue antes de investir na implementação.
+```text
+src/content/posts/
+├── en/
+└── pt-br/
+```
 
-## Artigos
+Use:
 
-Os artigos ficam em `src/content/posts/pt-br/`. Exemplo de frontmatter:
+```text
+src/content/posts/pt-br/
+```
+
+para artigos em português brasileiro e:
+
+```text
+src/content/posts/en/
+```
+
+para artigos em inglês.
+
+## Criando um artigo
+
+Exemplo básico de frontmatter para um artigo em português:
 
 ```yaml
 ---
@@ -73,17 +203,130 @@ draft: false
 ---
 ```
 
-- Use `draft: true` para excluir um artigo das páginas públicas, da busca, do sitemap e do RSS.
-- O campo `author` exibe o crédito no artigo e nos metadados; `authorUrl` é opcional.
-- Atualize `updatedDate` somente quando houver uma mudança editorial relevante.
-- Prefira uma única categoria principal e tags específicas.
-- Use títulos descritivos, uma descrição exclusiva e uma hierarquia de subtítulos clara.
-- Se usar `cover`, informe também `coverAlt` e armazene a imagem em `public/images/posts/<slug>/`.
+Para artigos em inglês:
 
-Consulte [CONTRIBUTING.md](CONTRIBUTING.md) para ver o frontmatter completo, a estrutura recomendada do texto e a lista de verificações antes do pull request.
+```yaml
+lang: en
+```
+
+e armazene o arquivo em:
+
+```text
+src/content/posts/en/
+```
+
+## Diretrizes editoriais
+
+Ao criar ou editar artigos:
+
+* use `draft: true` para impedir a publicação de um artigo;
+* utilize títulos claros e específicos;
+* escreva uma descrição exclusiva para cada publicação;
+* mantenha uma hierarquia consistente de títulos e subtítulos;
+* prefira uma única categoria principal;
+* utilize tags diretamente relacionadas ao conteúdo;
+* atualize `updatedDate` somente quando houver uma alteração editorial relevante;
+* utilize `author` para definir a autoria;
+* utilize `authorUrl` quando desejar adicionar um link para o autor;
+* sempre forneça `coverAlt` quando utilizar uma imagem de capa.
+
+As imagens relacionadas aos artigos devem ser armazenadas preferencialmente em:
+
+```text
+public/images/posts/<slug>/
+```
+
+Consulte o [guia de contribuição](CONTRIBUTING.md) para conhecer o frontmatter completo, os padrões editoriais e a lista de verificações recomendadas antes de abrir um pull request.
+
+## Contribuindo
+
+Contribuições são bem-vindas.
+
+Você pode contribuir com:
+
+* correções de bugs;
+* melhorias no código;
+* melhorias de interface;
+* documentação;
+* novos artigos;
+* correções ou atualizações de conteúdo;
+* traduções;
+* melhorias de acessibilidade;
+* otimizações de desempenho.
+
+Antes de contribuir:
+
+1. Leia o [CONTRIBUTING.md](CONTRIBUTING.md).
+2. Leia e siga o [Código de Conduta](CODE_OF_CONDUCT.md).
+3. Para alterações significativas, abra uma issue antes de iniciar a implementação.
+4. Crie uma branch para sua alteração.
+5. Execute as verificações locais.
+6. Abra um pull request descrevendo claramente a mudança.
+
+Antes do pull request, execute:
+
+```bash
+pnpm format
+pnpm lint
+pnpm validate
+```
+
+## Deploy
+
+O RookieOps utiliza geração estática e é publicado na Cloudflare.
+
+Depois de validar o projeto:
+
+```bash
+pnpm validate
+```
+
+o deploy pode ser executado com:
+
+```bash
+pnpm deploy
+```
+
+O Wrangler publica o conteúdo gerado em:
+
+```text
+dist/
+```
+
+A configuração de publicação está definida em:
+
+```text
+wrangler.jsonc
+```
 
 ## Licenças
 
-- O código-fonte e o layout derivado do Astro Narrow são distribuídos sob a [GNU General Public License v3.0](LICENSE).
-- Cada pessoa autora mantém os direitos sobre seu conteúdo editorial e autoriza sua publicação no RookieOps conforme a [licença do conteúdo](CONTENT-LICENSE.md).
-- Dependências, marcas e materiais de terceiros continuam sujeitos às licenças de seus respectivos titulares.
+O RookieOps diferencia a licença do código-fonte dos direitos relacionados ao conteúdo editorial.
+
+### Código-fonte
+
+O código-fonte e o layout derivado do Astro Narrow são distribuídos sob a [GNU General Public License v3.0](LICENSE).
+
+### Conteúdo editorial
+
+Cada pessoa autora mantém os direitos sobre seu conteúdo e autoriza sua publicação no RookieOps conforme estabelecido em [CONTENT-LICENSE.md](CONTENT-LICENSE.md).
+
+Dependências, marcas, logotipos, imagens e outros materiais de terceiros continuam sujeitos às licenças e direitos de seus respectivos titulares.
+
+## Créditos
+
+O RookieOps utiliza como base o projeto open source [Astro Narrow](https://github.com/tom2almighty/astro-narrow).
+
+Agradecimentos aos desenvolvedores, autores e colaboradores dos projetos open source utilizados na construção do site.
+
+---
+
+<div align="center">
+
+**[rookieops.dev](https://rookieops.dev)**
+
+Infrastructure · Cloud · Identity · Security · DevOps · Automation
+
+[Voltar ao topo](#rookieops)
+
+</div>
