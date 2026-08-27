@@ -5,6 +5,7 @@ pubDate: 2026-08-27
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: pt-br
+translationKey: aks-para-iniciantes-container-pod-service-ingress
 categories: ['DevOps']
 tags: ['Azure', 'AKS', 'Kubernetes', 'Docker', 'Iniciante']
 cover: '/images/posts/aks-para-iniciantes-container-pod-service-ingress/capa-v2.webp'
