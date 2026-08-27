@@ -148,7 +148,7 @@ kubectl get nodes -o wide
 
 ## Da imagem ao registry
 
-Crie uma pasta chamada `aks-lab` com esta estrutura. O artigo contém todos os arquivos necessários para executar o caminho principal, então você não depende de um repositório complementar:
+Crie uma pasta chamada `aks-lab` com esta estrutura. Você pode copiar os arquivos apresentados no artigo ou clonar o [repositório completo do laboratório](https://github.com/tkusal/Kubernetes-na-pr-tica-com-AKS-do-container-ao-Pod-Service-e-Ingress):
 
 ```text title="Estrutura do laboratório"
 aks-lab/

@@ -148,7 +148,7 @@ kubectl get nodes -o wide
 
 ## From the image to the registry
 
-Create a directory named `aks-lab` with this structure. The article includes every file required for the main path, so you do not depend on a companion repository:
+Create a directory named `aks-lab` with this structure. You can copy the files shown in the article or clone the [complete lab repository](https://github.com/tkusal/Kubernetes-na-pr-tica-com-AKS-do-container-ao-Pod-Service-e-Ingress):
 
 ```text title="Lab structure"
 aks-lab/
