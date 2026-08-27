@@ -5,6 +5,7 @@ pubDate: 2026-07-28
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: identidade-na-nuvem-microsoft-entra-id-para-iniciantes
 categories: ['Microsoft 365']
 tags: ['Entra ID', 'Security', 'IAM', 'Beginner']
 cover: '/images/posts/identidade-na-nuvem-microsoft-entra-id-para-iniciantes/identidade-como-porta-de-acesso.webp'

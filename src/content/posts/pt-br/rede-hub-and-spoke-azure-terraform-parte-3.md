@@ -5,6 +5,7 @@ pubDate: 2026-08-20
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: pt-br
+translationKey: rede-hub-and-spoke-azure-terraform-parte-3
 categories: ['Cloud']
 tags: ['Azure', 'Terraform', 'Azure Firewall', 'UDR', 'Intermediário']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-3/capa.webp'

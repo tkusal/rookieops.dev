@@ -1,6 +1,12 @@
 ---
 import { Icon } from 'astro-icon/components';
-import { getLocalePath, localeMeta, switchLocalePath, type Locale } from '../../config/i18n';
+import {
+  getLocalePath,
+  localeMeta,
+  locales,
+  switchLocalePath,
+  type Locale
+} from '../../config/i18n';
 import { siteConfig } from '../../config/site';
 import { defaultTheme, themes } from '../../config/theme';
 import { useTranslations } from '../../i18n/utils';
@@ -8,10 +14,21 @@ import { useTranslations } from '../../i18n/utils';
 interface Props {
   locale: Locale;
   availableLocales?: readonly Locale[];
+  languageLocaleLinks?: Partial<Record<Locale, string>>;
 }
 
-const { locale, availableLocales = [locale] } = Astro.props;
+const { locale, availableLocales = [locale], languageLocaleLinks } = Astro.props;
 const t = useTranslations(locale);
+const currentPath = Astro.url.pathname;
+const languageOptions = locales.flatMap((item) => {
+  const href =
+    languageLocaleLinks?.[item] ||
+    (!languageLocaleLinks && availableLocales.includes(item)
+      ? switchLocalePath(item, currentPath)
+      : undefined);
+
+  return href ? [{ locale: item, href }] : [];
+});
 const labels = {
   back: t('dock.back'),
   display: t('dock.display'),
@@ -25,7 +42,6 @@ const labels = {
   top: t('dock.top')
 };
 const homeHref = getLocalePath(locale, '/');
-const currentPath = Astro.url.pathname;
 const postsHref = getLocalePath(locale, '/posts/');
 const normalizedCurrentPath = currentPath.replace(/\/?$/, '/');
 const backFallback =
@@ -172,7 +188,7 @@ const maximumContentWidth = Math.ceil(defaultContentWidth + 24);
   </div>
 
   {
-    availableLocales.length > 1 && (
+    languageOptions.length > 1 && (
       <div class="relative z-10">
         <button
           type="button"
@@ -188,13 +204,13 @@ const maximumContentWidth = Math.ceil(defaultContentWidth + 24);
           data-lang-panel
           class="border-border bg-popover absolute bottom-full left-1/2 mb-2 hidden w-36 -translate-x-1/2 rounded-[var(--radius-panel)] border p-1 text-sm shadow-xl md:right-0 md:left-auto md:translate-x-0"
         >
-          {availableLocales.map((item) => (
+          {languageOptions.map((option) => (
             <a
-              href={switchLocalePath(item, currentPath)}
+              href={option.href}
               class="hover:bg-accent flex min-h-11 items-center rounded px-2 py-1.5"
-              aria-current={item === locale ? 'page' : undefined}
+              aria-current={option.locale === locale ? 'page' : undefined}
             >
-              {localeMeta[item].label}
+              {localeMeta[option.locale].label}
             </a>
           ))}
         </div>

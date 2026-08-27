@@ -33,6 +33,8 @@ interface Props {
   description?: string;
   locale?: Locale;
   availableLocales?: readonly Locale[];
+  alternateLocaleLinks?: Partial<Record<Locale, string>>;
+  languageLocaleLinks?: Partial<Record<Locale, string>>;
   type?: 'website' | 'article';
   image?: string;
   imageAlt?: string;
@@ -57,6 +59,8 @@ const {
   description,
   locale = 'pt-br',
   availableLocales = [locale],
+  alternateLocaleLinks,
+  languageLocaleLinks,
   type = 'website',
   image = '/og.png',
   imageAlt = `${siteConfig.name}: ${siteConfig.author.title[locale]} ${siteConfig.author.tagline[locale]}`,
@@ -87,10 +91,15 @@ const canonicalUrl = new URL(Astro.url.pathname, siteOrigin).toString();
 const alternateUrls = availableLocales.map((item) => ({
   locale: item,
   htmlLang: localeMeta[item].htmlLang,
-  url: new URL(switchLocalePath(item, Astro.url.pathname), siteOrigin).toString()
+  url: new URL(
+    alternateLocaleLinks?.[item] || switchLocalePath(item, Astro.url.pathname),
+    siteOrigin
+  ).toString()
 }));
 const defaultAlternateUrl = new URL(
-  switchLocalePath(defaultLocale, Astro.url.pathname),
+  alternateLocaleLinks?.[defaultLocale] ||
+    alternateLocaleLinks?.[locale] ||
+    switchLocalePath(defaultLocale, Astro.url.pathname),
   siteOrigin
 ).toString();
 const socialImagePath = image.startsWith('/') ? image.slice(1) : image;
@@ -333,7 +342,15 @@ const themeInit = `
       </main>
       <Footer locale={locale} />
     </div>
-    {siteConfig.ui.dock.enabled && <Dock locale={locale} availableLocales={availableLocales} />}
+    {
+      siteConfig.ui.dock.enabled && (
+        <Dock
+          locale={locale}
+          availableLocales={availableLocales}
+          languageLocaleLinks={languageLocaleLinks}
+        />
+      )
+    }
     <SearchModal locale={locale} />
     <GalleryLightbox locale={locale} />
     <Analytics locale={locale} />

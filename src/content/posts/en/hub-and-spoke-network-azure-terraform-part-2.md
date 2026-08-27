@@ -5,6 +5,7 @@ pubDate: 2026-08-13
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: rede-hub-and-spoke-azure-terraform-parte-2
 categories: ['Cloud']
 tags: ['Azure', 'Terraform', 'IaC', 'NSG', 'Networks', 'Intermediate']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-2/capa.webp'

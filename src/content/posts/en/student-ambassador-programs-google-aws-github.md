@@ -5,6 +5,7 @@ pubDate: 2026-08-25
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: programas-student-ambassador-google-aws
 categories: ['Career']
 tags: ['Students', 'Google', 'AWS', 'GitHub', 'Community', 'Beginner']
 cover: '/images/posts/google-aws-student-ambassador-2026/capa.jpg'

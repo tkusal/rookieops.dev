@@ -17,6 +17,10 @@ export function entrySlug(entry: CollectionEntry<ContentType>) {
   return stripLocaleFromId(entry.id).replace(/\/index$/, '');
 }
 
+export function postTranslationKey(entry: CollectionEntry<'posts'>) {
+  return entry.data.translationKey || entrySlug(entry);
+}
+
 export function entryDate(entry: CollectionEntry<ContentType>) {
   return entry.data.pubDate || entry.data.updatedDate || new Date(0);
 }

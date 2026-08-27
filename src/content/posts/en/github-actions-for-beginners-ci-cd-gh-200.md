@@ -5,6 +5,7 @@ pubDate: 2026-08-02
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: github-actions-para-iniciantes-ci-cd-gh-200
 categories: ['DevOps']
 tags: ['GitHub Actions', 'CI/CD', 'Intermediate']
 cover: '/images/posts/github-actions-para-iniciantes-ci-cd-gh-200/capa.webp'

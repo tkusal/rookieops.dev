@@ -13,6 +13,8 @@ import {
   adjacentEntries,
   getLocalizedEntries,
   entrySlug,
+  localizedEntryPath,
+  postTranslationKey,
   relatedPosts
 } from '../../lib/content/entries';
 import { estimateReadingMinutes } from '../../lib/content/reading-time';
@@ -28,17 +30,29 @@ const { Content, headings, remarkPluginFrontmatter } = await render(entry);
 const hasMath = Boolean(entry.data.math || remarkPluginFrontmatter.math);
 const readingMinutes = estimateReadingMinutes(entry.body || '');
 const posts = await getLocalizedEntries('posts', 'pt-br');
-const currentSlug = entrySlug(entry as CollectionEntry<'posts'>);
+const translationKey = postTranslationKey(entry as CollectionEntry<'posts'>);
 const availableLocales: Locale[] = [];
+const alternateLocaleLinks: Partial<Record<Locale, string>> = {};
 for (const candidateLocale of locales) {
   const candidates =
     candidateLocale === 'pt-br' ? posts : await getLocalizedEntries('posts', candidateLocale);
-  if (
-    candidates.some((candidate) => entrySlug(candidate as CollectionEntry<'posts'>) === currentSlug)
-  ) {
+  const translation = candidates.find(
+    (candidate) => postTranslationKey(candidate as CollectionEntry<'posts'>) === translationKey
+  );
+  if (translation) {
     availableLocales.push(candidateLocale);
+    alternateLocaleLinks[candidateLocale] = localizedEntryPath(
+      'posts',
+      translation as CollectionEntry<'posts'>
+    );
   }
 }
+const languageLocaleLinks = Object.fromEntries(
+  locales.map((candidateLocale) => [
+    candidateLocale,
+    alternateLocaleLinks[candidateLocale] || getLocalePath(candidateLocale, contentTypes.posts.path)
+  ])
+) as Record<Locale, string>;
 const seriesContext = await getSeriesContext(entry);
 const adjacent: {
   previous?: CollectionEntry<'posts'>;
@@ -60,6 +74,8 @@ const related = relatedPosts(posts, entry, siteConfig.post.relatedCount);
   description={entry.data.description}
   locale="pt-br"
   availableLocales={availableLocales}
+  alternateLocaleLinks={alternateLocaleLinks}
+  languageLocaleLinks={languageLocaleLinks}
   type="article"
   image={entry.data.cover}
   imageAlt={entry.data.coverAlt || entry.data.title}

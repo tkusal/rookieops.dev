@@ -5,6 +5,7 @@ pubDate: 2026-07-29
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: git-para-quem-esta-comecando-em-devops
 categories: ['DevOps']
 tags: ['Git', 'Versioning', 'Beginner']
 cover: '/images/posts/git-para-quem-esta-comecando-em-devops/fluxo-git.webp'

@@ -5,6 +5,7 @@ pubDate: 2026-08-21
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: microsoft-student-ambassador-2026
 categories: ['Career']
 tags: ['Azure', 'Students', 'Microsoft Learn', 'Microsoft Student Ambassadors', 'Beginner']
 cover: '/images/posts/microsoft-student-ambassador-2026/capa.webp'

@@ -5,6 +5,7 @@ pubDate: 2026-08-23
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: governanca-identidades-m365-entra-id
 categories: ['Microsoft 365']
 tags: ['Azure', 'Entra ID', 'IAM', 'Security', 'PowerShell', 'Intermediate']
 cover: '/images/posts/governanca-identidades-m365-entra-id/capa.webp'

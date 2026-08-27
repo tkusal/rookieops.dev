@@ -5,6 +5,7 @@ pubDate: 2026-07-27
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: en
+translationKey: tenant-assinatura-grupo-de-recursos
 categories: ['Cloud']
 tags: ['Azure', 'Entra ID', 'Beginner']
 cover: '/images/posts/tenant-assinatura-grupo-de-recursos/capa.svg'

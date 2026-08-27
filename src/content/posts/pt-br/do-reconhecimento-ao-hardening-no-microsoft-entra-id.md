@@ -5,6 +5,7 @@ pubDate: 2026-07-30
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: pt-br
+translationKey: do-reconhecimento-ao-hardening-no-microsoft-entra-id
 categories: ['Microsoft 365']
 tags: ['Entra ID', 'IAM', 'Segurança', 'Intermediário']
 cover: '/images/posts/do-reconhecimento-ao-hardening-no-microsoft-entra-id/camadas-de-seguranca-e-menor-privilegio.webp'

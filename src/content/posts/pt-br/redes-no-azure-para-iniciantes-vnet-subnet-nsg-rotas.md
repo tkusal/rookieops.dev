@@ -5,6 +5,7 @@ pubDate: 2026-08-05
 author: 'Thiago Kusal'
 authorUrl: 'https://tkusal.com.br'
 lang: pt-br
+translationKey: redes-no-azure-para-iniciantes-vnet-subnet-nsg-rotas
 categories: ['Cloud']
 tags: ['Azure', 'Redes', 'Iniciante']
 cover: '/images/posts/redes-no-azure-para-iniciantes-vnet-subnet-nsg-rotas/capa.webp'
