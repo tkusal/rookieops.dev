@@ -15,7 +15,7 @@ mermaid: true
 draft: false
 ---
 
-## 0. Introdução
+## Introdução
 
 Sua aplicação roda bem com `docker run` no notebook. Você fecha o terminal, abre de novo e ela continua obedecendo. A próxima pergunta costuma chegar rápido: como manter mais de uma cópia em execução, substituir uma instância que falhou e oferecer um endereço confiável para quem está na internet?
 
@@ -34,7 +34,7 @@ Ao final, um `curl` para o IP público deverá retornar algo parecido com isto:
 
 Este é um laboratório temporário, não uma arquitetura de produção. O cluster terá um único nó para reduzir o consumo. Duas réplicas da aplicação ajudam a observar o comportamento do Deployment, mas não oferecem alta disponibilidade se esse único nó falhar.
 
-## 1. Conceitos fundamentais e a arquitetura da jornada
+## Conceitos fundamentais e a arquitetura da jornada
 
 Um **cluster** é o conjunto formado pelo plano de controle do Kubernetes e pelos computadores que executam as cargas. No AKS, a Microsoft gerencia o plano de controle. Os **nodes**, ou nós, são máquinas virtuais da sua assinatura onde os containers realmente rodam.
 
@@ -74,7 +74,7 @@ _Fonte: [Kubernetes Authors](https://kubernetes.io/docs/concepts/overview/compon
 
 Você usará Azure CLI para criar recursos, Docker para construir e enviar a imagem, `kubectl` para conversar com o cluster e Helm apenas para instalar um controller de laboratório.
 
-## 2. Preparando o ambiente e criando o cluster AKS
+## Preparando o ambiente e criando o cluster AKS
 
 O ponto de partida é uma assinatura Azure ativa, `az login` já concluído, Docker em execução, Helm instalado e `kubectl` disponível. Se faltar apenas o último, `az aks install-cli` faz a instalação. A identidade usada pela Azure CLI também precisa criar atribuições de papel no escopo do ACR para que `--attach-acr` funcione. Confirme as versões e o contexto antes de criar qualquer coisa:
 
@@ -145,7 +145,7 @@ kubectl config current-context
 kubectl get nodes -o wide
 ```
 
-## 3. Da imagem ao registry
+## Da imagem ao registry
 
 Crie uma pasta chamada `aks-lab` com esta estrutura. O artigo contém todos os arquivos necessários para executar o caminho principal, então você não depende de um repositório complementar:
 
@@ -257,7 +257,7 @@ az aks update \
 
 Em produção, prefira uma tag imutável ou o digest da imagem e faça varredura de vulnerabilidades. A tag `v1` foi mantida para deixar o laboratório legível.
 
-## 4. Do Pod ao Deployment
+## Do Pod ao Deployment
 
 Comece com um Pod isolado para enxergar a unidade mínima:
 
@@ -357,7 +357,7 @@ rookie-api-<HASH>-<SUFIXO2>   1/1     Running   0          30s
 
 Se você apagar um dos Pods, o Deployment criará outro para voltar a duas réplicas. Esse é o primeiro momento em que Kubernetes deixa de parecer uma coleção de YAML e começa a parecer um operador trabalhando por você.
 
-## 5. Expondo a aplicação com Service
+## Expondo a aplicação com Service
 
 Os Pods recebem endereços que podem mudar. O Service oferece um ponto estável e seleciona os backends pelas labels.
 
@@ -394,7 +394,7 @@ kubectl port-forward service/rookie-api 8080:80
 
 Em outro terminal, execute `curl http://localhost:8080/`. Se funcionar, Deployment, labels, Pods e Service estão conversando. Encerre o port-forward com `Ctrl+C`.
 
-## 6. Chegando na internet com Ingress
+## Chegando na internet com Ingress
 
 O recurso Ingress contém regras, mas não atende tráfego sozinho. Ele precisa de um Ingress controller, processo que observa essas regras e configura o componente de rede real.
 
@@ -452,7 +452,7 @@ O IP pode levar alguns minutos para sair de `<pending>`. Se `PUBLIC_IP` vier vaz
 
 No AKS, existe o add-on gerenciado de application routing com NGINX, habilitado por `az aks approuting enable`. Ele usa a classe `webapprouting.kubernetes.azure.com` e recebe correções críticas da Microsoft somente até novembro de 2026. Para uma nova arquitetura de produção, a direção recomendada pela Microsoft é o application routing baseado em Kubernetes Gateway API. Aqui continuamos com Ingress porque ele é o objeto que estamos aprendendo.
 
-## 7. Validação, troubleshooting e limpeza
+## Validação, troubleshooting e limpeza
 
 Valide por camadas. Comece no Pod e avance até a entrada pública:
 
@@ -503,7 +503,7 @@ az group delete \
 
 Excluir o grupo remove o AKS, o ACR, a infraestrutura gerenciada e tudo mais que estiver dentro dele. Não execute o último comando se a listagem mostrar algo que precisa ser preservado.
 
-## 8. Referências
+## Referências
 
 - [Conceitos centrais do AKS](https://learn.microsoft.com/azure/aks/core-aks-concepts?wt.mc_id=studentamb_365381)
 - [Quickstart do AKS com Azure CLI](https://learn.microsoft.com/azure/aks/learn/quick-kubernetes-deploy-cli?wt.mc_id=studentamb_365381)
@@ -518,7 +518,7 @@ Excluir o grupo remove o AKS, o ACR, a infraestrutura gerenciada e tudo mais que
 - [Application routing com NGINX no AKS](https://learn.microsoft.com/azure/aks/app-routing?wt.mc_id=studentamb_365381)
 - [Application routing com Gateway API no AKS](https://learn.microsoft.com/azure/aks/app-routing-gateway-api?wt.mc_id=studentamb_365381)
 
-## 9. Conclusão
+## Conclusão
 
 Você saiu de uma imagem local e chegou a uma API pública no AKS. O Pod mostrou onde o container roda, o Deployment passou a manter réplicas, o Service criou um endereço estável e o Ingress descreveu como o HTTP chega à aplicação.
 
