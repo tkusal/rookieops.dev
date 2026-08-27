@@ -29,7 +29,7 @@ This guide answers those questions using the current process. The journey starts
 
 ## What is Microsoft Student Ambassadors?
 
-[Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors) is a global community where students develop technical and leadership skills while helping other people learn Microsoft technologies. That contribution can take the form of online content, Microsoft Learn Plans, projects, campus events, and activities coordinated by the program.
+[Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors/) is a global community where students develop technical and leadership skills while helping other people learn Microsoft technologies. That contribution can take the form of online content, Microsoft Learn Plans, projects, campus events, and activities coordinated by the program.
 
 It is not an internship, a job, or a professional certification, and it does not guarantee a role at Microsoft. It is an extracurricular contribution program. You learn something, turn that knowledge into a useful experience for other people, measure the result, and improve the next delivery. It sounds a bit like a DevOps cycle, except with fewer arguments about YAML indentation.
 
@@ -80,7 +80,7 @@ Azure for Students is normally part of the program's entry requirements, rather 
 
 ## How to register
 
-Registration begins on the [Microsoft Student Ambassadors portal](https://mvp.microsoft.com/studentambassadors). Microsoft says the form takes less than five minutes. The most important work happens before you open it, when you organize your accounts and confirm that your academic information is correct.
+Registration begins on the [Microsoft Student Ambassadors portal](https://mvp.microsoft.com/studentambassadors/). Microsoft says the form takes less than five minutes. The most important work happens before you open it, when you organize your accounts and confirm that your academic information is correct.
 
 ### Checklist before the form
 
@@ -95,7 +95,7 @@ Confirm that you have:
 Do not post academic documents, subscription IDs, or personal information in public forums when asking for help. If you have a linking or verification problem, use the official contact listed in the FAQ: `sa-help@microsoft.com`.
 
 > [!WARNING]
-> If the Learn Username field was filled in incorrectly or with extra information during registration, your progress reports may fail to index correctly later on. If you notice this problem, delete your current registration and register again with the correct field, rather than trying to fix it afterward through support.
+> If the Learn Username field was filled in incorrectly or contains extra information, your certification or Applied Skills credential may not be indexed correctly. If you notice this problem, update your Learn Username by following the guidance displayed in the portal. If editing is not available, contact official support before deleting or creating a new registration.
 
 ### Registration and the Code of Conduct
 
@@ -113,7 +113,7 @@ It appears in links as a tracking parameter. In the example below, I am using my
 ?wt.mc_id=studentamb_365381
 ```
 
-The Student Ambassadors Contributor ID is not a password, token, or the identifier shown in your Microsoft Learn profile settings. That second value is the Learn Contributor ID. Keep the program identifier you received and follow the format required by each path, because using the wrong ID may prevent the contribution from being attributed to your profile.
+The Student Ambassadors Contributor ID is not a password, token, or the identifier shown in your Microsoft Learn profile settings. That second value is the Learn Contributor ID. The identifier sent by the program remains the same throughout your time as a Registered Member. Keep it and follow the format required by each path, because using the wrong ID may prevent the contribution from being attributed to your profile.
 
 ## What to complete as a Registered Member
 
@@ -126,6 +126,13 @@ There is no fixed published deadline for completing the Registered Member activi
 The process requires a credential earned during the 12 months before onboarding. It can be a **Microsoft Certification** or a **Microsoft Applied Skills** credential. In other words, if your approval and onboarding as a Student Ambassador happen in October 2026, for example, your credential must have been issued between October 2025 and October 2026.
 
 Applied Skills is a scenario-based credential. Instead of assessing a broad job role, it validates a specific skill through a lab. Microsoft compares the formats in the [Applied Skills FAQ](https://learn.microsoft.com/credentials/support/applied-skills-faq?wt.mc_id=studentamb_365381).
+
+If you are just getting started and want options aligned with the program handbook, two beginner-level Applied Skills credentials are:
+
+- [Streamline business workflows with AI chat](https://learn.microsoft.com/credentials/applied-skills/streamline-business-workflows-with-ai-chat/?wt.mc_id=studentamb_365381), which covers using Microsoft 365 Copilot for tasks and business workflows;
+- [Generate reports with AI research agents](https://learn.microsoft.com/credentials/applied-skills/generate-reports-with-ai-research-agents/?wt.mc_id=studentamb_365381), which focuses on producing and refining reports with the Researcher agent.
+
+Both practical assessments are expected to take 45 minutes. Before starting, complete the learning path listed on the credential page and check the Microsoft 365 Copilot access requirements.
 
 You can register before earning the credential, but you must obtain it within the required window to become eligible for an invitation. An older certification is still valuable on your resume, but it does not satisfy this operational requirement.
 
@@ -161,10 +168,10 @@ In practice:
 
 #### Eligible pages for your Contributor ID
 
-Not every Microsoft page accepts the Contributor ID. Only traffic to the domains below counts toward the 250 Preferred Visitors:
+Not every Microsoft page accepts the Contributor ID. Only traffic to pages contained within the eligible URLs or prefixes listed below counts toward the 250 Preferred Visitors:
 
 <details>
-<summary>View eligible domains for Preferred Visitors</summary>
+<summary>View eligible URLs and prefixes for Preferred Visitors</summary>
 
 - azure.microsoft.com
 - blog.fabric.microsoft.com
@@ -186,16 +193,16 @@ Not every Microsoft page accepts the Contributor ID. Only traffic to the domains
 - microsoft.com/microsoft-fabric
 - microsoft.com/power-platform
 - microsoft.com/startups
-- mvp.microsoft.com
+- mvp.microsoft.com/studentambassadors/
 - powerbi.microsoft.com/blog
 - reactor.microsoft.com
 - techcommunity.microsoft.com
 
 </details>
 
-Sharing a link outside this list may still generate clicks, but they won't count toward the path's official total.
+Sharing a link outside these URLs or prefixes may still generate clicks, but they won't count toward the path's official total.
 
-Avoid sharing just the homepage of these domains. Look for a specific piece of content, such as an article, a post, documentation, or an announcement within these pages, that fits what your audience cares about. Homepages tend to attract less attention than content aimed at a specific interest.
+Avoid sharing only the homepage or base address of these URLs and prefixes. Look for a specific piece of content, such as an article, a post, documentation, or an announcement within these pages, that fits what your audience cares about. Generic pages tend to attract less attention than content aimed at a specific interest.
 
 #### Optional tips and tools for your Contributor ID
 
@@ -218,6 +225,8 @@ A simplified example helps make the rule stick: if someone already completed a m
 
 When creating the plan, add the Student Ambassadors Contributor ID at the end of its description and to the invitation link, following the path handbook. Microsoft Learn may add the Learn Contributor ID automatically. If that happens, keep the existing parameter and append the program identifier with `&`.
 
+Include only Microsoft Learn modules and learning paths in the plan. Other content types, such as courses, may require participants to mark completion manually, which can interfere with progress tracking and counting.
+
 After joining, each participant must select **Start** and agree to share progress. Modules completed before that step do not count toward the target. If the participant selects **Drop**, their progress no longer contributes to the total.
 
 One thousand modules becomes easier to understand when you turn the number into a class. Fifty participants completing 20 new modules reach 1,000. One hundred participants completing 10 modules do too. The difficult part is not the multiplication. It is keeping people engaged through the final unit.
@@ -235,9 +244,14 @@ Start with a clear outcome, such as publishing a first API on Azure or understan
 
 ## From the target to onboarding
 
-Meeting the target does not change your title immediately. Microsoft processes the metrics, verifies the requirements, and sends invitations in quarterly rounds expected in January, April, July, and October.
+Meeting the target does not change your title immediately. Microsoft processes the metrics, verifies the requirements, and sends invitations in quarterly rounds expected in January, April, July, and October, usually during the second week of each quarter. If you do not complete the activities in time for a round, your activity and count are carried forward for consideration in a future cohort.
 
 Influencer and Skiller reports are updated weekly on Saturdays in Pacific Time and may take up to 48 hours to reflect recent activity. If Friday's result did not appear on Saturday, wait for that window before opening a support request.
+
+You can also monitor your count on the **Progression Board**, an individual view where each Registered Member can see only their own progress. It is updated alongside the weekly reports. Before your first report email arrives, the board may appear empty even if you have already started working on the activities.
+
+> [!WARNING]
+> Do not use spam, scripts, automated clicks, or any attempt to manipulate the metrics. These practices violate the program rules and the Microsoft Services Agreement, may invalidate the activity, and can result in a request to provide evidence of your contribution. The purpose of each path is to create real value for the community, not to turn the counter into a boss battle.
 
 The flow after reaching the target looks like this:
 
@@ -382,7 +396,7 @@ Still have a question about registration, or want to share which path you chose?
 
 ## References
 
-- [Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors)
+- [Microsoft Student Ambassadors](https://mvp.microsoft.com/studentambassadors/)
 - [Student Ambassadors FAQ](https://mvp.microsoft.com/faq?section=student)
 - [Student Ambassadors program milestones](https://mvp.microsoft.com/studentambassadors/milestones)
 - [Microsoft Student Ambassadors Code of Conduct](https://aka.ms/sacoc)
