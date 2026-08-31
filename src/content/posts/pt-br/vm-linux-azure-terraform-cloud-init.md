@@ -38,7 +38,7 @@ Após `terraform apply` e a configuração inicial, você terá uma VM Ubuntu co
 
 O foco é Azure Compute Infrastructure: provisionamento, inicialização e ciclo de vida de uma VM. O exemplo usa HTTP público e uma única instância, sem alta disponibilidade. Não é uma arquitetura de produção.
 
-Para acesso administrativo sem IP público na VM, considere [Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview). Sua configuração e avaliação de custo ficam fora deste laboratório.
+Para acesso administrativo sem IP público na VM, considere [Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview?wt.mc_id=studentamb_365381). Sua configuração e avaliação de custo ficam fora deste laboratório.
 
 ## Fundamentos: o que faz o Terraform e o que faz o cloud-init
 
@@ -61,7 +61,7 @@ flowchart TD
   F --> G["Validar: curl + SSH"]
 ```
 
-Existe uma diferença entre a infraestrutura estar criada e a aplicação estar pronta. O Azure pode informar sucesso antes de o cloud-init terminar. Por isso, o teste HTTP faz parte do procedimento, conforme a [documentação de custom data](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data).
+Existe uma diferença entre a infraestrutura estar criada e a aplicação estar pronta. O Azure pode informar sucesso antes de o cloud-init terminar. Por isso, o teste HTTP faz parte do procedimento, conforme a [documentação de custom data](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data?wt.mc_id=studentamb_365381).
 
 ### Pré-requisitos e ambiente de referência
 
@@ -71,7 +71,7 @@ Existe uma diferença entre a infraestrutura estar criada e a aplicação estar 
 - Par de chaves SSH local: a pública vai para a VM; a privada permanece com você. O exemplo usa `~/.ssh/id_ed25519.pub`.
 - Quota e disponibilidade para o tamanho de VM na região escolhida.
 
-Usaremos ED25519, um dos [formatos de chave suportados pelo Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys). Se ainda não tiver esse par, gere-o localmente:
+Usaremos ED25519, um dos [formatos de chave suportados pelo Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys?wt.mc_id=studentamb_365381). Se ainda não tiver esse par, gere-o localmente:
 
 ```powershell
 ssh-keygen -t ed25519
@@ -144,7 +144,7 @@ Consulte o uso e os limites de cota antes do `apply`:
 az vm list-usage --location brazilsouth --output table
 ```
 
-Compare uso e limite de vCPUs regional e da família da VM, conforme as [cotas do Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/quotas). Use a mesma região de `location`. Cota suficiente não garante capacidade disponível para o tamanho escolhido.
+Compare uso e limite de vCPUs regional e da família da VM, conforme as [cotas do Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/quotas?wt.mc_id=studentamb_365381). Use a mesma região de `location`. Cota suficiente não garante capacidade disponível para o tamanho escolhido.
 
 ### Variáveis e valores locais
 
@@ -358,7 +358,7 @@ resource "azurerm_network_interface_security_group_association" "web" {
 
 O grupo `rg-rookie-vm-lab` deve ser exclusivo deste exercício. Prefixos como `vnet`, `nsg` e `nic` indicam a função do recurso. A NIC é a interface que conecta a VM à subnet e recebe a associação com o IP público e o NSG.
 
-O IP usa SKU `Standard` com alocação `Static`. A subnet desativa a saída implícita com `default_outbound_access_enabled = false`, mas a VM possui uma saída explícita pelo IP público associado à NIC. Isso permite baixar pacotes, mantendo as regras padrão de saída do NSG. Veja a [documentação de conectividade de saída](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access).
+O IP usa SKU `Standard` com alocação `Static`. A subnet desativa a saída implícita com `default_outbound_access_enabled = false`, mas a VM possui uma saída explícita pelo IP público associado à NIC. Isso permite baixar pacotes, mantendo as regras padrão de saída do NSG. Veja a [documentação de conectividade de saída](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access?wt.mc_id=studentamb_365381).
 
 ## Criando a VM Linux com autenticação por chave SSH
 
@@ -536,7 +536,7 @@ exit
 
 Leia o erro antes de repetir o `apply`: corrigir HCL não resolve automaticamente um pacote que falhou dentro de uma VM já criada. Uma alteração manual por SSH pode ajudar no diagnóstico, mas deve voltar ao código para não virar mais uma configuração esquecida.
 
-Se o SSH não funcionar, Boot diagnostics permite investigar a inicialização. A [Serial Console](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/serial-console-linux) é outra opção, mas o login interativo requer uma conta local com senha e permissões adequadas. Este laboratório não cria essa conta, portanto a console não é um acesso alternativo pronto para uso.
+Se o SSH não funcionar, Boot diagnostics permite investigar a inicialização. A [Serial Console](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/serial-console-linux?wt.mc_id=studentamb_365381) é outra opção, mas o login interativo requer uma conta local com senha e permissões adequadas. Este laboratório não cria essa conta, portanto a console não é um acesso alternativo pronto para uso.
 
 ## Terraform state, variáveis sensíveis e boas práticas
 
@@ -619,9 +619,9 @@ Mantenha `.tf`, YAML, o arquivo de exemplo e `.terraform.lock.hcl` no versioname
 
 ## Limpeza dos recursos e cuidados com custo
 
-VM, disco, IP público e tráfego podem gerar cobrança. Consulte a [calculadora oficial do Azure](https://azure.microsoft.com/en-us/pricing/calculator/) antes de criar o ambiente. Desligar o Ubuntu não equivale a remover recursos, e desalocar a VM não elimina a cobrança do disco.
+VM, disco, IP público e tráfego podem gerar cobrança. Consulte a [calculadora oficial do Azure](https://azure.microsoft.com/en-us/pricing/calculator/?wt.mc_id=studentamb_365381) antes de criar o ambiente. Desligar o Ubuntu não equivale a remover recursos, e desalocar a VM não elimina a cobrança do disco.
 
-O IPv4 público **Standard/Static** usado aqui tem cobrança por hora, mesmo com a VM desligada ou desalocada e mesmo sem associação. Para encerrar essa cobrança, exclua o recurso de IP público, como faz o `terraform destroy` deste laboratório. Consulte as [regras oficiais de cobrança de IPs](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
+O IPv4 público **Standard/Static** usado aqui tem cobrança por hora, mesmo com a VM desligada ou desalocada e mesmo sem associação. Para encerrar essa cobrança, exclua o recurso de IP público, como faz o `terraform destroy` deste laboratório. Consulte as [regras oficiais de cobrança de IPs](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/?wt.mc_id=studentamb_365381).
 
 Antes da limpeza, salve o nome do grupo: os outputs serão removidos.
 
@@ -647,9 +647,9 @@ Antes de executar, confirme:
 
 ## Referências
 
-- [Microsoft Learn: VM Linux com Terraform](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform).
+- [Microsoft Learn: VM Linux com Terraform](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform?wt.mc_id=studentamb_365381).
 - [HashiCorp: recurso Linux VM no AzureRM 5.3.0](https://registry.terraform.io/providers/hashicorp/azurerm/5.3.0/docs/resources/linux_virtual_machine).
-- [Microsoft Learn: cloud-init no Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init).
+- [Microsoft Learn: cloud-init no Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init?wt.mc_id=studentamb_365381).
 - [cloud-init: referência de módulos](https://docs.cloud-init.io/en/latest/reference/modules.html).
 - [Canonical: imagens Ubuntu no Azure](https://ubuntu.com/azure/docs/azure-how-to/instances/find-ubuntu-images/).
 

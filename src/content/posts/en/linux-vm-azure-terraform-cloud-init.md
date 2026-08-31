@@ -38,7 +38,7 @@ After `terraform apply` and initial configuration, you will have an Ubuntu VM se
 
 The focus is Azure Compute Infrastructure: provisioning, initialization, and the lifecycle of a VM. This example uses public HTTP and a single instance without high availability. It is not a production architecture.
 
-For administrative access without a public IP on the VM, consider [Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview). Its setup and cost assessment are outside this lab's scope.
+For administrative access without a public IP on the VM, consider [Azure Bastion](https://learn.microsoft.com/en-us/azure/bastion/bastion-overview?wt.mc_id=studentamb_365381). Its setup and cost assessment are outside this lab's scope.
 
 ## Fundamentals: what Terraform does and what cloud-init does
 
@@ -61,7 +61,7 @@ flowchart TD
   F --> G["Validate: curl + SSH"]
 ```
 
-Infrastructure readiness and application readiness are separate milestones. Azure can report successful provisioning before cloud-init finishes. That is why the HTTP check is part of the procedure, as explained in the [custom data documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data).
+Infrastructure readiness and application readiness are separate milestones. Azure can report successful provisioning before cloud-init finishes. That is why the HTTP check is part of the procedure, as explained in the [custom data documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/custom-data?wt.mc_id=studentamb_365381).
 
 ### Prerequisites and reference environment
 
@@ -71,7 +71,7 @@ Infrastructure readiness and application readiness are separate milestones. Azur
 - A local SSH key pair: the public key goes to the VM, and the private key stays with you. The example uses `~/.ssh/id_ed25519.pub`.
 - Quota and availability for the VM size in your chosen region.
 
-We use ED25519, one of the [key formats supported by Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys). If you do not already have this key pair, generate it locally:
+We use ED25519, one of the [key formats supported by Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/mac-create-ssh-keys?wt.mc_id=studentamb_365381). If you do not already have this key pair, generate it locally:
 
 ```powershell
 ssh-keygen -t ed25519
@@ -144,7 +144,7 @@ Check quota usage and limits before running `apply`:
 az vm list-usage --location brazilsouth --output table
 ```
 
-Compare usage against both regional and VM family vCPU limits, as described in [Azure's quota documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/quotas). Use the same region as `location`. Sufficient quota does not guarantee available capacity for the selected size.
+Compare usage against both regional and VM family vCPU limits, as described in [Azure's quota documentation](https://learn.microsoft.com/en-us/azure/virtual-machines/quotas?wt.mc_id=studentamb_365381). Use the same region as `location`. Sufficient quota does not guarantee available capacity for the selected size.
 
 ### Variables and local values
 
@@ -358,7 +358,7 @@ resource "azurerm_network_interface_security_group_association" "web" {
 
 Reserve `rg-rookie-vm-lab` exclusively for this exercise. Prefixes such as `vnet`, `nsg`, and `nic` identify a resource's purpose. The NIC is the network interface connecting the VM to its subnet, with the public IP and NSG associated with it.
 
-The public IP uses the `Standard` SKU and `Static` allocation. The subnet disables implicit outbound access with `default_outbound_access_enabled = false`, but the VM has an explicit outbound path through the public IP attached to its NIC. This allows package downloads while keeping the NSG's default outbound rules. See the [outbound connectivity documentation](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access).
+The public IP uses the `Standard` SKU and `Static` allocation. The subnet disables implicit outbound access with `default_outbound_access_enabled = false`, but the VM has an explicit outbound path through the public IP attached to its NIC. This allows package downloads while keeping the NSG's default outbound rules. See the [outbound connectivity documentation](https://learn.microsoft.com/en-us/azure/virtual-network/ip-services/default-outbound-access?wt.mc_id=studentamb_365381).
 
 ## Creating the Linux VM with SSH key authentication
 
@@ -536,7 +536,7 @@ exit
 
 Read the error before repeating `apply`: fixing HCL does not automatically repair a failed package installation inside an existing VM. An SSH session can help with diagnosis, but useful configuration changes should go back into code instead of becoming another undocumented adjustment.
 
-If SSH is unavailable, Boot diagnostics can help investigate startup. The [Serial Console](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/serial-console-linux) is another option, but interactive login requires a local account with a password and appropriate permissions. This lab does not create that account, so the console is not a ready-to-use alternative login method.
+If SSH is unavailable, Boot diagnostics can help investigate startup. The [Serial Console](https://learn.microsoft.com/en-us/troubleshoot/azure/virtual-machines/linux/serial-console-linux?wt.mc_id=studentamb_365381) is another option, but interactive login requires a local account with a password and appropriate permissions. This lab does not create that account, so the console is not a ready-to-use alternative login method.
 
 ## Terraform state, sensitive variables, and good practices
 
@@ -619,9 +619,9 @@ Keep `.tf` files, YAML, the example variables file, and `.terraform.lock.hcl` in
 
 ## Cleaning up resources and managing costs
 
-The VM, disk, public IP, and traffic can incur charges. Consult the [official Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/) before creating the environment. Shutting down Ubuntu does not remove resources, and deallocating the VM does not stop disk charges.
+The VM, disk, public IP, and traffic can incur charges. Consult the [official Azure pricing calculator](https://azure.microsoft.com/en-us/pricing/calculator/?wt.mc_id=studentamb_365381) before creating the environment. Shutting down Ubuntu does not remove resources, and deallocating the VM does not stop disk charges.
 
-The **Standard/Static** public IPv4 used here is billed hourly, including when the VM is stopped or deallocated and when the IP is unassociated. To stop those charges, delete the public IP resource, as this lab's `terraform destroy` does. See the [official IP address billing rules](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/).
+The **Standard/Static** public IPv4 used here is billed hourly, including when the VM is stopped or deallocated and when the IP is unassociated. To stop those charges, delete the public IP resource, as this lab's `terraform destroy` does. See the [official IP address billing rules](https://azure.microsoft.com/en-us/pricing/details/ip-addresses/?wt.mc_id=studentamb_365381).
 
 Before cleanup, save the resource group name: the outputs will be removed.
 
@@ -647,9 +647,9 @@ Before running the lab, confirm:
 
 ## References
 
-- [Microsoft Learn: Linux VM with Terraform](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform).
+- [Microsoft Learn: Linux VM with Terraform](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/quick-create-terraform?wt.mc_id=studentamb_365381).
 - [HashiCorp: Linux VM resource in AzureRM 5.3.0](https://registry.terraform.io/providers/hashicorp/azurerm/5.3.0/docs/resources/linux_virtual_machine).
-- [Microsoft Learn: cloud-init on Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init).
+- [Microsoft Learn: cloud-init on Azure](https://learn.microsoft.com/en-us/azure/virtual-machines/linux/using-cloud-init?wt.mc_id=studentamb_365381).
 - [cloud-init: module reference](https://docs.cloud-init.io/en/latest/reference/modules.html).
 - [Canonical: Ubuntu images on Azure](https://ubuntu.com/azure/docs/azure-how-to/instances/find-ubuntu-images/).
 
