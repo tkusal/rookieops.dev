@@ -31,15 +31,18 @@ export async function GET({ site, url }: { site?: URL; url: URL }) {
     .filter((date): date is Date => Boolean(date))
     .sort((a, b) => b.getTime() - a.getTime())[0];
 
-  const staticEntries: SitemapEntry[] = locales.flatMap((locale) => [
-    { path: getLocalePath(locale, '/'), lastmod: latestPostDate },
-    { path: getLocalePath(locale, '/posts/'), lastmod: latestPostDate },
-    { path: getLocalePath(locale, '/archives/'), lastmod: latestPostDate },
-    ...(projects.length > 0
-      ? [{ path: getLocalePath(locale, '/projects/'), lastmod: latestProjectDate }]
-      : []),
-    ...(series.length > 0 ? [{ path: getLocalePath(locale, '/series/') }] : [])
-  ]);
+  const staticEntries: SitemapEntry[] = [
+    ...locales.flatMap((locale) => [
+      { path: getLocalePath(locale, '/'), lastmod: latestPostDate },
+      { path: getLocalePath(locale, '/posts/'), lastmod: latestPostDate },
+      { path: getLocalePath(locale, '/archives/'), lastmod: latestPostDate },
+      ...(projects.length > 0
+        ? [{ path: getLocalePath(locale, '/projects/'), lastmod: latestProjectDate }]
+        : []),
+      ...(series.length > 0 ? [{ path: getLocalePath(locale, '/series/') }] : [])
+    ]),
+    { path: '/linktree/' }
+  ];
 
   const contentEntries: SitemapEntry[] = [
     ...posts.map((entry) => ({

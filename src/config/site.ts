@@ -52,6 +52,11 @@ export const siteConfig = {
         name: 'LinkedIn',
         url: 'https://www.linkedin.com/in/tkusal/',
         icon: 'simple-icons:linkedin'
+      },
+      {
+        name: 'Instagram',
+        url: 'https://www.instagram.com/rookieops.dev',
+        icon: 'simple-icons:instagram'
       }
     ]
   },

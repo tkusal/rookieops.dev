@@ -32,14 +32,30 @@ function assetPath(path: string) {
 }
 
 const avatarSrc = assetPath(author.avatar);
+const instagram = author.social.find((item) => item.name === 'Instagram');
 ---
 
 <ParticleBackground />
 
 <section class="py-4 sm:py-10">
   <div
-    class="profile-card border-border bg-background rounded-[var(--radius-card)] border px-5 py-5 shadow-[var(--surface-shadow)] sm:px-8 sm:py-6"
+    class="profile-card border-border bg-background relative rounded-[var(--radius-card)] border px-5 py-5 shadow-[var(--surface-shadow)] sm:px-8 sm:py-6"
   >
+    {
+      instagram && (
+        <a
+          href={instagram.url}
+          class="border-border bg-background/80 text-muted-foreground hover:border-primary/60 hover:bg-accent hover:text-accent-foreground focus-visible:outline-primary absolute top-4 right-4 z-10 grid h-11 w-11 place-items-center rounded-[var(--radius-control)] border shadow-sm backdrop-blur-sm transition-colors focus-visible:outline-2 focus-visible:outline-offset-2 sm:top-5 sm:right-5"
+          aria-label={instagram.name}
+          title={instagram.name}
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          <Icon name={instagram.icon} class="h-5 w-5" />
+        </a>
+      )
+    }
+
     <div
       class="flex flex-col items-center gap-3 text-center sm:gap-6 md:flex-row md:items-start md:text-left"
     >

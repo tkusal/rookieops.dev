@@ -52,6 +52,7 @@ interface Props {
   toc?: boolean | 'center' | 'side';
   comments?: boolean;
   math?: boolean;
+  hideChrome?: boolean;
 }
 
 const {
@@ -74,7 +75,8 @@ const {
   headings = [],
   toc = false,
   comments = false,
-  math = false
+  math = false,
+  hideChrome = false
 } = Astro.props;
 
 const localizedSiteDescription = siteConfig.description[locale];
@@ -324,13 +326,16 @@ const themeInit = `
     <script type="application/ld+json" is:inline set:html={JSON.stringify(structuredData)} />
     <script is:inline set:html={themeInit} />
   </head>
-  <body class="bg-background text-foreground min-h-screen antialiased">
+  <body
+    class="bg-background text-foreground min-h-screen antialiased"
+    style={hideChrome ? 'padding-bottom: 0' : undefined}
+  >
     <a class="skip-link" href="#main-content">{t('a11y.skipToContent')}</a>
     <div
       data-page-shell
       class="relative isolate mx-auto min-h-screen w-full max-w-[var(--layout-content-width)] px-4"
     >
-      <Header locale={locale} />
+      {!hideChrome && <Header locale={locale} />}
       <main id="main-content" tabindex="-1">
         {
           toc && headings.length > 0 && (
@@ -340,10 +345,10 @@ const themeInit = `
         <slot />
         {comments && <Comments />}
       </main>
-      <Footer locale={locale} />
+      {!hideChrome && <Footer locale={locale} />}
     </div>
     {
-      siteConfig.ui.dock.enabled && (
+      !hideChrome && siteConfig.ui.dock.enabled && (
         <Dock
           locale={locale}
           availableLocales={availableLocales}
@@ -351,8 +356,8 @@ const themeInit = `
         />
       )
     }
-    <SearchModal locale={locale} />
-    <GalleryLightbox locale={locale} />
+    {!hideChrome && <SearchModal locale={locale} />}
+    {!hideChrome && <GalleryLightbox locale={locale} />}
     <Analytics locale={locale} />
     <script>
       import '../../scripts/theme-controls.ts';

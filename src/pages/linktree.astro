@@ -1,0 +1,78 @@
+---
+import { Icon } from 'astro-icon/components';
+import ParticleBackground from '../components/features/ParticleBackground.astro';
+import BaseLayout from '../components/layout/BaseLayout.astro';
+import { siteConfig } from '../config/site';
+
+const links = [
+  {
+    label: 'Acessar o blog',
+    description: 'Guias práticos sobre infraestrutura, cloud e DevOps',
+    href: siteConfig.url,
+    icon: 'lucide:book-open-text'
+  },
+  {
+    label: 'Assinar a newsletter',
+    description: 'Acompanhe as novidades da RookieOps no LinkedIn',
+    href: 'https://www.linkedin.com/newsletters/rookieops-dev-7488749099119366144',
+    icon: 'lucide:mail'
+  }
+] as const;
+---
+
+<BaseLayout
+  title="Links"
+  description="Acesse o blog e a newsletter da RookieOps."
+  locale="pt-br"
+  availableLocales={['pt-br']}
+  hideChrome
+>
+  <ParticleBackground />
+
+  <section class="relative z-10 flex min-h-screen items-center justify-center py-10 sm:py-14">
+    <div class="w-full max-w-md">
+      <header class="text-center">
+        <img
+          src={siteConfig.author.avatar}
+          alt=""
+          width="96"
+          height="96"
+          class="border-primary/20 mx-auto h-20 w-20 rounded-full border-4 object-cover shadow-md sm:h-24 sm:w-24"
+        />
+        <h1 class="mt-4 text-2xl font-bold tracking-tight sm:mt-5 sm:text-3xl">
+          {siteConfig.name}
+        </h1>
+        <p class="profile-slogan mt-2 text-base font-semibold">
+          {siteConfig.author.title['pt-br']}
+        </p>
+        <p class="text-muted-foreground mt-2 text-sm">@rookieops.dev</p>
+      </header>
+
+      <nav class="mt-6 space-y-3 sm:mt-8" aria-label="Links da RookieOps">
+        {
+          links.map((link) => (
+            <a
+              href={link.href}
+              class="surface-card hover:border-primary/55 focus-visible:outline-primary group flex min-h-20 items-center gap-3 px-3 py-3 transition duration-200 hover:-translate-y-0.5 hover:shadow-[var(--surface-shadow-strong)] focus-visible:outline-2 focus-visible:outline-offset-2 sm:gap-4 sm:px-4"
+            >
+              <span class="bg-primary/12 text-primary grid h-10 w-10 shrink-0 place-items-center rounded-[var(--radius-control)] sm:h-11 sm:w-11">
+                <Icon name={link.icon} class="h-5 w-5" aria-hidden="true" />
+              </span>
+              <span class="min-w-0 flex-1">
+                <span class="block font-semibold">{link.label}</span>
+                <span class="text-muted-foreground mt-0.5 block text-sm leading-snug">
+                  {link.description}
+                </span>
+              </span>
+              <Icon
+                name="lucide:arrow-right"
+                class="text-muted-foreground hidden h-5 w-5 shrink-0 transition-transform duration-200 group-hover:translate-x-0.5 min-[360px]:block"
+                aria-hidden="true"
+              />
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+  </section>
+</BaseLayout>
