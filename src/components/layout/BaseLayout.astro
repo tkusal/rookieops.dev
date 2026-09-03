@@ -53,6 +53,7 @@ interface Props {
   comments?: boolean;
   math?: boolean;
   hideChrome?: boolean;
+  analyticsEnabled?: boolean;
 }
 
 const {
@@ -76,7 +77,8 @@ const {
   toc = false,
   comments = false,
   math = false,
-  hideChrome = false
+  hideChrome = false,
+  analyticsEnabled = true
 } = Astro.props;
 
 const localizedSiteDescription = siteConfig.description[locale];
@@ -358,7 +360,7 @@ const themeInit = `
     }
     {!hideChrome && <SearchModal locale={locale} />}
     {!hideChrome && <GalleryLightbox locale={locale} />}
-    <Analytics locale={locale} />
+    {analyticsEnabled && <Analytics locale={locale} />}
     <script>
       import '../../scripts/theme-controls.ts';
       import '../../scripts/reading-progress.ts';
