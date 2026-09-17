@@ -13,6 +13,7 @@ cover: '/images/posts/nova-stack-cloud-devops-ia/capa.webp'
 coverAlt: 'Servers and storage supporting a cloud of connected nodes, framed by automation gears and a shield with a checkmark.'
 toc: true
 comments: true
+mermaid: true
 draft: false
 ---
 

@@ -12,6 +12,7 @@ cover: '/images/posts/passkeys-microsoft-entra-id-setembro-2026/capa.webp'
 coverAlt: 'Isometric illustration of a FIDO2 security key and a smartphone with biometrics replacing an SMS code, with the Microsoft Entra ID logo in the background'
 toc: true
 comments: true
+mermaid: true
 draft: false
 ---
 

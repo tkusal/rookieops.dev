@@ -13,6 +13,7 @@ cover: '/images/posts/azure-local-hibrido-arquitetura-desagregada/capa.webp'
 coverAlt: 'Ilustração conceitual mostrando um datacenter local com camadas separadas de compute e storage conectadas a uma nuvem híbrida, representando a arquitetura desagregada.'
 toc: true
 comments: true
+mermaid: true
 draft: false
 ---
 

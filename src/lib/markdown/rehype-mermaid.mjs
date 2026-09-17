@@ -15,7 +15,7 @@ function visit(node) {
         node.children[index] = {
           type: 'element',
           tagName: 'div',
-          properties: { className: ['mermaid'], dataMermaid: 'true' },
+          properties: { className: ['mermaid', 'mermaid-pending'], dataMermaid: 'true' },
           children: code.children || []
         };
         continue;

@@ -13,6 +13,7 @@ cover: '/images/posts/nova-stack-cloud-devops-ia/capa.webp'
 coverAlt: 'Servidores e armazenamento sustentando uma nuvem de nós conectados, cercados por engrenagens de automação e um escudo de verificação.'
 toc: true
 comments: true
+mermaid: true
 draft: false
 ---
 

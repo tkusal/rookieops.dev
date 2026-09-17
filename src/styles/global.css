@@ -912,6 +912,10 @@ body[data-consent-visible] .dock-shell {
   overflow-x: auto;
 }
 
+.mermaid.mermaid-pending {
+  display: none;
+}
+
 .timeline-prose {
   position: relative;
   padding-left: 2.75rem;
