@@ -7,7 +7,7 @@ authorUrl: 'https://tkusal.com.br'
 lang: pt-br
 translationKey: microsoft-student-ambassador-2026
 categories: ['Carreira']
-tags: ['Azure', 'Estudantes', 'Microsoft', 'Microsoft Student Ambassadors', 'Iniciante']
+tags: ['Azure', 'Estudantes', 'Microsoft Learn', 'Microsoft Student Ambassadors', 'Iniciante']
 cover: '/images/posts/microsoft-student-ambassador-2026/capa.webp'
 coverAlt: 'Selos dos marcos Student Ambassador, Associate e Senior sobre uma fotografia de estudante usando um notebook'
 toc: true

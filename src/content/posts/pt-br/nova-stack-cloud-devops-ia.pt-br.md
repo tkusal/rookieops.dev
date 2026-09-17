@@ -7,8 +7,8 @@ authorUrl: 'https://tkusal.com.br'
 lang: pt-br
 slug: nova-stack-cloud-devops-ia
 translationKey: nova-stack-cloud-devops-ia
-categories: ['Carreira e Cultura']
-tags: ['cloud', 'devops', 'ia', 'carreira', 'mcp', 'harness-engineering', 'sysadmin', 'Iniciante']
+categories: ['Carreira']
+tags: ['Cloud', 'DevOps', 'IA', 'MCP', 'Harness Engineering', 'SysAdmin', 'Iniciante']
 cover: '/images/posts/nova-stack-cloud-devops-ia/capa.webp'
 coverAlt: 'Servidores e armazenamento sustentando uma nuvem de nós conectados, cercados por engrenagens de automação e um escudo de verificação.'
 toc: true

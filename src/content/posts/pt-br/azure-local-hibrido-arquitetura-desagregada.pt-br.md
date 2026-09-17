@@ -7,18 +7,8 @@ authorUrl: 'https://tkusal.com.br'
 lang: pt-br
 slug: azure-local-hibrido-arquitetura-desagregada
 translationKey: azure-local-hibrido-arquitetura-desagregada
-categories: ['Cloud e Infraestrutura']
-tags:
-  [
-    'azure',
-    'azure-local',
-    'hibrido',
-    'sovereign-cloud',
-    'storage',
-    'infraestrutura',
-    'sysadmin',
-    'Intermediário'
-  ]
+categories: ['Infraestrutura']
+tags: ['Azure', 'Azure Local', 'Híbrido', 'Storage', 'SysAdmin', 'Intermediário']
 cover: '/images/posts/azure-local-hibrido-arquitetura-desagregada/capa.webp'
 coverAlt: 'Ilustração conceitual mostrando um datacenter local com camadas separadas de compute e storage conectadas a uma nuvem híbrida, representando a arquitetura desagregada.'
 toc: true

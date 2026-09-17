@@ -144,19 +144,25 @@ Categorias disponíveis atualmente:
 - `Carreira`;
 - `Cloud`;
 - `DevOps`;
+- `Infraestrutura`;
 - `Microsoft 365`.
 
-Tags temáticas disponíveis atualmente:
+Exemplos de tags temáticas consolidadas:
 
 - `Azure`;
 - `CI/CD`;
+- `Cloud`;
+- `DevOps`;
+- `Entra ID`;
 - `Estudantes`;
 - `Git`;
 - `GitHub Actions`;
+- `IaC`;
 - `IAM`;
-- `Microsoft Entra ID`;
+- `Microsoft Learn`;
 - `Redes`;
 - `Segurança`;
+- `SysAdmin`;
 - `Versionamento`.
 
 Dificuldades disponíveis:
@@ -165,11 +171,11 @@ Dificuldades disponíveis:
 - `Intermediário`: pressupõe familiaridade com os fundamentos e aborda integrações, configurações ou diagnósticos com mais detalhes;
 - `Avançado`: pressupõe experiência prática e trata arquitetura, automação complexa, produção, riscos elevados ou diagnóstico aprofundado.
 
-Nas versões em inglês, traduza a taxonomia editorial quando houver equivalente natural. Use `Career` para `Carreira`, `Students` para `Estudantes` e exatamente uma dificuldade entre `Beginner`, `Intermediate` e `Advanced`. Nomes de produtos e tecnologias, como `Azure`, `Microsoft Learn` e `Microsoft Student Ambassadors`, permanecem inalterados.
+Nas versões em inglês, traduza a taxonomia editorial quando houver equivalente natural. Use `Career` para `Carreira`, `Infrastructure` para `Infraestrutura`, `Networking` para `Redes`, `Security` para `Segurança`, `Students` para `Estudantes`, `AI` para `IA`, `Hybrid` para `Híbrido` e exatamente uma dificuldade entre `Beginner`, `Intermediate` e `Advanced`. Nomes de produtos e tecnologias, como `Azure`, `Entra ID`, `Microsoft Learn` e `Microsoft Student Ambassadors`, permanecem inalterados. Preserve também a capitalização de termos como `Cloud`, `DevOps`, `IaC` e `SysAdmin`.
 
 Todo artigo deve usar exatamente uma dessas três dificuldades dentro de `tags`. Não crie variações como `Básico`, `Fácil`, `Médio` ou `Especialista`.
 
-Escolha exatamente uma categoria e pelo menos uma tag temática que representem de fato o conteúdo. Prefira os nomes existentes e preserve a grafia, os espaços, as siglas e a capitalização mostrados acima. Em geral, use de duas a quatro tags temáticas, além da dificuldade, e evite termos que apareçam apenas de forma incidental no texto.
+Escolha exatamente uma categoria e pelo menos uma tag temática que representem de fato o conteúdo. Prefira os nomes existentes e preserve a grafia, os espaços, as siglas e a capitalização mostrados acima. Não repita a categoria escolhida como tag no mesmo artigo. Em geral, use de duas a quatro tags temáticas, além da dificuldade, e evite termos que apareçam apenas de forma incidental no texto.
 
 Você pode propor uma nova categoria quando nenhuma das categorias atuais representar a área principal do artigo. Também pode criar novas tags temáticas para tecnologias ou assuntos ainda não cobertos. Faça isso sem exageros: a nova categoria deve representar um eixo editorial amplo e a nova tag deve ser específica, clara e reutilizável em outros artigos. Não crie sinônimos, variações de capitalização, tags excessivamente genéricas ou uma tag diferente para cada detalhe do texto.
 

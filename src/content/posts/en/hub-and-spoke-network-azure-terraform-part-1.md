@@ -8,7 +8,7 @@ authorUrl: 'https://tkusal.com.br'
 lang: en
 translationKey: rede-hub-and-spoke-azure-terraform-parte-1
 categories: ['Cloud']
-tags: ['Azure', 'Terraform', 'IaC', 'IPAM', 'Networks', 'Intermediate']
+tags: ['Azure', 'Terraform', 'IaC', 'IPAM', 'Networking', 'Intermediate']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-1/capa.webp'
 coverAlt: 'Isometric illustration with Azure and Terraform symbols over a hub VNet connected by luminous peerings to two spoke VNets'
 toc: true

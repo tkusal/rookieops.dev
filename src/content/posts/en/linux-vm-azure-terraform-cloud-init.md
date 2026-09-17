@@ -7,7 +7,7 @@ authorUrl: 'https://tkusal.com.br'
 lang: en
 translationKey: vm-linux-azure-terraform-cloud-init
 categories: ['Cloud']
-tags: ['Azure', 'Terraform', 'cloud-init', 'IaC', 'Linux', 'Nginx', 'DevOps', 'Beginner']
+tags: ['Azure', 'Terraform', 'IaC', 'Linux', 'Nginx', 'DevOps', 'Beginner']
 cover: '/images/posts/vm-linux-azure-terraform-cloud-init/capa.webp'
 coverAlt: 'Isometric illustration of a Linux server beneath an Azure cloud, with Terraform automation, a terminal showing success, and the Nginx symbol'
 toc: true

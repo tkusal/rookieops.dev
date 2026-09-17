@@ -7,8 +7,8 @@ authorUrl: 'https://tkusal.com.br'
 lang: en
 slug: new-cloud-devops-stack-ai
 translationKey: nova-stack-cloud-devops-ia
-categories: ['Career & Culture']
-tags: ['cloud', 'devops', 'ai', 'career', 'mcp', 'harness-engineering', 'sysadmin', 'Beginner']
+categories: ['Career']
+tags: ['Cloud', 'DevOps', 'AI', 'MCP', 'Harness Engineering', 'SysAdmin', 'Beginner']
 cover: '/images/posts/nova-stack-cloud-devops-ia/capa.webp'
 coverAlt: 'Servers and storage supporting a cloud of connected nodes, framed by automation gears and a shield with a checkmark.'
 toc: true

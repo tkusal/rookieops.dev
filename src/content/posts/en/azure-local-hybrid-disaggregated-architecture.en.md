@@ -7,18 +7,8 @@ authorUrl: 'https://tkusal.com.br'
 lang: en
 slug: azure-local-hybrid-disaggregated-architecture
 translationKey: azure-local-hibrido-arquitetura-desagregada
-categories: ['Cloud & Infrastructure']
-tags:
-  [
-    'azure',
-    'azure-local',
-    'hybrid-cloud',
-    'sovereign-cloud',
-    'storage',
-    'infrastructure',
-    'sysadmin',
-    'Intermediate'
-  ]
+categories: ['Infrastructure']
+tags: ['Azure', 'Azure Local', 'Hybrid', 'Storage', 'SysAdmin', 'Intermediate']
 cover: '/images/posts/azure-local-hibrido-arquitetura-desagregada/capa.webp'
 coverAlt: 'Conceptual illustration of a local datacenter with separated compute and storage layers connecting to a hybrid cloud, representing disaggregated architecture.'
 toc: true

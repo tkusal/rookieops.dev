@@ -7,7 +7,7 @@ authorUrl: 'https://tkusal.com.br'
 lang: en
 translationKey: rede-hub-and-spoke-azure-terraform-parte-2
 categories: ['Cloud']
-tags: ['Azure', 'Terraform', 'IaC', 'NSG', 'Networks', 'Intermediate']
+tags: ['Azure', 'Terraform', 'IaC', 'NSG', 'Networking', 'Intermediate']
 cover: '/images/posts/rede-hub-and-spoke-azure-terraform-parte-2/capa.webp'
 coverAlt: 'Isometric illustration of a hub and spoke network in Azure with shields and padlocks representing NSGs next to the subnets'
 toc: true
