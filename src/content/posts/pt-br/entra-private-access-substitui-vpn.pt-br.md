@@ -7,7 +7,7 @@ authorUrl: 'https://tkusal.com.br'
 lang: pt-br
 slug: entra-private-access-substitui-vpn
 translationKey: entra-private-access-substitui-vpn
-categories: ['Segurança e Redes']
+categories: ['Segurança']
 tags: ['Entra ID', 'ZTNA', 'VPN', 'Conditional Access', 'Intermediário']
 cover: '/images/posts/entra-private-access-substitui-vpn/capa.webp'
 coverAlt: 'Ilustração conceitual comparando um túnel de rede tradicional com conexões individuais e granulares por aplicação, representando VPN versus Zero Trust Network Access.'
